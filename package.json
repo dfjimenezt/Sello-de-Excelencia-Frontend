@@ -5,7 +5,8 @@
   "main": "webpack.config.js",
   "scripts": {
     "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-    "build": "NODE_ENV=production node node_modules/webpack/bin/webpack.js --progress --colors && cp app/index.html dist/index.html"
+    "build": "NODE_ENV=production node node_modules/webpack/bin/webpack.js --progress --colors && cp app/index.html dist/index.html && cp -a app/assets/. dist/assets",
+    "production": "node_modules/http-server/bin/http-server dist/ -p 9000"
   },
   "keywords": [
     "Sello",
@@ -24,6 +25,7 @@
     "babel-preset-stage-2": "^6.18.0",
     "css-loader": "^0.26.0",
     "file-loader": "^0.9.0",
+    "http-server": "^0.9.0",
     "ng-annotate-loader": "^0.2.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.1",
@@ -35,8 +37,6 @@
   },
   "dependencies": {
     "angular": "^1.5.9",
-    "angular-ui-router": "^1.0.0-alpha.5",
-    "jquery": "^2.1.4",
-    "materialize-css": "^0.97.8"
+    "angular-ui-router": "^1.0.0-alpha.5"
   }
 }

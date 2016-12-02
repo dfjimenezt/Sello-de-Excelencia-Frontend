@@ -19,6 +19,7 @@ Aplicación que permite postular, publicar, verificar y validar los requisitos d
 ## Producción
 ```shell
   $ npm run build
+  $ npm run production            // ejecuta un servidor de prueba
 ```
 Al finalizar de ejecutar este comando (**npm run build**) los archivos listos para producción estaran dentro del directorio ```dist``` ubicado en la raíz del proyecto.
 
