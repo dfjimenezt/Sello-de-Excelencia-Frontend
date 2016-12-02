@@ -1,0 +1,38 @@
+.slider-img
+  width: 200px !important
+  background-size: none;
+  background-position: none;
+  margin-right: 15px
+
+.slider .indicators .indicator-item.active
+    background-color: #000
+
+.slider .indicators .indicator-item
+  background-color: rgba(0,0,0,0.3)
+
+.absolute-left
+  position absolute
+  top: 40%
+  left: 3%
+  z-index: 5
+
+.absolute-right
+  position absolute
+  top: 40%
+  right: 3%
+  z-index: 5
+
+.arrow
+  color: rgba(0,0,0,0.3)
+  font-size: 100px
+
+.pointer
+  cursor: pointer
+
+
+@media screen and (max-width: 500px)
+  .absolute-left, .absolute-right
+    display: none
+  
+  .slider-img
+    width: 80px !important
