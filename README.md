@@ -7,7 +7,7 @@ Aplicación que permite postular, publicar, verificar y validar los requisitos d
 
 ## Instalación
 ```shell
-  $ git clone https://jorcalle11@bitbucket.org/jorcalle11/quality-stamp.git
+  $ git clone https://jorcalle11@bitbucket.org/domoti/quality-stamp.git
   $ cd quality-stamp
   $ npm install
 ```
