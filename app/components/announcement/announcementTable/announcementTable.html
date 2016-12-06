@@ -1,0 +1,19 @@
+<div class="white">
+  <table class="striped centered responsive-table" ng-if="$ctrl.announcements.length">
+    <h5 style="padding:10px">Convocatoria</h5>
+    <thead>
+      <tr>
+        <th data-field="entity">Entidad</th>
+        <th data-field="product">Producto o servicio</th>
+        <th data-field="apply">Aplicar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="announcement in $ctrl.announcements">
+        <td>{{announcement.entity}}</td>
+        <td>{{announcement.service}}</td>
+        <td><a class="btn-floating waves-effect waves-light"><i class="material-icons">chevron_right</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
