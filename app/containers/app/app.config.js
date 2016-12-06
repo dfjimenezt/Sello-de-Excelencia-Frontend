@@ -1,12 +1,23 @@
-const appConfig = ($stateProvider, $urlRouterProvider, $locationProvider) => {
+const appConfig = ($stateProvider, $urlRouterProvider) => {
   $stateProvider
     .state('home',{
       url : '/',
       component: 'home'
     })
+    .state('signIn',{
+      url: '/sign-in',
+      component: 'signIn'
+    })
+    .state('signUp',{
+      url: '/sign-up',
+      component: 'signUp'
+    })
+    .state('forgotPassword',{
+      url: '/forgot-password',
+      component: 'forgotPassword'
+    })
 
   $urlRouterProvider.otherwise('/')
-  $locationProvider.html5Mode(true)
 }
 
 appConfig.$inject = ['$stateProvider','$urlRouterProvider','$locationProvider']

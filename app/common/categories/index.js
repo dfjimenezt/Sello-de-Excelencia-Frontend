@@ -3,7 +3,7 @@ import categoriesListComponent from './categoriesList/categoriesList.component';
 import categoryItemComponent from './categoryItem/categoryItem.component';
 
 const categories = angular
-  .module('qualityStamp.categories',[])
+  .module('qualityStamp.common.categories',[])
   .component('categoriesList',categoriesListComponent)
   .component('categoryItem',categoryItemComponent)
   .name
