@@ -1,0 +1,16 @@
+application: domoti-sellodeexcelencia
+version: dev
+runtime: python27
+api_version: 1
+threadsafe: true
+
+#default_expiration: "30d"
+
+handlers:
+
+- url: /
+  static_files: app/index.html
+  upload: app/index.html
+
+- url: /
+  static_dir: app
