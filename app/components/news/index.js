@@ -1,6 +1,6 @@
-import angular from 'angular';
-import newsListComponent from './newsList/newsList.component';
-import newRowComponent from './newRow/newRow.component';
+import angular from 'angular'
+import newsListComponent from './newsList/newsList.component'
+import newRowComponent from './newRow/newRow.component'
 
 const news = angular
   .module('qualityStamp.components.news',[])

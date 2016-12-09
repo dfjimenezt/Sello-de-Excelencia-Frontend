@@ -1,4 +1,4 @@
-import template from './forgotPassword.html';
+import template from './forgotPassword.html'
 
 const forgotPasswordComponent = {
   template

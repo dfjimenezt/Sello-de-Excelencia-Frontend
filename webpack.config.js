@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var env = process.env.NODE_ENV;
+var webpack = require('webpack')
+var env = process.env.NODE_ENV
 
 var config = {
   context: __dirname +'/app',
@@ -38,4 +38,4 @@ if ( env === 'production') {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin(options))
 }
 
-module.exports = config;
+module.exports = config

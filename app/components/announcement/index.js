@@ -1,5 +1,5 @@
-import angular from 'angular';
-import announcementTableComponent from './announcementTable/announcementTable.component';
+import angular from 'angular'
+import announcementTableComponent from './announcementTable/announcementTable.component'
 
 const announcement = angular
   .module('qualityStamp.components.announcement',[])

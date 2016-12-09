@@ -1,6 +1,6 @@
-import template from './slider.html';
-import './slider.styl';
-import controller from './slider.controller';
+import template from './slider.html'
+import './slider.styl'
+import controller from './slider.controller'
 
 const sliderComponent = {
   template,

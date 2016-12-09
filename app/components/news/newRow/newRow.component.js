@@ -1,4 +1,4 @@
-import template from './newRow.html';
+import template from './newRow.html'
 
 const newRowComponent = {
   template,

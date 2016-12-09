@@ -1,7 +1,7 @@
-import angular from 'angular';
-import signInComponent from './signIn/signIn.component';
-import signUpComponent from './signUp/signUp.component';
-import forgotPasswordComponent from './forgotPassword/forgotPassword.component';
+import angular from 'angular'
+import signInComponent from './signIn/signIn.component'
+import signUpComponent from './signUp/signUp.component'
+import forgotPasswordComponent from './forgotPassword/forgotPassword.component'
 
 
 const authentication = angular

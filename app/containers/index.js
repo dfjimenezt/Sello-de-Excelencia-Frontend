@@ -1,5 +1,5 @@
-import angular from 'angular';
-import homeComponent from './home/home.component';
+import angular from 'angular'
+import homeComponent from './home/home.component'
 
 const containers = angular
   .module('qualityStamp.containers',[])

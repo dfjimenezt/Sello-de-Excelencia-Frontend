@@ -1,4 +1,4 @@
-import template from './categoryItem.html';
+import template from './categoryItem.html'
 import './categoryItem.styl'
 
 const categoryItemComponent = {

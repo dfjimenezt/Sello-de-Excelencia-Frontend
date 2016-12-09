@@ -1,5 +1,5 @@
-import template from './announcementTable.html';
-import controller from './announcementTable.controller';
+import template from './announcementTable.html'
+import controller from './announcementTable.controller'
 
 const announcementTableComponent = {
   template,

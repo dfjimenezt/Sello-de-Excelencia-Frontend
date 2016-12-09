@@ -1,6 +1,6 @@
 class NavbarController {
   $onInit() {
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav()
   }
 
   changeFontSize(size) {

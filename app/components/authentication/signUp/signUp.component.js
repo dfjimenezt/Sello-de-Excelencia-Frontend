@@ -1,4 +1,4 @@
-import template from './signUp.html';
+import template from './signUp.html'
 
 const signUpComponent = {
   template
