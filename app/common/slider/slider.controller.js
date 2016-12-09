@@ -1,6 +1,6 @@
 class SliderController {
   $onInit() {
-    $('.slider').slider({'Transition':3000});
+    $('.slider').slider({'Transition':5000});
   }
 
   changeSlider(direction) {
