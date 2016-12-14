@@ -9,6 +9,10 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          # Install app requirements
+          # - npm install
+          # Testing app
+          # - npm test          
           # Install python requirements
           - apt-get update -y
           - apt-get install -y python-pip
@@ -32,10 +36,7 @@ pipelines:
           - pip --quiet install -r gcp/pip-requirements -t lib/
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
           - echo ${GOOGLE_CLIENT_SECRET} > client-secret.json
+          - cat client-secret.json
           - gcloud auth activate-service-account --key-file client-secret.json          
-          # Install app requirements
-          - npm install
-          # Testing app
-          - npm test
           # Finish deploy
           - gcloud --quiet --verbosity=error app deploy app.yaml --promote
