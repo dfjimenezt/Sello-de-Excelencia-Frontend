@@ -19,7 +19,7 @@ pipelines:
           # Configuration environment variables
           - export CLOUDSDK_CORE_PROJECT="domoti-sellodeexcelencia"
           - export GOOGLE_API_KEY="AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
-          - export GOOGLE_CLIENT_SECRET=$(cat gcp/domoti-sellodeexcelencia.json)
+          - export GOOGLE_CLIENT_SECRET=$(cat gcp/GOOGLE_CLIENT_SECRET.json)
           - export CLOUDSDK_CORE_DISABLE_PROMPTS=1          
           # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
           - SDK_VERSION=127.0.0
@@ -35,6 +35,6 @@ pipelines:
           # Install app & dev dependencies, test, deploy, test deployment
           - pip --quiet install -r gcp/pip-requirements -t lib/
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
-          - gcloud auth activate-service-account --key-file gcp/domoti-sellodeexcelencia.json          
+          - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json          
           # Finish deploy
           - gcloud --quiet --verbosity=error app deploy app.yaml --promote
