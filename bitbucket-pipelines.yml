@@ -10,11 +10,10 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           # Configuration environment variables
-          - export CLOUDSDK_CORE_PROJECT = "domoti-sellodeexcelencia"
-          - export GOOGLE_API_KEY = "AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
+          - export CLOUDSDK_CORE_PROJECT="domoti-sellodeexcelencia"
+          - export GOOGLE_API_KEY="AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
           - export GOOGLE_CLIENT_SECRET=$(cat gcp/domoti-sellodeexcelencia.json)
-          # Install Google Cloud SDK
-          - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+          - export CLOUDSDK_CORE_DISABLE_PROMPTS=1          
           # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
           - SDK_VERSION=127.0.0
           - SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
@@ -28,15 +27,12 @@ pipelines:
           - echo "${PYTHONPATH}" && ls ${GAE_PYTHONPATH}
           # Install app & dev dependencies, test, deploy, test deployment
           - pip --quiet install -r requirements.txt -t lib/
-          - echo "key = '${GOOGLE_API_KEY}'" > api_key.py
-          - python test_main.py
+          - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
           - echo ${GOOGLE_CLIENT_SECRET} > client-secret.json
-          - gcloud auth activate-service-account --key-file client-secret.json
-          
+          - gcloud auth activate-service-account --key-file client-secret.json          
           # Install app requirements
           - npm install
           # Testing app
           - npm test
-
           # Finish deploy
           - gcloud --quiet --verbosity=error app deploy app.yaml --promote
