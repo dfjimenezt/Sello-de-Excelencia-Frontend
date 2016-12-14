@@ -9,6 +9,9 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
+          # Install python requirements
+          - apt-get update -y
+          - apt-get install python-pip
           # Configuration environment variables
           - export CLOUDSDK_CORE_PROJECT="domoti-sellodeexcelencia"
           - export GOOGLE_API_KEY="AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
