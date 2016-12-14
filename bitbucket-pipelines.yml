@@ -24,6 +24,11 @@ pipelines:
           # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
           - SDK_VERSION=127.0.0
           - SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
+          - APPENGINE_SDK_VERSION=1.9.49
+          - APPENGINE_SDK_FILENAME=google_appengine_${APPENGINE_SDK_VERSION}.zip
+          - curl -O -J https://storage.googleapis.com/appengine-sdks/featured/${APPENGINE_SDK_FILENAME}
+          - unzip ${APPENGINE_SDK_FILENAME} -d ${HOME}
+          - export PATH=${PATH}:${HOME}/google_appengine
           - curl -O -J https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/${SDK_FILENAME}
           - tar -zxvf ${SDK_FILENAME} --directory ${HOME}
           - export PATH=${PATH}:${HOME}/google-cloud-sdk/bin
@@ -35,6 +40,7 @@ pipelines:
           # Install app & dev dependencies, test, deploy, test deployment
           - pip --quiet install -r gcp/pip-requirements -t lib/
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
-          - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json          
+          - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json
+          - gcloud config set project ${CLOUDSDK_CORE_PROJECT}           
           # Finish deploy          
-          - gcloud app deploy app.yaml --project ${CLOUDSDK_CORE_PROJECT}
+          - appcfg.py update ./
