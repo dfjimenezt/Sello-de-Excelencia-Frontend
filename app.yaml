@@ -1,5 +1,5 @@
 application: domoti-sellodeexcelencia
-version: dev
+version: production
 runtime: python27
 api_version: 1
 threadsafe: true
@@ -9,8 +9,19 @@ threadsafe: true
 handlers:
 
 - url: /
-  static_files: app/index.html
-  upload: app/index.html
+  static_files: dist/index.html
+  upload: dist/index.html
 
 - url: /
-  static_dir: app
+  static_dir: dist
+
+skip_files:
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.py[co]$
+- ^(.*/)?.*/RCS/.*$
+- ^(.*/)?\..*$
+- ^\node_modules$
+- ^\test$
+- ^node_modules$
+- ^app$
