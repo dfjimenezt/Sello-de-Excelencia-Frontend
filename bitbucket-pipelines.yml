@@ -35,8 +35,6 @@ pipelines:
           # Install app & dev dependencies, test, deploy, test deployment
           - pip --quiet install -r gcp/pip-requirements -t lib/
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
-          - echo ${GOOGLE_CLIENT_SECRET} > client-secret.json
-          - cat client-secret.json
-          - gcloud auth activate-service-account --key-file client-secret.json          
+          - gcloud auth activate-service-account --key-file gcp/domoti-sellodeexcelencia.json          
           # Finish deploy
           - gcloud --quiet --verbosity=error app deploy app.yaml --promote
