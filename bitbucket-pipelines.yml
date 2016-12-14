@@ -37,4 +37,5 @@ pipelines:
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
           - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json          
           # Finish deploy
-          - gcloud --quiet --verbosity=error app deploy app.yaml --promote
+          #- gcloud --quiet --verbosity=error app deploy app.yaml --promote
+          - appcfg.py update ./
