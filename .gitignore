@@ -15,7 +15,7 @@ pids
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
-#dist
+dist
 bundle.js
 bundle.js.map
 
