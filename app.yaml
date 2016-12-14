@@ -9,8 +9,8 @@ threadsafe: true
 handlers:
 
 - url: /
-  static_files: app/index.html
-  upload: app/index.html
+  static_files: dist/index.html
+  upload: dist/index.html
 
 - url: /
-  static_dir: app
+  static_dir: dist

@@ -1,6 +1,7 @@
 {
   "name": "quality-stamp",
   "version": "1.0.0",
+  "private": true,
   "description": "Aplicación que permite postular, publicar, verificar y validar los requisitos de calidad de los trámites, servicios, productos y capacidades de las entidades del estado.",
   "main": "webpack.config.js",
   "scripts": {
@@ -10,7 +11,7 @@
     "pretest": "npm run build",
     "test": "npm run style",
     "style": "./node_modules/.bin/eslint app",
-    "posttest": "appcfg.py update ./"
+    "posttest": "gcloud app deploy"
   },
   "keywords": [
     "Sello",
@@ -23,6 +24,9 @@
   "repository": {
     "type": "git",
     "url": "https://bitbucket.org/domoti/quality-stamp/"
+  },
+  "engines": {
+    "node": ">=4.3.2"
   },
   "author": "Domoti SAS <jorge.calle@domoti-sas.com>",
   "license": "ISC",
