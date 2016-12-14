@@ -10,8 +10,7 @@
     "production": "node_modules/http-server/bin/http-server dist/ -p 9000",
     "pretest": "npm run build",
     "test": "npm run style",
-    "style": "./node_modules/.bin/eslint app",
-    "posttest": "gcloud app deploy"
+    "style": "./node_modules/.bin/eslint app"    
   },
   "keywords": [
     "Sello",
