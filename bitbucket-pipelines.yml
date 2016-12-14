@@ -32,8 +32,11 @@ pipelines:
           - python test_main.py
           - echo ${GOOGLE_CLIENT_SECRET} > client-secret.json
           - gcloud auth activate-service-account --key-file client-secret.json
-          - gcloud --quiet --verbosity=error app deploy app.yaml --promote
+          
           # Install app requirements
           - npm install
           # Testing app
           - npm test
+
+          # Finish deploy
+          - gcloud --quiet --verbosity=error app deploy app.yaml --promote
