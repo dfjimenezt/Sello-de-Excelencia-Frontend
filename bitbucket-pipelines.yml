@@ -10,9 +10,9 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           # Configuration environment variables
-          export CLOUDSDK_CORE_PROJECT = "domoti-sellodeexcelencia"
-          export GOOGLE_API_KEY = "AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
-          export GOOGLE_CLIENT_SECRET=$(cat gcp/domoti-sellodeexcelencia.json)
+          - export CLOUDSDK_CORE_PROJECT = "domoti-sellodeexcelencia"
+          - export GOOGLE_API_KEY = "AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
+          - export GOOGLE_CLIENT_SECRET=$(cat gcp/domoti-sellodeexcelencia.json)
           # Install Google Cloud SDK
           - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
           # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
