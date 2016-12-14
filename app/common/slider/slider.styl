@@ -29,13 +29,40 @@
 .pointer
   cursor: pointer
 
+.list
+  display none
+
 .list span
   vertical-align top
 
+.display-block
+  display block
 
-@media screen and (max-width: 500px)
+.font-bold
+  font-weight bold
+
+@media screen and (max-width: 750px)
   .absolute-left, .absolute-right
     display: none
   
+  .list
+    display block
+  
+  .list-images
+    display none
+  
   .slider-img
     width: 80px !important
+    display block
+    float unset !important
+    margin 0 auto
+  
+  .slider .slides li .caption
+    top 1%
+    left 10%
+    width 80%
+    text-align: center
+  
+  .caption p
+    font-size .9em
+
