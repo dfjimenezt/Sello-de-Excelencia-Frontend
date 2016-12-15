@@ -12,7 +12,9 @@ pipelines:
           # Install app requirements
           - npm install
           # Testing app
-          - npm test          
+          - npm test
+    - step:
+        script: # Modify the commands below to build your repository.          
           # Install python requirements
           - apt-get update -y
           - apt-get install -y python-pip unzip
@@ -21,12 +23,13 @@ pipelines:
           - export GOOGLE_API_KEY="AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
           - export GOOGLE_CLIENT_SECRET=$(cat gcp/GOOGLE_CLIENT_SECRET.json)
           - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+          - export BRANCH="master"
           # Appengine SDK Install
-          - APPENGINE_SDK_VERSION=1.9.49
-          - APPENGINE_SDK_FILENAME=google_appengine_${APPENGINE_SDK_VERSION}.zip
-          - curl -O -J https://storage.googleapis.com/appengine-sdks/featured/${APPENGINE_SDK_FILENAME}
-          - unzip ${APPENGINE_SDK_FILENAME} -d ${HOME}
-          - export PATH=${PATH}:${HOME}/google_appengine              
+          #- APPENGINE_SDK_VERSION=1.9.49
+          #- APPENGINE_SDK_FILENAME=google_appengine_${APPENGINE_SDK_VERSION}.zip
+          #- curl -O -J https://storage.googleapis.com/appengine-sdks/featured/${APPENGINE_SDK_FILENAME}
+          #- unzip ${APPENGINE_SDK_FILENAME} -d ${HOME}
+          #- export PATH=${PATH}:${HOME}/google_appengine              
           # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
           - SDK_VERSION=127.0.0
           - SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
@@ -43,4 +46,4 @@ pipelines:
           - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
           - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json      
           # Finish deploy          
-          - appcfg.py update app.yaml 
+          - gcloud app deploy app.yaml --project ${CLOUDSDK_CORE_PROJECT} --version ${BRANCH} 
