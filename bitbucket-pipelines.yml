@@ -17,31 +17,17 @@ pipelines:
           - apt-get update -y
           - apt-get install -y python-pip unzip
           # Configuration environment variables
-          - export CLOUDSDK_CORE_PROJECT="domoti-sellodeexcelencia"
-          - export GOOGLE_API_KEY="AIzaSyD5JawyJ9JTRxdTsmHoXjU81ydbSCVS8jQ"
+          - export CLOUDSDK_CORE_PROJECT=$(cat gcp/CLOUDSDK_CORE_PROJECT.json)          
           - export GOOGLE_CLIENT_SECRET=$(cat gcp/GOOGLE_CLIENT_SECRET.json)
           - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
-          - export BRANCH="master"
-          # Appengine SDK Install
-          #- APPENGINE_SDK_VERSION=1.9.49
-          #- APPENGINE_SDK_FILENAME=google_appengine_${APPENGINE_SDK_VERSION}.zip
-          #- curl -O -J https://storage.googleapis.com/appengine-sdks/featured/${APPENGINE_SDK_FILENAME}
-          #- unzip ${APPENGINE_SDK_FILENAME} -d ${HOME}
-          #- export PATH=${PATH}:${HOME}/google_appengine              
-          # Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
-          - SDK_VERSION=127.0.0
+          # Install Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
+          - SDK_VERSION=138.0.0
           - SDK_FILENAME=google-cloud-sdk-${SDK_VERSION}-linux-x86_64.tar.gz
           - curl -O -J https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/${SDK_FILENAME}
           - tar -zxvf ${SDK_FILENAME} --directory ${HOME}
-          - export PATH=${PATH}:${HOME}/google-cloud-sdk/bin
-          # Install Google App Engine SDK
-          - GAE_PYTHONPATH=${HOME}/google_appengine
-          - export PYTHONPATH=${PYTHONPATH}:${GAE_PYTHONPATH}
-          - python gcp/fetch_gae_sdk.py $(dirname "${GAE_PYTHONPATH}")
-          - echo "${PYTHONPATH}" && ls ${GAE_PYTHONPATH}
-          # Install app & dev dependencies, test, deploy, test deployment
-          - pip --quiet install -r gcp/pip-requirements -t lib/
-          - echo "key = '${GOOGLE_API_KEY}'" > api_key.json
+          - export PATH=${PATH}:${HOME}/google-cloud-sdk/bin          
+          # Configure Google Cloud SDK
           - gcloud auth activate-service-account --key-file gcp/GOOGLE_CLIENT_SECRET.json      
-          # Finish deploy          
-          - gcloud app deploy app.yaml --project ${CLOUDSDK_CORE_PROJECT} --version ${BRANCH} 
+          # Finish deploy (--log-http --verbosity=debug) 
+          - gcloud config set project ${CLOUDSDK_CORE_PROJECT}        
+          - gcloud --quiet --verbosity=error app deploy app.yaml --promote 
