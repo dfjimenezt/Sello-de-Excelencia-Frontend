@@ -17,7 +17,7 @@ pipelines:
           - apt-get update -y
           - apt-get install -y python-pip unzip
           # Configuration environment variables
-          - export CLOUDSDK_CORE_PROJECT=$(cat gcp/CLOUDSDK_CORE_PROJECT.json)          
+          - export CLOUDSDK_CORE_PROJECT=$(cat gcp/CLOUDSDK_CORE_PROJECT)          
           - export GOOGLE_CLIENT_SECRET=$(cat gcp/GOOGLE_CLIENT_SECRET.json)
           - export CLOUDSDK_CORE_DISABLE_PROMPTS=1
           # Install Google Cloud SDK is pinned for build reliability. Bump if the SDK complains about deprecation.
