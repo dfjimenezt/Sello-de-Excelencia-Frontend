@@ -1,4 +1,4 @@
-const appConfig = ($stateProvider, $urlRouterProvider) => {
+const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider) => {
   $stateProvider
     .state('home',{
       url : '/',
@@ -20,7 +20,12 @@ const appConfig = ($stateProvider, $urlRouterProvider) => {
       url:'/mas-informacion',
       component:'moreInformation'
     })
+    .state('terms',{
+      url: '/terminos-y-condiciones',
+      component: 'terms'
+    })
 
+  $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
 }
 
