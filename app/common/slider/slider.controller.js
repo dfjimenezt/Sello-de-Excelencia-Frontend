@@ -1,10 +1,16 @@
 class SliderController {
   $onInit() {
-    $('.slider').slider({'Transition':5000})
+    this.optionsSlider()
   }
 
   changeSlider(direction) {
     $('.slider').slider(direction)
+  }
+
+  optionsSlider() {
+    $('.sliderone').slider({'Interval':1000})
+    $('.sliderone').slider('pause')
+    $('.indicator-item').on('click', () => $('.sliderone').slider('pause'))
   }
 }
 

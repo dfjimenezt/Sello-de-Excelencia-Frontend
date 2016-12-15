@@ -4,7 +4,8 @@ import './categoryItem.styl'
 const categoryItemComponent = {
   template,
   bindings: {
-    category: '<'
+    category: '<',
+    goTo: '&'
   }
 }
 

@@ -16,6 +16,10 @@ const appConfig = ($stateProvider, $urlRouterProvider) => {
       url: '/forgot-password',
       component: 'forgotPassword'
     })
+    .state('moreInformation',{
+      url:'/mas-informacion',
+      component:'moreInformation'
+    })
 
   $urlRouterProvider.otherwise('/')
 }

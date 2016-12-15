@@ -1,7 +1,9 @@
 import template from './signUp.html'
+import controller from './signUp.controller'
 
 const signUpComponent = {
-  template
+  template,
+  controller
 }
 
 export default signUpComponent
