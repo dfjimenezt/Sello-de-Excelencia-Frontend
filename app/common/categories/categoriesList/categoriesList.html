@@ -1,3 +1,7 @@
 <section class="categories">
-  <category-item ng-repeat="category in $ctrl.categories" category="category"></category-item>
+  <category-item
+    ng-repeat="category in $ctrl.categories"
+    category="category"
+    go-to="$ctrl.goTo(category.stateUrl)">
+  </category-item>
 </section>
