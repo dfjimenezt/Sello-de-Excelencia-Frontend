@@ -12,9 +12,7 @@ pipelines:
           # Install app requirements
           - npm install
           # Testing app
-          - npm test
-    - step:
-        script: # Modify the commands below to build your repository.          
+          - npm test         
           # Install python requirements
           - apt-get update -y
           - apt-get install -y python-pip unzip
