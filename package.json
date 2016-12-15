@@ -10,7 +10,7 @@
     "production": "node_modules/http-server/bin/http-server dist/ -p 9000",
     "pretest": "npm run build",
     "test": "npm run style",
-    "style": "./node_modules/.bin/eslint app"    
+    "style": "./node_modules/.bin/eslint app"
   },
   "keywords": [
     "Sello",
@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "angular": "^1.5.9",
+    "angular-animate": "^1.5.9",
     "angular-ui-router": "^1.0.0-alpha.5"
   }
 }
