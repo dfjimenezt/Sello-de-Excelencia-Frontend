@@ -28,6 +28,10 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider) => {
       url:'/registro-evaluador',
       component: 'registerEvaluator'
     })
+    .state('registerEntity',{
+      url:'/registro-entidad',
+      component: 'registerEntity'
+    })
 
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
