@@ -1,42 +1,38 @@
-var webpack = require('webpack')
-var env = process.env.NODE_ENV
+var Dashboard = require('webpack-dashboard')
+var DashboardPlugin = require('webpack-dashboard/plugin')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var path = require('path')
+const dashboard = new Dashboard()
 
-var config = {
+module.exports = {
   context: __dirname +'/app',
   entry: './index.js',
   output: {
     path : __dirname +'/app',
-    filename: 'bundle.js'
+    filename: '[name].js',
+    publicPath: '/'
   },
   devServer: {
     inline:true,
     contentBase: 'app',
-    historyApiFallback: true,
+    quiet: true,
     host:'0.0.0.0',
     port: 3000,
   },
   module: {
+    preLoaders: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'eslint-loader' }
+    ],
     loaders: [
-      { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loader: 'ng-annotate!babel' },
+      { test: /\.js$/, exclude: [/app\/lib/, /node_modules/], loaders: ['ng-annotate','babel'] },
       { test: /\.html$/, loader: 'raw' },
-      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.css$/, loaders: ['style-loader','css-loader']},
       { test: /\.styl$/, loader: 'style!css!stylus' },
       { test: /\.(ttf|otf|eot|svg|woff(2)?)$/, loader: 'url' }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({template: path.join(__dirname,'index.html')}),
+    new DashboardPlugin(dashboard.setData)
+  ]
 }
-
-if ( env === 'production') {
-  config.output.path = __dirname + '/dist'
-  config.plugins = []
-
-  const options = {
-    compress: {
-      warnings: false,
-    }
-  }
-
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin(options))
-}
-
-module.exports = config
