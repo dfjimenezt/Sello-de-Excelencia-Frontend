@@ -5,17 +5,10 @@ class RegisterEntityController {
   }
 
   $onInit() {
-    this.active()
     this.register = {}
     this.register.agent = {}
     this.register.agent.identification = {}
     this.register.agent.identification.type = 'cc'
-  }
-
-  active() {
-    $(document).ready(function() {
-      $('select').material_select()
-    })
   }
 
   sendRegister() {

@@ -5,7 +5,6 @@ class RegisterEvaluatorController {
   }
 
   $onInit() {
-    this.active()
     this.register = {}
     this.register.person = {}
     this.register.person.identification = {}
@@ -13,12 +12,6 @@ class RegisterEvaluatorController {
     this.register.evaluator = {}
     this.register.evaluator.typeUser = 'user'
     this.register.evaluator.timeAvailability = 'hight'
-  }
-
-  active() {
-    $(document).ready(function() {
-      $('select').material_select()
-    })
   }
 
   sendRegister() {

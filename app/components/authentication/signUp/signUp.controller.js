@@ -5,18 +5,15 @@ class SignUpController {
   }
 
   $onInit() {
-    // this.activate()
     this.role = 'entity'
   }
 
-  activate() {
-    $(document).ready(function() {
-      $('select').material_select()
-    })
-  }
-
   onSignUp() {
-    this.$state.go('registerEvaluator')
+    if (this.role === 'entity'){
+      this.$state.go('registerEntity')
+    } else {
+      this.$state.go('registerEvaluator')
+    }
   }
 }
 
