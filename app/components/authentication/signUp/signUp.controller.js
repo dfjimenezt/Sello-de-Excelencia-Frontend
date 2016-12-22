@@ -5,7 +5,7 @@ class SignUpController {
   }
 
   $onInit() {
-    this.activate()
+    // this.activate()
     this.role = 'entity'
   }
 

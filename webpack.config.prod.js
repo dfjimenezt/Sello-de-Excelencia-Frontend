@@ -24,6 +24,7 @@ const optionsCopyPlugin = [
 module.exports = {
   context: __dirname +'/app',
   entry: './index.js',
+  devtool: 'source-map',
   output: {
     path: __dirname+'/dist',
     filename: '[name].min.js',
