@@ -1,4 +1,4 @@
-const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider) => {
+const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authProvider,Api) => {
   $stateProvider
     .state('home',{
       url : '/',
@@ -35,8 +35,14 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider) => {
 
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
+
+  $authProvider.loginUrl = `${Api}/auth/login`
+  $authProvider.signupUrl = `${Api}/auth/register`
+  $authProvider.authToken = ''
+  $authProvider.tokenName = 'token'
+  $authProvider.tokenPrefix = 'qualityStamp'
 }
 
-appConfig.$inject = ['$stateProvider','$urlRouterProvider','$locationProvider']
+appConfig.$inject = ['$stateProvider','$urlRouterProvider','$locationProvider','$authProvider','Api']
 
 export default appConfig

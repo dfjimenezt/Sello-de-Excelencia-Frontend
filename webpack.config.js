@@ -2,6 +2,7 @@ var Dashboard = require('webpack-dashboard')
 var DashboardPlugin = require('webpack-dashboard/plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
+const port = process.env.PORT || 3000
 const dashboard = new Dashboard()
 
 module.exports = {
@@ -17,7 +18,7 @@ module.exports = {
     contentBase: 'app',
     quiet: true,
     host:'0.0.0.0',
-    port: 3000,
+    port: port,
   },
   module: {
     preLoaders: [
