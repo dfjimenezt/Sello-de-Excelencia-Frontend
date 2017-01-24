@@ -1,8 +1,8 @@
 const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authProvider,Api) => {
   $stateProvider
-    .state('home',{
+    .state('ladingPage',{
       url : '/',
-      component: 'home'
+      component: 'landingPage'
     })
     .state('signIn',{
       url: '/sign-in',

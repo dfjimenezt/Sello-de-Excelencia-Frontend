@@ -1,6 +1,3 @@
-// import 'jquery';
-// import 'materialize-css/bin/materialize.css';
-// import 'materialize-css/bin/materialize.js';
 import angular from 'angular'
 import uiRouter from 'angular-ui-router'
 import ngAnimate from 'angular-animate'
@@ -11,9 +8,8 @@ import 'angular-toastr/dist/angular-toastr.min.css'
 
 import commonModule from './common'
 import componentsModule from './components'
-import containersModule from './containers'
-import appComponent from './containers/app/app.component'
-import appConfig from './containers/app/app.config'
+import appComponent from './components/app/app.component'
+import appConfig from './components/app/app.config'
 
 const API = 'https://backend-dot-domoti-sellodeexcelencia.appspot-preview.com/api'
 
@@ -24,8 +20,7 @@ const modules = [
   angularMaterialize,
   satellizer,
   commonModule,
-  componentsModule,
-  containersModule
+  componentsModule
 ]
 
 angular
