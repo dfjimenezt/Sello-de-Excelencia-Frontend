@@ -18,7 +18,7 @@ class SignInController {
       .then(() => {
         this.toastr.success('Inicio de sesión exitoso','Iniciar sesión')
         this.loadding = false
-        this.$state.go('home')
+        this.$state.go('landingPage')
       })
       .catch(({ data: { error } }) => {
         const CODE_USER_NOT_ACTIVE = 203

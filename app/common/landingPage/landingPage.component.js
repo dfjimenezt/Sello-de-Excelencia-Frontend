@@ -1,4 +1,4 @@
-import template from './ladingPage.html'
+import template from './landingPage.html'
 
 const homeComponent = {
   template

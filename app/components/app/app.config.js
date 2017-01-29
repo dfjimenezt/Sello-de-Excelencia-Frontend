@@ -1,6 +1,8 @@
+import { resolveActiveAccount } from '../authentication/helpers.js'
+
 const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authProvider,Api) => {
   $stateProvider
-    .state('ladingPage',{
+    .state('landingPage',{
       url : '/',
       component: 'landingPage'
     })
@@ -15,6 +17,14 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
     .state('forgotPassword',{
       url: '/forgot-password',
       component: 'forgotPassword'
+    })
+    .state('activeAccount',{
+      url: '/activar-cuenta?email',
+      component: 'activeAccount',
+      params: { email: null },
+      resolve: {
+        user: resolveActiveAccount
+      }
     })
     .state('moreInformation',{
       url:'/mas-informacion',
@@ -43,6 +53,7 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
   $authProvider.tokenPrefix = 'qualityStamp'
 }
 
+resolveActiveAccount.$inject = ['$q','$state','$stateParams','AuthService']
 appConfig.$inject = ['$stateProvider','$urlRouterProvider','$locationProvider','$authProvider','Api']
 
 export default appConfig

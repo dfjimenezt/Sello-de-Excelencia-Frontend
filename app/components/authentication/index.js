@@ -3,6 +3,7 @@ import signInComponent from './signIn/signIn.component'
 import signUpComponent from './signUp/signUp.component'
 import forgotPasswordComponent from './forgotPassword/forgotPassword.component'
 import AuthService from './auth.service'
+import activeAccountComponent from './activeAccount/activeAccount.component'
 
 
 const authentication = angular
@@ -10,6 +11,7 @@ const authentication = angular
   .component('signIn',signInComponent)
   .component('signUp',signUpComponent)
   .component('forgotPassword',forgotPasswordComponent)
+  .component('activeAccount',activeAccountComponent)
   .service('AuthService',AuthService)
   .name
 

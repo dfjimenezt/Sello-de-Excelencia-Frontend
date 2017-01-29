@@ -11,6 +11,12 @@ class AuthService {
       .then(({data}) => data)
       .catch(({data}) => data)
   }
+
+  activeAccount(email) {
+    const url = `${this.API}/auth/activate?email=${email}`
+    return this.$http.get(url)
+      .then(({data}) => data)
+  }
 }
 
 export default AuthService
