@@ -9,7 +9,7 @@ class AuthService {
     const url = `${this.API}/auth/register`
     return this.$http.post(url,user)
       .then(({data}) => data)
-      .catch(error => error)
+      .catch(({data}) => data)
   }
 }
 

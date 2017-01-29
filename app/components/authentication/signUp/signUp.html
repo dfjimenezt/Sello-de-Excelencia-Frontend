@@ -29,14 +29,15 @@
       </div>
       <div class="row" ng-show="$ctrl.serverError">
         <p class="red-text text-darken-2 center-align">
-          {{$ctrl.errorMessage}}
+          <i class="material-icons">error</i> {{$ctrl.errorMessage}}
         </p>
       </div>
       <div class="center-align row">
-        <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="signUpForm.$invalid">
+        <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="signUpForm.$invalid" ng-class="{'display-none':$ctrl.loadding,'display-inline-block':!$ctrl.loadding}">
           <i class="material-icons right">person_add</i>
           Crear cuenta
         </button>
+        <loader size="medium" ng-class="{'display-none':!$ctrl.loadding,'display-inline-block':$ctrl.loadding}"></loader>
       </div>
       <div class="separator center-align">
         <small class="grey-text lighten-4">

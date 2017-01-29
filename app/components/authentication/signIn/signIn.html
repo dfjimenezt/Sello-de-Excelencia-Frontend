@@ -16,11 +16,17 @@
           <label for="password">Contraseña: </label>
         </div>
       </div>
+      <div class="row" ng-show="$ctrl.serverError">
+        <p class="red-text text-darken-2 center-align">
+          <i class="material-icons">error</i> {{$ctrl.errorMessage}}
+        </p>
+      </div>
       <div class="center-align row">
-        <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="signInForm.$invalid">
+        <button type="submit" class="waves-effect waves-light btn-large" ng-class="{'display-none':$ctrl.loadding,'display-inline-block':!$ctrl.loadding}" ng-disabled="signInForm.$invalid">
           <i class="material-icons right">chevron_right</i>
           Entrar
         </button>
+        <loader size="medium" ng-class="{'display-none':!$ctrl.loadding,'display-inline-block':$ctrl.loadding}"></loader>
       </div>
       <div class="separator center-align">
         <h6><a href="#!/forgot-password">¿Olvidaste tu constraseña?</a></h6>

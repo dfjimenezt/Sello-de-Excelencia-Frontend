@@ -13,12 +13,14 @@ class SignUpController {
       { id:2, name: 'Evaluador' },
       { id:4, name: 'Entidad' }
     ]
+    this.loadding = false
     this.serverError = false
     this.role = this.roles[0]
     this.modalElement.modal()
   }
 
   onSignUp() {
+    this.loadding = true
     this.serverError = false
     const user = {
       email : this.email,
@@ -27,10 +29,12 @@ class SignUpController {
     }
     this.AuthService.signUp(user)
       .then(data => {
+        this.loadding = false
         if (data.error) {
           this.serverError = true
           this.errorMessage = 'El email ingresado está registrado con otro usuario.'
-          return this.toastr.error(this.errorMessage,'Error en el registro')
+          this.toastr.error(this.errorMessage,'Error en el registro')
+          return
         }
         this.modalElement.modal('open')
       })
