@@ -20,10 +20,14 @@ class SignInController {
         this.loadding = false
         this.$state.go('home')
       })
-      .catch(() => {
+      .catch(({ data: { error } }) => {
+        const CODE_USER_NOT_ACTIVE = 203
         this.loadding = false
         this.serverError = true
         this.errorMessage = 'Email o contraseña incorrecta'
+        if (error.code === CODE_USER_NOT_ACTIVE) {
+          this.errorMessage = 'Usuario no activo, dirijase a su correo y proceda a activar su cuenta.'
+        }
         this.toastr.error(this.errorMessage,'Error al iniciar sesión')
       }) 
   }
