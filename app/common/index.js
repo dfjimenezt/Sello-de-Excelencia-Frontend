@@ -6,6 +6,7 @@ import footerComponent from './footer/footer.component'
 import moreInformationComponent from './moreInformation/moreInformation.component'
 import termsComponent from './terms/terms.component'
 import categoriesModule from './categories'
+import modalComponent from './modal/modal.component'
 
 const common = angular
   .module('qualityStamp.common',[categoriesModule])
@@ -15,6 +16,7 @@ const common = angular
   .component('footerApp',footerComponent)
   .component('moreInformation',moreInformationComponent)
   .component('terms',termsComponent)
+  .component('modalApp',modalComponent)
   .name
 
 export default common
