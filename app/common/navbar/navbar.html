@@ -31,7 +31,8 @@
         <a class="dropdown-button color-brown" href="#!" data-activates="dropdownUser" dropdown data-hover="false">
           <i class="material-icons right">arrow_drop_down</i>
           <i class="material-icons left" ng-show="!$ctrl.getCurrentUser().picture">face</i>
-          {{$ctrl.getCurrentUser().name}} {{$ctrl.getCurrentUser().lastname}}
+          <span ng-if="$ctrl.getCurrentUser().name">{{$ctrl.getCurrentUser().name}} {{$ctrl.getCurrentUser().lastname}}</span>
+          <span ng-if="!$ctrl.getCurrentUser().name">{{$ctrl.getCurrentUser().email}}</span>      
         </a>
       </li>
     </ul>
