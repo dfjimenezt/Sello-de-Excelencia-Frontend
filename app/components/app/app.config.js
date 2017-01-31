@@ -19,9 +19,9 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       component: 'forgotPassword'
     })
     .state('activeAccount',{
-      url: '/activar-cuenta?email',
+      url: '/activar-cuenta?token&email',
       component: 'activeAccount',
-      params: { email: null },
+      params: { email: null, token:null },
       resolve: {
         user: resolveActiveAccount
       }
