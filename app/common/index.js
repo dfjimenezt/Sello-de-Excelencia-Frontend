@@ -8,9 +8,10 @@ import termsComponent from './terms/terms.component'
 import categoriesModule from './categories'
 import modalComponent from './modal/modal.component'
 import loaderComponent from './loader/loader.component'
+import fameModule from './fame'
 
 const common = angular
-  .module('qualityStamp.common',[categoriesModule])
+  .module('qualityStamp.common',[categoriesModule,fameModule])
   .component('landingPage',landingPage)
   .component('navbar',navbarComponent)
   .component('slider', sliderComponent)
