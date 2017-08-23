@@ -2,7 +2,8 @@ var Dashboard = require('webpack-dashboard')
 var DashboardPlugin = require('webpack-dashboard/plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var path = require('path')
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 9000
+console.log(port)
 const dashboard = new Dashboard()
 
 module.exports = {

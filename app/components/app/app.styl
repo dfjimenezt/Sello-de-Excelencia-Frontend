@@ -1,9 +1,15 @@
 @import '../../colors.styl'
 
+@font-face
+    font-family Univers;
+    src url("../../assets/font/UniversCondensed.woff");
+  
+
 body
   background: $gainsboro
+  font-family Univers
   font-size: 16px
-  font-color $darkgray !important
+  color $darkgray !important
 
 .gainsboro
   background $gainsboro !important
@@ -20,6 +26,15 @@ body
 .footergray
   background $footergray !important
 
+.yellow
+  background $yellow !important
+
+.green
+  background $green !important
+
+.red
+  background $red !important
+
 .color-gainsboro
   color: $gainsboro !important
 
@@ -32,13 +47,29 @@ body
 .color-darkgray
   color $darkgray !important
 
+.color-lightgray
+  color $lightgray !important
+
+.color-yellow
+  color $yellow !important
+
+.color-white
+  color $white !important
+
+.color-green
+  color $green !important
+
+.color-red
+  color $red !important
+
 .btn,
 .btn-large
-  background-color $brown !important
-
+  background-color $lightseagreen
+  
 .btn:hover,
-.btn-large:hover
-  background-color $brownOsucuro !important
+.btn-large:hover,
+.btn.active
+  background-color $lightseagreenOscuro
 
 .font-medium
   font-size: 1.5em

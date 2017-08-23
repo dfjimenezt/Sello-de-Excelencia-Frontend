@@ -11,7 +11,7 @@ import componentsModule from './components'
 import appComponent from './components/app/app.component'
 import appConfig from './components/app/app.config'
 
-const API = 'https://backend-dot-domoti-sellodeexcelencia.appspot-preview.com/api'
+const API = 'http://localhost:3000/api'
 
 const modules = [
   uiRouter,

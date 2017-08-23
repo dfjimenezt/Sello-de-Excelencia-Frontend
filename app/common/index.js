@@ -9,6 +9,11 @@ import categoriesModule from './categories'
 import modalComponent from './modal/modal.component'
 import loaderComponent from './loader/loader.component'
 import fameModule from './fame'
+import evaluationComponent from './evaluation/evaluation.component'
+import servicelistComponent from './servicelist/servicelist.component'
+import servicedetailComponent from './servicedetail/servicedetail.component'
+import requisiteComponent from './requisite/requisite.component'
+import serviceitemComponent from './serviceitem/serviceitem.component'
 
 const common = angular
   .module('qualityStamp.common',[categoriesModule,fameModule])
@@ -20,6 +25,11 @@ const common = angular
   .component('terms',termsComponent)
   .component('modalApp',modalComponent)
   .component('loader',loaderComponent)
+  .component('evaluation',evaluationComponent)
+  .component('servicelist',servicelistComponent)
+  .component('servicedetail',servicedetailComponent)
+  .component('requisite',requisiteComponent)
+  .component('serviceItem',serviceitemComponent)
   .name
 
 export default common

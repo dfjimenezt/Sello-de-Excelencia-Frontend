@@ -7,9 +7,9 @@ class CategoryListController {
   
   $onInit() {
     this.categories = [
-      //{id:1, title: '¿Quieres postular tu producto o servicio?', img: 'assets/img/postular.png', stateUrl: 'registerEntity'},
+      {id:1, title: '¿Quieres postular tu producto o servicio?', img: 'assets/img/postular.png', stateUrl: 'registerEntity'},
       {id:2, title: '¿Quieres ser parte de la comunidad evaluadora?', img: 'assets/img/comunidad.png', stateUrl: 'https://goo.gl/forms/Ouzw6Ag0IfzLWOdg1'},
-      //{id:3, title: 'Conoce y calífica los productos certificados', img: 'assets/img/evaluando.png', stateUrl: 'home'}
+      {id:3, title: 'Conoce y calífica los productos certificados', img: 'assets/img/evaluando.png', stateUrl: 'certifiedservices'}
     ]
   }
 

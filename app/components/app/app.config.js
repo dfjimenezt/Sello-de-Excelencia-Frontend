@@ -42,6 +42,18 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       url:'/registro-entidad',
       component: 'registerEntity'
     })
+    .state('certifiedservices',{
+      url: '/certificados',
+      component: 'servicelist'
+    })
+    .state('detail',{
+      url: '/detalle/:id',
+      component: 'servicedetail'
+    })
+    .state('entity',{
+      url:'/entidad',
+      component: 'profileEntity'
+    })
 
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
