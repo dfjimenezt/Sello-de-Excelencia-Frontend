@@ -6,6 +6,7 @@ import postulateEntityComponent from './postulate/postulateEntity.component'
 import activityEntityComponent from './activity/activityEntity.component'
 import learnEntityComponent from './learn/learnEntity.component'
 import advanceEntityComponent from './advance/advanceEntity.component'
+import serviceEntityComponent from './entityservice/entityservice.component'
 
 const entities = angular
   .module('qualityStamp.components.entities',[])
@@ -16,6 +17,7 @@ const entities = angular
   .component('activityEntity',activityEntityComponent)
   .component('learnEntity',learnEntityComponent)
   .component('advanceEntity',advanceEntityComponent)
+  .component('serviceEntity',serviceEntityComponent)
   .name
 
 export default entities

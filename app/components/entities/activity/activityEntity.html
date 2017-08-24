@@ -1,5 +1,5 @@
 <section class="activity">
-    <div class="row activity-tabs">
+    <div class="row activity-tabs" ng-if="!$ctrl.service">
         <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'certified'}" ng-click="$ctrl.setSection('certified')">
             <div class="center-align">
                 Sellos Otorgados
@@ -12,14 +12,14 @@
         </div>
         <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'rejected'}" ng-click="$ctrl.setSection('rejected')">
             <div class="center-align">
-                Postulaciones rechazadas
+                No Otorgados
             </div>
         </div>
     </div>
-    <div class="card row activity-content">
+    <div class="card row activity-content" ng-if="!$ctrl.service">
         <div class="col m10 s10 offset-s1 offset-m1">
             <h4>{{$ctrl.entity.name}}</h4>
-            <service-item item="service" ng-repeat="service in $ctrl.list"></service-item>
+            <service-item  item="service" ng-repeat="service in $ctrl.list" on-selected="$ctrl.setService(service)"></service-item>
         </div>
         <div class="row">
             <div class="col m10 110 offset-m1 offset-s1 brown color-white pager center-align">
@@ -35,6 +35,16 @@
             </div>
         </div>
     </div>
-
-    
+    <service-entity ng-if="$ctrl.service" service="$ctrl.service"></service-entity>
+    <div id="rejected"class="modal">
+        <div class="brown color-white">
+            ¿Por qué fue rechazada la postulación?
+        </div>
+        <div class="modal-content">
+            <p></p>
+        </div>
+        <div class="center-align">
+            <a class="btn"></a>
+        </div>
+    </div>
 </section>

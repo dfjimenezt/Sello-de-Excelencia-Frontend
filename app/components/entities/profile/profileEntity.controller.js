@@ -6,7 +6,7 @@ class profileEntityController{
     this.entity = {name:'Entidad'}
   }
   $onInit(){
-    this.setSection('activity')
+    this.setSection('learn')
   }
   setSection(section){
     this.section = section

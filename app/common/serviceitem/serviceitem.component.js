@@ -6,7 +6,8 @@ const serviceItemComponent = {
   controller,
   template,
   bindings:{
-    item:'<'
+    item:'<',
+    onSelected:'&'
   }
 }
 

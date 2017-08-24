@@ -1,5 +1,6 @@
 import controller from './learnEntity.controller'
 import template from './learnEntity.html'
+import './learnEntity.styl'
 
 const learnEntityComponent = {
   controller,

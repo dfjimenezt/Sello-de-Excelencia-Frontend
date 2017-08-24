@@ -7,17 +7,25 @@
     </div>
     <div class="service-item-content">
         <div class="brown color-white">{{$ctrl.item.category.name}}</div>
-        <div class="gainsboro">
-            <div>{{$ctrl.item.name}}</div>
-            <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
-            <span>Fecha de cerficación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+        <div class="gainsboro row">
+            <div class="content">
+                <div>{{$ctrl.item.name}}</div>
+                <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
+                <span>Fecha de cerficación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+            </div>
+            <div class="action color-red center-align"
+                ng-click="$ctrl.onSelected($ctrl.item)"
+                ng-if="$ctrl.item.status.id == 2">
+                <i class="fa fa-times"></i><br>
+                <span>No Cumple</span>
+            </div>
             <div class="action color-lightseagreen center-align"
-                ng-click="$ctrl.goTo($ctrl.item)">
+                ng-click="$ctrl.onSelected($ctrl.item)">
                 <i class="fa fa-chevron-circle-right"></i><br>
                 <span>{{
                     $ctrl.item.status.id == 1 ? 'Ver detalle':
-                    $ctrl.item.status.id == 2 ? 'Ver progreso':
-                    ''
+                    $ctrl.item.status.id == 2 ? 'Volver a postular':
+                    'Ver progreso'
                     }}</span>
             </div>
         </div>

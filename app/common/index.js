@@ -14,6 +14,8 @@ import servicelistComponent from './servicelist/servicelist.component'
 import servicedetailComponent from './servicedetail/servicedetail.component'
 import requisiteComponent from './requisite/requisite.component'
 import serviceitemComponent from './serviceitem/serviceitem.component'
+import commentitemComponent from './commentitem/commentitem.component'
+import chatComponent from './chat/chat.component'
 
 const common = angular
   .module('qualityStamp.common',[categoriesModule,fameModule])
@@ -30,6 +32,8 @@ const common = angular
   .component('servicedetail',servicedetailComponent)
   .component('requisite',requisiteComponent)
   .component('serviceItem',serviceitemComponent)
+  .component('commentItem',commentitemComponent)
+  .component('chat',chatComponent)
   .name
 
 export default common

@@ -1,0 +1,57 @@
+<section class="service-entity">
+    <div class="info card row white">
+        <div class="badge gainsboro center-align">
+            <img src="assets/img/sell_gel.png" alt="badge" class="fame-icon">
+            <div class="lightseagreen color-white">
+                <span>{{$ctrl.service.category.name}}</span>
+            </div>
+        </div>
+        <div class="service-item-content">
+            <div class="color-brown">{{$ctrl.service.entity.name}}</div>
+            <div>
+                <div>{{$ctrl.service.name}}</div>
+                <div class="color-lightseagreen">Nivel: {{$ctrl.service.level}}</div>
+                <span>Fecha de postulación: </span><span>{{$ctrl.service.status.timestamp | date}}</span><br>
+                <span>Fecha de cerficación: </span><span>{{$ctrl.service.status.valid_to | date}}</span><br>
+                <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
+            </div>
+        </div>
+        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.status.id == 1 || $ctrl.service.status.id == 2">
+            <div class="color-green" ng-if="$ctrl.service.status.id == 1">
+                <!--CUMPLE-->
+                <span>CUMPLE</span><i class="fa fa-check"></i>
+            </div>
+            <div class="color-red" ng-if="$ctrl.service.status.id == 2">
+                <!--NO CUMPLE-->
+                <span>NO CUMPLE</span><i class="fa fa-times"></i>
+            </div>
+        </div>
+        <div class="service-item-rate" ng-if="$ctrl.service.status.id == 1 || $ctrl.service.status.id == 2">
+            <div class="border color-brown center-align">
+                <span>Promedio</span><br>
+                <div class="fa fa-star star color-yellow">
+                    <span class="color-white">{{$ctrl.service.rate |number : 2}}</span>
+                </div><br>
+                <span>Calificación General</span><br>
+                <span class="full-rate color-lightgray">
+                <i class="fa fa-star" ng-class="{'color-yellow': i <= $ctrl.service.rate }" ng-repeat="i in [1,2,3,4,5]" ></i>
+            </span><br>
+                <span>250 votos</span>
+            </div>
+            <a class="color-lightseagreen" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
+        </div>
+    </div>
+
+    <requisite ></requisite>
+    
+    <chat ng-if="$ctrl.service.status.id > 2"></chat>
+
+    <div id="comments" class="modal">
+        <div class="brown color-white">
+            <h3>Comentarios de los ciudadanos</h3>
+        </div>
+        <div class="modal-content">
+            <comment-item ng-repeat="comment in $ctrl.service.comments" item="comment"></comment-item>
+        </div>
+    </div>
+</section>
