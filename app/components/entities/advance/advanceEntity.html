@@ -1,1 +1,83 @@
-Avance
+<div class="card row advanceEntity">
+    <div class="col m10 offset-m1 s10 offset-s1 points">
+        <div class="col m3 s12 offset-m6 center-align">
+            <a class="color-lightseagreen" modal data-target="certificate">Ver Diploma</a>
+        </div>
+        <div class="col m3 s12 center-align">
+            <a class="color-lightseagreen">Descargar Diploma</a>
+        </div>
+        <div class="col m3 s6 center-align">
+            <div class="point card">
+                <div class="lightseagreen color-white ">
+                    Mi puntaje
+                </div>
+                <div class="fa fa-certificate star color-yellow">
+                    <span class="color-white">{{$ctrl.user.points |number : 0}}</span>
+                </div><br>
+                <span>Puntos</span>
+            </div>
+        </div>
+
+        <div class="col m3 s6 center-align">
+            <div class="point card">
+                <div class="lightseagreen color-white ">
+                    Evaluaciones
+                </div>
+                <div class="fa fa-check-circle star color-points">
+                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                </div><br>
+                <span>Requisitos Evaluados</span>
+            </div>
+        </div>
+
+        <div class="col m3 s6 center-align">
+            <div class="point card">
+                <div class="lightseagreen color-white ">
+                    Participaciones
+                </div>
+                <div class="fa fa-play-circle star color-points">
+                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                </div><br>
+                <span>Participaciones en Live</span>
+            </div>
+        </div>
+
+        <div class="col m3 s6 center-align">
+            <div class="point card">
+                <div class="lightseagreen color-white ">
+                    Eventos
+                </div>
+                <div class="fa fa-users users star color-points">
+                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                </div><br>
+                <span>Participaciones en eventos</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="col m10 offset-m1 s10 offset-s1 ">
+        <h3 class="color-brown">¿Cómo puedo obtener puntos?</h3>
+        <ul>
+            <li>XXXX</li>
+            <li>XXXX</li>
+            <li>XXXX</li>
+            <li>XXXX</li>
+            <li>XXXX</li>
+            <li>XXXX</li>
+        </ul>
+    </div>
+    <div id="certificate" class="modal center-align">
+        <img src="assets/img/diploma.png">
+        <div class="certificate-content">
+            <div class="title">CERTIFICADO</div>
+            <div class="subtitle">DE RECONOCIMIENTO</div>
+            <div class="intro">EL MINISTERIO DE TECNOLOGÍAS DE LA INFORMACIÓN Y LAS</div>
+            <div class="intro">COMUNICACIONES A TRAVÉS DE LA DIRECCIÓN DE GOBIERNO EN LINEA</div>
+            <div class="pre">CERTIFICA QUE</div>
+            <div class="entity">{{$ctrl.entity.name}}</div>
+            <div class="pre">SE POSTULÓ Y CUMPLIÓ CON LOS REQUISITOS DE CALIDAD EXIGIDOS POR</div>
+            <div class="pre">EL MINISTERIO TIC, PARA EL NIVEL <span class="entity">{{$ctrl.entity.level}}</span> Y LE OTORGA EL SELLO DE EXCELENCIA</div>
+            <div class="pre">GOBIERNO DIGITAL AL PRODUCTO <span class="entity">{{$ctrl.entity.name}}</span></div>
+        </div>
+    </div>
+</div>
