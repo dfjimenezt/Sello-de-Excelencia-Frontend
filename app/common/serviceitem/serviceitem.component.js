@@ -7,7 +7,9 @@ const serviceItemComponent = {
   template,
   bindings:{
     item:'<',
-    onSelected:'&'
+    onSelected:'&',
+    onCertificate:'&',
+    onRejected:'&'
   }
 }
 

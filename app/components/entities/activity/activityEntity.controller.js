@@ -1,20 +1,20 @@
-class activityEntityController{
-  constructor(Api,$http){
+class activityEntityController {
+  constructor(Api, $http) {
     'ngInject'
     this.Api = Api
     this.$http = $http
     this.pagestoshow = 5
     this.pager = {}
     this.query = {
-      limit:20,
-      page:1
+      limit: 20,
+      page: 1
     }
   }
-  $onInit(){
+  $onInit() {
     this.setSection('certified')
     this.getData()
   }
-  setSection(section){
+  setSection(section) {
     this.section = section
   }
   getData() {
@@ -43,222 +43,223 @@ class activityEntityController{
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
     //var p = this.$http.get(url)
     //p.then(function (/*response*/) {
-      //this.list = response.data.data
+    //this.list = response.data.data
     this.list = [{
-      entity:{
-        name:'Registraduría Nacional del Estado Civil'
+      entity: {
+        name: 'Registraduría Nacional del Estado Civil'
       },
-      rate:4.15,
-      url:'http://www.registraduria.gov.co',
-      id:5,
-      name:'Servicio de Prueba',
+      rate: 4.15,
+      url: 'http://www.registraduria.gov.co',
+      id: 5,
+      name: 'Servicio de Prueba',
       level: 1,
-      status:{
-        id:3,
+      status: {
+        id: 3,
         timestamp: new Date(),
-        valid_to: new Date(2018,12,12)
+        valid_to: new Date(2018, 12, 12)
       },
-      category:{
-        name:'Datos Abiertos'
+      category: {
+        name: 'Datos Abiertos'
       },
-      comments:[{
-        user:'Fulanito',
+      comments: [{
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
+        text: 'Este es un comentario'
       },]
-    },{
-      entity:{
-        name:'Registraduría Nacional del Estado Civil'
+    }, {
+      entity: {
+        name: 'Registraduría Nacional del Estado Civil'
       },
-      rate:4.15,
-      url:'http://www.registraduria.gov.co',
-      id:5,
-      name:'Servicio de Prueba',
+      rate: 4.15,
+      url: 'http://www.registraduria.gov.co',
+      id: 5,
+      name: 'Servicio de Prueba',
       level: 1,
-      status:{
-        id:2,
+      status: {
+        id: 2,
         timestamp: new Date(),
-        valid_to: new Date(2018,12,12)
+        valid_to: new Date(2018, 12, 12)
       },
-      category:{
-        name:'Datos Abiertos'
+      category: {
+        name: 'Datos Abiertos'
       },
-      comments:[{
-        user:'Fulanito',
+      comments: [{
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
+        text: 'Este es un comentario'
       },]
-    },{
-      entity:{
-        name:'Registraduría Nacional del Estado Civil'
+    }, {
+      entity: {
+        name: 'Registraduría Nacional del Estado Civil'
       },
-      rate:4.15,
-      url:'http://www.registraduria.gov.co',
-      id:5,
-      name:'Servicio de Prueba',
+      rate: 4.15,
+      url: 'http://www.registraduria.gov.co',
+      id: 5,
+      name: 'Servicio de Prueba',
       level: 1,
-      status:{
-        id:1,
+      status: {
+        id: 1,
         timestamp: new Date(),
-        valid_to: new Date(2018,12,12)
+        valid_to: new Date(2018, 12, 12)
       },
-      category:{
-        name:'Datos Abiertos'
+      category: {
+        name: 'Datos Abiertos'
       },
-      comments:[{
-        user:'Fulanito',
+      comments: [{
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
-      },{
-        user:'Fulanito',
+        text: 'Este es un comentario'
+      }, {
+        user: 'Fulanito',
         timestamp: new Date(),
-        text:'Este es un comentario'
+        text: 'Este es un comentario'
       },]
     }]
     this.pager.total_count = this.list.length * 20
     this.loading = false
     this.resetPager()
     //})
+    this.openCertificate = false
     return true //p
   }
   resetPager() {
@@ -268,7 +269,7 @@ class activityEntityController{
     this.pager.before = this.query.page > 1
     this.pager.after = this.query.page < this.pager.total_pages
     var max = Math.min(this.pager.total_pages, this.query.page + this.pagestoshow)
-    for (min ; min <= max ; min++) {
+    for (min; min <= max; min++) {
       this.pager.pages.push(min)
     }
   }
@@ -284,8 +285,12 @@ class activityEntityController{
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
     this.resetPager()
   }
-  setService(service){
+  setService(service) {
     this.service = service
+  }
+  onCertificate(service) {
+    console.log('certificate' + service)
+    this.openCertificate = true
   }
 }
 export default activityEntityController

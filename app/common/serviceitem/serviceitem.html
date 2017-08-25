@@ -13,8 +13,15 @@
                 <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
                 <span>Fecha de cerficación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
             </div>
+            <div class="action color-green center-align"
+                ng-click="$ctrl.onCertificate($ctrl.item)"
+                ng-if="$ctrl.item.status.id == 1">
+                <!--i class="fa fa-download"></i-->
+                <i class="material-icons">file_download</i><br>
+                <span>Descargar Diploma</span>
+            </div>
             <div class="action color-red center-align"
-                ng-click="$ctrl.onSelected($ctrl.item)"
+                ng-click="$ctrl.onRejected($ctrl.item)"
                 ng-if="$ctrl.item.status.id == 2">
                 <i class="fa fa-times"></i><br>
                 <span>No Cumple</span>
