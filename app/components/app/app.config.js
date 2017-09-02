@@ -54,6 +54,10 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       url:'/entidad',
       component: 'profileEntity'
     })
+    .state('evaluator',{
+      url:'/evaluador',
+      component: 'profileEvaluator'
+    })
 
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')

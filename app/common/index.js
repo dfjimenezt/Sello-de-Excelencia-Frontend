@@ -13,6 +13,7 @@ import evaluationComponent from './evaluation/evaluation.component'
 import servicelistComponent from './servicelist/servicelist.component'
 import servicedetailComponent from './servicedetail/servicedetail.component'
 import requisiteComponent from './requisite/requisite.component'
+import requisiteitemComponent from './requisiteitem/requisiteitem.component'
 import serviceitemComponent from './serviceitem/serviceitem.component'
 import commentitemComponent from './commentitem/commentitem.component'
 import chatComponent from './chat/chat.component'
@@ -32,6 +33,7 @@ const common = angular
   .component('servicedetail',servicedetailComponent)
   .component('requisite',requisiteComponent)
   .component('serviceItem',serviceitemComponent)
+  .component('requisiteItem',requisiteitemComponent)
   .component('commentItem',commentitemComponent)
   .component('chat',chatComponent)
   .name

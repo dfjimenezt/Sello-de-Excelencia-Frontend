@@ -1,4 +1,4 @@
-class activityEntityController {
+class postulateEvaluatorController{
   constructor(Api, $http) {
     'ngInject'
     this.Api = Api
@@ -298,4 +298,5 @@ class activityEntityController {
     }
   }
 }
-export default activityEntityController
+
+export default postulateEvaluatorController

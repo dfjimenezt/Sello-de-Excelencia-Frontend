@@ -1,0 +1,64 @@
+<section class="postulateEvaluator">
+
+    <div class="search row">
+        <div class="col m1 s12 search-label">
+            <span class="color-brown">Buscar:</span>
+        </div>
+        <div class="col m3 s12">
+            <input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input>
+        </div>
+        <div class="col m3 s12">
+            <input ng-model="$ctrl.query.department" placeholder="Departamento"></input>
+        </div>
+        <div class="col m2 s12">
+            <input ng-model="$ctrl.query.category" placeholder="Categoría"></input>
+        </div>
+        <div class="col m2 s12">
+            <input ng-model="$ctrl.query.level" placeholder="Nivel"></input>
+        </div>
+        <div class="col m1 s12">
+            <a class="btn-floating waves-effect waves-dark  brown" ng-click="$ctrl.search()">
+                    <i class="material-icons color-white">search</i>
+                </a>
+        </div>
+    </div>
+
+
+    <div class="card row activity-content" ng-if="!$ctrl.service">
+        <div class="col s10 offset-s1">
+            <h4>{{$ctrl.entity.name}}</h4>
+            <div class="row">
+                <requisite-item class="col m6 s12" item="service" ng-repeat="service in $ctrl.list" 
+                    on-selected="$ctrl.onCertificate(service)">
+                </requisite-item>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col m10 110 offset-m1 offset-s1 brown color-white pager center-align">
+                <ul>
+                    <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
+                        <i class="fa fa-step-backward"></i>
+                    </li>
+                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" class="page">{{page}}</li>
+                    <li ng-if="$ctrl.pager.after" ng-click="results.next()">
+                        <i class="fa fa-step-forward"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <a modal data-target="postulated" open="$ctrl.openCertificate"></a>
+    </div>
+    <div id="postulated" class="modal">
+            <div class="modal-content center-align">
+              <div class="border">
+                <i class="fa fa-check color-green"></i><br>
+                <span class="color-brown congratulations">Usted ha aplicado como evaluador para:</span><br>
+                <span class="color-lightseagreen">Registraduría del estado civil.</span><br>
+                <span>Solicitud de Cédula de ciudadanía</span>
+              </div>
+            </div>
+            <div class="center-align footer">
+              <a class="btn brown modal-action modal-close">Cerrar</a>
+            </div>
+          </div>
+</section>

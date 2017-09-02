@@ -2,7 +2,7 @@
     <div class="row activity-tabs" ng-if="!$ctrl.service">
         <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'certified'}" ng-click="$ctrl.setSection('certified')">
             <div class="center-align">
-                Sellos Otorgados
+                Asignados
             </div>
         </div>
         <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'proccess'}" ng-click="$ctrl.setSection('proccess')">
@@ -12,17 +12,19 @@
         </div>
         <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'rejected'}" ng-click="$ctrl.setSection('rejected')">
             <div class="center-align">
-                No Otorgados
+                Evaluados
             </div>
         </div>
     </div>
     <div class="card row activity-content" ng-if="!$ctrl.service">
-        <div class="col m10 s10 offset-s1 offset-m1">
+        <div class="col s10 offset-s1">
             <h4>{{$ctrl.entity.name}}</h4>
-            <service-item  item="service" ng-repeat="service in $ctrl.list" 
+            <div class="row">
+            <requisite-item class="col m6 s12" item="service" ng-repeat="service in $ctrl.list" 
             on-selected="$ctrl.setService(service)"
             on-rejected="$ctrl.setService(service)"
-            on-certificate="$ctrl.onCertificate(service)"></service-item>
+            on-certificate="$ctrl.onCertificate(service)"></requisite-item>
+            </div>
         </div>
         <div class="row">
             <div class="col m10 110 offset-m1 offset-s1 brown color-white pager center-align">

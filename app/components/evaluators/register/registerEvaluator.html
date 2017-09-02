@@ -1,50 +1,85 @@
-<section class="container white z-depth-1 wrapper-margin-top-padding">
+<section class="container registerevaluator white z-depth-1 wrapper-margin-top-padding">
   <div class="row">
     <form class="col s10 m8 offset-s1 offset-m2" name="registerEvaluatorForm" ng-submit="$ctrl.sendRegister()" novalidate>
       <h4 class="center-align color-brown">Registro de Evaluadores</h4>
       <p class="center-align grey-text">Los campos marcados con <strong class="red-text font-medium">*</strong> son obligatorios.</p>
       <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información personal.</span>
       <div class="row">
-        <div class="input-field">
-          <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.person.name.first" required>
-          <label for="first_name" data-error="Ingresa tu nombre" data-success="Ok"><strong class="red-text">*</strong> Nombre:</label>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.person.firstname" required>
+            <label for="first_name" data-error="Ingresa tu nombre" data-success="Ok"><strong class="red-text">*</strong> Primer Nombre:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.person.second_name" required>
+            <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok"><strong class="red-text">*</strong> Segundo Nombre:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="lastname" type="text" class="validate" ng-model="$ctrl.register.person.first_lastname" required>
+            <label for="lastname" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong> Primer Apellido:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="second_lastname" type="text" class="validate" ng-model="$ctrl.register.person.second_lastname" required>
+            <label for="second_lastname" data-error="Ingresa tu segundo apellido" data-success="Ok"><strong class="red-text">*</strong> Segundo Apellido:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="phone" type="text" class="validate" ng-model="$ctrl.register.person.phone" required>
+            <label for="phone" data-error="Ingresa tu teléfono" data-success="Ok"><strong class="red-text">*</strong> Teléfono:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.person.mobile" required>
+            <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.person.identification.type" material-select>
+              <option value="cc">Cédula de Ciudadanía</option>
+              <option value="ce">Cédula de Extranjería</option>
+              <option value="nt">NIT</option>
+            </select>
+            <label>Tipo de documento:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="numberType" type="number" min="0" class="validate" ng-model="$ctrl.register.person.identification.number" required>
+            <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
+          </div>
+        </div>
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="email" type="email" class="validate" ng-model="$ctrl.register.person.email" required>
+            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="last_name" type="text" class="validate" ng-model="$ctrl.register.person.name.last" required>
-          <label for="last_name" data-error="Ingresa tu apellido" data-success="Ok"><strong class="red-text">*</strong> Apellido:</label>
-        </div>
+      <div class="row center-align">
+        <input type="checkbox" id="terms" ng-model="$ctrl.register.terms" />
+        <label for="terms">
+          <a href="#!/terminos-y-condiciones" target="_blank">
+          <strong class="red-text">*</strong>
+          Acepto los terminos y condiciones</a>
+        </label>
       </div>
-      <div class="row">
-        <div class="input-field">
-          <select ng-model="$ctrl.register.person.identification.type" material-select>
-            <option value="cc">Cédula de Ciudadanía</option>
-            <option value="ce">Cédula de Extranjería</option>
-            <option value="nt">NIT</option>
-          </select>
-          <label>Tipo de documento:</label>
-        </div>
+      <div class="row center-align">
+          <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="registerEvaluatorForm.$invalid || !$ctrl.register.terms">
+              <i class="material-icons right">send</i>
+              Registrar
+            </button>
+        <a class='btn' data-target='registered' modal>Calificar</a>
       </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="numberType" type="number" min="0" class="validate" ng-model="$ctrl.register.person.identification.number" required>
-          <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="email" type="email" class="validate" ng-model="$ctrl.register.person.email" required>
-          <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field">
-          <input id="numberPhone" type="number" min="0" class="validate" ng-model="$ctrl.register.person.numberPhone" required>
-          <label for="numberPhone" data-error="Ingresa un número de celular válido" data-success="Ok"><strong class="red-text">*</strong> Número de Teléfono:</label>
-        </div>
-      </div>
-      <span style="margin-left:-30px" class="font-bold color-lightseagreen">2° Información del evaluador.</span>
+      <!--span style="margin-left:-30px" class="font-bold color-lightseagreen">2° Información del evaluador.</span>
       <div class="row" style="margin-top: 40px">
         <div class="input-field">
           <select ng-model="$ctrl.register.evaluator.typeUser" material-select>
@@ -59,15 +94,15 @@
         <small class="blue-text"><strong>Nota:</strong> Selecciona mínimo una categoría</small>
         <div class="row" style="margin-top: 10px">
           <div class="col s12 m4">
-            <input type="checkbox" id="service_line" ng-model="$ctrl.register.evaluator.categories.serviceLine"/>
+            <input type="checkbox" id="service_line" ng-model="$ctrl.register.evaluator.categories.serviceLine" />
             <label for="service_line">Servicio en Linea</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="government_open" ng-model="$ctrl.register.evaluator.categories.governmentOpen"/>
+            <input type="checkbox" id="government_open" ng-model="$ctrl.register.evaluator.categories.governmentOpen" />
             <label for="government_open">Gobierno Abierto</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="capacity" ng-model="$ctrl.register.evaluator.categories.capacity"/>
+            <input type="checkbox" id="capacity" ng-model="$ctrl.register.evaluator.categories.capacity" />
             <label for="capacity">Capacidades de TI</label>
           </div>
         </div>
@@ -76,23 +111,23 @@
         <label for="">Temas de interés para evaluar:</label>
         <div class="row" style="margin-top: 10px">
           <div class="col s12 m4">
-            <input type="checkbox" id="usability" ng-model="$ctrl.register.evaluator.topics.usability"/>
+            <input type="checkbox" id="usability" ng-model="$ctrl.register.evaluator.topics.usability" />
             <label for="usability">Usabilidad</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="accesibility" ng-model="$ctrl.register.evaluator.topics.accesibility"/>
+            <input type="checkbox" id="accesibility" ng-model="$ctrl.register.evaluator.topics.accesibility" />
             <label for="accesibility">Accesibilidad</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="interoperability" ng-model="$ctrl.register.evaluator.topics.interoperability"/>
+            <input type="checkbox" id="interoperability" ng-model="$ctrl.register.evaluator.topics.interoperability" />
             <label for="interoperability">Interoperabilidad</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="multichannel" ng-model="$ctrl.register.evaluator.topics.multichannel"/>
+            <input type="checkbox" id="multichannel" ng-model="$ctrl.register.evaluator.topics.multichannel" />
             <label for="multichannel">Multicanalidad</label>
           </div>
           <div class="col s12 m4">
-            <input type="checkbox" id="security" ng-model="$ctrl.register.evaluator.topics.security"/>
+            <input type="checkbox" id="security" ng-model="$ctrl.register.evaluator.topics.security" />
             <label for="security">Seguridad</label>
           </div>
         </div>
@@ -108,7 +143,7 @@
         </div>
       </div>
       <div class="row">
-        <input type="checkbox" id="terms" ng-model="$ctrl.register.terms"/>
+        <input type="checkbox" id="terms" ng-model="$ctrl.register.terms" />
         <label for="terms">
           <a href="#!/terminos-y-condiciones" target="_blank">
           <strong class="red-text">*</strong>
@@ -120,7 +155,21 @@
           <i class="material-icons right">send</i>
           Registrar
         </button>
-      </div>
+      </div-->
     </form>
   </div>
+  <div id="registered" class="modal">
+      <div class="modal-content center-align">
+        <div class="border">
+          <i class="fa fa-check color-green"></i><br>
+          <span class="color-brown congratulations">Felicitaciones</span><br>
+          <span class="color-lightseagreen">Ahora haces parte de nuestro grupo de evaluadores.</span>
+        </div>
+      </div>
+      <div class="center-align footer">
+        <span>Hemos enviado un mensaje al correo electrónico registrado <br> confirmando tus datos</span>
+        <br>
+        <a class="btn brown modal-action modal-close">Cerrar</a>
+      </div>
+    </div>
 </section>
