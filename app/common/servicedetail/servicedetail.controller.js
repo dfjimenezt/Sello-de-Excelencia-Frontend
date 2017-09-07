@@ -1,23 +1,18 @@
 class ServiceDetailController {
-  constructor($state) {
+  constructor($state,Api,$http) {
     'ngInject'
     this.$state = $state
+    this.Api = Api
+    this.$http = $http
+    this.detailEndpoint = Api+'/service/service?id='+$state.params.id
   }
   $onInit() {
-    this.item = {
-      name: 'RUT online',
-      level: 3,
-      status: {
-        name: 'Certificado',
-        valid_to: new Date(2018,12,12),
-        timestamp: new Date()
-      },
-      rate: 4.15,
-      entity: {
-        name: 'Ministerio de TIC'
-      },
-      url: 'http://www.mintic.gov.co'
-    }
+    this.getData()
+  }
+  getData(){
+    this.$http.get(this.detailEndpoint).then((results)=>{
+      this.item = results.data.data[0]
+    })
   }
 }
 

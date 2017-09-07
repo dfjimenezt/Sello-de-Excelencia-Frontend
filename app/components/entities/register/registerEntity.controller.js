@@ -4,6 +4,7 @@ class RegisterEntityController {
     this.toastr = toastr
     this.Api = Api
     this.$http = $http
+    this.institutionEndpoint = Api +'/place/institution'
   }
 
   $onInit() {
@@ -13,19 +14,8 @@ class RegisterEntityController {
     this.register.agent.identification = {}
     this.register.agent.identification.type = 'cc'
   }
-
-  getEntities(){
-    this.$http.get(this.Api+'/place/institution?filter='+this.hint+'&limit=20').then((results)=>{
-      let data = results.data.data
-      let autocomplete = {}
-      data.forEach(function(element) {
-        autocomplete[element.name] = null
-      }, this)
-      $('input.autocomplete').autocomplete({
-        data:autocomplete,
-        limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-      })
-    })
+  selectedInstitution(item){
+    this.register.entity = item
   }
 
   sendRegister() {

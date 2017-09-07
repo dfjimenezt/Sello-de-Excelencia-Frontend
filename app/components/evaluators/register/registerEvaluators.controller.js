@@ -1,7 +1,9 @@
 class RegisterEvaluatorController {
-  constructor(toastr) {
+  constructor(toastr,$http,Api) {
     'ngInject'
     this.toastr = toastr
+    this.$http = $http
+    this.Api = Api    
   }
 
   $onInit() {

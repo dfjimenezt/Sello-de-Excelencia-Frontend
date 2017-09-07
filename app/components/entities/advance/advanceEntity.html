@@ -1,15 +1,15 @@
 <div class="card row advanceEntity">
     <div class="col m10 offset-m1 s10 offset-s1 points">
-        
+
         <div class="col m3 s6 center-align">
             <div class="point card">
                 <div class="lightseagreen color-white ">
                     Mi puntaje
                 </div>
                 <div class="fa fa-certificate star color-yellow">
-                    <span class="color-white">{{$ctrl.user.points |number : 0}}</span>
+                    <span class="color-white">{{$ctrl.total |number : 0}}</span>
                 </div><br>
-                <span>Puntos</span>
+                <span>Total Puntos</span>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
                     Evaluaciones
                 </div>
                 <div class="fa fa-check-circle star color-points">
-                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                    <span class="color-darkgray">{{$ctrl.requisites |number : 0}}</span>
                 </div><br>
                 <span>Requisitos Evaluados</span>
             </div>
@@ -31,7 +31,7 @@
                     Participaciones
                 </div>
                 <div class="fa fa-play-circle star color-points">
-                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                    <span class="color-darkgray">{{$ctrl.live |number : 0}}</span>
                 </div><br>
                 <span>Participaciones en Live</span>
             </div>
@@ -43,7 +43,7 @@
                     Eventos
                 </div>
                 <div class="fa fa-users users star color-points">
-                    <span class="color-darkgray">{{$ctrl.user.points |number : 0}}</span>
+                    <span class="color-darkgray">{{$ctrl.events |number : 0}}</span>
                 </div><br>
                 <span>Participaciones en eventos</span>
             </div>
@@ -58,12 +58,7 @@
     <div class="col m10 offset-m1 s10 offset-s1 ">
         <h3 class="color-brown">¿Cómo puedo obtener puntos?</h3>
         <ul>
-            <li>XXXX</li>
-            <li>XXXX</li>
-            <li>XXXX</li>
-            <li>XXXX</li>
-            <li>XXXX</li>
-            <li>XXXX</li>
+            <li ng-repeat="motive in $ctrl.motives">{{motive.name}}</li>
         </ul>
     </div>
     <div id="lost" class="modal">
@@ -82,9 +77,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><i class="fa fa-minus-circle color-red"></i> XXXXXXXXXXXXXXXX </td>
-                            <td class="color-red"> -1 punto</td>
+                        <tr ng-repeat="negative in $ctrl.negatives">
+                            <td><i class="fa fa-minus-circle color-red"></i> {{negative.justification}} </td>
+                            <td class="color-red"> {{negative.value}} punto</td>
                         </tr>
                     </tbody>
                 </table>

@@ -4,7 +4,10 @@ import './postulateEntity.styl'
 
 const postulateEntityComponent = {
   controller,
-  template
+  template,
+  bindings:{
+    onNavigate : '&'
+  }
 }
 
 export default postulateEntityComponent

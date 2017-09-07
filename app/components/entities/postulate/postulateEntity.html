@@ -1,85 +1,94 @@
 <section class="postulate">
-    <div class="card row">
-        <div class="col m10 s10 offset-s1 offset-m1">
-            <h4>{{$ctrl.entity.name}}</h4>
-            <div class="row">
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <select ng-model="$ctrl.service.category" material-select>
-                              <option value="1">Trámites y Servicios</option>
-                              <option value="2">Datos Abiertos</option>
-                              <option value="3">Gobierno en Linea</option>
-                              <option value="4">Municipal</option>
-                            </select>
-                        <label>Categoría:</label>
-                    </div>
-                </div>
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <select ng-model="$ctrl.service.level" material-select>
-                                  <option value="1">1</option>
-                                  <option value="2">2</option>
-                                  <option value="3">3</option>
-                                </select>
-                        <label>Nivel:</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.name" required>
-                        <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
-                        <strong class="red-text">*</strong> Nombre:</label>
-                    </div>
-                </div>
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <input id="entitynit" type="url" class="validate" ng-model="$ctrl.service.url" required>
-                        <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
-                    <strong class="red-text">*</strong> URL:</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <input type="checkbox" id="terms" ng-model="$ctrl.service.test" />
-                <label for="terms">¿Requiere Usuario de Prueba?</label>
-            </div>
-            <div class="row" ng-if="$ctrl.service.test">
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.username">
-                        <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
-                            <strong class="red-text">*</strong> Usuario de Prueba:</label>
-                    </div>
-                </div>
-                <div class="col m6 s12">
-                    <div class="input-field">
-                        <input id="entitynit" type="text" class="validate" ng-model="$ctrl.service.password">
-                        <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
-                        <strong class="red-text">*</strong> Contraseña de Prueba:</label>
-                    </div>
-                </div>
-            </div>
-            <div class="row center-align">
-                <div class="btn brown">CREAR SERVICIO</div>
-            </div>
-            <a class='btn' data-target='postulated' modal>Calificar</a>
-        </div>
-    </div>
-    <requisite item="item" ng-repeat="item in $ctrl.requisites"></requisite>
 
-    <div id="postulated" class="modal">
-        <div class="modal-content center-align">
-            <div class="border">
-                <i class="fa fa-check color-green"></i><br>
-                <span class="color-brown congratulations">Has realizado una postulación</span><br>
-                <span class="color-lightseagreen">En unos instantes entrará en proceso de evaluación</span>
-            </div>
+  <div class="card row">
+    <form class="col m10 s10 offset-s1 offset-m1" ng-submit="$ctrl.createService()">
+      <h4>{{$ctrl.entity.name}}</h4>
+      <div class="row">
+        <div class="col m12 s12">
+          <div class="input-field">
+            <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()" material-select watch>
+                <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
+            </select>
+            <label>Servicios Pendientes:</label>
+          </div>
         </div>
-        <div class="center-align footer">
-            <a class="btn brown modal-action modal-close">Continuar</a>
-            <a class="btn lightseagreen modal-action modal-close">Hacer otra postulación</a>
+      </div>
+      <div class="row">
+        <div class="col m6 s12">
+          <div class="input-field">
+            <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id" material-select watch>
+                <option ng-value="category.id" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
+            </select>
+            <label>Categoría:</label>
+          </div>
         </div>
+        <div class="col m6 s12">
+          <div class="input-field">
+            <select ng-model="$ctrl.service.level" ng-disabled="$ctrl.service.id" material-select>
+                                  <option ng-value="1">1</option>
+                                  <option ng-value="2">2</option>
+                                  <option ng-value="3">3</option>
+                                </select>
+            <label>Nivel:</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.name" required>
+            <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
+                        <strong class="red-text">*</strong> Nombre:</label>
+          </div>
+        </div>
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="entitynit" type="url" class="validate" ng-model="$ctrl.service.url" required>
+            <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
+                    <strong class="red-text">*</strong> URL:</label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <input type="checkbox" id="terms" ng-disabled="$ctrl.service.id" ng-model="$ctrl.service.test" />
+        <label for="terms">¿Requiere Usuario de Prueba?</label>
+      </div>
+      <div class="row" ng-if="$ctrl.service.test">
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="entityname" type="text" ng-disabled="$ctrl.service.id" class="validate" ng-model="$ctrl.service.test_user">
+            <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
+                            <strong class="red-text">*</strong> Usuario de Prueba:</label>
+          </div>
+        </div>
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="entitynit" type="text" ng-disabled="$ctrl.service.id" class="validate" ng-model="$ctrl.service.test_password">
+            <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
+                        <strong class="red-text">*</strong> Contraseña de Prueba:</label>
+          </div>
+        </div>
+      </div>
+      <div class="row center-align">
+        <button class="btn brown" ng-disabled="$ctrl.service.id" type="submit">CREAR SERVICIO</button>
+      </div>
+  
+    </form>
+  </div>
+  <requisite item="item" on-save="$ctrl.createAnswer(item)" ng-repeat="item in $ctrl.questions"></requisite>
+
+  <div id="postulated" class="modal">
+    <div class="modal-content center-align">
+      <div class="border">
+        <i class="fa fa-check color-green"></i><br>
+        <span class="color-brown congratulations">Has realizado una postulación</span><br>
+        <span class="color-lightseagreen">En unos instantes entrará en proceso de evaluación</span>
+      </div>
     </div>
+    <div class="center-align footer">
+      <a class="btn brown modal-action modal-close" ng-click="$ctrl.profile()">Continuar</a>
+      <a class="btn lightseagreen modal-action modal-close" ng-click="$ctrl.clearService()">Hacer otra postulación</a>
+    </div>
+  </div>
+  <a data-target='postulated' id="modal-laucher" modal></a>
 </section>

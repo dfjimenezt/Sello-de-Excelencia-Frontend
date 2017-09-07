@@ -3,9 +3,12 @@ class serviceItemController{
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.serviceEndpoint = Api+'/service/service_status?limit=1&filter_field=id_service&filter_value='
   }
   $onInit(){
-    console.log(this)
+    this.$http.get(this.serviceEndpoint+this.item.id).then((results)=>{
+      this.item.status = results.data.data[0]
+    })
   }
 }
 

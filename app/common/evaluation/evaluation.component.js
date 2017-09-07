@@ -4,7 +4,10 @@ import './evaluation.styl'
 
 const evaluationController = {
   template,
-  controller
+  controller,
+  bindings:{
+    service:'<'
+  }
 }
 
 export default evaluationController

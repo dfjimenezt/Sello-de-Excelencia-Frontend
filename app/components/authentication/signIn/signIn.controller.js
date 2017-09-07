@@ -18,7 +18,13 @@ class SignInController {
       .then(() => {
         this.toastr.success('Inicio de sesión exitoso','Iniciar sesión')
         this.loadding = false
-        this.$state.go('landingPage')
+        let user = this.$auth.getPayload()
+        if(user.institutions.length >0){
+          this.$state.go('entity')
+        }else{
+          this.$state.go('landingPage')
+        }
+        
       })
       .catch(({ data: { error } }) => {
         const CODE_USER_NOT_ACTIVE = 203

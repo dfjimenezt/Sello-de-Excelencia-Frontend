@@ -6,7 +6,8 @@ const requisiteComponent = {
   controller,
   template,
   bindings: {
-    item: '<'
+    item: '=',
+    onSave: '&'
   }
 }
 

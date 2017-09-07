@@ -1,15 +1,16 @@
-<div class="card row requisite">
+<form class="card row requisite" ng-submit="$ctrl.save()">
     <div class="col m10 s10 offset-m1 offset-s1">
         <div class="row">
             <div class="col m6 s12">
                 <h4>{{$ctrl.item.description}}</h4>
             </div>
             <div class="col m6 s12 right-align tips">
-                <div class="color-red" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores" data-delay="150">
+                <div class="color-red" ng-if="$ctrl.item.error" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores"
+                    data-delay="150">
                     <span>Este requisito ha sido rechazado</span>
                     <i class="fa fa-exclamation-triangle"></i>
                 </div>
-                <div tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal}}" data-delay="150">
+                <div tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
                     <span>Sustento Legal o Técnico</span>
                     <i class="fa fa-book"></i>
                 </div>
@@ -30,27 +31,43 @@
             </div>
         </div>
     </div>
-    <div class="col m10 s10 offset-m1 offset-s1">
-        <div class="input-field col s12">
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled" >
+        <div class="input-field col s12" >
             <label for="comments" class="color-brown">Comentario:</label>
-            <textarea id="comments" class="materialize-textarea"></textarea>
+            <textarea id="comments"ng-model="$ctrl.item.comment" class="materialize-textarea validate" required></textarea>
         </div>
     </div>
-    <div class="col m10 s10 offset-m1 offset-s1">
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled" >
+            <div class="col s12" ng-if="$ctrl.item.disabled">
+                <label class="color-brown">Comentario:</label>
+                <p>{{$ctrl.item.comment}}</p>
+            </div>
+        </div>
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.media">
         <small class="blue-text"><strong>Nota:</strong> Comprimir los archivos en formato (.ZIP).</small>
         <div class="file-field input-field">
-
-            <div class="btn">
+            <div class="btn" ngf-select ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
                 <span>Soporte</span>
-                <input type="file">
+                <input type="file" ng-disabled="$crtl.disabled">
             </div>
             <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
+                <input class="file-path validate" ng-model="$ctrl.item.file.name" type="text" ng-disabled="$crtl.disabled">
             </div>
-
         </div>
     </div>
-    <div class="row center-align">
-        <div class="btn brown">GUARDAR</div>
+    
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.media">
+        <div class="col s12">
+            <label class="color-brown">Soportes:</label>
+            <div class="valign-wrapper">
+                <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
+                <a style="flex-grow:0.1" class="btn lightseagreen" ng-disabled="$ctrl.item.disabled" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
+                <a style="flex-grow:0.1" class="btn lightgray" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="row center-align bottom">
+        <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
+    </div>
+</form>

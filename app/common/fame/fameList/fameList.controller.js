@@ -4,8 +4,8 @@ class FameListController {
     this.$state = $state
     this.$http = $http
     this.endpoints = {
-      'entities':Api+'/configuration/hall_today?id_role=4',
-      'community':Api+'/configuration/hall_today?id_role=2'
+      'entities':Api+'/configuration/hall_of_fame?filter_field=id_role&filter_value=4',
+      'community':Api+'/configuration/hall_of_fame?filter_field=id_role&filter_value=2'
     }
     this.loading = false
   }
@@ -24,7 +24,8 @@ class FameListController {
   getData(section){
     this.loading = true
     this.$http.get(this.endpoints[section]).then((results)=>{
-      this.list = results.data
+      this.list = results.data.data
+      console.log(this.list)
       this.loading = false
     })
   }

@@ -1,8 +1,9 @@
 class NavbarController {
-  constructor($auth,toastr) {
+  constructor($auth,toastr,$state) {
     'ngInject'
     this.$auth = $auth
     this.toastr = toastr
+    this.$state = $state
   }
 
   isAuthenticated() {
@@ -16,6 +17,7 @@ class NavbarController {
   logout() {
     this.toastr.info('Cerraste sesión, vuelve pronto...','Cerrar sesión')
     this.$auth.logout()
+    this.$state.go('landingPage')
   }
   
   changeFontSize(size) {

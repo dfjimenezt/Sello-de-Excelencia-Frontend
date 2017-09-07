@@ -122,17 +122,16 @@
       </div>
       <div class="col s12 m6">
         <label>Categorías:</label>
-        <div class="input-field">
-          <input type="checkbox" id="category0" ng-model="$ctrl.register.categories[0]" />
-          <label for="category0">
-              Sevicios y Trámites
-            </label>
-        </div>
-        <div class="input-field">
-          <input type="checkbox" id="category1" ng-model="$ctrl.register.categories[1]" />
-          <label for="category1">
-              Datos Abiertos
-            </label>
+        <div class="input-field" ng-repeat="category in $ctrl.categories">
+              <input type="checkbox" 
+              id="category{{category.id}}"
+              value="{{category.id}}"
+              ng-checked="$ctrl.register.categories.indexOf(category.id) > -1"
+              ng-click="$ctrl.toggleCategory(category)"
+              />
+          <label for="category{{category.id}}">
+              {{category.name}}
+          </label>
         </div>
       </div>
       <div class="col s12 m6">

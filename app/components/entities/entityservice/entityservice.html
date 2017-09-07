@@ -10,23 +10,23 @@
             <div class="color-brown">{{$ctrl.service.entity.name}}</div>
             <div>
                 <div>{{$ctrl.service.name}}</div>
-                <div class="color-lightseagreen">Nivel: {{$ctrl.service.level}}</div>
+                <div class="color-lightseagreen">Nivel: {{$ctrl.service.status.level}}</div>
                 <span>Fecha de postulación: </span><span>{{$ctrl.service.status.timestamp | date}}</span><br>
                 <span>Fecha de cerficación: </span><span>{{$ctrl.service.status.valid_to | date}}</span><br>
                 <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
-        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.status.id == 1 || $ctrl.service.status.id == 2">
-            <div class="color-green" ng-if="$ctrl.service.status.id == 1">
+        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
+            <div class="color-green" ng-if="$ctrl.service.current_status == 8">
                 <!--CUMPLE-->
                 <span>CUMPLE</span><i class="fa fa-check"></i>
             </div>
-            <div class="color-red" ng-if="$ctrl.service.status.id == 2">
+            <div class="color-red" ng-if="$ctrl.service.current_status == 11">
                 <!--NO CUMPLE-->
                 <span>NO CUMPLE</span><i class="fa fa-times"></i>
             </div>
         </div>
-        <div class="service-item-rate" ng-if="$ctrl.service.status.id == 1 || $ctrl.service.status.id == 2">
+        <div class="service-item-rate" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
             <div class="border color-brown center-align">
                 <span>Promedio</span><br>
                 <div class="fa fa-star star color-yellow">
@@ -41,10 +41,13 @@
             <a class="color-lightseagreen" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
         </div>
     </div>
-
-    <requisite ></requisite>
+    <div class="valign-wrapper row requisites" ng-if="$ctrl.selected != null">
+        <button class="btn-floating waves-effect waves-light gainsboro" ng-click="$ctrl.prevQuestion()"><i class="fa fa-chevron-left"></i></button>
+        <requisite item="$ctrl.selected" on-save="$ctrl.updateAnswer(item)"></requisite>
+        <button class="btn-floating waves-effect waves-light gainsboro" ng-click="$ctrl.nextQuestion()"><i class="fa fa-chevron-right"></i></button>
+    </div>
     
-    <chat ng-if="$ctrl.service.status.id > 2"></chat>
+    <chat item="$ctrl.selected" service="$ctrl.service" ng-if="$ctrl.selected.status.id == 6"></chat>
 
     <div id="comments" class="modal">
         <div class="brown color-white">

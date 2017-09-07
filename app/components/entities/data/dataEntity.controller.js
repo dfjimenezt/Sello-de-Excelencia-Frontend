@@ -1,13 +1,13 @@
 class dataEntityController{
-  constructor(Api,$http){
+  constructor(Api,$http,$auth){
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.$auth = $auth
+    
   }
   $onInit(){
-    this.entity = {
-      name:'Entidad 1'
-    }
+    
   }
 }
 

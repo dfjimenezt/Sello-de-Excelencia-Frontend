@@ -1,94 +1,42 @@
-class chat{
-  constructor(Api,$http,$auth){
+class chat {
+  constructor(Api, $http, $auth) {
     'ngInject'
     this.Api = Api,
-    this.$http = $http
+      this.$http = $http
     this.$auth = $auth
-    this.user = {id:1}
+    this.user = this.$auth.getPayload()
+    this.evaluationRequestEndpoint = Api + '/question/evaluation_request'
+    this.messagesEndpoint = Api + '/question/chats'
+    this.currentEvaluator = null
   }
-  $onInit(){
-    this.messages =[
-      {
-        from:{
-          name:'Agente',
-          id:1
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:1
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:1
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:1
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:2
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:2
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:2
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:1
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:2
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      },
-      {
-        from:{
-          name:'Agente',
-          id:2
-        },
-        text:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas venenatis vel magna quis ullamcorper. Nulla rutrum dapibus augue, at malesuada sem faucibus ut. Praesent ultricies, magna vel convallis suscipit, libero quam ornare justo, eu feugiat arcu nisi vitae sapien. Mauris et pretium tortor. Integer sollicitudin eu dolor sit amet cursus. Quisque vel pretium sem, sed aliquet purus. Mauris auctor, arcu gravida finibus volutpat, odio nulla volutpat sapien, eu tristique mauris turpis tincidunt enim. Vivamus auctor, leo vitae tincidunt finibus, ante libero blandit libero, in rhoncus ante odio et diam. Nunc semper diam ac euismod semper. Integer posuere orci sed dolor rutrum pharetra. Vivamus massa ex, rhoncus sed arcu at, pretium eleifend augue. Nunc vehicula semper turpis, vitae vestibulum neque lobortis sed.',
-        timestamp: new Date()
-      }
-    ]
+  selectEvaluator(evaluator) {
+    this.currentEvaluator = evaluator
+    this.$http.get(this.messagesEndpoint +
+      '?filter_field=id_evaluation_request&filter_value=' + evaluator.id).then((results) => {
+        this.messages = results.data.data
+      })
+  }
+  sendMessage() {
+    var data = {
+      text: this.message,
+      id_evaluation_request: this.currentEvaluator.id,
+    }
+    this.message = ''
+    this.$http.post(this.messagesEndpoint, data).then((result) => {
+      data.id = result.data.insertId
+      data.id_sender = this.user.id
+      data.timestamp = new Date()
+      this.messages.push(data)
+    })
+  }
+  $onInit() {
+    this.$http.get(
+      this.evaluationRequestEndpoint +
+      '?filter_field=id_service&filter_value=' + this.service.id +
+      '&filter_field=id_question&filter_value=' + this.item.id
+    ).then((results) => {
+      this.users = results.data.data
+    })
   }
 }
 

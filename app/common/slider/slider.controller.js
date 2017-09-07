@@ -31,7 +31,7 @@ class SliderController {
 
 
   getData() {
-    this.$http.get(this.Api + '/forum/banner').then((results) => {
+    this.$http.get(this.Api + '/platform/banner').then((results) => {
       this.banners = results.data.data.sort((a, b) => {
         return a.position > b.position
       })

@@ -1,5 +1,6 @@
 <div class="evaluation white">
-    <div ng-if="!$ctrl.finished">
+    <sign-in ng-if="!$ctrl.isAuthenticated()"></sign-in>
+    <div ng-if="!$ctrl.finished && $ctrl.isAuthenticated()">
         <div class="row gainsboro title">
             <span class="color-lightseagreen">Has iniciado sesión como <b>{{$ctrl.user.name}} {{$ctrl.user.lastname}}</b></span>
         </div>
@@ -7,7 +8,7 @@
             Ahora puedes participar calificando y comentarios sobre<br> nuestros productos ó servicios certificados
         </div>
         <div class="brown center-align color-white">
-            Entidad: {{$ctrl.entity.name}}
+            Entidad: {{$ctrl.service.institution.name}}
         </div>
         <div class="gainsboro center-align">
             <span class="color-brown">Producto o servicio:</span>
@@ -38,7 +39,7 @@
             </div>
             <div class="col s12 m12" ng-repeat="question in $ctrl.questions" ng-class="{'gainsboro':$odd}">
                 <span><i class="fa fa-check color-green"></i></span>
-                <span>{{question.name}}</span>
+                <span class="question-text" ng-class="{'color-red':question.error}">{{question.text}}</span>
                 <span class="full-rate right color-lightgray">
                 <i class="fa fa-star" 
                 ng-class="{'color-yellow': i <= question.rate }"
@@ -53,7 +54,7 @@
                 <span class="color-lightseagreen">
                 Agrega un comentario
             </span>
-                <textarea class="materialize-textarea"></textarea>
+                <textarea class="materialize-textarea" ng-model="$ctrl.comment"></textarea>
             </div>
             <div class="col m6 s12 legal">
                 El producto que usted está viendo ha sido certificado con EL SELLO DE EXCELENCIA, y queremos que usted sea parte de esta
@@ -61,14 +62,15 @@
             </div>
         </div>
         <div class="center-align footer">
-            <button class="btn" ng-click="$ctrl.finished = true">Calificar</button>
+            <button class="btn" ng-click="$ctrl.qualify()">Calificar</button>
         </div>
     </div>
-    <div ng-if="$ctrl.finished" class="center-align finished">
+    <div ng-if="$ctrl.finished && $ctrl.isAuthenticated()" class="center-align finished">
         <h3 class="color-brown center-align">Tu valoración ha sido enviada</h3>
         <div class="thanks color-lightseagreen center-align">Gracias por tu colaboración</div>
         <img class="center-align" src="assets/img/evaluando.png" alt="evaluados">
         <div class="center-align">Tu opinión es muy importante para continuar mejorando<br>la calidad de nuestras entidades.</div>
-        <a class="btn brown modal-action modal-close brown" href="#!/certificados" ng-click="$ctrl.finished = false"> Cerrar</a>
+        <a class="btn brown" ng-click="$ctrl.close()">Cerrar</a>
     </div>
+        <a class="modal-action modal-close"></a>
 </div>

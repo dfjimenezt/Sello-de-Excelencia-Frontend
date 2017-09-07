@@ -1,194 +1,36 @@
 class ServiceDetailController {
-  constructor($state,$http) {
+  constructor($state,$http,Api) {
     'ngInject'
     this.$state = $state
     this.$http = $http
+    this.categoriesEndpoint = Api +'/service/category'
+    this.dataEndpoint = Api +'/service/service?filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
+    this.institutionEndpoint = Api +'/place/institution'
+    this.getBasic()
+
+  }
+  selectedInstitution(item){
+    this.query.fields['institution.id'] = item.id
+    this.getData()
+  }
+  selectedService(item){
+    this.query.fields['id'] = item.id
+    this.getData()
+  }
+  getBasic() {
+    this.$http.get(this.categoriesEndpoint).then((result) => {
+      this.categories = result.data.data
+      this.selectCategory(this.categories[0])
+    })
   }
   $onInit() {
     this.pagestoshow = 5
     this.pager = {}
     this.query = {
       limit:20,
-      page:1
+      page:1,
+      fields:{}
     }
-    this.categories = [
-      {
-        id: 1,
-        name: 'Trámites o servicios en linea'
-      },
-      {
-        id: 2,
-        name: 'Datos abiertos'
-      },
-      {
-        id: 3,
-        name: 'Ejercicios de participación'
-      },
-      {
-        id: 4,
-        name: 'Capacidades de gestión de TI'
-      }
-    ]
-    this.lists = {
-      '1': [{
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }],
-      '2': [{
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }, {
-        id: 1,
-        name: 'RUT online',
-        level: 3,
-        status: {
-          name: 'Certificado',
-          valid_to: new Date(2018, 12, 12),
-          timestamp: new Date()
-        },
-        rate: 4.15,
-        entity: {
-          name: 'Ministerio de TIC'
-        },
-        url: 'http://www.mintic.gov.co'
-      }]
-    }
-    this.selectCategory(this.categories[0])
-
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
       selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -201,7 +43,7 @@ class ServiceDetailController {
   getData() {
     this.list = []
     this.loading = true
-    var url = '/api/hello'
+    var url = this.dataEndpoint + this.category.id
     if (!url) {
       return
     }
@@ -212,9 +54,13 @@ class ServiceDetailController {
     if (this.query.fields) {
       for (var field in this.query.fields) {
         var values = this.query.fields[field]
-        values.forEach(function (value) {
-          params.push('filter_field=' + field + '&filter_value=' + value)
-        })
+        if(typeof values === 'object'){
+          values.forEach(function (value) {
+            params.push('filter_field=' + field + '&filter_value=' + value)
+          })
+        }else{
+          params.push('filter_field=' + field + '&filter_value=' + values)
+        }
       }
     }
     if (this.query.order) {
@@ -222,15 +68,13 @@ class ServiceDetailController {
     }
 
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
-    //var p = this.$http.get(url)
-    //p.then(function (/*response*/) {
-      //this.list = response.data.data
-    this.list = this.lists['1']
-    this.pager.total_count = this.list.length * 20
-    this.loading = false
-    this.resetPager()
-    //})
-    return true //p
+    this.$http.get(url).then((response)=> {
+      this.list = response.data.data
+      this.pager.total_count = this.list.length
+      this.loading = false
+      this.resetPager()
+    })
+    return true 
   }
   resetPager() {
     this.pager.total_pages = Math.ceil(this.pager.total_count / this.query.limit)
@@ -245,6 +89,7 @@ class ServiceDetailController {
   }
   selectCategory(category) {
     this.category = category
+    
     this.getData()
   }
 

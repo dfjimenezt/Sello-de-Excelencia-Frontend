@@ -17,6 +17,7 @@ import requisiteitemComponent from './requisiteitem/requisiteitem.component'
 import serviceitemComponent from './serviceitem/serviceitem.component'
 import commentitemComponent from './commentitem/commentitem.component'
 import chatComponent from './chat/chat.component'
+import autocompleteComponent from './autocomplete/autocomplete.component'
 
 const common = angular
   .module('qualityStamp.common',[categoriesModule,fameModule])
@@ -36,6 +37,7 @@ const common = angular
   .component('requisiteItem',requisiteitemComponent)
   .component('commentItem',commentitemComponent)
   .component('chat',chatComponent)
+  .component('autocomplete',autocompleteComponent)
   .name
 
 export default common

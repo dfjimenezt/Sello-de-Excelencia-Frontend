@@ -4,7 +4,11 @@ import './chat.styl'
 
 const chatComponent ={
   template,
-  controller
+  controller,
+  bindings:{
+    service:'<',
+    item:'<'
+  }
 }
 
 export default chatComponent

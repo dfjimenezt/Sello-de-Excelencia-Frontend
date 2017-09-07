@@ -11,16 +11,16 @@
                 <span class="color-white">Buscar:</span>
             </div>
             <div class="col m3 s12">
-                <input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input>
+                <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Nombre de la entidad"></autocomplete>                
             </div>
             <div class="col m3 s12">
-                <input ng-model="$ctrl.query.name" placeholder="Nombre de producto"></input>
+                <autocomplete on-selected="$ctrl.selectedService(item)" endpoint="$ctrl.dataEndpoint + $ctrl.category.id" placeholder="Nombre del servicio"></autocomplete>
             </div>
             <div class="col m2 s12">
-                <input ng-model="$ctrl.query.postulate" class="datepicker" placeholder="Fecha de postulación"></input>
+                <input ng-model="$ctrl.query.fields.timestamp" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de postulación"></input>
             </div>
             <div class="col m2 s12">
-                <input ng-model="$ctrl.query.certification" class="datepicker" placeholder="Fecha de certificación"></input>
+                <input ng-model="$ctrl.query.certification" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de certificación"></input>
             </div>
             <div class="col m1 s12">
                 <a class="btn-floating waves-effect waves-dark  white"
@@ -51,10 +51,10 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="item in $ctrl.list" class="service-table-item" ng-click="$ctrl.goTo(item)">
-                        <td>{{item.entity.name}}</td>
+                        <td>{{item.institution.name}}</td>
                         <td>{{item.name}}</td>
                         <td class="color-lightseagreen">{{item.url}}</td>
-                        <td>{{item.status.timestamp | date}}</td>
+                        <td>{{item.timestamp | date}}</td>
                         <td>{{item.status.valid_to | date}}</td>
                     </tr>
                 </tbody>
