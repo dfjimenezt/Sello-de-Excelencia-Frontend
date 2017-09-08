@@ -1,16 +1,30 @@
 class learnEvaluatorController {
-  constructor(Api, $http) {
+  constructor(Api, $http, $sce) {
     'ngInject'
     this.Api = Api
     this.$http = $http
     this.learnEndpoint = Api + '/forum/hangouts?filter_field=id_role&filter_value=2'
     this.playing = false
+    this.$sce = $sce
   }
   setSelected(item){
+    let now = new Date()
+    let activiation = new Date(item.activation_date)
+    if(now > activiation){
+      item.disabled = false
+    }else{
+      item.disabled = true 
+    }
     this.selected = item
   }
   goLive(){
+    this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
+    this.$http.post(this.points,{})
+  }
+  stop(){
+    this.selected.trusted = null
+    this.playing = false
   }
   $onInit() {
     this.pagestoshow = 5

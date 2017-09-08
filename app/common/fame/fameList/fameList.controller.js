@@ -25,7 +25,6 @@ class FameListController {
     this.loading = true
     this.$http.get(this.endpoints[section]).then((results)=>{
       this.list = results.data.data
-      console.log(this.list)
       this.loading = false
     })
   }

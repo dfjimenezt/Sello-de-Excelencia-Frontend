@@ -14,6 +14,16 @@ class NavbarController {
     return this.$auth.getPayload()
   }
 
+  goProfile(){
+    if(this.$auth.getPayload().institutions.length >0){
+      this.$state.go('entity')
+    }else if(this.$auth.getPayload().role === 'Evaluador'){
+      this.$state.go('evaluator')
+    }else{
+      this.$state.go('landingPage')
+    }
+  }
+
   logout() {
     this.toastr.info('Cerraste sesión, vuelve pronto...','Cerrar sesión')
     this.$auth.logout()

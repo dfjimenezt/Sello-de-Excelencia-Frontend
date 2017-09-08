@@ -1,190 +1,162 @@
 <div class="card row">
   <form class="col s10 m10 offset-s1 offset-m1" name="registerEvaluatorForm" ng-submit="$ctrl.update()" novalidate>
     <h4 class="color-brown">Perfil</h4>
-    <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información personal.</span>
+    <div class="col s12">
+      <span style="margin-left:-30px" class="font-bold color-lightseagreen">Información personal.</span>
+    </div>
     <div class="row">
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.person.firstname" required>
+          <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.name" required>
           <label for="first_name" data-error="Ingresa tu nombre" data-success="Ok"><strong class="red-text">*</strong> Primer Nombre:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.person.second_name" required>
+          <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.secondname" required>
           <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok"><strong class="red-text">*</strong> Segundo Nombre:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="lastname" type="text" class="validate" ng-model="$ctrl.register.person.first_lastname" required>
+          <input id="lastname" type="text" class="validate" ng-model="$ctrl.register.lastname" required>
           <label for="lastname" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong> Primer Apellido:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="second_lastname" type="text" class="validate" ng-model="$ctrl.register.person.second_lastname" required>
+          <input id="second_lastname" type="text" class="validate" ng-model="$ctrl.register.secondlastname" required>
           <label for="second_lastname" data-error="Ingresa tu segundo apellido" data-success="Ok"><strong class="red-text">*</strong> Segundo Apellido:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="phone" type="text" class="validate" ng-model="$ctrl.register.person.phone" required>
+          <input id="phone" type="text" class="validate" ng-model="$ctrl.register.phone" required>
           <label for="phone" data-error="Ingresa tu teléfono" data-success="Ok"><strong class="red-text">*</strong> Teléfono:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.person.mobile" required>
+          <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
           <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <select ng-model="$ctrl.register.person.identification.type" material-select>
-                    <option value="cc">Cédula de Ciudadanía</option>
-                    <option value="ce">Cédula de Extranjería</option>
-                    <option value="nt">NIT</option>
-                  </select>
+          <select ng-model="$ctrl.register.id_type_document" material-select watch>
+            <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
+          </select>
           <label>Tipo de documento:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="numberType" type="number" min="0" class="validate" ng-model="$ctrl.register.person.identification.number" required>
+          <input id="numberType" type="text" class="validate" ng-model="$ctrl.register.document" required>
           <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
         </div>
       </div>
-      <div class="col m6 s12">
-        <div class="input-field">
-          <input id="email" type="email" class="validate" ng-model="$ctrl.register.person.email" required>
-          <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
-        </div>
-      </div>
-    </div>
-    <div class="row center-align">
-      <input type="checkbox" id="terms" ng-model="$ctrl.register.terms" />
-      <label for="terms">
-                <a href="#!/terminos-y-condiciones" target="_blank">
-                <strong class="red-text">*</strong>
-                Acepto los terminos y condiciones</a>
-              </label>
-    </div>
-    <div class="row center-align">
-      <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="registerEvaluatorForm.$invalid || !$ctrl.register.terms">
-                    <i class="material-icons right">send</i>
-                    Registrar
-                  </button>
-    </div>
-  </form>
-  <form class="col s10 m10 offset-s1 offset-m1" name="evaluatorProfileForm" ng-submit="$ctrl.update()" novalidate>
-    <h4 class="color-brown">Perfil</h4>
-    <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información personal.</span>
-    <div class="row">
       <div class="col s12 m6">
         <div class="input-field">
-          <select ng-model="$ctrl.register.person.education_level" material-select>
-            <option value="cc">Cédula de Ciudadanía</option>
-            <option value="ce">Cédula de Extranjería</option>
-            <option value="nt">NIT</option>
-          </select>
-          <label>Nivel de Educación:</label>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div class="input-field">
-          <input id="job" type="text" class="validate" ng-model="$ctrl.register.person.job" required>
-          <label for="job" data-error="Ingresa ocupación" data-success="Ok"><strong class="red-text">*</strong> Ocupación:</label>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div class="input-field">
-          <input id="company" type="text" class="validate" ng-model="$ctrl.register.person.company" required>
-          <label for="company" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong> Organización:</label>
-        </div>
-      </div>
-      <div class="col s12 m6">
-        <div class="input-field">
-          <select ng-model="$ctrl.register.person.country" material-select>
-              <option value="col">Colombia</option>
+          <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
+              <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
             </select>
           <label>País:</label>
         </div>
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <select ng-model="$ctrl.register.person.city" material-select>
-              <option value="col">Bogotá D.C.</option>
-              <option value="med">Medllin</option>
-            </select>
+          <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()" material-select watch>
+                <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.regions">{{region.name}}</option>
+              </select>
+          <label>Región:</label>
+        </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="input-field">
+          <select ng-model="$ctrl.register.id_city" material-select watch>
+                <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.cities">{{city.name}}</option>
+              </select>
           <label>Ciudad:</label>
         </div>
       </div>
+      <div class="col m6 s12">
+        <div class="input-field">
+          <input id="email" type="email" class="validate" ng-model="$ctrl.register.email" required>
+          <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col s12">
+        <span style="margin-left:-30px" class="font-bold color-lightseagreen">Información laboral.</span>
+      </div>
       <div class="col s12 m6">
-        <label>Categorías:</label>
-        <div class="input-field" ng-repeat="category in $ctrl.categories">
-              <input type="checkbox" 
-              id="category{{category.id}}"
-              value="{{category.id}}"
-              ng-checked="$ctrl.register.categories.indexOf(category.id) > -1"
-              ng-click="$ctrl.toggleCategory(category)"
-              />
-          <label for="category{{category.id}}">
-              {{category.name}}
-          </label>
+        <div class="input-field">
+          <input id="job" type="text" class="validate" ng-model="$ctrl.register.ocupation" required>
+          <label for="job" data-error="Ingresa ocupación" data-success="Ok"><strong class="red-text">*</strong> Ocupación:</label>
         </div>
       </div>
       <div class="col s12 m6">
-        <label>Disponibilidad:</label>
         <div class="input-field">
-          <input id="high" type="radio" group="availability" ng-model="$ctrl.register.availability" value="high" />
-          <label for="high">
-                Alta
-              </label>
+          <input id="company" type="text" class="validate" ng-model="$ctrl.register.organization" required>
+          <label for="company" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong> Organización:</label>
         </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <span style="margin-left:-30px" class="font-bold color-lightseagreen">Disponibilidad</span>
+      </div>
+      <div class="col m4 s12" ng-repeat="availability in $ctrl.availabilities">
         <div class="input-field">
-          <input id="mid" type="radio" group="availability" ng-model="$ctrl.register.availability" value="mid" />
-          <label for="mid">
-                Media
-              </label>
-        </div>
-        <div class="input-field">
-          <input id="low" type="radio" group="availability" ng-model="$ctrl.register.availability" value="low" />
-          <label for="low">
-                Baja
-              </label>
+          <input id="availability{{availability.id}}" type="radio" group="availability" ng-model="$ctrl.register.id_availability" ng-value="{{availability.id}}"
+          />
+          <label for="availability{{availability.id}}">{{availability.name}}</label>
         </div>
       </div>
     </div>
     <div class="row">
-      <span style="margin-left:-30px" class="font-bold color-lightseagreen">Temáticas a Evaluar</span>
-      <div class="col s12 m12">
+      <div class="col s12">
+        <span style="margin-left:-30px" class="font-bold color-lightseagreen">Categorías a Evaluar</span>
+      </div>
+      <div class="col s12 m6" ng-repeat="category in $ctrl.categories">
         <div class="input-field">
-          <input type="checkbox" id="topic0" ng-model="$ctrl.register.topics[0]" />
-          <label for="topic0">Temática 1</label>
+          <input type="checkbox" id="category{{category.id}}" ng-value="category" ng-checked="$ctrl.hasCategory(category) > -1" ng-click="$ctrl.toggleCategory(category)"
+          />
+          <label for="category{{category.id}}">
+                    {{category.name}}
+                </label>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <span style="margin-left:-30px" class="font-bold color-lightseagreen">Temáticas a Evaluar</span>
+      </div>
+      <div class="col s12 m6" ng-repeat="topic in $ctrl.topics">
         <div class="input-field">
-          <input type="checkbox" id="topic1" ng-model="$ctrl.register.topics[1]" />
-          <label for="topic1">Temática 1</label>
-        </div>
-        <div class="input-field">
-          <input type="checkbox" id="topic2" ng-model="$ctrl.register.topics[2]" />
-          <label for="topic2">Temática 1</label>
-        </div>
-        <div class="input-field">
-          <input type="checkbox" id="topic3" ng-model="$ctrl.register.topics[3]" />
-          <label for="topic3">Temática 1</label>
-        </div>
-        <div class="input-field">
-          <input type="checkbox" id="topic4" ng-model="$ctrl.register.topics[4]" />
-          <label for="topic4">Temática 1</label>
+          <input type="checkbox" id="topic{{topic.id}}" ng-value="topic" ng-checked="$ctrl.hasTopic(topic) > -1" ng-click="$ctrl.toggleTopic(topic)"
+          />
+          <label for="topic{{topic.id}}">{{topic.category.name}} - {{topic.name}}</label>
         </div>
       </div>
     </div>
     <div class="row center-align">
+      <input type="checkbox" id="terms" ng-click="$ctrl.register.terms == 1 ? $ctrl.register.terms= 0:$ctrl.register.terms=1" ng-checked="$ctrl.register.terms == 1"
+      />
+      <label for="terms">
+                  <a href="#!/terminos-y-condiciones" target="_blank">
+                  <strong class="red-text">*</strong>
+                  Acepto los terminos y condiciones</a>
+                </label>
+    </div>
+    <div class="row center-align">
       <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="evaluatorProfileForm.$invalid || !$ctrl.register.terms">
                       <i class="material-icons right">send</i>
-                      Registrar
+                      Actualizar
                     </button>
     </div>
   </form>

@@ -3,7 +3,7 @@ class profileEntityController{
     'ngInject'
     this.Api = Api
     this.$http = $http
-    this.entity = {name:'Entidad'}
+    this.entity = {name:'Evaluador'}
   }
   $onInit(){
     this.setSection('profile')

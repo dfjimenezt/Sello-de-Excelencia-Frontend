@@ -23,7 +23,7 @@ class advanceEntityController{
         if(points.id_motive === 3){
           this.events = points.value
         }
-      }, this);
+      }, this)
       this.total = _total
     })
     this.$http.get(this.motivesEndpoint).then((results)=>{

@@ -5,7 +5,6 @@ class requisiteItemController{
     this.$http = $http
   }
   $onInit(){
-    console.log(this)
   }
 }
 

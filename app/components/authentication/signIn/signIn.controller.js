@@ -21,6 +21,8 @@ class SignInController {
         let user = this.$auth.getPayload()
         if(user.institutions.length >0){
           this.$state.go('entity')
+        }else if(user.role === 'Evaluador'){
+          this.$state.go('evaluator')
         }else{
           this.$state.go('landingPage')
         }

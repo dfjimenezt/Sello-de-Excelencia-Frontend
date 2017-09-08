@@ -5,16 +5,27 @@
             <span class="color-brown">Buscar:</span>
         </div>
         <div class="col m3 s12">
-            <input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input>
+            <!--input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input-->
+            <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Entidad"></autocomplete>
         </div>
         <div class="col m3 s12">
-            <input ng-model="$ctrl.query.department" placeholder="Departamento"></input>
+            <!--input ng-model="$ctrl.query.department" placeholder="Departamento"></input-->
+            <autocomplete on-selected="$ctrl.selectedRegion(item)" endpoint="$ctrl.regionEndpoint" placeholder="Departamento"></autocomplete>
         </div>
         <div class="col m2 s12">
-            <input ng-model="$ctrl.query.category" placeholder="Categoría"></input>
+            <select ng-model="$ctrl.query.fields['category.id']" material-select watch ng-change="$ctrl.getData()">
+                <option ng-value="null" selected>Categoría</option>
+                <option ng-value="{{category.id}}" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
+            </select>
         </div>
         <div class="col m2 s12">
-            <input ng-model="$ctrl.query.level" placeholder="Nivel"></input>
+            <select ng-model="$ctrl.query.fields.level" material-select ng-change="$ctrl.getData()">
+                <option ng-value="null" selected>Nivel</option>
+                <option value="1" >1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+            </select>
+
         </div>
         <div class="col m1 s12">
             <a class="btn-floating waves-effect waves-light  brown" ng-click="$ctrl.search()">
@@ -28,8 +39,10 @@
         <div class="col s10 offset-s1">
             <h4>{{$ctrl.entity.name}}</h4>
             <div class="row">
-                <requisite-item class="col m6 s12" item="service" ng-repeat="service in $ctrl.list" 
-                    on-selected="$ctrl.onCertificate(service)">
+                <requisite-item class="col m6 s12" 
+                    item="requisite" 
+                    ng-repeat="requisite in $ctrl.list" 
+                    on-selected="$ctrl.confirm(requisite)">
                 </requisite-item>
             </div>
         </div>
@@ -46,19 +59,20 @@
                 </ul>
             </div>
         </div>
-        <a modal data-target="postulated" open="$ctrl.openCertificate"></a>
+        <a modal data-target="confirm" open="$ctrl.openConfirmation"></a>
     </div>
-    <div id="postulated" class="modal">
-            <div class="modal-content center-align">
-              <div class="border">
+    <div id="confirm" class="modal">
+        <div class="modal-content center-align">
+            <div class="border">
                 <i class="fa fa-check color-green"></i><br>
-                <span class="color-brown congratulations">Usted ha aplicado como evaluador para:</span><br>
-                <span class="color-lightseagreen">Registraduría del estado civil.</span><br>
-                <span>Solicitud de Cédula de ciudadanía</span>
-              </div>
+                <span class="color-brown congratulations">Desea aplicar como evaluador para:</span><br>
+                <span class="color-lightseagreen">{{$ctrl.selected.question.text}}</span><br>
+                <span>{{$ctrl.selected.service.name}}</span>
             </div>
-            <div class="center-align footer">
-              <a class="btn brown modal-action modal-close">Cerrar</a>
-            </div>
-          </div>
+        </div>
+        <div class="center-align footer">
+            <a class="btn modal-action modal-close" ng-click="$ctrl.createRequest()">Aceptar</a>
+            <a class="btn brown modal-action modal-close">Cerrar</a>
+        </div>
+    </div>
 </section>

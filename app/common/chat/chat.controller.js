@@ -36,6 +36,9 @@ class chat {
       '&filter_field=id_question&filter_value=' + this.item.id
     ).then((results) => {
       this.users = results.data.data
+      if(this.users.length > 0){
+        this.selectEvaluator(this.users[0])
+      }
     })
   }
 }

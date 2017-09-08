@@ -1,26 +1,47 @@
 class postulateEvaluatorController{
-  constructor(Api, $http) {
+  constructor(Api, $http, $auth) {
     'ngInject'
     this.Api = Api
     this.$http = $http
     this.pagestoshow = 5
+    this.$auth = $auth
     this.pager = {}
     this.query = {
       limit: 20,
-      page: 1
+      page: 1,
+      fields:{
+        level:null,
+        'category.id':null
+      }
     }
+    this.answersEndpoint = Api + '/question/user_answer?postulate=true'
+    this.institutionEndpoint = Api +'/place/institution'
+    this.regionEndpoint = Api +'/place/region'
+    this.categoriesEndpoint = Api + '/service/category'
+    this.requestEndpoint = Api +'/question/evaluation_request'
+    this.openConfirmation = false
+    this.getCategories()
   }
-  $onInit() {
-    this.setSection('certified')
+  selectedInstitution(item){
+    this.query.fields['institution.id'] = item.id
     this.getData()
   }
-  setSection(section) {
-    this.section = section
+  selectedRegion(item){
+    this.query.fields['region.id'] = item.id
+    this.getData()
+  }
+  getCategories() {
+    this.$http.get(this.categoriesEndpoint).then((result) => {
+      this.categories = result.data.data
+    })
+  }
+  $onInit() {
+    this.getData()
   }
   getData() {
     this.list = []
     this.loading = true
-    var url = '/api/hello'
+    var url = this.answersEndpoint
     if (!url) {
       return
     }
@@ -30,10 +51,10 @@ class postulateEvaluatorController{
     }
     if (this.query.fields) {
       for (var field in this.query.fields) {
-        var values = this.query.fields[field]
-        values.forEach(function (value) {
-          params.push('filter_field=' + field + '&filter_value=' + value)
-        })
+        var value = this.query.fields[field]
+        if(value){
+          params.push(field + '=' + value)
+        }
       }
     }
     if (this.query.order) {
@@ -41,226 +62,14 @@ class postulateEvaluatorController{
     }
 
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
-    //var p = this.$http.get(url)
-    //p.then(function (/*response*/) {
-    //this.list = response.data.data
-    this.list = [{
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 3,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }, {
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 2,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }, {
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 1,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }]
-    this.pager.total_count = this.list.length * 20
-    this.loading = false
-    this.resetPager()
-    //})
-    this.openCertificate = false
-    return true //p
+    let ctrl = this
+    this.$http.get(url).then(function (response) {
+      ctrl.list = response.data.data
+      ctrl.pager.total_count = ctrl.list.length
+      ctrl.loading = false
+      ctrl.resetPager()
+    })
+    return 
   }
   resetPager() {
     this.pager.total_pages = Math.ceil(this.pager.total_count / this.query.limit)
@@ -288,14 +97,20 @@ class postulateEvaluatorController{
   setService(service) {
     this.service = service
   }
-  onCertificate(service) {
-    this.openCertificate = true
-    this.certificate = {
-      entity:service.entity.name,
-      level:service.level,
-      product: service.name,
-      date: new Date()
+  confirm(requisite) {
+    this.openConfirmation = true
+    this.selected = requisite
+  }
+  createRequest(){
+    
+    let data = {
+      id_question:this.selected.id,
+      id_user:this.$auth.getPayload().id,
+      id_service:this.selected.service.id
     }
+    this.$http.post(this.requestEndpoint,data).then(()=>{
+      this.getData()
+    })
   }
 }
 
