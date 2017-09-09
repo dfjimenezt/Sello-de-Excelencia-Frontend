@@ -18,6 +18,10 @@ class activityEvaluatorController {
     this.setSection('asignated')
     
   }
+  reset(){
+    this.requisite = null
+    this.getData()
+  }
   setSection(section) {
     this.section = section
     if(this.section === 'asignated'){
