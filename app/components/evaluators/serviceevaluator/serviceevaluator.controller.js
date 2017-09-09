@@ -1,9 +1,10 @@
+/*global grecaptcha*/
 class serviceEvaluator{
   constructor(Api,$http){
     'ngInject'
     this.Api = Api
     this.$http = $http
-    this.serviceEndpoint = Api + '/service/service?simple=false&'
+    this.serviceEndpoint = Api + '/service/service'
     this.questionEndpoint = Api + '/question/question'
     this.answerEndpoint = Api + '/question/user_answer'
     this.requestEndpoint = Api +'/question/evaluation_request'
@@ -23,6 +24,12 @@ class serviceEvaluator{
     this.service = this.request.service
     this.question.comment = this.answer.comment
     this.getAnswer()
+    this.getService()
+  }
+  getService(){
+    this.$http.get(this.serviceEndpoint+'?id='+this.service.id).then((result)=>{
+      this.service = result.data.data[0]
+    })
   }
   getAnswer(){
     this.$http.get(this.answerEndpoint+'?id='+this.answer.id).then((result)=>{
