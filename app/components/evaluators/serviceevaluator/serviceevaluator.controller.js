@@ -47,7 +47,7 @@ class serviceEvaluator{
     grecaptcha.reset()
   }
   rejected(){
-    if(grecaptcha.getResponse()==""){
+    if(grecaptcha.getResponse()===''){
       this.robotError = true
     }else{
       this.robotError = false
@@ -59,7 +59,9 @@ class serviceEvaluator{
       this.$http.put(this.requestEndpoint,rq).then(()=>{
         this.request.id_request_status = 5
         this.question.rejectable = false
+        this.onFinished()
       })
+      
     }
   }
   approve(){
@@ -70,9 +72,11 @@ class serviceEvaluator{
       id:this.request.id,
       id_request_status:4 //approved
     }
+    this.openApprove = false
     this.$http.put(this.requestEndpoint,rq).then(()=>{
       this.request.id_request_status = 4
       this.question.rejectable = false
+      this.onFinished()
     })
   }
 }

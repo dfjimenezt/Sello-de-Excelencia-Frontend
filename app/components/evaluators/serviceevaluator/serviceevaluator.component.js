@@ -6,7 +6,8 @@ const serviceEvaluatorComponent = {
   controller,
   template,
   bindings:{
-    request:'<'
+    request:'<',
+    onFinished:'&'
   }
 }
 

@@ -41,6 +41,9 @@
             </div>
         </div>
     </div>
-    <service-evaluator ng-if="$ctrl.requisite" request="$ctrl.requisite"></service-evaluator>
+    <service-evaluator 
+        ng-if="$ctrl.requisite" 
+        request="$ctrl.requisite"
+        on-finished="$ctrl.requisite = null"></service-evaluator>
     
 </section>
