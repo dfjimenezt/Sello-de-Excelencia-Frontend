@@ -7,7 +7,9 @@ const requisiteComponent = {
   template,
   bindings: {
     item: '=',
-    onSave: '&'
+    onSave: '&',
+    onMoreInformation: '&',
+    onReject: '&'
   }
 }
 

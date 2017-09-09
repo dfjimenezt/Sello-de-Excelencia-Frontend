@@ -12,36 +12,40 @@
                 <div>{{$ctrl.item.service.name}}</div>
                 <div>{{$ctrl.item.question.text }}</div>
             </div>
-            <!--div class="action center-align color-lightgray"
-                ng-click="$ctrl.onSelected($ctrl.item)">
+            <div class="action center-align color-lightgray"
+                ng-click="$ctrl.onRejected()"
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == 1">
                 <i class="fa fa-times-circle"></i><br>
                 <span>Rechazar</span>
             </div>
             <div class="action color-green center-align"
-                ng-click="$ctrl.onSelected($ctrl.item)">
+                ng-click="$ctrl.onApproved()"
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == 1">
                 <i class="fa fa-check-circle"></i><br>
                 <span>Aceptar</span>
-            </div-->
+            </div>
             <div class="action lightseagreen center-align color-white"
-                ng-click="$ctrl.onSelected($ctrl.item)">
+                ng-click="$ctrl.onSelected()"
+                ng-if="$ctrl.mayApply">
                 <i class="fa fa-check-circle"></i><br>
                 <span>Aplicar</span>
             </div>
-            <!--div class="action center-align color-lightseagreen"
-                ng-click="$ctrl.onSelected($ctrl.item)">
+            <div class="action center-align color-lightseagreen"
+                ng-click="$ctrl.onSelected()"
+                ng-if="!$ctrl.mayApply && ($ctrl.item.status.id==3 || $ctrl.item.status.id==2 || $ctrl.item.status.id==6)">
                 <i class="fa fa-chevron-circle-right"></i><br>
                 <span>Evaluar</span>
             </div>
             <div class="action color-red center-align"
-                ng-click="$ctrl.onRejected($ctrl.item)">
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id==4">
                 <i class="fa fa-times"></i><br>
                 <span>No Cumple</span>
             </div>
             <div class="action color-green center-align"
-                ng-click="$ctrl.onRejected($ctrl.item)">
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id==5">
                 <i class="fa fa-check"></i><br>
                 <span>Cumple</span>
-            </div-->
+            </div>
         </div>
     </div>
 </div>

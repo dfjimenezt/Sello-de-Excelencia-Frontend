@@ -1,4 +1,4 @@
-class chat {
+class chatEntity {
   constructor(Api, $http, $auth) {
     'ngInject'
     this.Api = Api,
@@ -43,4 +43,4 @@ class chat {
   }
 }
 
-export default chat
+export default chatEntity

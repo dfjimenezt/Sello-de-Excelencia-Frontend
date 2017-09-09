@@ -62,12 +62,17 @@
             <div class="valign-wrapper">
                 <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
                 <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
-                <a style="flex-grow:0.1" class="btn lightgray" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
+                <a style="flex-grow:0.1" class="btn lightgray" ng-if="!$ctrl.item.evaluable" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
             </div>
         </div>
     </div>
 
-    <div class="row center-align bottom">
+    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable">
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
+    </div>
+    <div class="row center-align bottom" ng-if="$ctrl.item.evaluable">
+        <button class="btn green" >APROBAR</button>
+        <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
+        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >RECHAZAR</button>
     </div>
 </form>

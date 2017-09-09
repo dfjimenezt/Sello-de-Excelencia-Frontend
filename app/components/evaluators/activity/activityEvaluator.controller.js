@@ -1,5 +1,5 @@
 class activityEvaluatorController {
-  constructor(Api, $http) {
+  constructor(Api, $http,$auth) {
     'ngInject'
     this.Api = Api
     this.$http = $http
@@ -7,20 +7,34 @@ class activityEvaluatorController {
     this.pager = {}
     this.query = {
       limit: 20,
-      page: 1
+      page: 1,
+      fields:{
+        id_user:[$auth.getPayload().id]
+      }
     }
+    this.requestEndpoint = Api +'/question/evaluation_request'
   }
   $onInit() {
-    this.setSection('certified')
-    this.getData()
+    this.setSection('asignated')
+    
   }
   setSection(section) {
     this.section = section
+    if(this.section === 'asignated'){
+      this.query.fields.id_request_status = [1]
+    }
+    if(this.section === 'proccess'){
+      this.query.fields.id_request_status = [3,2,6]
+    }
+    if(this.section === 'finished'){
+      this.query.fields.id_request_status = [4,5]
+    }
+    this.getData()
   }
   getData() {
     this.list = []
     this.loading = true
-    var url = '/api/hello'
+    var url = this.requestEndpoint
     if (!url) {
       return
     }
@@ -41,224 +55,14 @@ class activityEvaluatorController {
     }
 
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
-    //var p = this.$http.get(url)
-    //p.then(function (/*response*/) {
-    //this.list = response.data.data
-    this.list = [{
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 3,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }, {
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 2,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }, {
-      entity: {
-        name: 'Registraduría Nacional del Estado Civil'
-      },
-      rate: 4.15,
-      url: 'http://www.registraduria.gov.co',
-      id: 5,
-      name: 'Servicio de Prueba',
-      level: 1,
-      status: {
-        id: 1,
-        timestamp: new Date(),
-        valid_to: new Date(2018, 12, 12)
-      },
-      category: {
-        name: 'Datos Abiertos'
-      },
-      comments: [{
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      }, {
-        user: 'Fulanito',
-        timestamp: new Date(),
-        text: 'Este es un comentario'
-      },]
-    }]
-    this.pager.total_count = this.list.length * 20
-    this.loading = false
-    this.resetPager()
-    //})
+    let ctrl = this
+    var p = this.$http.get(url)
+    p.then(function (response) {
+      ctrl.list = response.data.data
+      ctrl.pager.total_count = ctrl.list.length
+      ctrl.loading = false
+      ctrl.resetPager()
+    })
     this.openCertificate = false
     return true //p
   }
@@ -285,17 +89,8 @@ class activityEvaluatorController {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
     this.resetPager()
   }
-  setService(service) {
-    this.service = service
-  }
-  onCertificate(service) {
-    this.openCertificate = true
-    this.certificate = {
-      entity:service.entity.name,
-      level:service.level,
-      product: service.name,
-      date: new Date()
-    }
+  setService(requisite) {
+    this.requisite = requisite
   }
 }
 export default activityEvaluatorController

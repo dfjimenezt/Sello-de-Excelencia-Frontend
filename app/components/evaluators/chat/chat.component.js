@@ -2,13 +2,12 @@ import controller from './chat.controller'
 import template from './chat.html'
 import './chat.styl'
 
-const chatComponent ={
+const chatEvaluatorComponent ={
   template,
   controller,
   bindings:{
-    service:'<',
-    item:'<'
+    request:'<'
   }
 }
 
-export default chatComponent
+export default chatEvaluatorComponent

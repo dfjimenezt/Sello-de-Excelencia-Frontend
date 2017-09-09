@@ -41,7 +41,8 @@
             <div class="row">
                 <requisite-item class="col m6 s12" 
                     item="requisite" 
-                    ng-repeat="requisite in $ctrl.list" 
+                    ng-repeat="requisite in $ctrl.list"
+                    may-apply="true"
                     on-selected="$ctrl.confirm(requisite)">
                 </requisite-item>
             </div>

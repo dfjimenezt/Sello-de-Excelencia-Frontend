@@ -102,9 +102,9 @@ class postulateEvaluatorController{
     this.selected = requisite
   }
   createRequest(){
-    
     let data = {
-      id_question:this.selected.id,
+      id_answer:this.selected.id,
+      id_question:this.selected.id_question,
       id_user:this.$auth.getPayload().id,
       id_service:this.selected.service.id
     }

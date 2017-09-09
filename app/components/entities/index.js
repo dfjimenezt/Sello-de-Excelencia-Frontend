@@ -7,7 +7,7 @@ import activityEntityComponent from './activity/activityEntity.component'
 import learnEntityComponent from './learn/learnEntity.component'
 import advanceEntityComponent from './advance/advanceEntity.component'
 import serviceEntityComponent from './entityservice/entityservice.component'
-
+import chatEntityComponent from './chat/chat.component'
 const entities = angular
   .module('qualityStamp.components.entities',[])
   .component('registerEntity',registerEntityComponent)
@@ -18,6 +18,7 @@ const entities = angular
   .component('learnEntity',learnEntityComponent)
   .component('advanceEntity',advanceEntityComponent)
   .component('serviceEntity',serviceEntityComponent)
+  .component('chatEntity',chatEntityComponent)
   .name
 
 export default entities

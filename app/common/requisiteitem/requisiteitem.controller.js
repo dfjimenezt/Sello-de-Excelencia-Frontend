@@ -4,8 +4,7 @@ class requisiteItemController{
     this.Api = Api
     this.$http = $http
   }
-  $onInit(){
-  }
+  $onInit(){}
 }
 
 export default requisiteItemController

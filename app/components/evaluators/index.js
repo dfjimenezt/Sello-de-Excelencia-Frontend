@@ -6,6 +6,8 @@ import activityEvaluatorComponent from './activity/activityEvaluator.component'
 import dataEvaluatorComponent from './data/dataEvaluator.component'
 import learnEvaluatorComponent from './learn/learnEvaluator.component'
 import advanceEvaluatorComponent from './advance/advanceEvaluator.component'
+import serviceEvaluatorComponent from './serviceevaluator/serviceevaluator.component'
+import chatEvaluatorComponent from './chat/chat.component'
 
 const evaluators = angular
   .module('qualityStamp.components.evaluators',[])
@@ -16,6 +18,8 @@ const evaluators = angular
   .component('activityEvaluator',activityEvaluatorComponent)
   .component('learnEvaluator',learnEvaluatorComponent)
   .component('advanceEvaluator',advanceEvaluatorComponent)
+  .component('serviceEvaluator',serviceEvaluatorComponent)
+  .component('chatEvaluator',chatEvaluatorComponent)
   .name
 
 export default evaluators

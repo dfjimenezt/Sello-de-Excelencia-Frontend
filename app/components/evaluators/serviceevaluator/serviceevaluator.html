@@ -1,4 +1,4 @@
-<section class="service-entity">
+<section class="service-evaluator">
     <div class="info card row white">
         <div class="badge gainsboro center-align">
             <img src="assets/img/sell_gel.png" alt="badge" class="fame-icon">
@@ -10,9 +10,10 @@
             <div class="color-brown">{{$ctrl.service.entity.name}}</div>
             <div>
                 <div>{{$ctrl.service.name}}</div>
-                <div class="color-lightseagreen">Nivel: {{$ctrl.service.status.level}}</div>
-                <span>Fecha de postulación: </span><span>{{$ctrl.service.status.timestamp | date}}</span><br>
-                <span>Fecha de cerficación: </span><span>{{$ctrl.service.status.valid_to | date}}</span><br>
+                <div class="color-lightseagreen">Nivel: {{$ctrl.question.level}}</div>
+                <span>Fecha de calificación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
+                <span>Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
+                <span>Contraseña Prueba: </span><span>{{$ctrl.service.test_password }}</span><br>
                 <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
@@ -41,13 +42,16 @@
             <a class="color-lightseagreen" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
         </div>
     </div>
-    <div class="valign-wrapper row requisites" ng-if="$ctrl.selected != null">
-        <button class="btn-floating waves-effect waves-light gainsboro" ng-click="$ctrl.prevQuestion()"><i class="fa fa-chevron-left"></i></button>
-        <requisite item="$ctrl.selected" on-save="$ctrl.updateAnswer(item)"></requisite>
-        <button class="btn-floating waves-effect waves-light gainsboro" ng-click="$ctrl.nextQuestion()"><i class="fa fa-chevron-right"></i></button>
-    </div>
+    <requisite 
+        item="$ctrl.question" 
+        on-more-information="$ctrl.requestInformation()"
+        on-reject="$ctrl.reject()"
+    ></requisite>
     
-    <chat-entity item="$ctrl.selected" service="$ctrl.service" ng-if="$ctrl.selected.status.id == 6"></chat-entity>
+    <chat-evaluator 
+        request="$ctrl.request" 
+        ng-if="$ctrl.request.id_request_status == 6">
+    </chat-evaluator>
 
     <div id="comments" class="modal">
         <div class="brown color-white">

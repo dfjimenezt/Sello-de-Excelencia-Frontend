@@ -1,6 +1,6 @@
 <section class="activity">
-    <div class="row activity-tabs" ng-if="!$ctrl.service">
-        <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'certified'}" ng-click="$ctrl.setSection('certified')">
+    <div class="row activity-tabs" ng-if="!$ctrl.requisite">
+        <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'asignated'}" ng-click="$ctrl.setSection('asignated')">
             <div class="center-align">
                 Asignados
             </div>
@@ -10,20 +10,21 @@
                 En proceso
             </div>
         </div>
-        <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'rejected'}" ng-click="$ctrl.setSection('rejected')">
+        <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'finished'}" ng-click="$ctrl.setSection('finished')">
             <div class="center-align">
                 Evaluados
             </div>
         </div>
     </div>
-    <div class="card row activity-content" ng-if="!$ctrl.service">
+    <div class="card row activity-content" ng-if="!$ctrl.requisite">
         <div class="col s10 offset-s1">
             <h4>{{$ctrl.entity.name}}</h4>
             <div class="row">
-            <requisite-item class="col m6 s12" item="service" ng-repeat="service in $ctrl.list" 
+            <requisite-item class="col m6 s12" 
+            item="service" 
+            ng-repeat="service in $ctrl.list" 
             on-selected="$ctrl.setService(service)"
-            on-rejected="$ctrl.setService(service)"
-            on-certificate="$ctrl.onCertificate(service)"></requisite-item>
+            ></requisite-item>
             </div>
         </div>
         <div class="row">
@@ -39,25 +40,7 @@
                 </ul>
             </div>
         </div>
-        <a modal data-target="certificate" open="$ctrl.openCertificate"></a>
     </div>
-    <service-entity ng-if="$ctrl.service" service="$ctrl.service"></service-entity>
-    
-    <div id="certificate" class="modal center-align">
-        <img src="assets/img/diploma.png">
-        <div class="certificate-content">
-            <div class="title">CERTIFICADO</div>
-            <div class="subtitle">DE RECONOCIMIENTO</div>
-            <div class="intro">EL MINISTERIO DE TECNOLOGÍAS DE LA INFORMACIÓN Y LAS</div>
-            <div class="intro">COMUNICACIONES A TRAVÉS DE LA DIRECCIÓN DE GOBIERNO EN LINEA</div>
-            <div class="pre">CERTIFICA QUE</div>
-            <div class="entity">{{$ctrl.certificate.entity}}</div>
-            <div class="pre">SE POSTULÓ Y CUMPLIÓ CON LOS REQUISITOS DE CALIDAD EXIGIDOS POR</div>
-            <div class="pre">EL MINISTERIO TIC, PARA EL NIVEL <span class="entity">{{$ctrl.certificate.level}}</span> Y LE OTORGA EL SELLO DE EXCELENCIA</div>
-            <div class="pre">GOBIERNO DIGITAL AL PRODUCTO <span class="entity">{{$ctrl.certificate.product}}</span></div>
-        </div>
-        <div class="signature">DIRECTORA DE GOBIERNO EN LINEA</div>
-        <div class="certification-date">{{$ctrl.certificate.date | date:'MMMM - yyyy'}}</div>
-    </div>
+    <service-evaluator ng-if="$ctrl.requisite" request="$ctrl.requisite"></service-evaluator>
     
 </section>

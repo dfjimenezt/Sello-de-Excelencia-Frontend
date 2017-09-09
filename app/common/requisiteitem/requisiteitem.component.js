@@ -7,9 +7,10 @@ const requisiteItemComponent = {
   template,
   bindings:{
     item:'<',
+    mayApply:'<',
     onSelected:'&',
-    onCertificate:'&',
-    onRejected:'&'
+    onAccepted:'&',
+    onRejected:'&',
   }
 }
 
