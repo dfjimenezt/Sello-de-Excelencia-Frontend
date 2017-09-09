@@ -9,7 +9,8 @@ const requisiteComponent = {
     item: '=',
     onSave: '&',
     onMoreInformation: '&',
-    onReject: '&'
+    onReject: '&',
+    onApprove: '&'
   }
 }
 

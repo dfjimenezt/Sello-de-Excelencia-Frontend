@@ -9,6 +9,8 @@ class serviceEvaluator{
     this.requestEndpoint = Api +'/question/evaluation_request'
     this.selected = null
     this.currentIndex = 0
+    this.openReject = false
+    this.openApprove = false
   }
   $onInit(){
     this.question = this.request.question
@@ -38,6 +40,39 @@ class serviceEvaluator{
     this.$http.put(this.requestEndpoint,rq).then(()=>{
       this.request.id_request_status = 6
       this.question.rejectable = true
+    })
+  }
+  reject(){
+    this.openReject = true
+    grecaptcha.reset()
+  }
+  rejected(){
+    if(grecaptcha.getResponse()==""){
+      this.robotError = true
+    }else{
+      this.robotError = false
+      this.openReject = false
+      let rq = {
+        id:this.request.id,
+        id_request_status:5 //rejected
+      }
+      this.$http.put(this.requestEndpoint,rq).then(()=>{
+        this.request.id_request_status = 5
+        this.question.rejectable = false
+      })
+    }
+  }
+  approve(){
+    this.openApprove = true
+  }
+  approved(){
+    let rq = {
+      id:this.request.id,
+      id_request_status:4 //approved
+    }
+    this.$http.put(this.requestEndpoint,rq).then(()=>{
+      this.request.id_request_status = 4
+      this.question.rejectable = false
     })
   }
 }

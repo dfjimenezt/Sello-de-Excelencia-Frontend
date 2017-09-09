@@ -39,6 +39,11 @@ class postulateEvaluatorController{
     this.getData()
   }
   getData() {
+    if(this.$auth.getPayload().topics.length === 0){
+      this.noTopics = true
+      return
+    }
+    this.noTopics = false
     this.list = []
     this.loading = true
     var url = this.answersEndpoint

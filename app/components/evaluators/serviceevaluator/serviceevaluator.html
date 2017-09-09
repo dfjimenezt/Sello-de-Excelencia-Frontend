@@ -17,35 +17,13 @@
                 <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
-        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
-            <div class="color-green" ng-if="$ctrl.service.current_status == 8">
-                <!--CUMPLE-->
-                <span>CUMPLE</span><i class="fa fa-check"></i>
-            </div>
-            <div class="color-red" ng-if="$ctrl.service.current_status == 11">
-                <!--NO CUMPLE-->
-                <span>NO CUMPLE</span><i class="fa fa-times"></i>
-            </div>
-        </div>
-        <div class="service-item-rate" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
-            <div class="border color-brown center-align">
-                <span>Promedio</span><br>
-                <div class="fa fa-star star color-yellow">
-                    <span class="color-white">{{$ctrl.service.rate |number : 2}}</span>
-                </div><br>
-                <span>Calificación General</span><br>
-                <span class="full-rate color-lightgray">
-                <i class="fa fa-star" ng-class="{'color-yellow': i <= $ctrl.service.rate }" ng-repeat="i in [1,2,3,4,5]" ></i>
-            </span><br>
-                <span>250 votos</span>
-            </div>
-            <a class="color-lightseagreen" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
-        </div>
+        
     </div>
     <requisite 
         item="$ctrl.question" 
         on-more-information="$ctrl.requestInformation()"
         on-reject="$ctrl.reject()"
+        on-approve="$ctrl.approve()"
     ></requisite>
     
     <chat-evaluator 
@@ -53,12 +31,40 @@
         ng-if="$ctrl.request.id_request_status == 6">
     </chat-evaluator>
 
-    <div id="comments" class="modal">
-        <div class="brown color-white">
-            <h3>Comentarios de los ciudadanos</h3>
+    <a modal data-target="reject" open="$ctrl.openReject"></a>
+    <div id="reject" class="modal">
+        <form ng-submit="$ctrl.rejected()">
+        <script src='https://www.google.com/recaptcha/api.js?hl=es-419'></script>
+        <div class="modal-content center-align">
+            <div class="border">
+                <i class="fa fa-check color-green"></i><br>
+                <span class="color-brown congratulations">¿Está seguro que desea rechazar este requisito?</span><br>
+                <span class="color-lightseagreen">{{$ctrl.question.text}}</span><br>
+                <span>{{$ctrl.service.name}}</span>
+                <div class="g-recaptcha" data-sitekey="6LdJADAUAAAAACfLh7Ed2EugSUqDSjVLsjXQEC6l"></div>
+            </div>
         </div>
-        <div class="modal-content">
-            <comment-item ng-repeat="comment in $ctrl.service.comments" item="comment"></comment-item>
+        <div class="center-align footer">
+            <div class="color-red" ng-if="$ctrl.robotError">* Marca la casilla de verificación para poder rechazar el requisito</div>
+            <button type="submit" class="btn" >Aceptar</button>
+            <a class="btn brown modal-action modal-close">Cerrar</a>
+        </div>
+        </form>
+    </div>
+
+    <a modal data-target="approve" open="$ctrl.openApprove"></a>
+    <div id="approve" class="modal">
+        <div class="modal-content center-align">
+            <div class="border">
+                <i class="fa fa-check color-green"></i><br>
+                <span class="color-brown congratulations">¿Está seguro que desea aprobar este requisito?</span><br>
+                <span class="color-lightseagreen">{{$ctrl.question.text}}</span><br>
+                <span>{{$ctrl.service.name}}</span>
+            </div>
+        </div>
+        <div class="center-align footer">
+            <a class="btn modal-action modal-close" ng-click="$ctrl.approved()">Aceptar</a>
+            <a class="btn brown modal-action modal-close">Cerrar</a>
         </div>
     </div>
 </section>

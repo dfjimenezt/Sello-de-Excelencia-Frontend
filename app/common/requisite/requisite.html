@@ -67,11 +67,11 @@
         </div>
     </div>
 
-    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable">
+    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled">
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
     </div>
     <div class="row center-align bottom" ng-if="$ctrl.item.evaluable">
-        <button class="btn green" >APROBAR</button>
+        <button class="btn green" ng-click="$ctrl.onApprove()">APROBAR</button>
         <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
         <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >RECHAZAR</button>
     </div>

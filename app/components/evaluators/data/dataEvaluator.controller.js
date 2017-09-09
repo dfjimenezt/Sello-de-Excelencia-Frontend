@@ -13,6 +13,7 @@ class dataEvaluatorController {
     this.docTypeEndpoint = Api + '/configuration/type_document?limit=300'
     this.availabilitiesEndpoint = Api + '/configuration/availability?limit=300'
     this.userEndpoint = Api + '/configuration/user'
+    this.openConfirmation = false
     this.getCategories()
     this.getCountries()
     this.getDocTypes()
@@ -111,6 +112,7 @@ class dataEvaluatorController {
   update(){
     this.$http.put(this.userEndpoint,this.register).then((result)=>{
       this.$auth.setToken(result.data.token)
+      this.openConfirmation = true
     })
   }
 }
