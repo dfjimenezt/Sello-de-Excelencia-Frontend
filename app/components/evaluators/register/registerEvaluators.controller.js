@@ -5,6 +5,7 @@ class RegisterEvaluatorController {
     this.$http = $http
     this.Api = Api
     this.$auth = $auth
+    this.$state = $state
     this.categoriesEndpoint = Api + '/service/category'
     this.questionTopicsEndpoint = Api + '/question/questiontopic'
     this.countriesEndpoint = Api + '/place/country?limit=300'
