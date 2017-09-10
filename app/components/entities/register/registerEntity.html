@@ -7,121 +7,130 @@
       <div class="row">
         <div class="col s12 m12">
           <div class="input-field">
-            <autocomplete 
-            id="autocomplete-input" 
-            placeholder="Entidad"
-            endpoint="$ctrl.institutionEndpoint"
-            on-selected="$ctrl.selectedInstitution(item)"></autocomplete>
+            <autocomplete id="autocomplete-input" placeholder="Entidad" endpoint="$ctrl.institutionEndpoint" on-selected="$ctrl.selectedInstitution(item)"></autocomplete>
           </div>
         </div>
-      </div>
-      <div class="row">
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entitynit" type="text" class="validate" ng-model="$ctrl.register.entity.nit" required>
+            <input id="entitynit" type="text" class="validate" ng-model="$ctrl.register.institution.nit" required>
             <label for="entitynit" data-error="Ingresa el Nit de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Nit:</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entityphone" type="text" class="validate" ng-model="$ctrl.register.entity.phone" required>
+            <input id="entityphone" type="text" class="validate" ng-model="$ctrl.register.institution.phone" required>
             <label for="entityphone" data-error="Ingresa el teléfono de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Teléfono:</label>
           </div>
         </div>
-      </div>
-      <div class="row">
-          <div class="col m6 s12">
-            <div class="input-field">
-              <select ng-model="$ctrl.register.entity.type" material-select>
-                <option value="1">Nacional</option>
-                <option value="2">Regional</option>
-                <option value="3">Distrital</option>
-                <option value="4">Municipal</option>
+
+        <div class="col m6 s12">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.institution.id_institution_type" material-select watch>
+                <option ng-value="{{type.id}}" ng-repeat="type in $ctrl.institutionTypes">{{type.name}}</option>
               </select>
-              <label>Tipo de entidad:</label>
-            </div>
-          </div>
-          <div class="col m6 s12">
-              <div class="input-field">
-                <input id="email" type="email" class="validate" ng-model="$ctrl.register.entity.email" required>
-                <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de la Entidad:</label>
-                <small class="blue-text"><strong>Nota:</strong> El correo ingresado debe ser un correo institucional.</small>
-              </div>
-            </div>
-        </div>
-      <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información del representante.</span>
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_name" required>
-            <label for="first_name" data-error="Ingresa tu primer nombre" data-success="Ok"><strong class="red-text">*</strong>Primer Nombre:</label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_secondname" required>
-            <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok"><strong class="red-text">*</strong>Segundo Nombre:</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-          <div class="col s12 m6">
-            <div class="input-field">
-              <input id="lastname" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_lastname" required>
-              <label for="lastname" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong>Primer Apellido:</label>
-            </div>
-          </div>
-          <div class="col s12 m6">
-            <div class="input-field">
-              <input id="second_lastname" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_secondlastname" required>
-              <label for="second_lastname" data-error="Ingresa tu segundo apellido" data-success="Ok"><strong class="red-text">*</strong>Segundo Apellido:</label>
-            </div>
-          </div>
-        </div>
-      <div class="row">
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="phone" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_phone" required>
-            <label for="phone" data-error="Ingresa un número telefónico valido" data-success="Ok"><strong class="red-text">*</strong> Teléfono:</label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_mobile" required>
-            <label for="mobile" data-error="Ingresa un número célular valido" data-success="Ok"><strong class="red-text">*</strong> Móvil:</label>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="col m6 s12">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.agent.entity.legalrep_typedoc" material-select>
-              <option value="1">Cédula de Ciudadanía</option>
-              <option value="2">Pasaporte</option>
-              <option value="3">Cédula de Extranjería</option>
-            </select>
-            <label>Tipo de documento:</label>
+            <label>Tipo de entidad:</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="numberType" type="text" class="validate" ng-model="$ctrl.register.entity.legalrep_document" required>
-            <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col m6 s12">
-          <div class="input-field">
-            <input id="email" type="email" class="validate" ng-model="$ctrl.register.entity.legalrep_email" required>
-            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico del Representante Legal:</label>
+            <input id="email" type="email" class="validate" ng-model="$ctrl.register.institution.email" required>
+            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de la Entidad:</label>
             <small class="blue-text"><strong>Nota:</strong> El correo ingresado debe ser un correo institucional.</small>
           </div>
         </div>
-        
+      </div>
+      <div class="row" ng-if="$ctrl.register.institution && !$ctrl.canRegister">
+        <div class="col s12">
+          <span class="font-bold color-brown">La entidad seleccionada ya se encuentra registrada por favor contacte al administrador.</span>
+        </div>
+
+      </div>
+
+      <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información del usuario.</span>
+      <div class="row" ng-if="$ctrl.register.institution && $ctrl.canRegister">
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.name" required>
+            <label for="first_name" data-error="Ingresa tu nombre" data-success="Ok"><strong class="red-text">*</strong> Primer Nombre:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.secondname" required>
+            <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok"><strong class="red-text">*</strong> Segundo Nombre:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="lastname" type="text" class="validate" ng-model="$ctrl.register.lastname" required>
+            <label for="lastname" data-error="Ingresa tu primer apellido" data-success="Ok"><strong class="red-text">*</strong> Primer Apellido:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="second_lastname" type="text" class="validate" ng-model="$ctrl.register.secondlastname" required>
+            <label for="second_lastname" data-error="Ingresa tu segundo apellido" data-success="Ok"><strong class="red-text">*</strong> Segundo Apellido:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="phone" type="text" class="validate" ng-model="$ctrl.register.phone" required>
+            <label for="phone" data-error="Ingresa tu teléfono" data-success="Ok"><strong class="red-text">*</strong> Teléfono:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
+            <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.id_type_document" material-select watch>
+                  <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
+                </select>
+            <label>Tipo de documento:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <input id="numberType" type="text" class="validate" ng-model="$ctrl.register.document" required>
+            <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
+                    <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
+                  </select>
+            <label>País:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()" material-select watch>
+                      <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.regions">{{region.name}}</option>
+                    </select>
+            <label>Región:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.register.id_city" material-select watch>
+                      <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.cities">{{city.name}}</option>
+                    </select>
+            <label>Ciudad:</label>
+          </div>
+        </div>
+        <div class="col m6 s12">
+          <div class="input-field">
+            <input id="email" type="email" class="validate" ng-model="$ctrl.register.email" required>
+            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
+          </div>
+        </div>
+
       </div>
       <div class="row">
         <input type="checkbox" id="terms" ng-model="$ctrl.register.terms" />
@@ -131,28 +140,30 @@
           Acepto los terminos y condiciones</a>
         </label>
       </div>
+      <div class="row center-align" ng-if="$ctrl.registryError">
+        <span class="color-brown">{{$ctrl.registryMessage}}</span>
+      </div>
       <div class="row center-align">
-        <button type="submit" class="waves-effect waves-light btn-large brown" ng-disabled="registerEntityForm.$invalid || !$ctrl.register.terms">
+        <button type="submit" class="waves-effect waves-light btn-large brown" ng-disabled="registerEntityForm.$invalid || !$ctrl.register.terms || !$ctrl.canRegister">
           <i class="material-icons right">send</i>
           Registrar
         </button>
-        <a class='btn' data-target='registered' modal>Calificar</a>
       </div>
     </form>
   </div>
+  <a data-target='registered' modal open="$ctrl.openConfirmation"></a>
   <div id="registered" class="modal">
-      <div class="modal-content center-align">
-        <div class="border">
-          <i class="fa fa-check color-green"></i><br>
-          <span class="color-brown congratulations">Felicitaciones</span><br>
-          <span class="color-lightseagreen">La entidad ha sido registrada exitosamente</span>
-        </div>
-      </div>
-      <div class="center-align footer">
-        <span>Hemos enviado un mensaje al correo electrónico registrado <br> confirmando los datos de registro</span>
-        <br>
-        <a class="btn brown modal-action modal-close">Cerrar</a>
+    <div class="modal-content center-align">
+      <div class="border">
+        <i class="fa fa-check color-green"></i><br>
+        <span class="color-brown congratulations">Felicitaciones</span><br>
+        <span class="color-lightseagreen">La entidad ha sido registrada exitosamente</span>
       </div>
     </div>
+    <div class="center-align footer">
+      <span>Hemos enviado un mensaje al correo electrónico registrado <br> confirmando los datos de registro</span>
+      <br>
+      <a class="btn brown modal-action modal-close" ng-click="$ctrl.next()">Cerrar</a>
+    </div>
+  </div>
 </section>
-
