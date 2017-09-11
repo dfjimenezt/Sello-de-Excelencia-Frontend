@@ -66,7 +66,7 @@ class RegisterEntityController {
     },100,this.$state)
   }
   sendRegister() {
-    
+    this.register.email = this.register.institution.email
     this.$http.post(this.registerEndpoint,this.register)
     .then((result)=>{
       this.registryError = false

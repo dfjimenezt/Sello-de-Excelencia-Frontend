@@ -17,12 +17,7 @@
           <label for="password">Contraseña: </label>
         </div>
       </div>
-      <div class="row divider">
-      </div>
-      <div class="row">
-        
-      </div>
-      </div>
+      
       <div class="row" ng-show="$ctrl.serverError">
         <p class="red-text text-darken-2 center-align">
           <i class="material-icons">error</i> {{$ctrl.errorMessage}}
@@ -39,6 +34,12 @@
         <small class="grey-text lighten-4">
           ¿Ya estas registrado? <a href="#!/sign-in" class="pointer">Inicia sesión aqui</a>
         </p>
+      </div>
+      <div class="row divider">
+
+      </div>
+      <div class="row center-align">
+          <button type="button" class="btn" ng-click="$ctrl.authenticate('facebook')">Registrarse con Facebook</button>
       </div>
     </form>
   </section>

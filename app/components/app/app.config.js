@@ -67,6 +67,11 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
   $authProvider.authToken = ''
   $authProvider.tokenName = 'token'
   $authProvider.tokenPrefix = 'qualityStamp'
+
+  $authProvider.facebook({
+    clientId: '405189839819599',
+    responseType: 'token'
+  });
 }
 
 resolveActiveAccount.$inject = ['$q','$state','$stateParams','AuthService']

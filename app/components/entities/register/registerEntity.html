@@ -33,13 +33,13 @@
             <label>Tipo de entidad:</label>
           </div>
         </div>
-        <!--div class="col m6 s12">
+        <div class="col m6 s12">
           <div class="input-field">
             <input id="email" type="email" class="validate" ng-model="$ctrl.register.institution.email" required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de la Entidad:</label>
             <small class="blue-text"><strong>Nota:</strong> El correo ingresado debe ser un correo institucional.</small>
           </div>
-        </div-->
+        </div>
       </div>
       <div class="row" ng-if="$ctrl.register.institution && !$ctrl.canRegister">
         <div class="col s12">
@@ -126,7 +126,7 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" class="validate" ng-model="$ctrl.register.email" required>
+            <input id="email" type="email" class="validate" ng-model="$ctrl.register.second_email" required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
           </div>
         </div>

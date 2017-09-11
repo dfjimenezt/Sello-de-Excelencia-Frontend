@@ -1,7 +1,8 @@
 class SignUpController {
-  constructor($state,AuthService,toastr) {
+  constructor($state,AuthService,toastr,$auth) {
     'ngInject'
     this.$state = $state
+    this.$auth = $auth
     this.AuthService = AuthService
     this.toastr = toastr
     this.modalElement = $('.modal')
@@ -18,7 +19,9 @@ class SignUpController {
     this.role = this.roles[0]
     this.modalElement.modal()
   }
-
+  authenticate(provider) {
+    this.$auth.authenticate(provider)
+  }
   onSignUp() {
     this.loadding = true
     this.serverError = false

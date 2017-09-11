@@ -10,6 +10,9 @@ class SignInController {
     this.loadding = false
     this.serverError = false
   }
+  authenticate(provider) {
+    this.$auth.authenticate(provider)
+  }
 
   onSignIn() {
     this.loadding = true
