@@ -1,5 +1,5 @@
 class activityEntityController {
-  constructor(Api, $http) {
+  constructor(Api, $http, $auth) {
     'ngInject'
     this.Api = Api
     this.$http = $http
@@ -8,7 +8,9 @@ class activityEntityController {
     this.query = {
       limit: 20,
       page: 1,
-      fields: {}
+      fields: {
+        id_institution:[$auth.getPayload().institutions[0].id]
+      }
     }
     this.serviceEndpoint = Api + '/service/service'
   }
