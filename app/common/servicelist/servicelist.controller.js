@@ -4,7 +4,7 @@ class ServiceDetailController {
     this.$state = $state
     this.$http = $http
     this.categoriesEndpoint = Api +'/service/category'
-    this.dataEndpoint = Api +'/service/service?filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
+    this.dataEndpoint = Api +'/service/service?simple=false&filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
     this.institutionEndpoint = Api +'/place/institution'
     this.getBasic()
 

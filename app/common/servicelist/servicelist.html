@@ -14,7 +14,7 @@
                 <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Nombre de la entidad"></autocomplete>                
             </div>
             <div class="col m3 s12">
-                <autocomplete on-selected="$ctrl.selectedService(item)" endpoint="$ctrl.dataEndpoint + $ctrl.category.id" placeholder="Nombre del servicio"></autocomplete>
+                <autocomplete on-selected="$ctrl.selectedService(item)" endpoint="$ctrl.dataEndpoint + $ctrl.category.id" placeholder="Nombre del producto o servicio"></autocomplete>
             </div>
             <div class="col m2 s12">
                 <input ng-model="$ctrl.query.fields.timestamp" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de postulación"></input>
@@ -43,10 +43,11 @@
                 <thead>
                     <tr class="color-brown">
                         <th data-field="entity">Nombre de la Entidad</th>
-                        <th data-field="product">Nombre de Producto</th>
+                        <th data-field="product">Nombre del Producto</th>
                         <th data-field="url">Url del Producto</th>
                         <th data-field="postulation">Fecha de postulación</th>
                         <th data-field="certification">Fecha de certificación</th>
+                        <th data-field="level">Nivel</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -56,6 +57,7 @@
                         <td class="color-lightseagreen">{{item.url}}</td>
                         <td>{{item.timestamp | date}}</td>
                         <td>{{item.status.valid_to | date}}</td>
+                        <td>{{item.level}}</td>
                     </tr>
                 </tbody>
             </table>

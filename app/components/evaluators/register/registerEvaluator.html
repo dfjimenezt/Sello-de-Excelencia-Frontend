@@ -37,7 +37,7 @@
         </div>
         <div class="col s12 m6">
           <div class="input-field">
-            <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
+            <input id="mobile" type="number" class="validate" ng-model="$ctrl.register.mobile" required>
             <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
           </div>
         </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" class="validate" ng-model="$ctrl.register.email" required>
+            <input id="email" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.email" required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico:</label>
           </div>
         </div>
@@ -111,7 +111,7 @@
         <label for="terms">
           <a href="#!/terminos-y-condiciones" target="_blank">
           <strong class="red-text">*</strong>
-          Acepto los terminos y condiciones</a>
+          Acepto los términos y condiciones</a>
         </label>
       </div>
       <div class="row center-align">
@@ -120,7 +120,11 @@
               Registrar
             </button>
       </div>
-
+      <div class="separator center-align">
+          <span class="grey-text lighten-4">
+            ¿Ya estas registrado? <a href="#!/sign-in" class="pointer">Inicia sesión aqui</a>
+          </span>
+        </div>
     </form>
   </div>
   <div class="row" ng-if="$ctrl.section == 2">

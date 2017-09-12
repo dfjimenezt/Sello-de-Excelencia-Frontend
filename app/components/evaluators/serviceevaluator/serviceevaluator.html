@@ -11,10 +11,10 @@
             <div>
                 <div>{{$ctrl.service.name}}</div>
                 <div class="color-lightseagreen">Nivel: {{$ctrl.question.level}}</div>
-                <span>Fecha de calificación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
-                <span>Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
-                <span>Contraseña Prueba: </span><span>{{$ctrl.service.test_password }}</span><br>
-                <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
+                <span>Plazo de evaluación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
+                <span ng-if="$ctrl.service.test_user != ''">Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
+                <span ng-if="$ctrl.service.test_password != ''">Contraseña Prueba: </span><span>{{$ctrl.service.test_password }}</span><br>
+                <span ng-if="$ctrl.service.url != ''">URL del producto postulado: </span><a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
         
@@ -39,6 +39,7 @@
             <div class="border">
                 <i class="fa fa-check color-green"></i><br>
                 <span class="color-brown congratulations">¿Está seguro que desea rechazar este requisito?</span><br>
+                <span class="color-brown">Tenga en cuenta que al rechazar este requisito podría afectar la postulación de la entidad</span><br>
                 <span class="color-lightseagreen">{{$ctrl.question.text}}</span><br>
                 <span>{{$ctrl.service.name}}</span>
                 <div class="g-recaptcha" data-sitekey="6LdJADAUAAAAACfLh7Ed2EugSUqDSjVLsjXQEC6l"></div>

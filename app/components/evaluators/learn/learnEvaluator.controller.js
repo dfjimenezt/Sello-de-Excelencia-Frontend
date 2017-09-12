@@ -32,7 +32,8 @@ class learnEvaluatorController {
     this.query = {
       limit:20,
       page:1,
-      fields:{}
+      fields:{},
+      order:'id desc'
     }
     this.getData()
   }

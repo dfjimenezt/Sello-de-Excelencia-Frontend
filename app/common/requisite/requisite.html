@@ -10,11 +10,11 @@
                     <span>Este requisito ha sido rechazado</span>
                     <i class="fa fa-exclamation-triangle"></i>
                 </div>
-                <div tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
+                <div ng-if="$ctrl.item.legal_support !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
                     <span>Sustento Legal o Técnico</span>
                     <i class="fa fa-book"></i>
                 </div>
-                <div tooltipped data-position="top" data-tooltip="{{$ctrl.item.help}}" data-delay="150">
+                <div ng-if="$ctrl.item.help !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.help}}" data-delay="150">
                     <span>Ayuda</span>
                     <i class="fa fa-question-circle"></i>
                 </div>
@@ -71,8 +71,8 @@
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
     </div>
     <div class="row center-align bottom" ng-if="$ctrl.item.evaluable">
-        <button class="btn green" ng-click="$ctrl.onApprove()">APROBAR</button>
+        <button class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
         <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
-        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >RECHAZAR</button>
+        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >NO CUMPLE</button>
     </div>
 </form>

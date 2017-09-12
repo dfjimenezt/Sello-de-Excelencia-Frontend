@@ -9,14 +9,10 @@
                     <i class="fa fa-users"></i>Perfil
                 </div>
             </div>
-            <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'postulate'}" ng-click="$ctrl.setSection('postulate')">
-                <div class="center-align">
-                    Postular
-                </div>
-            </div>
+            
             <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'activity'}" ng-click="$ctrl.setSection('activity')">
                 <div class="center-align">
-                    Actividad
+                    Evaluaciones
                 </div>
             </div>
             <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'learn'}" ng-click="$ctrl.setSection('learn')">
@@ -35,7 +31,6 @@
     </div>
     <div class="container">
         <profiledata-evaluator ng-if="$ctrl.section === 'profile'"></profiledata-evaluator>
-        <postulate-evaluator ng-if="$ctrl.section === 'postulate'"></postulate-evaluator>
         <activity-evaluator ng-if="$ctrl.section === 'activity'"></activity-evaluator>
         <learn-evaluator ng-if="$ctrl.section === 'learn'"></learn-evaluator>
         <advance-evaluator ng-if="$ctrl.section === 'advance'"></advance-evaluator>

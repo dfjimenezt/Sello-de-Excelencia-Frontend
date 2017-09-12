@@ -10,7 +10,8 @@ class activityEvaluatorController {
       page: 1,
       fields:{
         id_user:[$auth.getPayload().id]
-      }
+      },
+      order:'timestamp desc,id_request_status desc'
     }
     this.requestEndpoint = Api +'/question/evaluation_request'
   }
@@ -63,7 +64,7 @@ class activityEvaluatorController {
     var p = this.$http.get(url)
     p.then(function (response) {
       ctrl.list = response.data.data
-      ctrl.pager.total_count = ctrl.list.length
+      ctrl.pager.total_count = response.data.total_results
       ctrl.loading = false
       ctrl.resetPager()
     })

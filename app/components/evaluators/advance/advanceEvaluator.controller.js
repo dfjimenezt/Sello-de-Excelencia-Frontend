@@ -14,13 +14,13 @@ class advanceEvaluatorController{
       this.events = 0
       results.data.forEach(function(points) {
         _total += points.value
-        if(points.id_motive === 1){
+        if(points.id_motives === 1){
           this.requisites = points.value
         }
-        if(points.id_motive === 2){
+        if(points.id_motives === 2){
           this.live = points.value
         }
-        if(points.id_motive === 3){
+        if(points.id_motives === 3){
           this.events = points.value
         }
       }, this)
@@ -29,7 +29,7 @@ class advanceEvaluatorController{
     this.$http.get(this.motivesEndpoint).then((results)=>{
       this.motives = results.data.data
     })
-    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=<0').then((results)=>{
+    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=< 0').then((results)=>{
       this.negatives = results.data.data
     })
   }

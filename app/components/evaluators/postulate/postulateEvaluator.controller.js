@@ -12,7 +12,8 @@ class postulateEvaluatorController{
       fields:{
         level:null,
         'category.id':null
-      }
+      },
+      order:'timestamp asc'
     }
     this.answersEndpoint = Api + '/question/user_answer?postulate=true'
     this.institutionEndpoint = Api +'/place/institution'
@@ -70,7 +71,12 @@ class postulateEvaluatorController{
     let ctrl = this
     this.$http.get(url).then(function (response) {
       ctrl.list = response.data.data
-      ctrl.pager.total_count = ctrl.list.length
+      ctrl.pager.total_count = response.data.total_results[0].total
+      if(ctrl.list.length === 0){
+        ctrl.emptyTopics = true
+      }else{
+        ctrl.emptyTopics = false
+      }
       ctrl.loading = false
       ctrl.resetPager()
     })
@@ -89,14 +95,17 @@ class postulateEvaluatorController{
   }
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
+    this.getData()
     this.resetPager()
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
+    this.getData()
     this.resetPager()
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
+    this.getData()
     this.resetPager()
   }
   setService(service) {

@@ -37,11 +37,13 @@
                 <span>Evaluar</span>
             </div>
             <div class="action color-red center-align"
+                ng-click="$ctrl.onSelected()"
                 ng-if="!$ctrl.mayApply && $ctrl.item.status.id==5">
                 <i class="fa fa-times"></i><br>
                 <span>No Cumple</span>
             </div>
             <div class="action color-green center-align"
+                ng-click="$ctrl.onSelected()"
                 ng-if="!$ctrl.mayApply && $ctrl.item.status.id==4">
                 <i class="fa fa-check"></i><br>
                 <span>Cumple</span>

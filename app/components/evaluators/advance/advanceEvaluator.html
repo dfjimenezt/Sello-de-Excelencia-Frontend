@@ -33,19 +33,19 @@
                 <div class="fa fa-play-circle star color-points">
                     <span class="color-darkgray">{{$ctrl.live |number : 0}}</span>
                 </div><br>
-                <span>Participaciones en Live</span>
+                <span>Aprende y Enseña</span>
             </div>
         </div>
 
         <div class="col m3 s6 center-align">
             <div class="point card">
                 <div class="lightseagreen color-white ">
-                    Eventos
+                    Actividades
                 </div>
                 <div class="fa fa-users users star color-points">
                     <span class="color-darkgray">{{$ctrl.events |number : 0}}</span>
                 </div><br>
-                <span>Participaciones en eventos</span>
+                <span>Participaciones</span>
             </div>
         </div>
         <div class="row">
@@ -56,9 +56,12 @@
 
 
     <div class="col m10 offset-m1 s10 offset-s1 ">
-        <h3 class="color-brown">¿Cómo puedo obtener puntos?</h3>
+        <h3 class="color-brown">¿Cómo funciona el sistema de puntuación?</h3>
         <ul>
-            <li ng-repeat="motive in $ctrl.motives">{{motive.name}}</li>
+            <li ng-repeat="motive in $ctrl.motives">
+                <span ng-if="motive.points < 0" class="color-red">( - ) {{motive.description}}</span>
+                <span ng-if="motive.points >= 0">( + ) {{motive.description}}</span>
+            </li>
         </ul>
     </div>
     <div id="lost" class="modal">
