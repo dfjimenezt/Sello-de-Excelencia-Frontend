@@ -62,16 +62,15 @@ class RegisterEntityController {
   }
   next(){
     window.setTimeout((state)=>{
-      state.go('entity')
+      state.go('landingPage')
     },100,this.$state)
   }
   sendRegister() {
     //this.register.email = this.register.institution.email
     this.$http.post(this.registerEndpoint,this.register)
-    .then((result)=>{
+    .then(()=>{
       this.registryError = false
       this.toastr.success('Datos enviados exitosamente.','Registrar Entidad')
-      this.$auth.setToken(result.data.token)
       this.openConfirmation = true
     }).catch((result)=>{
       if(result.data.error.code === 201){

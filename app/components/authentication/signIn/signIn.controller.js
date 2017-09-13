@@ -22,7 +22,9 @@ class SignInController {
         this.toastr.success('Inicio de sesión exitoso','Iniciar sesión')
         this.loadding = false
         let user = this.$auth.getPayload()
-        if(user.institutions.length >0){
+        if(user.tmp_pwd === 1){
+          this.$state.go('changePwd')
+        }else if(user.institutions.length >0){
           this.$state.go('entity')
         }else if(user.role === 'Evaluador'){
           this.$state.go('evaluator')

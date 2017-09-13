@@ -9,7 +9,6 @@ const resolveActiveAccount = ($q,$state,$stateParams,AuthService)=> {
   }
   return deferred.promise
 }
-
 export {
   resolveActiveAccount
 }

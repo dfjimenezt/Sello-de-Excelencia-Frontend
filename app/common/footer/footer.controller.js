@@ -4,10 +4,14 @@ class footerController {
     this.$http = $http
     this.$sce = $sce
     this.endpoint = Api + '/platform/footer'
+    this.logoEndpoint = Api + '/configuration/config'
   }
   $onInit(){
     this.$http.get(this.endpoint).then((result)=>{
       this.footer = this.$sce.trustAsHtml(result.data.data[0].text)
+    })
+    this.$http.get(this.logoEndpoint).then((result)=>{
+      this.logo_footer = result.data.data[0].footer
     })
   }
 }

@@ -1,11 +1,18 @@
 class NavbarController {
-  constructor($auth,toastr,$state) {
+  constructor($auth,toastr,$state,Api,$http) {
     'ngInject'
     this.$auth = $auth
     this.toastr = toastr
     this.$state = $state
+    this.$http = $http
+    this.logoEndpoint = Api + '/configuration/config'
   }
 
+  $onInit(){
+    this.$http.get(this.logoEndpoint).then((result)=>{
+      this.logo_header = result.data.data[0].header
+    })
+  }
   isAuthenticated() {
     return this.$auth.isAuthenticated()
   }
@@ -22,6 +29,9 @@ class NavbarController {
     }else{
       this.$state.go('landingPage')
     }
+  }
+  goChangePwd(){
+    this.$state.go('changePwd')
   }
 
   logout() {

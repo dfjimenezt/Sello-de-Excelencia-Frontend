@@ -4,19 +4,38 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
   $stateProvider
     .state('landingPage',{
       url : '/',
-      component: 'landingPage'
+      component: 'landingPage',
+      onEnter: function(){
+        document.title = 'Sello de Excelencia'
+      },
     })
     .state('signIn',{
       url: '/sign-in',
-      component: 'signIn'
+      component: 'signIn',
+      onEnter: function(){
+        document.title = 'Inicio de Sesión'
+      },
     })
     .state('signUp',{
       url: '/sign-up',
-      component: 'signUp'
+      component: 'signUp',
+      onEnter: function(){
+        document.title = 'Registro'
+      },
     })
     .state('forgotPassword',{
       url: '/forgot-password',
-      component: 'forgotPassword'
+      component: 'forgotPassword',
+      onEnter: function(){
+        document.title = 'Recordar Contraseña'
+      },
+    })
+    .state('changePwd',{
+      url: '/cambio-contrasena',
+      component: 'changePassword',
+      onEnter: function(){
+        document.title = 'Cambiar Contraseña'
+      },
     })
     .state('activeAccount',{
       url: '/activar-cuenta?token&email',
@@ -24,39 +43,66 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       params: { email: null, token:null },
       resolve: {
         user: resolveActiveAccount
-      }
+      },
+      onEnter: function(){
+        document.title = 'Activación de Cuenta'
+      },
     })
     .state('moreInformation',{
       url:'/mas-informacion',
-      component:'moreInformation'
+      component:'moreInformation',
+      onEnter: function(){
+        document.title = 'Más información'
+      },
     })
     .state('terms',{
       url: '/terminos-y-condiciones',
-      component: 'terms'
+      component: 'terms',
+      onEnter: function(){
+        document.title = 'Términos y Condiciones'
+      },
     })
     .state('registerEvaluator',{
       url:'/registro-evaluador',
-      component: 'registerEvaluator'
+      component: 'registerEvaluator',
+      onEnter: function(){
+        document.title = 'Registro de Evaluador'
+      },
     })
     .state('registerEntity',{
       url:'/registro-entidad',
-      component: 'registerEntity'
+      component: 'registerEntity',
+      onEnter: function(){
+        document.title = 'Registro de Entidad'
+      },
     })
     .state('certifiedservices',{
       url: '/certificados',
-      component: 'servicelist'
+      component: 'servicelist',
+      onEnter: function(){
+        document.title = 'Productos y Servicios Certificados'
+      },
     })
     .state('detail',{
       url: '/detalle/:id',
-      component: 'servicedetail'
+      component: 'servicedetail',
+      onEnter: function(){
+        document.title = 'Detalle de Producto o Servicio'
+      },
     })
     .state('entity',{
       url:'/entidad',
-      component: 'profileEntity'
+      component: 'profileEntity',
+      onEnter: function(){
+        document.title = 'Entidad - Perfil'
+      },
     })
     .state('evaluator',{
       url:'/evaluador',
-      component: 'profileEvaluator'
+      component: 'profileEvaluator',
+      onEnter: function(){
+        document.title = 'Evaluador - Perfil'
+      },
     })
 
   $locationProvider.hashPrefix('!')

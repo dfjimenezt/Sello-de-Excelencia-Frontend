@@ -9,14 +9,7 @@ class SignUpController {
   }
 
   $onInit() {
-    this.roles = [
-      { id:1, name: 'Ciudadano'},
-      { id:2, name: 'Evaluador' },
-      { id:4, name: 'Entidad' }
-    ]
     this.loadding = false
-    this.serverError = false
-    this.role = this.roles[0]
     this.modalElement.modal()
   }
   authenticate(provider) {

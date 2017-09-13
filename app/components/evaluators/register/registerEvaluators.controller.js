@@ -15,11 +15,6 @@ class RegisterEvaluatorController {
     this.availabilitiesEndpoint = Api + '/configuration/availability?limit=300'
     this.userEndpoint = Api + '/configuration/user'
     this.registerEndpoint = Api + '/auth/register_evaluator'
-    this.getCategories()
-    this.getCountries()
-    this.getDocTypes()
-    this.getAvailabilities()
-    this.section = 1
     this.openConfirmation = false
   }
 
@@ -54,33 +49,49 @@ class RegisterEvaluatorController {
     })
   }
   getTopics() {
-    let filters = []
-    for (let i = 0; i < this.register.categories.length; i++) {
-      filters.push('filter_field=id_category&filter_value=' + this.register.categories[i].id)
-    }
-    if(filters.length === 0){
-      this.topics = []
-      return
-    }
-    let url = this.questionTopicsEndpoint + '?limit=200&' + filters.join('&')
+    let url = this.questionTopicsEndpoint + '?limit=200&'
     this.$http.get(url)
       .then((results) => {
         this.topics = results.data.data
+        let _cat = {}
+        this.topics.forEach((topic)=>{
+          if(!_cat[topic.category.id]){
+            _cat[topic.category.id] = topic.category
+          }
+          if(!_cat[topic.category.id]._users){
+            _cat[topic.category.id]._users = {}
+          }
+          if(topic.user_type.id !== null){
+            _cat[topic.category.id]._users[topic.user_type.id] = topic.user_type
+          }
+        })
+        this.categories = []
+        for(let i in _cat){
+          let category = _cat[i]
+          category.users = []
+          for(let j in category._users){
+            category.users.push(category._users[j])
+          }
+          delete category._users
+          this.categories.push(category)
+        }
       })
   }
   hasCategory(category){
     let i = -1
     this.register.categories.forEach((item,idx)=>{
-      if(item.id === category.id)
+      if(item.id === category.id){
         i = idx
+      }
     })
     return i
   }
   hasTopic(topic){
     let i = -1
     this.register.topics.forEach((item,idx)=>{
-      if(item.id === topic.id)
+      if(item.id === topic.id){
         i = idx
+      }
     })
     return i
   }
@@ -88,11 +99,23 @@ class RegisterEvaluatorController {
     var idx = this.hasCategory(category)
     if (idx > -1) {
       this.register.categories.splice(idx, 1)
+      delete category.user_selected 
+      let _topics = []
+      this.topics.forEach((topic)=>{
+        if(topic.id_category === category.id){
+          _topics.push(topic)
+        }
+      })
+      _topics.forEach((topic)=>{
+        var idx = this.hasTopic(topic)
+        if (idx > -1) {
+          this.register.topics.splice(idx, 1)
+        }
+      })
     }
     else {
       this.register.categories.push(category)
     }
-    this.getTopics()
   }
   toggleTopic(topic){
     var idx = this.hasTopic(topic)
@@ -104,13 +127,19 @@ class RegisterEvaluatorController {
     }
   }
   $onInit() {
-    this.register = {}
+    this.register = {
+      topics:[],
+      categories:[]
+    }
+    this.getTopics()
+    this.getCountries()
+    this.getDocTypes()
+    this.getAvailabilities()
   }
   sendRegister(){
-    this.$http.post(this.registerEndpoint,this.register).then((result)=>{
+    this.$http.post(this.registerEndpoint,this.register).then((/*result*/)=>{
       this.openConfirmation = true
-      this.$auth.setToken(result.data.token)
-      this.register = this.$auth.getPayload()
+      
       this.section = 2
     })
   }
@@ -118,7 +147,7 @@ class RegisterEvaluatorController {
     this.$http.put(this.userEndpoint,this.register).then((result)=>{
       this.$auth.setToken(result.data.token)
       this.toastr.success('Datos enviados exitosamente.','Registrar Evaluador')
-      this.$state.go('evaluator')
+      
     })
   }
 }
