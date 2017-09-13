@@ -1,50 +1,46 @@
 <section class="postulateEvaluator">
 
     <div class="card row activity-content" ng-if="!$ctrl.service">
-            <div class="search col s12">
-                    <div class="col m1 s12 search-label">
-                        <span class="color-brown">Buscar:</span>
-                    </div>
-                    <div class="col m3 s12">
-                        <!--input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input-->
-                        <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Entidad"></autocomplete>
-                    </div>
-                    <div class="col m3 s12">
-                        <!--input ng-model="$ctrl.query.department" placeholder="Departamento"></input-->
-                        <autocomplete on-selected="$ctrl.selectedRegion(item)" endpoint="$ctrl.regionEndpoint" placeholder="Departamento"></autocomplete>
-                    </div>
-                    <div class="col m2 s12">
-                        <select ng-model="$ctrl.query.fields['category.id']" material-select watch ng-change="$ctrl.getData()">
+        <div class="search col s12">
+            <div class="col m1 s12 search-label">
+                <span class="color-brown">Buscar:</span>
+            </div>
+            <div class="col m3 s12">
+                <!--input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input-->
+                <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Entidad"></autocomplete>
+            </div>
+            <div class="col m3 s12">
+                <!--input ng-model="$ctrl.query.department" placeholder="Departamento"></input-->
+                <autocomplete on-selected="$ctrl.selectedRegion(item)" endpoint="$ctrl.regionEndpoint" placeholder="Departamento"></autocomplete>
+            </div>
+            <div class="col m2 s12">
+                <select ng-model="$ctrl.query.fields['category.id']" material-select watch ng-change="$ctrl.getData()">
                             <option ng-value="null" selected>Todas las categorías</option>
                             <option ng-value="{{category.id}}" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
                         </select>
-                    </div>
-                    <div class="col m2 s12">
-                        <select ng-model="$ctrl.query.fields.level" material-select ng-change="$ctrl.getData()">
+            </div>
+            <div class="col m2 s12">
+                <select ng-model="$ctrl.query.fields.level" material-select ng-change="$ctrl.getData()">
                             <option ng-value="null" selected>Todos los niveles</option>
                             <option value="1" >1</option>
                             <option value="2" >2</option>
                             <option value="3" >3</option>
                         </select>
-            
-                    </div>
-                    <div class="col m1 s12">
-                        <div class="btn-floating waves-effect waves-light  brown">
-                                <i class="material-icons color-white">search</i>
-                        </div>
-                    </div>
+
+            </div>
+            <div class="col m1 s12">
+                <div class="btn-floating waves-effect waves-light  brown">
+                    <i class="material-icons color-white">search</i>
                 </div>
+            </div>
+        </div>
 
         <div class="col s10 offset-s1">
             <h4>{{$ctrl.entity.name}}</h4>
             <div class="row">
                 <h3 class="center-align" ng-if="$ctrl.noTopics">Debes seleccionar al menos una categoría y temática para acceder al listado de postulaciones</h3>
                 <h3 class="center-align" ng-if="$ctrl.emptyTopics">En el momento no existen postulaciones relacionadas con la categoría y temática seleccionadas</h3>
-                <requisite-item class="col m6 s12" 
-                    item="requisite" 
-                    ng-repeat="requisite in $ctrl.list"
-                    may-apply="true"
-                    on-selected="$ctrl.confirm(requisite)">
+                <requisite-item class="col m6 s12" item="requisite" ng-repeat="requisite in $ctrl.list" may-apply="true" on-selected="$ctrl.confirm(requisite)">
                 </requisite-item>
             </div>
         </div>
@@ -65,11 +61,27 @@
     </div>
     <div id="confirm" class="modal">
         <div class="modal-content center-align">
-            <div class="border">
-                <i class="fa fa-check color-green"></i><br>
-                <span class="color-brown congratulations">Desea aplicar como evaluador para:</span><br>
-                <span class="color-lightseagreen">{{$ctrl.selected.question.text}}</span><br>
-                <span>{{$ctrl.selected.service.name}}</span>
+            <div class="row">
+                <div class="col s12">
+                    <span class="color-brown">{{$ctrl.selected.question.text}}</span>
+                </div>
+                <div class="col m6 s12">
+                    <div class="gainsboro content">
+                        <span class="color-brown">Criterio:</span><br> {{$ctrl.selected.question.criteria}}
+                    </div>
+                </div>
+                <div class="col m6 s12 ">
+                    <div class="gainsboro content">
+                        <span class="color-brown">Evidencia:</span><br> {{$ctrl.selected.question.evidence}}
+                    </div>
+                </div>
+                <div class="col s12">
+                    <label class="color-brown">Comentario:</label>
+                    <p>{{$ctrl.selected.comment}}</p>
+                </div>
+                <div class="col s12 center-align" ng-if="$ctrl.selected.media.url">
+                    <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.selected.media.url}}" target="_blank">DESCARGAR</a>
+                </div>
             </div>
         </div>
         <div class="center-align footer">

@@ -41,7 +41,7 @@
           <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
         </div>
       </div>
-      <div class="col s12 m6">
+      <!--div class="col s12 m6">
         <div class="input-field">
           <select ng-model="$ctrl.register.id_type_document" material-select watch>
             <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
@@ -54,7 +54,7 @@
           <input id="numberType" type="text" class="validate" ng-model="$ctrl.register.document" required>
           <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
         </div>
-      </div>
+      </div-->
       <div class="col s12 m6">
         <div class="input-field">
           <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
