@@ -4,6 +4,7 @@ class learnEvaluatorController {
     this.Api = Api
     this.$http = $http
     this.learnEndpoint = Api + '/forum/hangouts?filter_field=id_role&filter_value=2'
+    this.pointsEndpoint = Api + '/forum/view'
     this.playing = false
     this.$sce = $sce
   }
@@ -20,7 +21,7 @@ class learnEvaluatorController {
   goLive(){
     this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
-    this.$http.post(this.points,{})
+    this.$http.post(this.pointsEndpoint,{})
   }
   stop(){
     this.selected.trusted = null

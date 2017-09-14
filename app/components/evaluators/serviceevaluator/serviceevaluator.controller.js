@@ -16,9 +16,18 @@ class serviceEvaluator{
   $onInit(){
     this.question = this.request.question
     this.question.disabled = true
-    this.question.evaluable = true
+    this.question.evaluable = false
+    if(this.request.id_request_status === 2 || this.request.id_request_status === 3){
+      this.question.evaluable = true
+    }
+    if(this.request.id_request_status === 5){
+      this.question.rejected = true
+    }
     if(this.request.id_request_status === 6){
       this.question.rejectable = true
+    }
+    if(this.request.id_request_status === 7){
+      this.question.accepted = true
     }
     this.answer = this.request.user_answer
     this.service = this.request.service
@@ -77,11 +86,11 @@ class serviceEvaluator{
   approved(){
     let rq = {
       id:this.request.id,
-      id_request_status:4 //approved
+      id_request_status:7 //approved
     }
     this.openApprove = false
     this.$http.put(this.requestEndpoint,rq).then(()=>{
-      this.request.id_request_status = 4
+      this.request.id_request_status = 7
       this.question.rejectable = false
       this.onFinished()
     })

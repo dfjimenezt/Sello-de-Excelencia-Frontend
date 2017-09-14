@@ -75,4 +75,20 @@
         <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
         <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >NO CUMPLE</button>
     </div>
+    <div class="row  bottom" ng-if="$ctrl.item.disabled && $ctrl.item.rejected">
+        <div class="col s12 center-align">
+            <div class="action color-red center-align">
+                <i class="fa fa-times"></i><br>
+                <span>No Cumple</span>
+            </div>
+        </div>
+    </div>
+    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && $ctrl.item.accepted">    
+        <div class="col s12 center-align">
+            <div class="action color-green center-align">
+                <i class="fa fa-check"></i><br>
+                <span>Cumple</span>
+            </div>
+        </div>
+    </div>
 </form>

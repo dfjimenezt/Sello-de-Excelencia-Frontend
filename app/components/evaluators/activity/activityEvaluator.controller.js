@@ -34,7 +34,7 @@ class activityEvaluatorController {
       this.query.fields.id_request_status = [3,2,6]
     }
     if(this.section === 'finished'){
-      this.query.fields.id_request_status = [4,5]
+      this.query.fields.id_request_status = [7,5]
     }
     this.getData()
   }

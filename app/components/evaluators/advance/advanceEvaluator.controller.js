@@ -1,8 +1,9 @@
 class advanceEvaluatorController{
-  constructor(Api,$http){
+  constructor(Api,$http,$auth){
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.$auth = $auth
     this.pointsEndpoint = Api +'/configuration/points'
     this.motivesEndpoint = Api +'/configuration/motives'
   }
@@ -29,7 +30,7 @@ class advanceEvaluatorController{
     this.$http.get(this.motivesEndpoint).then((results)=>{
       this.motives = results.data.data
     })
-    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=< 0').then((results)=>{
+    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=< 0&filter_field=id_user&filter_value='+this.$auth.id).then((results)=>{
       this.negatives = results.data.data
     })
   }
