@@ -5,7 +5,9 @@ class postulateEvaluatorController{
     this.$http = $http
     this.pagestoshow = 5
     this.$auth = $auth
-    this.pager = {}
+    this.pager = {
+      total_pages:0
+    }
     this.query = {
       limit: 20,
       page: 1,

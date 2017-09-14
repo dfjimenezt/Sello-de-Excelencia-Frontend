@@ -32,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s10 offset-s1">
+        <div class="col s10 offset-s1" ng-if="$ctrl.pager.total_pages > 1">
             <div class="row brown color-white pager center-align">
                 <ul>
                     <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">

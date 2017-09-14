@@ -25,7 +25,9 @@ class ServiceDetailController {
   }
   $onInit() {
     this.pagestoshow = 5
-    this.pager = {}
+    this.pager = {
+      total_pages:0
+    }
     this.query = {
       limit:20,
       page:1,

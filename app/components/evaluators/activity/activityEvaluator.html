@@ -34,7 +34,7 @@
             ></requisite-item>
             </div>
         </div>
-        <div class="row" ng-if="$ctrl.section !== 'postulate'">
+        <div class="row" ng-if="$ctrl.section !== 'postulate' && $ctrl.pager.total_pages > 1">
             <div class="col m10 s10 offset-m1 offset-s1 brown color-white pager center-align">
                 <ul>
                     <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">

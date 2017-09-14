@@ -38,10 +38,10 @@ class CategoryListController {
   goTo(category) {
     let state = category.stateUrl
     if(this.$auth.isAuthenticated()){
-      if(this.$auth.getPayload().role == 'Entidad'){
+      if(this.$auth.getPayload().role === 'Entidad'){
         state = category.entityState
       }
-      if(this.$auth.getPayload().role == 'Evaluador'){
+      if(this.$auth.getPayload().role === 'Evaluador'){
         state = category.evaluatorState
       }
     }

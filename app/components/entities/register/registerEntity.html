@@ -36,7 +36,7 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" class="validate" ng-model="$ctrl.register.institution.email" required>
+            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.institution.email" required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de contacto para el Sello de Excelencia:</label>
             <small class="blue-text"><strong>Nota:</strong> El correo ingresado debe ser un correo institucional.</small>
           </div>
@@ -127,7 +127,7 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" class="validate" ng-model="$ctrl.register.email" required>
+            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.email" required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico del representante:</label>
           </div>
         </div>

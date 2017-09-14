@@ -4,7 +4,9 @@ class activityEntityController {
     this.Api = Api
     this.$http = $http
     this.pagestoshow = 5
-    this.pager = {}
+    this.pager = {
+      total_pages:0
+    }
     this.query = {
       limit: 20,
       page: 1,

@@ -63,7 +63,7 @@
             </table>
             
         </div>
-        <div class="row brown color-white pager center-align">
+        <div class="row brown color-white pager center-align" ng-if="$ctrl.pager.total_pages > 1">
             <ul>
                 <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
                     <i class="fa fa-step-backward"></i>
