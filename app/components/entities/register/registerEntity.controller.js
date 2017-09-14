@@ -20,7 +20,9 @@ class RegisterEntityController {
     this.registryError = false
     this.openConfirmation = false
     this.register = {
-      institution:null
+      institution:{
+        id_country:42
+      }
     }
   }
 

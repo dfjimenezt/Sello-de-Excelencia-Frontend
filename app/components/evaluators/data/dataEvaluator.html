@@ -37,7 +37,7 @@
       </div>
       <div class="col s12 m6">
         <div class="input-field">
-          <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
+          <input id="mobile" type="text" pattern="\d+$" class="validate" ng-model="$ctrl.register.mobile" required>
           <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
         </div>
       </div>

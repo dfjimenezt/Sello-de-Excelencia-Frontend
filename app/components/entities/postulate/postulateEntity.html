@@ -1,19 +1,26 @@
 <section class="postulate">
-
+  <div class="card row">
+    <div class="col s10 offset-s1">
+        <div class="row">
+            <div class="col m12 s12">
+              <h5>Continuar con una postulación anterior:</h5>
+              <div class="input-field">
+                <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()" material-select watch>
+                    <option ng-value="null"> - </option>
+                    <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
+                </select>
+                <label>Postulaciones por finalizar:</label>
+              </div>
+            </div>
+          </div>    
+    </div>
+  </div>
   <div class="card row">
     <form class="col m10 s10 offset-s1 offset-m1" ng-submit="$ctrl.createService()">
-      <h4>{{$ctrl.entity.name}}</h4>
       <div class="row">
-        <div class="col m12 s12">
-          <div class="input-field">
-            <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()" material-select watch>
-                <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
-            </select>
-            <label>Servicios Pendientes:</label>
-          </div>
+        <div class="col s12">
+            <h5>Nueva postulación:</h5>
         </div>
-      </div>
-      <div class="row">
         <div class="col m6 s12">
           <div class="input-field">
             <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id" material-select watch>
@@ -38,14 +45,14 @@
           <div class="input-field">
             <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.name" required>
             <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
-                        <strong class="red-text">*</strong> Nombre:</label>
+                        <strong class="red-text">*</strong> Nombre del Producto o Servicio:</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entitynit" type="url" class="validate" ng-model="$ctrl.service.url" required>
+            <input id="entitynit" type="text" pattern="([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$" class="validate" ng-model="$ctrl.service.url" required>
             <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
-                    <strong class="red-text">*</strong> URL:</label>
+                    <strong class="red-text">*</strong> URL del Producto o Servicio:</label>
           </div>
         </div>
       </div>
