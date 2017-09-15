@@ -103,14 +103,14 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       onEnter: function(){
         document.title = 'Evaluador - Perfil'
       },
-    }).
-    .state('evaluator',{
+    })
+    /*.state('evaluator',{
       url:'/evaluador/:tabId',
       component: 'profileEvaluator',
       onEnter: function(){
         document.title = 'Evaluador - Perfil'
       },
-    })
+    })*/
 
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
