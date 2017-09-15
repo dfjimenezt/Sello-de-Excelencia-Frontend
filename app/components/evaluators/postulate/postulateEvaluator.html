@@ -2,12 +2,13 @@
 
     <div class="card row activity-content" ng-if="!$ctrl.service">
         <div class="search col s12">
-            <div class="col m1 s12 search-label">
-                <span class="color-brown">Buscar:</span>
-            </div>
             <div class="col m3 s12">
                 <!--input ng-model="$ctrl.query.entity" placeholder="Nombre de la entidad"></input-->
                 <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Entidad"></autocomplete>
+            </div>
+            <div class="col m3 s12">
+                <!--input ng-model="$ctrl.query.department" placeholder="Departamento"></input-->
+                <autocomplete on-selected="$ctrl.selectedCountry(item)" endpoint="$ctrl.countryEndpoint" placeholder="País"></autocomplete>
             </div>
             <div class="col m3 s12">
                 <!--input ng-model="$ctrl.query.department" placeholder="Departamento"></input-->
@@ -28,11 +29,6 @@
                         </select>
 
             </div>
-            <div class="col m1 s12">
-                <div class="btn-floating waves-effect waves-light  brown">
-                    <i class="material-icons color-white">search</i>
-                </div>
-            </div>
         </div>
 
         <div class="col s10 offset-s1">
@@ -50,7 +46,8 @@
                     <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
                         <i class="fa fa-step-backward"></i>
                     </li>
-                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" class="page">{{page}}</li>
+                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" 
+                    ng-class="{'active':$ctrl.query.page == page}" class="page">{{page}}</li>
                     <li ng-if="$ctrl.pager.after" ng-click="results.next()">
                         <i class="fa fa-step-forward"></i>
                     </li>
@@ -59,34 +56,5 @@
         </div>
         <a modal data-target="confirm" open="$ctrl.openConfirmation"></a>
     </div>
-    <div id="confirm" class="modal">
-        <div class="modal-content center-align">
-            <div class="row">
-                <div class="col s12">
-                    <span class="color-brown">{{$ctrl.selected.question.text}}</span>
-                </div>
-                <div class="col m6 s12">
-                    <div class="gainsboro content">
-                        <span class="color-brown">Criterio:</span><br> {{$ctrl.selected.question.criteria}}
-                    </div>
-                </div>
-                <div class="col m6 s12 ">
-                    <div class="gainsboro content">
-                        <span class="color-brown">Evidencia:</span><br> {{$ctrl.selected.question.evidence}}
-                    </div>
-                </div>
-                <div class="col s12">
-                    <label class="color-brown">Comentario:</label>
-                    <p>{{$ctrl.selected.comment}}</p>
-                </div>
-                <div class="col s12 center-align" ng-if="$ctrl.selected.media.url">
-                    <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.selected.media.url}}" target="_blank">DESCARGAR</a>
-                </div>
-            </div>
-        </div>
-        <div class="center-align footer">
-            <a class="btn modal-action modal-close" ng-click="$ctrl.createRequest()">Aceptar</a>
-            <a class="btn brown modal-action modal-close">Cerrar</a>
-        </div>
-    </div>
+    
 </section>

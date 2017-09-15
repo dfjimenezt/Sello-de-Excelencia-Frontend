@@ -24,6 +24,7 @@ class serviceEvaluator{
       this.question.rejected = true
     }
     if(this.request.id_request_status === 6){
+      this.question.evaluable = true
       this.question.rejectable = true
     }
     if(this.request.id_request_status === 7){

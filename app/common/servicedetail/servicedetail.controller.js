@@ -4,7 +4,7 @@ class ServiceDetailController {
     this.$state = $state
     this.Api = Api
     this.$http = $http
-    this.detailEndpoint = Api+'/service/service?id='+$state.params.id
+    this.detailEndpoint = Api+'/service/service?simple=false&id='+$state.params.id
   }
   $onInit() {
     this.getData()

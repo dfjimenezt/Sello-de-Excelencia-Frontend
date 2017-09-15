@@ -6,10 +6,10 @@
         </div>
     </div>
     <div class="service-item-content">
-        <div class="brown color-white">{{$ctrl.item.topic.name}}</div>
+        <div class="brown color-white">{{$ctrl.item.topic.name}} <span class="pull-right" style="margin-right:5px">{{$ctrl.item.question.id}}</span></div>
         <div class="gainsboro row">
             <div class="content">
-                <div>{{$ctrl.item.service.name}}</div>
+                <div class="color-black">{{$ctrl.item.service.name}}</div>
                 <div>{{$ctrl.item.question.text }}</div>
             </div>
             <div class="action center-align color-lightgray"

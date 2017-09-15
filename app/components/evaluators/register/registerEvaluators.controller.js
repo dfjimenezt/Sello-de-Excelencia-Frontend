@@ -128,6 +128,7 @@ class RegisterEvaluatorController {
   }
   $onInit() {
     this.register = {
+      id_country:42,
       topics:[],
       categories:[]
     }
@@ -135,6 +136,7 @@ class RegisterEvaluatorController {
     this.getCountries()
     this.getDocTypes()
     this.getAvailabilities()
+    this.getRegions()
   }
   sendRegister(){
     this.$http.post(this.registerEndpoint,this.register).then((/*result*/)=>{

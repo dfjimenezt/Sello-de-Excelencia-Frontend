@@ -1,19 +1,21 @@
+/*global saveAs*/
 class ServiceDetailController {
-  constructor($state,$http,Api) {
+  constructor($state, $http, Api) {
     'ngInject'
     this.$state = $state
     this.$http = $http
-    this.categoriesEndpoint = Api +'/service/category'
-    this.dataEndpoint = Api +'/service/service?simple=false&filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
-    this.institutionEndpoint = Api +'/place/institution'
+    this.categoriesEndpoint = Api + '/service/category'
+    this.dataEndpoint = Api + '/service/service?simple=false&filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
+    this.institutionEndpoint = Api + '/place/institution'
+    this.downloadEndpoint = Api + '/platform/export'
     this.getBasic()
 
   }
-  selectedInstitution(item){
+  selectedInstitution(item) {
     this.query.fields['institution.id'] = item.id
     this.getData()
   }
-  selectedService(item){
+  selectedService(item) {
     this.query.fields['id'] = item.id
     this.getData()
   }
@@ -26,12 +28,12 @@ class ServiceDetailController {
   $onInit() {
     this.pagestoshow = 5
     this.pager = {
-      total_pages:0
+      total_pages: 0
     }
     this.query = {
-      limit:20,
-      page:1,
-      fields:{}
+      limit: 20,
+      page: 1,
+      fields: {}
     }
     $('.datepicker').pickadate({
       selectMonths: true, // Creates a dropdown to control month
@@ -56,11 +58,11 @@ class ServiceDetailController {
     if (this.query.fields) {
       for (var field in this.query.fields) {
         var values = this.query.fields[field]
-        if(typeof values === 'object'){
+        if (typeof values === 'object') {
           values.forEach(function (value) {
             params.push('filter_field=' + field + '&filter_value=' + value)
           })
-        }else{
+        } else {
           params.push('filter_field=' + field + '&filter_value=' + values)
         }
       }
@@ -70,13 +72,13 @@ class ServiceDetailController {
     }
 
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
-    this.$http.get(url).then((response)=> {
+    this.$http.get(url).then((response) => {
       this.list = response.data.data
       this.pager.total_count = this.list.length
       this.loading = false
       this.resetPager()
     })
-    return true 
+    return true
   }
   resetPager() {
     this.pager.total_pages = Math.ceil(this.pager.total_count / this.query.limit)
@@ -85,13 +87,13 @@ class ServiceDetailController {
     this.pager.before = this.query.page > 1
     this.pager.after = this.query.page < this.pager.total_pages
     var max = Math.min(this.pager.total_pages, this.query.page + this.pagestoshow)
-    for (min ; min <= max ; min++) {
+    for (min; min <= max; min++) {
       this.pager.pages.push(min)
     }
   }
   selectCategory(category) {
     this.category = category
-    
+
     this.getData()
   }
 
@@ -108,8 +110,24 @@ class ServiceDetailController {
     this.resetPager()
   }
 
-  goTo(item){
-    this.$state.go('detail',{id:item.id})
+  goTo(item) {
+    this.$state.go('detail', { id: item.id })
+  }
+  download() {
+    function s2ab(s) {
+      var buf = new ArrayBuffer(s.length)
+      var view = new Uint8Array(buf)
+      for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
+      return buf
+    }
+    let params = ['table=service']
+    this.$http.get(this.downloadEndpoint+'?' + params.join('&')).then(function (response) {
+      var data = response.data
+      var blob = new Blob([s2ab(data)], { type: 'application/octet-stream' })
+      var d = new Date()
+      d = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds()
+      saveAs(blob, 'estadisticas_bupre_' + d + '.xlsx')
+    })
   }
 
 }

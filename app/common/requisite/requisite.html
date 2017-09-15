@@ -33,13 +33,13 @@
     </div>
     <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled" >
         <div class="input-field col s12" >
-            <label for="comments" class="color-brown">Comentario:</label>
+            <label for="comments" class="color-brown">Descripción de la evidencia:</label>
             <textarea id="comments"ng-model="$ctrl.item.comment" class="materialize-textarea validate" required></textarea>
         </div>
     </div>
     <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled" >
             <div class="col s12" ng-if="$ctrl.item.disabled">
-                <label class="color-brown">Comentario:</label>
+                <label class="color-brown">Descripción de la evidencia:</label>
                 <p>{{$ctrl.item.comment}}</p>
             </div>
         </div>
@@ -62,7 +62,7 @@
             <div class="valign-wrapper">
                 <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
                 <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
-                <a style="flex-grow:0.1" class="btn lightgray" ng-if="!$ctrl.item.evaluable" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
+                <a style="flex-grow:0.1" class="btn lightgray" ng-if="!$ctrl.item.evaluable && !$ctrl.item.rejected && !$ctrl.item.accepted" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
             </div>
         </div>
     </div>

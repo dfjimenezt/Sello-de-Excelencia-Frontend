@@ -56,8 +56,8 @@
                         <td>{{item.name}}</td>
                         <td class="color-lightseagreen">{{item.url}}</td>
                         <td>{{item.timestamp | date}}</td>
-                        <td>{{item.status.valid_to | date}}</td>
-                        <td>{{item.level}}</td>
+                        <td>{{item.history[0].timestamp | date}}</td>
+                        <td>{{item.history[0].level}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -68,14 +68,15 @@
                 <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
                     <i class="fa fa-step-backward"></i>
                 </li>
-                <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" class="page">{{page}}</li>
+                <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" 
+                    ng-class="{'active':$ctrl.query.page == page}" class="page">{{page}}</li>
                 <li ng-if="$ctrl.pager.after" ng-click="results.next()">
                     <i class="fa fa-step-forward"></i>
                 </li>
             </ul>
         </div>
         <div class="row">
-            <div class="white color-lightseagreen col m2 s12 download push-m10">
+            <div ng-click="$ctrl.download()" class="white color-lightseagreen col m2 s12 download push-m10">
                 <span>Descargar</span> Tabla <i class="fa fa-arrow-circle-o-down"></i>
             </div>
         </div>

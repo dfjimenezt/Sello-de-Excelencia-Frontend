@@ -21,7 +21,7 @@ class learnEvaluatorController {
   goLive(){
     this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
-    this.$http.post(this.pointsEndpoint,{})
+    this.$http.post(this.pointsEndpoint,{id:this.selected.id})
   }
   stop(){
     this.selected.trusted = null

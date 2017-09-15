@@ -20,7 +20,7 @@ class learnEntityController {
   goLive(){
     this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
-    this.$http.post(this.points,{})
+    this.$http.post(this.points,{id:this.selected.id})
   }
   stop(){
     this.selected.trusted = null

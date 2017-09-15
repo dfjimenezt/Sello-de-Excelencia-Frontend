@@ -15,13 +15,13 @@ class advanceEvaluatorController{
       this.events = 0
       results.data.forEach(function(points) {
         _total += points.value
-        if(points.id_motives === 1){
+        if(points.id_motives === 1 || points.id_motives === 2 || points.id_motives === 4){
           this.requisites = points.value
         }
-        if(points.id_motives === 2){
+        if(points.id_motives === 3){
           this.live = points.value
         }
-        if(points.id_motives === 3){
+        if(points.id_motives === 5){
           this.events = points.value
         }
       }, this)

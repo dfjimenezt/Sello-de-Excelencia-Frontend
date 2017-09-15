@@ -38,7 +38,8 @@
                     <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
                         <i class="fa fa-step-backward"></i>
                     </li>
-                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" class="page">{{page}}</li>
+                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" 
+                    ng-class="{'active':$ctrl.query.page == page}" class="page">{{page}}</li>
                     <li ng-if="$ctrl.pager.after" ng-click="results.next()">
                         <i class="fa fa-step-forward"></i>
                     </li>
