@@ -23,9 +23,9 @@ class NavbarController {
 
   goProfile(){
     if(this.$auth.getPayload().institutions.length >0){
-      this.$state.go('entity',{section:'avance'})
+      this.$state.go('entity.advance')
     }else if(this.$auth.getPayload().role === 'Evaluador'){
-      this.$state.go('evaluator.section',{section:'avance'})
+      this.$state.go('evaluator.advance')
     }else{
       this.$state.go('landingPage')
     }
