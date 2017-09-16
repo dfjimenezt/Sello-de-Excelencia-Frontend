@@ -92,26 +92,125 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
     })
     .state('entity',{
       url:'/entidad',
+      abstract: true,
       component: 'profileEntity',
+      onEnter: function(){
+        document.title = 'Entidad'
+      },
+    })
+    .state('entity.profile',{
+      url:'/perfil',
+      component: 'profiledataEntity',
       onEnter: function(){
         document.title = 'Entidad - Perfil'
       },
     })
+    .state('entity.postulate',{
+      url:'/perfil',
+      component: 'postulateEntity',
+      onEnter: function(){
+        document.title = 'Entidad - Postular'
+      },
+    })
+    .state('entity.activity',{
+      url:'/perfil',
+      component: 'activityEntity',
+      onEnter: function(){
+        document.title = 'Entidad - Actividad'
+      },
+    })
+    .state('entity.learn',{
+      url:'/perfil',
+      component: 'learnEntity',
+      onEnter: function(){
+        document.title = 'Entidad - Aprende y Enseña'
+      },
+    })
+    .state('entity.advance',{
+      url:'/perfil',
+      component: 'advanceEntity',
+      onEnter: function(){
+        document.title = 'Entidad - Avance'
+      },
+    })
     .state('evaluator',{
       url:'/evaluador',
+      abstract: true,
       component: 'profileEvaluator',
+      onEnter: function(){
+        document.title = 'Evaluador'
+      },
+    })
+    .state('evaluator.profile',{
+      url:'/perfil',
+      component: 'profiledataEvaluator',
       onEnter: function(){
         document.title = 'Evaluador - Perfil'
       },
     })
-    /*.state('evaluator',{
-      url:'/evaluador/:tabId',
-      component: 'profileEvaluator',
+    .state('evaluator.activity',{
+      url:'/actividad',
+      component: 'activityEvaluator',
       onEnter: function(){
-        document.title = 'Evaluador - Perfil'
+        document.title = 'Evaluador - Actividad'
       },
-    })*/
-
+    })
+    .state('evaluator.activity.asignated',{
+      url:'/asignadas',
+      component:'activityEvaluatorList',
+      onEnter: function(){
+        document.title = 'Evaluador - Actividad - Asignadas'
+      },
+    })
+    .state('evaluator.activity.postulate',{
+      url:'/voluntarias',
+      component:'activityEvaluatorList',
+      onEnter: function(){
+        document.title = 'Evaluador - Actividad - Voluntarias'
+      },
+    })
+    .state('evaluator.activity.proccess',{
+      url:'/proceso',
+      component:'activityEvaluatorList',
+      onEnter: function(){
+        document.title = 'Evaluador - Actividad - Proceso'
+      },
+    })
+    .state('evaluator.activity.finished',{
+      url:'/finalizadas',
+      component:'activityEvaluatorList',
+      onEnter: function(){
+        document.title = 'Evaluador - Actividad - Finalizadas'
+      },
+    })
+    //<service-evaluator 
+    //  ng-if="$ctrl.requisite && $ctrl.section !== 'postulate'" 
+    //  request="$ctrl.requisite" on-finished="$ctrl.reset()">
+    //</service-evaluator>
+    .state('evaluator.activity.detail',{
+      url:'/requisito/',
+      component:'serviceEvaluator',
+      params:{
+        requisite:null
+      },
+      onEnter: function(){
+        document.title = 'Evaluador - Actividad - Requisito'
+      },
+    })
+    .state('evaluator.learn',{
+      url:'/aprende-ensena',
+      component: 'learnEvaluator',
+      onEnter: function(){
+        document.title = 'Evaluador - Aprende y Enseña'
+      },
+    })
+    .state('evaluator.advance',{
+      url:'/avance',
+      component: 'advanceEvaluator',
+      onEnter: function(){
+        document.title = 'Evaluador - Avance'
+      },
+    })
   $locationProvider.hashPrefix('!')
   $urlRouterProvider.otherwise('/')
 

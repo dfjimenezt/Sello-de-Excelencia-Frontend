@@ -13,16 +13,16 @@ class CategoryListController {
         title: '¿Quieres postular tu producto o servicio?', 
         img: 'assets/img/postular.png', 
         stateUrl: 'registerEntity',
-        entityState: 'entity',
-        evaluatorState: 'evaluator'
+        entityState: 'entity.postulate',
+        evaluatorState: 'evaluator.activity'
       },
       {
         id:2, 
         title: '¿Quieres ser parte de la comunidad evaluadora?', 
         img: 'assets/img/comunidad.png', 
         stateUrl: 'registerEvaluator',
-        entityState: 'entity',
-        evaluatorState: 'evaluator'
+        entityState: 'entity.postulate',
+        evaluatorState: 'evaluator.activity'
       },
       {
         id:3, 

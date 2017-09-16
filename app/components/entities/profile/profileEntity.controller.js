@@ -1,15 +1,20 @@
 class profileEntityController{
-  constructor(Api,$http){
+  constructor(Api, $http, $state,$auth) {
     'ngInject'
     this.Api = Api
+    this.$state = $state
     this.$http = $http
-    this.entity = {name:'Entidad'}
+    if(this.$state.current.name.indexOf('.') === -1){
+      this.setSection('profile')
+    }else{
+      let array = this.$state.current.name.split('.')
+      this.section = array[array.length-1]
+    }
+    this.user = $auth.getPayload()
   }
-  $onInit(){
-    this.setSection('profile')
-  }
-  setSection(section){
+  setSection(section) {
     this.section = section
+    this.$state.go('evaluator.'+section)
   }
 }
 

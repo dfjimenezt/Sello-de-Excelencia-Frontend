@@ -1,7 +1,7 @@
 <div class="profileEntity">
     <div class="container">
         <div class="card white color-brown row title">
-            <h3><i class="fa fa-building-o"></i>{{$ctrl.entity.name}}</h3>
+            <h3><i class="fa fa-building-o"></i>{{$ctrl.user.institutions[0].name}}</h3>
         </div>
         <div class="row">
             <div class="card tab valign-wrapper" ng-class="{active:$ctrl.section === 'profile'}" ng-click="$ctrl.setSection('profile')">
@@ -33,12 +33,8 @@
         </div>
 
     </div>
-    <div class="container">
-        <profiledata-entity ng-if="$ctrl.section === 'profile'"></profiledata-entity>
-        <postulate-entity ng-if="$ctrl.section === 'postulate'" on-navigate="$ctrl.setSection(section)"></postulate-entity>
-        <activity-entity ng-if="$ctrl.section === 'activity'"></activity-entity>
-        <learn-entity ng-if="$ctrl.section === 'learn'"></learn-entity>
-        <advance-entity ng-if="$ctrl.section === 'advance'"></advance-entity>
+    <div class="container" ui-view>
+        
     </div>
 </div>
 

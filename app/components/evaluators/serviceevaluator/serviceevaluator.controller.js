@@ -1,9 +1,10 @@
 /*global grecaptcha*/
 class serviceEvaluator{
-  constructor(Api,$http){
+  constructor(Api,$http,$stateParams,$state){
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.$state = $state
     this.serviceEndpoint = Api + '/service/service'
     this.questionEndpoint = Api + '/question/question'
     this.answerEndpoint = Api + '/question/user_answer'
@@ -12,8 +13,13 @@ class serviceEvaluator{
     this.currentIndex = 0
     this.openReject = false
     this.openApprove = false
+    this.request= $stateParams.requisite
   }
   $onInit(){
+    if(!this.request){
+      this.onFinished()
+      return
+    }
     this.question = this.request.question
     this.question.disabled = true
     this.question.evaluable = false
@@ -62,6 +68,9 @@ class serviceEvaluator{
   reject(){
     this.openReject = true
     grecaptcha.reset()
+  }
+  onFinished(){
+    this.$state.go('evaluator.activity.proccess')
   }
   rejected(){
     if(grecaptcha.getResponse()===''){
