@@ -7,45 +7,78 @@ class CategoryListController {
   }
   
   $onInit() {
-    this.categories = [
-      {
-        id:1, 
-        title: '¿Quieres postular tu producto o servicio?', 
-        img: 'assets/img/postular.png', 
-        stateUrl: 'registerEntity',
-        entityState: 'entity.postulate',
-        evaluatorState: 'evaluator.activity'
-      },
-      {
-        id:2, 
-        title: '¿Quieres ser parte de la comunidad evaluadora?', 
-        img: 'assets/img/comunidad.png', 
-        stateUrl: 'registerEvaluator',
-        entityState: 'entity.postulate',
-        evaluatorState: 'evaluator.activity'
-      },
-      {
-        id:3, 
-        title: 'Conoce y califica los productos certificados', 
-        img: 'assets/img/evaluando.png', 
-        stateUrl: 'certifiedservices',
-        entityState: 'certifiedservices',
-        evaluatorState: 'certifiedservices'
+    if(this.$auth.isAuthenticated()){
+      if(this.$auth.getPayload().role === 'Entidad'){
+        this.categories = [
+          {
+            id:1, 
+            title: 'Postula un producto o servicio', 
+            img: 'assets/img/postular.png', 
+            stateUrl: 'entity.postulate',
+          },
+          {
+            id:2, 
+            title: 'Ingresa a la sección Aprende y Enseña', 
+            img: 'assets/img/comunidad.png', 
+            stateUrl: 'entity.learn'
+          },
+          {
+            id:3, 
+            title: 'Conoce y califica los productos certificados', 
+            img: 'assets/img/evaluando.png', 
+            stateUrl: 'certifiedservices',
+          }
+        ]
       }
-    ]
+      if(this.$auth.getPayload().role === 'Evaluador'){
+        this.categories = [
+          {
+            id:1, 
+            title: 'Evalúa requisitos de los productos postulados', 
+            img: 'assets/img/postular.png', 
+            stateUrl: 'evaluator.activity',
+          },
+          {
+            id:2, 
+            title: 'Ingresa a la sección Aprende y Enseña', 
+            img: 'assets/img/comunidad.png', 
+            stateUrl: 'evaluator.learn'
+          },
+          {
+            id:3, 
+            title: 'Conoce y califica los productos certificados', 
+            img: 'assets/img/evaluando.png', 
+            stateUrl: 'certifiedservices',
+          }
+        ]
+      }
+    }else{
+      this.categories = [
+        {
+          id:1, 
+          title: '¿Quieres postular tu producto o servicio?', 
+          img: 'assets/img/postular.png', 
+          stateUrl: 'registerEntity',
+        },
+        {
+          id:2, 
+          title: '¿Quieres ser parte de la comunidad evaluadora?', 
+          img: 'assets/img/comunidad.png', 
+          stateUrl: 'registerEvaluator',
+        },
+        {
+          id:3, 
+          title: 'Conoce y califica los productos certificados', 
+          img: 'assets/img/evaluando.png', 
+          stateUrl: 'certifiedservices',
+        }
+      ]
+    }
+    
   }
 
   goTo(category) {
     let state = category.stateUrl
-    if(this.$auth.isAuthenticated()){
-      if(this.$auth.getPayload().role === 'Entidad'){
-        state = category.entityState
-      }
-      if(this.$auth.getPayload().role === 'Evaluador'){
-        state = category.evaluatorState
-      }
-    }
-    
     if (state.includes('http')) {
       this.$window.location.href = state
     } else {
