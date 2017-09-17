@@ -25,9 +25,9 @@ class SignInController {
         if(user.tmp_pwd === 1){
           this.$state.go('changePwd')
         }else if(user.institutions.length >0){
-          this.$state.go('entity')
+          this.$state.go('entity.postulate')
         }else if(user.role === 'Evaluador'){
-          this.$state.go('evaluator')
+          this.$state.go('evaluator.activity')
         }else{
           this.$state.go('landingPage')
         }

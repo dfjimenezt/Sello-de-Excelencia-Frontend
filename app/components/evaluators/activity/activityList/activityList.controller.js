@@ -94,7 +94,8 @@ class activityList{
             if(this.section === 'postulate'){
               params.push(field + '=' + values)
             }else{
-              params.push('filter_field=' + field + '&filter_value=' + values)
+              params.push(field + '=' + values)
+              //params.push('filter_field=' + field + '&filter_value=' + values)
             }
             
           }

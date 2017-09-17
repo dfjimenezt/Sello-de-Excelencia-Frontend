@@ -6,7 +6,9 @@
                 <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Entidad"></autocomplete>
             </div>
             <div class="col m2 s12">
-                <select ng-model="$ctrl.query.fields['category.id']" material-select watch ng-change="$ctrl.getData()">
+                <select ng-model="$ctrl.query.fields['category.id']" 
+                    material-select watch 
+                    ng-change="$ctrl.getData()">
                                     <option ng-value="null" selected>Todas las categorías</option>
                                     <option ng-value="{{category.id}}" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
                                 </select>
@@ -27,6 +29,12 @@
                     <option value="2" >2</option>
                     <option value="3" >3</option>
                 </select>
+            </div>
+            <div class="col m1 s12">
+                <a class="btn-floating waves-effect waves-light  brown"
+                    ng-click="$ctrl.search()">
+                    <i class="material-icons color-white">search</i>
+                </a>
             </div>
         </div>
         <div class="col s10 offset-s1 center-align" ng-if="$ctrl.loading">
