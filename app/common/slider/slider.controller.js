@@ -6,7 +6,7 @@ class SliderController {
     this.templates = {
       'simple': `<li class="white">
                   <div class="caption left-align">
-                  <img src="assets/img/sell_gel.png" class="slider-img left" title="sello de experiencia">
+                  <img src="assets/img/sell_gel.png" alt="banner" class="slider-img left" title="sello de experiencia">
                   <h5 class="color-lightseagreen font-bold">{{NAME}}</h5>
                 <p class=" black-text">
                   {{TEXT}}

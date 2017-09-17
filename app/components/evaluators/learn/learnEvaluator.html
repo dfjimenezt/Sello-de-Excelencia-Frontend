@@ -6,7 +6,7 @@
                     Próximo Live:
                 </div>
                 <div class="image">
-                    <img ng-src="{{$ctrl.selected.image}}">
+                    <img ng-src="{{$ctrl.selected.image}}" alt="{{$ctrl.selected.name}}">
                 </div>
             </div>
             <div class="col m6 s12">
@@ -22,7 +22,7 @@
             <div class="col m4 s12  learnitem" ng-repeat="item in $ctrl.list" ng-click="$ctrl.setSelected(item)">
                 <div class="gainsboro row learnitem-content valign-wrapper">
                     <div class="image col m4 s4">
-                        <img ng-src="{{item.image}}">
+                        <img ng-src="{{item.image}}" alt="{{item.name}}">
                     </div>
                     <div class="col m8 s8">
                         <span class="color-brown">{{item.name}}</span>
