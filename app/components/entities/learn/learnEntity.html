@@ -35,12 +35,12 @@
         <div class="col s10 offset-s1" ng-if="$ctrl.pager.total_pages > 1">
             <div class="row brown color-white pager center-align">
                 <ul>
-                    <li ng-if="$ctrl.pager.before" ng-click="results.pager.prev()">
+                    <li ng-if="$ctrl.pager.before" ng-click="$ctrl.prev()">
                         <i class="fa fa-step-backward"></i>
                     </li>
                     <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" 
                     ng-class="{'active':$ctrl.query.page == page}" class="page">{{page}}</li>
-                    <li ng-if="$ctrl.pager.after" ng-click="results.next()">
+                    <li ng-if="$ctrl.pager.after" ng-click="$ctrl.next()">
                         <i class="fa fa-step-forward"></i>
                     </li>
                 </ul>
