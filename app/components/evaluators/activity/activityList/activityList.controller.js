@@ -48,11 +48,11 @@ class activityList{
     this.section = section
     if(this.section === 'asignated'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = [1]
+      this.query.fields.id_request_status = [3]
     }
     if(this.section === 'proccess'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = [3,2,6]
+      this.query.fields.id_request_status = [2,6]
     }
     if(this.section === 'finished'){
       this.query = this.activityquery
