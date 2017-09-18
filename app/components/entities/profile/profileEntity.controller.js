@@ -14,7 +14,7 @@ class profileEntityController{
   }
   setSection(section) {
     this.section = section
-    this.$state.go('evaluator.'+section)
+    this.$state.go('entity.'+section)
   }
 }
 
