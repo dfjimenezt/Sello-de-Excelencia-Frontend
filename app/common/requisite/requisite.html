@@ -1,82 +1,84 @@
 <form class="card row requisite" ng-submit="$ctrl.save()">
-    <div class="col m10 s10 offset-m1 offset-s1">
-        <div class="row">
-            <div class="col m8 s12 requisite-title">
-                <span class="color-brown">{{$ctrl.item.id}} - {{$ctrl.item.text}}</span>
-            </div>
-            <div class="col m4 s12 right-align tips">
-                <div class="color-red" ng-if="$ctrl.item.error" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores"
-                    data-delay="150">
-                    <span>Este requisito ha sido rechazado</span>
-                    <i class="fa fa-exclamation-triangle"></i>
+    <div class="row">
+        <div class="col m10 s10 offset-m1 offset-s1">
+            <div class="row">
+                <div class="col m8 s12 requisite-title">
+                    <span class="color-brown">{{$ctrl.item.id}} - {{$ctrl.item.text}}</span>
                 </div>
-                <div ng-if="$ctrl.item.legal_support !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
-                    <span>Sustento Legal o Técnico</span>
-                    <i class="fa fa-book"></i>
+                <div class="col m4 s12 right-align tips">
+                    <div class="color-red" ng-if="$ctrl.item.error" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores"
+                        data-delay="150">
+                        <span>Este requisito ha sido rechazado</span>
+                        <i class="fa fa-exclamation-triangle"></i>
+                    </div>
+                    <div ng-if="$ctrl.item.legal_support !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
+                        <span>Sustento Legal o Técnico</span>
+                        <i class="fa fa-book"></i>
+                    </div>
+                    <div ng-if="$ctrl.item.help !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.help}}" data-delay="150">
+                        <span>Ayuda</span>
+                        <i class="fa fa-question-circle"></i>
+                    </div>
                 </div>
-                <div ng-if="$ctrl.item.help !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.help}}" data-delay="150">
-                    <span>Ayuda</span>
-                    <i class="fa fa-question-circle"></i>
+            </div>
+            <div class="col m6 s12">
+                <div class="gainsboro content">
+                    <span class="color-brown">Criterio:</span><br> {{$ctrl.item.criteria}}
+                </div>
+            </div>
+            <div class="col m6 s12 ">
+                <div class="gainsboro content">
+                    <span class="color-brown">Evidencia:</span><br> {{$ctrl.item.evidence}}
                 </div>
             </div>
         </div>
-        <div class="col m6 s12">
-            <div class="gainsboro content">
-                <span class="color-brown">Criterio:</span><br> {{$ctrl.item.criteria}}
+        <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled">
+            <div class="input-field col s12">
+                <label for="comments" class="color-brown">Descripción de la evidencia:</label>
+                <textarea id="comments" ng-model="$ctrl.item.comment" class="materialize-textarea validate" required></textarea>
             </div>
         </div>
-        <div class="col m6 s12 ">
-            <div class="gainsboro content">
-                <span class="color-brown">Evidencia:</span><br> {{$ctrl.item.evidence}}
-            </div>
-        </div>
-    </div>
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled" >
-        <div class="input-field col s12" >
-            <label for="comments" class="color-brown">Descripción de la evidencia:</label>
-            <textarea id="comments"ng-model="$ctrl.item.comment" class="materialize-textarea validate" required></textarea>
-        </div>
-    </div>
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled" >
+        <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled">
             <div class="col s12" ng-if="$ctrl.item.disabled">
                 <label class="color-brown">Descripción de la evidencia:</label>
                 <p>{{$ctrl.item.comment}}</p>
             </div>
         </div>
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled">
-        <small class="blue-text"><strong>Nota:</strong> Comprimir los archivos en formato (.ZIP).</small>
-        <div class="file-field input-field">
-            <div class="btn" ngf-select ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
-                <span>Soporte</span>
-                <input type="file" ng-disabled="$crtl.disabled">
+        <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.media.name">
+            <small class="blue-text"><strong>Nota:</strong> Comprimir los archivos en formato (.ZIP).</small>
+            <div class="file-field input-field">
+                <div class="btn" ngf-select ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
+                    <span>Soporte</span>
+                    <input type="file" ng-disabled="$crtl.disabled">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" ng-model="$ctrl.item.file.name" type="text" ng-disabled="$crtl.disabled">
+                </div>
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" ng-model="$ctrl.item.file.name" type="text" ng-disabled="$crtl.disabled">
+        </div>
+
+        <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.media.name">
+            <div class="col s12">
+                <label class="color-brown">Soportes:</label>
+                <div class="valign-wrapper">
+                    <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
+                    <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
+                    <a style="flex-grow:0.1" class="btn lightgray" ng-if="$ctrl.item.canDelete" ng-click="$ctrl.clearMedia()">Borrar</a>
+                </div>
             </div>
         </div>
     </div>
-    
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled && $ctrl.item.media.name">
-        <div class="col s12">
-            <label class="color-brown">Soportes:</label>
-            <div class="valign-wrapper">
-                <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
-                <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
-                <a style="flex-grow:0.1" class="btn lightgray" 
-                    ng-if="$ctrl.item.canDelete" ng-click="$ctrl.clearMedia()" >Borrar</a>
-            </div>
-        </div>
-    </div>
+
     <div class="row center-align" ng-if="$ctrl.loading">
-            <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loadding}"></loader>
+        <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
     </div>
     <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled && !$ctrl.loading">
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
     </div>
     <div class="row center-align bottom" ng-if="$ctrl.item.evaluable && !$ctrl.loading">
         <button class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
-        <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
-        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >NO CUMPLE</button>
+        <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()">SOLICITAR MÁS INFORMACIÓN</button>
+        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()">NO CUMPLE</button>
     </div>
     <div class="row  bottom" ng-if="$ctrl.item.disabled && $ctrl.item.rejected">
         <div class="col s12 center-align">
@@ -86,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && $ctrl.item.accepted">    
+    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && $ctrl.item.accepted">
         <div class="col s12 center-align">
             <div class="action color-green center-align">
                 <i class="fa fa-check"></i><br>

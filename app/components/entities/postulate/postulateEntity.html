@@ -83,12 +83,13 @@
         <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}"class="btn brown" ng-disabled="!$ctrl.service.id" type="button"
         ng-click="$ctrl.deleteService()"
         >ELIMINAR POSTULACIÓN</button>
-        <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loadding}"></loader>
+        <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.item.loadding}"></loader>
       </div>
   
     </form>
   </div>
-  <requisite item="item" on-save="$ctrl.createAnswer(item)" 
+  <requisite item="item" 
+    on-save="$ctrl.createAnswer(item)" 
     ng-repeat="item in $ctrl.questions">
   </requisite>
   <div class="row center-align">

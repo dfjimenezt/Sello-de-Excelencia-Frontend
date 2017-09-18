@@ -69,11 +69,14 @@ class postulateEntityController {
       })
       this.questions.forEach((question)=>{
         question.disabled = false
+        question.service = this.service.id
         if(ids[question.id] !== undefined){
+          question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
+          question.media = this.answers[ids[question.id]].media
           if(question.media.url){
-            question.media = this.answers[ids[question.id]].media
-            question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
+            question.media.name = question.media.url.substr(
+              question.media.url.lastIndexOf('/')+1)
             question.canDelete = true
           }
           question.updatable = true
@@ -88,7 +91,7 @@ class postulateEntityController {
   postulationFinished(){
     let pending = false
     this.questions.forEach((question)=>{
-      if(!question.disabled){
+      if(!question.answer){
         pending = true
       }
     })
@@ -110,24 +113,10 @@ class postulateEntityController {
     })
   }
   
-  createAnswer(item) {
-    var data = new FormData()
-    var ctrl = this
-    data.append('id_service',this.service.id)
-    data.append('id_question',item.id)
-    data.append('id_topic',item.id_topic)
-    data.append('comment',item.comment)
-    data.append('file',item.file)
-    var request = new XMLHttpRequest()
-    request.open('POST', this.answerEndpoint)
-    request.setRequestHeader('Authorization', this.$auth.getToken())
-    request.onload = function () {
-      item.disabled = true
-      if(ctrl.postulationFinished()){
-        this.canPostulate = true
-      }
+  createAnswer() {
+    if(this.postulationFinished()){
+      this.canPostulate = true
     }
-    request.send(data)
   }
 }
 
