@@ -88,7 +88,9 @@
   
     </form>
   </div>
-  <requisite item="item" on-save="$ctrl.createAnswer(item)" ng-repeat="item in $ctrl.questions"></requisite>
+  <requisite item="item" on-save="$ctrl.createAnswer(item)" 
+    ng-repeat="item in $ctrl.questions">
+  </requisite>
   <div class="row center-align">
       <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" 
       class="btn brown" 

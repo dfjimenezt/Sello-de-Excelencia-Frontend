@@ -74,9 +74,9 @@ class postulateEntityController {
           question.media = this.answers[ids[question.id]].media
           if(question.media.url){
             question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
+            question.canDelete = true
           }
-          question.canDelete = true
-          question.disabled = true
+          question.updatable = true
         }
         if(this.postulationFinished()){
           this.canPostulate = true

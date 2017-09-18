@@ -43,7 +43,7 @@
                 <p>{{$ctrl.item.comment}}</p>
             </div>
         </div>
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.media">
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.disabled">
         <small class="blue-text"><strong>Nota:</strong> Comprimir los archivos en formato (.ZIP).</small>
         <div class="file-field input-field">
             <div class="btn" ngf-select ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
@@ -56,7 +56,7 @@
         </div>
     </div>
     
-    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.media">
+    <div class="col m10 s10 offset-m1 offset-s1" ng-if="$ctrl.item.disabled && $ctrl.item.media.name">
         <div class="col s12">
             <label class="color-brown">Soportes:</label>
             <div class="valign-wrapper">
