@@ -19,7 +19,9 @@
     <form class="col m10 s10 offset-s1 offset-m1" ng-submit="$ctrl.createService()">
       <div class="row">
         <div class="col s12">
-            <h5>Nueva postulación:</h5>
+            <h5>Nueva postulación:</h5>            
+            <span>Si usted se está postulando para Capacidades de Gestión de TI en </span><span class="color-brown">nombre del producto o servicio</span>
+            <span>poner nombre de la entidad y en la </span><span class="color-brown">URL del producto o servicio</span> la URL del portal web de la entidad</span>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
@@ -77,7 +79,11 @@
         </div>
       </div>
       <div class="row center-align">
-        <button class="btn brown" ng-disabled="$ctrl.service.id" type="submit">CREAR SERVICIO</button>
+        <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" class="btn brown" ng-disabled="$ctrl.service.id" type="submit">CREAR SERVICIO</button>
+        <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}"class="btn brown" ng-disabled="!$ctrl.service.id" type="button"
+        ng-click="$ctrl.deleteService()"
+        >ELIMINAR POSTULACIÓN</button>
+        <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loadding}"></loader>
       </div>
   
     </form>

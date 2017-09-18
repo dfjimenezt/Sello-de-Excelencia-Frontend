@@ -19,11 +19,14 @@ class RegisterEntityController {
     this.getDocTypes()
     this.registryError = false
     this.openConfirmation = false
-    this.register = {
-      institution:{
-        id_country:42
-      }
+    this.institution = {
+      id_country:42
     }
+    this.register={
+      id_country:42
+    }
+    this.getRegions('institution')
+    this.getRegions()
   }
 
   $onInit() {
@@ -44,22 +47,30 @@ class RegisterEntityController {
       this.countries = result.data.data
     })
   }
-  getRegions() {
-    this.$http.get(this.regionsEndpoint+this.register.id_country).then((result) => {
-      this.regions = result.data.data
+  getRegions(type) {
+    type = type || 'register'
+    this.$http.get(this.regionsEndpoint+this[type].id_country).then((result) => {
+      this[type+'regions'] = result.data.data
     })
   }
-  getCities() {
-    this.$http.get(this.citiesEndpoint+this.register.id_region).then((result) => {
-      this.cities = result.data.data
+  getCities(type) {
+    type = type || 'register'
+    this.$http.get(this.citiesEndpoint+this[type].id_region).then((result) => {
+      this[type+'cities'] = result.data.data
     })
   }
 
   selectedInstitution(item){
-    this.register.institution = item
+    this.institution = item
     this.$http.get(this.usersEndpoint+
       '?filter_field=id_institution&filter_value='+item.id).then((results)=>{
         this.canRegister = results.data.total_results === 0
+        if(this.institution.id_country){
+          this.getRegions('institution')
+        }
+        if(this.institution.id_region){
+          this.getCities('institution')
+        }
       })
   }
   next(){
@@ -69,6 +80,7 @@ class RegisterEntityController {
   }
   sendRegister() {
     //this.register.email = this.register.institution.email
+    this.register.institution = this.institution
     this.$http.post(this.registerEndpoint,this.register)
     .then(()=>{
       this.registryError = false

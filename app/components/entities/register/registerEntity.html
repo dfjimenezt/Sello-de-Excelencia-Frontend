@@ -13,14 +13,15 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entitynit" placeholder="XXXXXXXXX-X" pattern="[7-9]\d{8}-\d{1}$" type="text" class="validate" ng-model="$ctrl.register.institution.nit" required>
+            <input id="entitynit" placeholder="XXXXXXXXX-X" pattern="[7-9]\d{8}-\d{1}$" type="text" class="validate" ng-model="$ctrl.institution.nit"
+              required>
             <label for="entitynit" data-error="Ingresa el Nit de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Nit (con dígito de verificación):</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entityphone" type="text" class="validate" ng-model="$ctrl.register.institution.phone" required>
+            <input id="entityphone" type="text" class="validate" ng-model="$ctrl.institution.phone" required>
             <label for="entityphone" data-error="Ingresa el teléfono de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Teléfono:</label>
           </div>
@@ -28,7 +29,7 @@
 
         <div class="col m6 s12">
           <div class="input-field">
-            <select ng-model="$ctrl.register.institution.id_institution_type" material-select watch>
+            <select ng-model="$ctrl.institution.id_institution_type" material-select watch>
                 <option ng-value="{{type.id}}" ng-repeat="type in $ctrl.institutionTypes">{{type.name}}</option>
               </select>
             <label>Tipo de entidad:</label>
@@ -36,21 +37,45 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.institution.email" required>
-            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de contacto para el Sello de Excelencia:</label>
+            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.institution.email"
+              required>
+            <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico de contacto:</label>
             <small class="blue-text"><strong>Nota:</strong> El correo ingresado debe ser un correo institucional.</small>
           </div>
         </div>
+
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.institution.id_country" ng-change="$ctrl.getRegions('institution')" material-select watch>
+                        <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
+                      </select>
+            <label>País:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.institution.id_region" ng-change="$ctrl.getCities('institution')" material-select watch>
+              <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.institutionregions">{{region.name}}</option>
+            </select>
+            <label>Región:</label>
+          </div>
+        </div>
+        <div class="col s12 m6">
+          <div class="input-field">
+            <select ng-model="$ctrl.institution.id_city" material-select watch>
+              <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.institutioncities">{{city.name}}</option>
+            </select>
+            <label>Ciudad:</label>
+          </div>
+        </div>
       </div>
-      <div class="row" ng-if="$ctrl.register.institution && !$ctrl.canRegister">
+      <div class="row" ng-if="$ctrl.institution.id && !$ctrl.canRegister">
         <div class="col s12">
           <span class="font-bold color-brown">La entidad seleccionada ya se encuentra registrada, por favor contacte al administrador al correo sellodeexcelencia@mintic.gov.co.</span>
         </div>
-
       </div>
-
       <span style="margin-left:-30px" class="font-bold color-lightseagreen">1° Información del representante.</span>
-      <div class="row" ng-if="$ctrl.register.institution && $ctrl.canRegister">
+      <div class="row" ng-if="$ctrl.institution.id && $ctrl.canRegister">
         <div class="col s12 m6">
           <div class="input-field">
             <input id="first_name" type="text" class="validate" ng-model="$ctrl.register.name" required>
@@ -101,6 +126,7 @@
             <label for="numberType" data-error="Ingresa un número de identificación válido" data-success="Ok"><strong class="red-text">*</strong> Numero de documento:</label>
           </div>
         </div>
+
         <div class="col s12 m6">
           <div class="input-field">
             <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
@@ -112,22 +138,23 @@
         <div class="col s12 m6">
           <div class="input-field">
             <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()" material-select watch>
-                      <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.regions">{{region.name}}</option>
-                    </select>
+                        <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.registerregions">{{region.name}}</option>
+                      </select>
             <label>Región:</label>
           </div>
         </div>
         <div class="col s12 m6">
           <div class="input-field">
             <select ng-model="$ctrl.register.id_city" material-select watch>
-                      <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.cities">{{city.name}}</option>
-                    </select>
+                        <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.registercities">{{city.name}}</option>
+                      </select>
             <label>Ciudad:</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.email" required>
+            <input id="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class="validate" ng-model="$ctrl.register.email"
+              required>
             <label for="email" data-error="Ingresa un correo válido" data-success="Ok"><strong class="red-text">*</strong> Correo electrónico del representante:</label>
           </div>
         </div>
@@ -151,10 +178,10 @@
         </button>
       </div>
       <div class="separator center-align">
-          <span class="grey-text lighten-4">
+        <span class="grey-text lighten-4">
             ¿Ya estas registrado? <a href="#!/sign-in" class="pointer">Inicia sesión aqui</a>
           </span>
-        </div>
+      </div>
     </form>
   </div>
   <a data-target='registered' modal open="$ctrl.openConfirmation"></a>

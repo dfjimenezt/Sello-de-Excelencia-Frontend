@@ -222,7 +222,16 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
 
   $authProvider.facebook({
     clientId: '405189839819599',
-    responseType: 'token'
+    responseType: 'token',
+  })
+  $authProvider.linkedin({
+    clientId: '405189839819599',
+    responseType: 'token',
+  })
+  $authProvider.google({
+    clientId: '1076035766738-c3e04ocu4k1612u9ckmdfr5oug92asss.apps.googleusercontent.com',
+    responseType: 'token',
+    scope: ['profile', 'email'],
   })
 }
 

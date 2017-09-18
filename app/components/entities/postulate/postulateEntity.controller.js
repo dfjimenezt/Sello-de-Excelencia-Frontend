@@ -10,28 +10,38 @@ class postulateEntityController {
     this.serviceStatusEndpoint = Api + '/service/service_status?order=timestamp%20desc&filter_field=id_service&filter_value='
     this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
+    this.loading = false
   }
   $onInit() {
-    this.entity = this.user.institutions[0]
     this.$http.get(this.categoriesEndpoint).then((results) => {
       this.categories = results.data.data
     })
-    this.$http.get(this.serviceEndpoint +
-      '?filter_field=id_institution&filter_value=' + this.entity.id +
-      '&filter_field=current_status&filter_value=10').then((results) => {
-        this.pendingServices = results.data.data
-      })
+    this.entity = this.user.institutions[0]
+    this.clearService()
   }
   selectService() {
+    this.loading = true
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
       this.getQuestions()
+    })
+  }
+  deleteService(){
+    this.loading = true
+    this.$http.delete(this.serviceEndpoint+ '?id=' + this.service.id).then(() => {
+      this.clearService()
     })
   }
   clearService(){
     this.service = null
     this.questions = [] 
     this.answers = []
+    this.$http.get(this.serviceEndpoint +
+      '?filter_field=id_institution&filter_value=' + this.entity.id +
+      '&filter_field=current_status&filter_value=10').then((results) => {
+        this.pendingServices = results.data.data
+        this.loading = false
+      })
   }
   profile(){
     this.onNavigate({section:'profile'})
@@ -65,6 +75,7 @@ class postulateEntityController {
           question.disabled = true
         }
       })
+      this.loading = false
     })
   }
   postulationFinished(){
@@ -77,6 +88,7 @@ class postulateEntityController {
     return !pending
   }
   createService() {
+    this.loading = true
     this.service.id_institution = this.entity.id
     this.$http.post(this.serviceEndpoint, this.service).then((results) => {
       this.service.id = results.data.id

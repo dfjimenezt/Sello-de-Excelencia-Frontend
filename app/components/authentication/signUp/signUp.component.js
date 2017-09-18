@@ -4,7 +4,7 @@ import './signUp.styl'
 
 const signUpComponent = {
   template,
-  controller
+  controller,
 }
 
 export default signUpComponent

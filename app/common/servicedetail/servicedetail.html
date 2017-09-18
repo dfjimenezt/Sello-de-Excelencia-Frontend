@@ -51,7 +51,9 @@
                             <i class="fa fa-star" ng-class="{'color-yellow': i <= $ctrl.item.rate }" ng-repeat="i in [1,2,3,4,5]" ></i>
                         </span>
                         <br>
-                        <a class='btn' data-target='qualify' modal>Calificar</a>
+                        <a class='btn' 
+                        ng-disabled="$ctrl.disabled"
+                        data-target='qualify' modal>Calificar</a>
                         <p class="left-align">
                             El producto que usted está viendo ha sido certificado con EL SELLO DE EXCELENCIA, 
                             y queremos que usted sea parte de esta experiencia.<br>
