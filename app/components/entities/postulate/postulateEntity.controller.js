@@ -71,8 +71,8 @@ class postulateEntityController {
         question.disabled = false
         if(ids[question.id] !== undefined){
           question.comment = this.answers[ids[question.id]].comment
-          question.media = this.answers[ids[question.id]].media
           if(question.media.url){
+            question.media = this.answers[ids[question.id]].media
             question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
             question.canDelete = true
           }
