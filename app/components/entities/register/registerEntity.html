@@ -13,7 +13,7 @@
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entitynit" placeholder="XXXXXXXXX-X" pattern="[7-9]\d{8}-\d{1}$" type="text" class="validate" ng-model="$ctrl.institution.nit"
+            <input id="entitynit" pattern="[7-9]\d{8}-\d{1}$" type="text" class="validate" ng-model="$ctrl.institution.nit"
               required>
             <label for="entitynit" data-error="Ingresa el Nit de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Nit (con dígito de verificación):</label>
@@ -108,7 +108,7 @@
         </div>
         <div class="col s12 m6">
           <div class="input-field">
-            <input id="mobile" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
+            <input id="mobile" pattern="\d+$" type="text" class="validate" ng-model="$ctrl.register.mobile" required>
             <label for="mobile" data-error="Ingresa tu celulcar" data-success="Ok"><strong class="red-text">*</strong> Teléfono móvil:</label>
           </div>
         </div>
