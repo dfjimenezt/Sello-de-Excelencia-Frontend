@@ -62,15 +62,18 @@
             <div class="valign-wrapper">
                 <span style="flex-grow:1">{{$ctrl.item.media.name}}</span>
                 <a style="flex-grow:0.1" class="btn lightseagreen" ng-href="{{$ctrl.item.media.url}}" target="_blank">DESCARGAR</a>
-                <a style="flex-grow:0.1" class="btn lightgray" ng-if="!$ctrl.item.evaluable && !$ctrl.item.rejected && !$ctrl.item.accepted" ng-disabled="$ctrl.item.disabled" ng-click="$ctrl.clearMedia()" >Borrar</a>
+                <a style="flex-grow:0.1" class="btn lightgray" 
+                    ng-if="$ctrl.item.canDelete" ng-click="$ctrl.clearMedia()" >Borrar</a>
             </div>
         </div>
     </div>
-
-    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled">
+    <div class="row center-align" ng-if="$ctrl.loading">
+            <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loadding}"></loader>
+    </div>
+    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled && !$ctrl.loading">
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
     </div>
-    <div class="row center-align bottom" ng-if="$ctrl.item.evaluable">
+    <div class="row center-align bottom" ng-if="$ctrl.item.evaluable && !$ctrl.loading">
         <button class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
         <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()" >SOLICITAR MÁS INFORMACIÓN</button>
         <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()" >NO CUMPLE</button>

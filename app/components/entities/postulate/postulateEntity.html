@@ -89,7 +89,13 @@
     </form>
   </div>
   <requisite item="item" on-save="$ctrl.createAnswer(item)" ng-repeat="item in $ctrl.questions"></requisite>
-
+  <div class="row center-align">
+      <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" 
+      class="btn brown" 
+      ng-if="$ctrl.canPostulate" 
+      ng-click="$ctrl.finishPostulation()"type="button">
+      POSTULAR SERVICIO</button>
+  </div>
   <div id="postulated" class="modal">
     <div class="modal-content center-align">
       <div class="border">
@@ -99,7 +105,7 @@
       </div>
     </div>
     <div class="center-align footer">
-      <a class="btn brown modal-action modal-close" ng-click="$ctrl.profile()">Continuar</a>
+      <a class="btn brown modal-action modal-close" ng-click="$ctrl.activity()">Continuar</a>
       <a class="btn lightseagreen modal-action modal-close" ng-click="$ctrl.clearService()">Hacer otra postulación</a>
     </div>
   </div>

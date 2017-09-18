@@ -65,9 +65,10 @@ class RegisterEntityController {
     this.$http.get(this.usersEndpoint+
       '?filter_field=id_institution&filter_value='+item.id).then((results)=>{
         this.canRegister = results.data.total_results === 0
-        if(this.institution.id_country){
-          this.getRegions('institution')
+        if(!this.institution.id_country){
+          this.institution.id_country = 42
         }
+        this.getRegions('institution')
         if(this.institution.id_region){
           this.getCities('institution')
         }

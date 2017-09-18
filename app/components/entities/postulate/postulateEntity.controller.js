@@ -1,9 +1,10 @@
 class postulateEntityController {
-  constructor(Api, $http, $auth) {
+  constructor(Api, $http, $auth, $state) {
     'ngInject'
     this.Api = Api
     this.$http = $http
     this.$auth = $auth
+    this.$state = $state
     this.user = $auth.getPayload()
     this.categoriesEndpoint = Api + '/service/category'
     this.serviceEndpoint = Api + '/service/service'
@@ -21,6 +22,8 @@ class postulateEntityController {
   }
   selectService() {
     this.loading = true
+    this.questions = [] 
+    this.answers = []
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
       this.getQuestions()
@@ -43,8 +46,8 @@ class postulateEntityController {
         this.loading = false
       })
   }
-  profile(){
-    this.onNavigate({section:'profile'})
+  activity(){
+    this.$state.go('entity.activity')
   }
   getQuestions() {
     let url = this.questionEndpoint + this.service.id_category
@@ -72,7 +75,11 @@ class postulateEntityController {
           if(question.media.url){
             question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
           }
+          question.canDelete = true
           question.disabled = true
+        }
+        if(this.postulationFinished()){
+          this.canPostulate = true
         }
       })
       this.loading = false
@@ -95,6 +102,13 @@ class postulateEntityController {
       this.getQuestions()
     })
   }
+  finishPostulation(){
+    this.$http.put(this.serviceEndpoint,this.service).then(()=>{
+      this.service.current_status = 1 //Verification
+      $('#modal-laucher').click()
+      this.canPostulate = false
+    })
+  }
   
   createAnswer(item) {
     var data = new FormData()
@@ -110,9 +124,7 @@ class postulateEntityController {
     request.onload = function () {
       item.disabled = true
       if(ctrl.postulationFinished()){
-        $('#modal-laucher').click()
-        ctrl.service.current_status = 1 //Verification
-        ctrl.$http.put(ctrl.serviceEndpoint,ctrl.service)
+        this.canPostulate = true
       }
     }
     request.send(data)
