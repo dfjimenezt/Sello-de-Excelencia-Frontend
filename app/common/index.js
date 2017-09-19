@@ -5,6 +5,7 @@ import sliderComponent from './slider/slider.component'
 import footerComponent from './footer/footer.component'
 import moreInformationComponent from './moreInformation/moreInformation.component'
 import termsComponent from './terms/terms.component'
+import bannerDetailComponent from './bannerdetail/bannerdetail.component'
 import categoriesModule from './categories'
 import modalComponent from './modal/modal.component'
 import loaderComponent from './loader/loader.component'
@@ -26,6 +27,7 @@ const common = angular
   .component('footerApp',footerComponent)
   .component('moreInformation',moreInformationComponent)
   .component('terms',termsComponent)
+  .component('bannerDetail',bannerDetailComponent)
   .component('modalApp',modalComponent)
   .component('loader',loaderComponent)
   .component('evaluation',evaluationComponent)

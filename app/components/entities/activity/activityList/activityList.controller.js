@@ -17,7 +17,7 @@ class activityEntityListController {
         id_institution: [$auth.getPayload().institutions[0].id]
       }
     }
-    this.serviceEndpoint = Api + '/service/service'
+    this.serviceEndpoint = Api + '/service/service?simple=false'
   }
   $onInit() {
     if(this.$state.current.name.indexOf('.') === -1){

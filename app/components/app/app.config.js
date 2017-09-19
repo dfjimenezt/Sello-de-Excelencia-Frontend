@@ -62,6 +62,13 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Términos y Condiciones'
       },
     })
+    .state('banner',{
+      url: '/banner/:id',
+      component: 'bannerDetail',
+      onEnter: function(){
+        document.title = 'Más Información'
+      },
+    })
     .state('registerEvaluator',{
       url:'/registro-evaluador',
       component: 'registerEvaluator',

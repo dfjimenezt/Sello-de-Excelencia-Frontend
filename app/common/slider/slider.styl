@@ -1,8 +1,17 @@
+
 .slider-img
   width: 200px !important
   background-size: none;
   background-position: none;
   margin-right: 15px
+
+.slider video
+  width 100%
+  max-height 400px
+  object-fit contain
+
+.slider .slides li .caption p 
+  margin: 5px 0px
 
 .slider .indicators .indicator-item.active
     background-color: #000
@@ -12,18 +21,18 @@
 
 .absolute-left
   position absolute
-  top: 40%
-  left: 3%
+  top: 150px
+  left: 0%
   z-index: 5
 
 .absolute-right
   position absolute
-  top: 40%
-  right: 3%
+  top: 150px
+  right: 0%
   z-index: 5
 
 .arrow
-  color: rgba(0,0,0,0.3)
+  color: rgba(200,200,200,0.5)
   font-size: 100px
 
 .pointer
@@ -47,6 +56,28 @@
 .font-bold
   font-weight bold
 
+.slider .slides li.down .caption
+  padding 0px 20px
+  position absolute
+  height 150px
+  width 100%
+  background-color rgba(0,0,0,0.5)
+  top 250px
+  left 0px
+
+.slider .slides li.right .caption
+  padding 0px 20px
+  position absolute
+  height 285px
+  width 45%
+  top 115px
+  left 50%
+
+.slider .slides li .caption .summary
+  max-height 52px
+  overflow hidden
+  text-overflow ellipsis
+
 .slider img.full
   background-position: top !important;
   background-size: contain !important;
@@ -68,12 +99,6 @@
     display block
     float unset !important
     margin 0 auto
-  
-  .slider .slides li .caption
-    top 1%
-    left 10%
-    width 80%
-    text-align: center
   
   .caption p
     font-size .9em
