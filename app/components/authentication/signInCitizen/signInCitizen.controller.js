@@ -10,7 +10,6 @@ class SignInController {
   }
 
   $onInit() {
-    console.log(this)
     this.loadding = false
     this.serverError = false
   }

@@ -110,8 +110,8 @@ class postulateEntityController {
     })
   }
   finishPostulation(){
+    this.service.current_status = 1 //Verification
     this.$http.put(this.serviceEndpoint,this.service).then(()=>{
-      this.service.current_status = 1 //Verification
       $('#modal-laucher').click()
       this.canPostulate = false
     })

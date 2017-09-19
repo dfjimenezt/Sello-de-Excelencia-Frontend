@@ -9,7 +9,6 @@ class requisiteController{
     this.answerEndpoint = Api + '/question/user_answer'
   }
   $onInit(){
-    console.log(this.item)
   }
   save(){
     this.loading = true

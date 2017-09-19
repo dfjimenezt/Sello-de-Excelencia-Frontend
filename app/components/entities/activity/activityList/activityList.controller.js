@@ -1,7 +1,6 @@
 class activityEntityListController {
   constructor(Api, $http, $auth ,$state) {
     'ngInject'
-    console.log('activityEntityList')
     this.Api = Api
     this.$http = $http
     this.$state = $state

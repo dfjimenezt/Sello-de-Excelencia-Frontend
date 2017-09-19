@@ -22,7 +22,7 @@ class SliderController {
         </a>
       </li>`
     }
-    this.video_template = '<video style="background-color:#000;" src="{{VIDEO}}" poster="{{IMAGE}}" autoplay controls muted></video>'
+    this.video_template = '<video style="background-color:#000;" src="{{VIDEO}}" poster="{{IMAGE}}" autoplay controls></video>'
     this.image_template = '<img src="{{IMAGE}}" />'
     this.caption_template = '<div class="caption"><h5 class="color-white font-bold">{{TITLE}}</h5><p class="color-white summary">{{SUMMARY}}</p>{{MORE}}</div>'
     this.more_template = '<a class="btn lightseagreen" href="#!/banner/{{ID}}">VER MÁS<a>'

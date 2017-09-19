@@ -11,7 +11,6 @@ class SignUpCitizenController {
   }
 
   $onInit() {
-    console.log(this)
     this.loadding = false
     this.modalElement.modal()
   }

@@ -7,7 +7,7 @@ class ServiceDetailController {
     this.detailEndpoint = Api+'/service/service?simple=false&id='+$state.params.id
     if($auth.isAuthenticated()){
       this.disabled = $auth.getPayload().role === 'Evaluador' ||
-        $auth.getPayload().role === 'Entidad';
+        $auth.getPayload().role === 'Entidad'
     }else{
       this.disabled = false
     }
