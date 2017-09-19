@@ -6,6 +6,7 @@ class activityEntityListController {
     this.$http = $http
     this.$state = $state
     this.pagestoshow = 5
+    this.loading = false
     this.pager = {
       total_pages: 0
     }
@@ -19,7 +20,13 @@ class activityEntityListController {
     this.serviceEndpoint = Api + '/service/service'
   }
   $onInit() {
-    this.setSection('certified')
+    if(this.$state.current.name.indexOf('.') === -1){
+      this.setSection('certified')
+    }else{
+      let array = this.$state.current.name.split('.')
+      this.setSection(array[array.length-1])
+      
+    }
   }
   setSection(section) {
     if (section === this.section) {
@@ -102,7 +109,7 @@ class activityEntityListController {
       entity: service.institution.name,
       level: service.status.level,
       product: service.name,
-      date: new Date()
+      date: service.status.timestamp
     }
   }
 

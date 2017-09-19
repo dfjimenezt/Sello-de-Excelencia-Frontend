@@ -10,9 +10,10 @@ class entityService{
     this.answerEndpoint = Api + '/question/user_answer'
     this.selected = null
     this.currentIndex = 0
-    this.service= $stateParams.service
+    this.$stateParams = $stateParams
   }
   $onInit(){
+    this.service= this.$stateParams.service
     if(!this.service){
       return
     }
