@@ -38,6 +38,7 @@ class SliderController {
   optionsSlider() {
     $('.sliderone').slider({ 'Interval': 1000 })
     $('.sliderone').slider('pause')
+    $('.indicator-item').on('click', () => $('.sliderone').slider('pause'))
   }
 
   getData() {
