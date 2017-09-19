@@ -21,9 +21,13 @@ class postulateEntityController {
     this.clearService()
   }
   selectService() {
-    this.loading = true
     this.questions = [] 
     this.answers = []
+    this.canPostulate = false
+    if(this.service === null){
+      return
+    }
+    this.loading = true
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
       this.getQuestions()
