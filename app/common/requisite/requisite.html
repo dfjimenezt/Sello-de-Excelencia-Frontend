@@ -73,7 +73,7 @@
         <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
     </div>
     <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled && !$ctrl.loading">
-        <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">GUARDAR</button>
+        <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">{{$ctrl.item.answer ? 'ACTUALIZAR':'GUARDAR'}}</button>
     </div>
     <div class="row center-align bottom" ng-if="$ctrl.item.evaluable && !$ctrl.loading">
         <button class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
