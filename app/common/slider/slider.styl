@@ -10,8 +10,7 @@
   max-height 400px
   object-fit contain
 
-.slider .slides li .caption p 
-  margin: 5px 0px
+
 
 .slider .indicators .indicator-item.active
     background-color: #000
@@ -56,7 +55,10 @@
 .font-bold
   font-weight bold
 
-.slider .slides li.down .caption
+.slider .slides li ._caption p 
+  margin: 5px 0px
+
+.slider .slides li.down ._caption
   padding 0px 20px
   position absolute
   height 150px
@@ -64,26 +66,27 @@
   background-color rgba(0,0,0,0.5)
   top 250px
   left 0px
+  opacity 0
+  transition opacity 0.5s linear
 
-.slider .slides li.right .caption
+.slider .slides li.down ._caption:hover
+  opacity 1
+
+.slider .slides li.right ._caption
   padding-top 88px 
   padding-left 20px
   padding-right 50px
   position absolute
   height 400px
-  background-color rgba(0,0,0,0.5)
   width 45%
   top 0px
   left 55%
 
-.slider video + .caption:hover
-  opacity 1
-.slider video + .caption
-  opacity 0
-  transition opacity 0.5s linear
+.slider video + ._caption:hover
+.slider video + ._caption
   top 218px !important
 
-.slider .slides li .caption .summary
+.slider .slides li ._caption .summary
   max-height 52px
   overflow hidden
   text-overflow ellipsis
@@ -114,13 +117,13 @@
     float unset !important
     margin 0 auto
   
-  .caption p
+  ._caption p
     font-size .9em
-  .slider .slides li.right .caption
+  .slider .slides li.right ._caption
     height 200px
     top 200px
 
-  .slider .slides li.right .caption
+  .slider .slides li.right ._caption
     padding 0px 20px
     position absolute
     height 200px
