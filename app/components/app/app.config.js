@@ -106,28 +106,59 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       },
     })
     .state('entity.postulate',{
-      url:'/perfil',
+      url:'/postular',
       component: 'postulateEntity',
       onEnter: function(){
         document.title = 'Entidad - Postular'
       },
     })
     .state('entity.activity',{
-      url:'/perfil',
+      url:'/actividad',
       component: 'activityEntity',
       onEnter: function(){
         document.title = 'Entidad - Actividad'
       },
     })
+    .state('entity.activity.certified',{
+      url:'/certificadas',
+      component:'activityEntityList',
+      onEnter: function(){
+        document.title = 'Entidad - Actividad - Sellos Otorgados'
+      },
+    })
+    .state('entity.activity.proccess',{
+      url:'/proceso',
+      component:'activityEntityList',
+      onEnter: function(){
+        document.title = 'Entidad - Actividad - En Proceso'
+      },
+    })
+    .state('entity.activity.rejected',{
+      url:'/rechazadas',
+      component:'activityEntityList',
+      onEnter: function(){
+        document.title = 'Entidad - Actividad - No Otorgados'
+      },
+    })
+    .state('entity.activity.detail',{
+      url:'/servicio/',
+      component:'serviceEntity',
+      params:{
+        service:null
+      },
+      onEnter: function(){
+        document.title = 'Entidad - Actividad - Servicio'
+      },
+    })
     .state('entity.learn',{
-      url:'/perfil',
+      url:'/aprende-ensena',
       component: 'learnEntity',
       onEnter: function(){
         document.title = 'Entidad - Aprende y Enseña'
       },
     })
     .state('entity.advance',{
-      url:'/perfil',
+      url:'/avance',
       component: 'advanceEntity',
       onEnter: function(){
         document.title = 'Entidad - Avance'
@@ -183,10 +214,6 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Evaluador - Actividad - Finalizadas'
       },
     })
-    //<service-evaluator 
-    //  ng-if="$ctrl.requisite && $ctrl.section !== 'postulate'" 
-    //  request="$ctrl.requisite" on-finished="$ctrl.reset()">
-    //</service-evaluator>
     .state('evaluator.activity.detail',{
       url:'/requisito/',
       component:'serviceEvaluator',

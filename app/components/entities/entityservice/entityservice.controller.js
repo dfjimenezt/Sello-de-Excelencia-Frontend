@@ -1,17 +1,21 @@
 class entityService{
-  constructor(Api,$http){
+  constructor(Api,$http,$stateParams,$state){
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.$state = $state
     this.serviceCommentsEndpoint = Api + '/service/service_comment?filter_field=id_service&filter_value='
     this.serviceEndpoint = Api + '/service/service?simple=false'
     this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
     this.selected = null
     this.currentIndex = 0
+    this.service= $stateParams.service
   }
   $onInit(){
-    
+    if(!this.service){
+      return
+    }
     this.getQuestions()
   }
   getQuestions() {

@@ -29,8 +29,7 @@ class CategoryListController {
             stateUrl: 'certifiedservices',
           }
         ]
-      }
-      if(this.$auth.getPayload().role === 'Evaluador'){
+      }else if(this.$auth.getPayload().role === 'Evaluador'){
         this.categories = [
           {
             id:1, 
@@ -43,6 +42,27 @@ class CategoryListController {
             title: 'Ingresa a la sección Aprende y Enseña', 
             img: 'assets/img/comunidad.png', 
             stateUrl: 'evaluator.learn'
+          },
+          {
+            id:3, 
+            title: 'Conoce y califica los productos certificados', 
+            img: 'assets/img/evaluando.png', 
+            stateUrl: 'certifiedservices',
+          }
+        ]
+      }else{
+        this.categories = [
+          {
+            id:1, 
+            title: '¿Quieres postular tu producto o servicio?', 
+            img: 'assets/img/postular.png', 
+            stateUrl: 'registerEntity',
+          },
+          {
+            id:2, 
+            title: '¿Quieres ser parte de la comunidad evaluadora?', 
+            img: 'assets/img/comunidad.png', 
+            stateUrl: 'registerEvaluator',
           },
           {
             id:3, 
@@ -74,7 +94,6 @@ class CategoryListController {
         }
       ]
     }
-    
   }
 
   goTo(category) {

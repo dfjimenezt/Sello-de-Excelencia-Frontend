@@ -8,7 +8,7 @@ class activityEvaluatorController {
       this.setSection('asignated')
     }else{
       let array = this.$state.current.name.split('.')
-      this.section = array[array.length-1]
+      this.section = array[1]
     }
     this.user = $auth.getPayload()
   }
