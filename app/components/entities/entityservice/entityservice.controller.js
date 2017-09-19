@@ -3,6 +3,7 @@ class entityService{
     'ngInject'
     this.Api = Api
     this.$http = $http
+    this.serviceCommentsEndpoint = Api + '/service/service_comment?filter_field=id_service&filter_value='
     this.serviceEndpoint = Api + '/service/service?simple=false'
     this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
@@ -10,9 +11,7 @@ class entityService{
     this.currentIndex = 0
   }
   $onInit(){
-    if(this.service.current_status === '6'){
-      //this.$http.get(//user_comments).then((results){})
-    }
+    
     this.getQuestions()
   }
   getQuestions() {
@@ -47,6 +46,16 @@ class entityService{
         }
       })
       this.selected = this.questions[this.currentIndex]
+    }).then(()=>{
+      if(this.service.current_status === 6){
+        //this.$http.get(//user_comments).then((results){})
+      }
+      if(this.service.current_status === 8){
+        this.$http.get(this.serviceCommentsEndpoint+ this.service.id).then((results)=>{
+          this.service.comments = results.data.data
+          this.service.totalcomments = results.data.total_results
+        })
+      }
     })
   }
   nextQuestion(){

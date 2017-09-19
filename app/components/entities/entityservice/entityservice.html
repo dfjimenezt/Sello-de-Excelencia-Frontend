@@ -16,17 +16,17 @@
                 <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
-        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
+        <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 9">
             <div class="color-green" ng-if="$ctrl.service.current_status == 8">
                 <!--CUMPLE-->
                 <span>CUMPLE</span><i class="fa fa-check"></i>
             </div>
-            <div class="color-red" ng-if="$ctrl.service.current_status == 11">
+            <div class="color-red" ng-if="$ctrl.service.current_status == 9">
                 <!--NO CUMPLE-->
                 <span>NO CUMPLE</span><i class="fa fa-times"></i>
             </div>
         </div>
-        <div class="service-item-rate" ng-if="$ctrl.service.current_status == 8 || $ctrl.service.current_status == 11">
+        <div class="service-item-rate" ng-if="$ctrl.service.current_status == 8">
             <div class="border color-brown center-align">
                 <span>Promedio</span><br>
                 <div class="fa fa-star star color-yellow">
@@ -36,9 +36,9 @@
                 <span class="full-rate color-lightgray">
                 <i class="fa fa-star" ng-class="{'color-yellow': i <= $ctrl.service.rate }" ng-repeat="i in [1,2,3,4,5]" ></i>
             </span><br>
-                <span>250 votos</span>
+                <span>{{$ctrl.service.totalcomments}} comentarios</span>
             </div>
-            <a class="color-lightseagreen" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
+            <a class="color-lightseagreen pointer" data-target="comments" modal>Ver comentarios de los ciudadanos <i class="fa fa-caret-right"></i></a>
         </div>
     </div>
     <div class="valign-wrapper row requisites" ng-if="$ctrl.selected != null">

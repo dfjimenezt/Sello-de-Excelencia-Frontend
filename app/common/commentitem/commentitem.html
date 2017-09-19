@@ -2,9 +2,9 @@
     <div class="col m1 s1 center-align color-lightseagreen valign-wrapper">
         <i class="fa fa-address-book"></i>
     </div>
-    <div class="col m10 s10">
-        <span class="title color-lightseagreen">{{$ctrl.item.user }} dice:</span><br>
-        <span>{{$ctrl.item.timestamp | date}}</span><br>
+    <div class="col m10 s10 content">
+        <span class="color-lightseagreen">{{$ctrl.item.user.name }} dice:</span><br>
+        <small class="color-lightgray"><span>{{$ctrl.item.timestamp | date}}</span></small><br>
         <span>{{$ctrl.item.text}}</span>
     </div>
 </div>

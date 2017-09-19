@@ -17,23 +17,24 @@
                 ng-click="$ctrl.onCertificate($ctrl.item)"
                 ng-if="$ctrl.item.current_status == 8">
                 <!--i class="fa fa-download"></i-->
-                <i class="material-icons">file_download</i><br>
+                <i class="material-icons" style="font-size: 31px;">file_download</i><br>
                 <span>Descargar Diploma</span>
             </div>
             <div class="action color-red center-align"
                 ng-click="$ctrl.onRejected($ctrl.item)"
-                ng-if="$ctrl.item.current_status == 11">
+                ng-if="$ctrl.item.current_status == 9">
                 <i class="fa fa-times"></i><br>
                 <span>No Cumple</span>
             </div>
             <div class="action color-lightseagreen center-align"
                 ng-click="$ctrl.onSelected($ctrl.item)"
-                ng-if="$ctrl.item.current_status == 11 || $ctrl.item.current_status == 5"
-                >
+                ng-if="$ctrl.item.current_status == 11 
+                || $ctrl.item.current_status == 5
+                || $ctrl.item.current_status == 8">
                 <i class="fa fa-chevron-circle-right"></i><br>
                 <span>{{
-                    $ctrl.item.status.id == 1 ? 'Ver detalle':
-                    $ctrl.item.status.id == 2 ? 'Volver a postular':
+                    $ctrl.item.status.id == 1 ? 'Ver Detalle':
+                    $ctrl.item.status.id == 2 ? 'Volver a Postular':
                     'Ver progreso'
                     }}</span>
             </div>

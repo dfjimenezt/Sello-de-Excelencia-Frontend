@@ -4,6 +4,7 @@ class learnEntityController {
     this.Api = Api
     this.$http = $http
     this.learnEndpoint = Api + '/forum/hangouts?filter_field=id_role&filter_value=4'
+    this.pointsEndpoint = Api + '/forum/view'
     this.playing = false
     this.$sce = $sce
   }
@@ -20,7 +21,7 @@ class learnEntityController {
   goLive(){
     this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
-    this.$http.post(this.points,{id:this.selected.id})
+    this.$http.post(this.pointsEndpoint,{id:this.selected.id})
   }
   stop(){
     this.selected.trusted = null
@@ -34,7 +35,8 @@ class learnEntityController {
     this.query = {
       limit:20,
       page:1,
-      fields:{}
+      fields:{},
+      order:'id desc'
     }
     this.getData()
   }
