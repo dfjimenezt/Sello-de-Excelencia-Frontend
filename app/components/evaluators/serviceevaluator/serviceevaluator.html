@@ -9,7 +9,7 @@
         <div class="service-item-content">
             <div class="color-brown">{{$ctrl.service.entity.name}}</div>
             <div>
-                <div>{{$ctrl.service.name}}</div>
+                <div>{{$ctrl.service.id}} - {{$ctrl.service.name}}</div>
                 <div class="color-lightseagreen">Nivel: {{$ctrl.question.level}}</div>
                 <span>Plazo de evaluación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
                 <span ng-if="$ctrl.service.test_user != ''">Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
