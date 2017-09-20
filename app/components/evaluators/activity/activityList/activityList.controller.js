@@ -52,7 +52,7 @@ class activityList{
     }
     if(this.section === 'proccess'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = ['2','6']
+      this.query.fields.id_request_status = ['2','4','6']
     }
     if(this.section === 'finished'){
       this.query = this.activityquery

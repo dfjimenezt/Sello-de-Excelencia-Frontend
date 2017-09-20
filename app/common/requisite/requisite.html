@@ -72,13 +72,17 @@
     <div class="row center-align" ng-if="$ctrl.loading">
         <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
     </div>
-    <div class="row center-align bottom" ng-if="!$ctrl.item.evaluable && !$ctrl.item.disabled && !$ctrl.loading">
+    <div class="row center-align bottom" ng-if="!$ctrl.item.acceptable && !$ctrl.item.evaluable && !$ctrl.item.disabled && !$ctrl.loading">
         <button class="btn brown" type="submit" ng-disabled="$ctrl.item.disabled">{{$ctrl.item.answer ? 'ACTUALIZAR':'GUARDAR'}}</button>
     </div>
     <div class="row center-align bottom" ng-if="$ctrl.item.evaluable && !$ctrl.loading">
-        <button class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
-        <button class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()">SOLICITAR MÁS INFORMACIÓN</button>
-        <button class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()">NO CUMPLE</button>
+        <button type="button" class="btn green" ng-click="$ctrl.onApprove()">CUMPLE</button>
+        <button type="button" class="btn brown" ng-if="!$ctrl.item.rejectable" ng-click="$ctrl.onMoreInformation()">SOLICITAR MÁS INFORMACIÓN</button>
+        <button type="button" class="btn red" ng-if="$ctrl.item.rejectable" ng-click="$ctrl.onReject()">NO CUMPLE</button>
+    </div>
+    <div class="row center-align bottom" ng-if="$ctrl.item.acceptable && !$ctrl.loading">
+        <button type="button" class="btn green" ng-click="$ctrl.onEvaluatorAccepted()">ACEPTAR</button>
+        <button type="button" class="btn red" ng-click="$ctrl.onEvaluatorRejected()">RECHAZAR</button>
     </div>
     <div class="row  bottom" ng-if="$ctrl.item.disabled && $ctrl.item.rejected">
         <div class="col s12 center-align">

@@ -32,7 +32,11 @@
             </div>
             <div class="action center-align color-lightseagreen"
                 ng-click="$ctrl.onSelected()"
-                ng-if="!$ctrl.mayApply && ($ctrl.item.status.id==3 || $ctrl.item.status.id==2 || $ctrl.item.status.id==6)">
+                ng-if="!$ctrl.mayApply && 
+                ($ctrl.item.status.id==3 || 
+                $ctrl.item.status.id==2 ||
+                $ctrl.item.status.id==4 || 
+                $ctrl.item.status.id==6)">
                 <i class="fa fa-chevron-circle-right"></i><br>
                 <span>Evaluar</span>
             </div>

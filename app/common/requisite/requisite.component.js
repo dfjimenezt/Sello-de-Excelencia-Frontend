@@ -10,7 +10,9 @@ const requisiteComponent = {
     onSave: '&',
     onMoreInformation: '&',
     onReject: '&',
-    onApprove: '&'
+    onApprove: '&',
+    onEvaluatorAccepted: '&',
+    onEvaluatorRejected: '&'
   }
 }
 

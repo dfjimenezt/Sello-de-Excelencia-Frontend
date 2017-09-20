@@ -23,11 +23,11 @@ class serviceEvaluator{
     this.question = this.request.question
     this.question.disabled = true
     this.question.evaluable = false
-    if(this.request.id_request_status === 2 || this.request.id_request_status === 3){
-      this.question.evaluable = true
+    if(this.request.id_request_status === 3){
+      this.question.acceptable = true
     }
-    if(this.request.id_request_status === 5){
-      this.question.rejected = true
+    if(this.request.id_request_status === 2 || this.request.id_request_status == 4){
+      this.question.evaluable = true
     }
     if(this.request.id_request_status === 6){
       this.question.evaluable = true
@@ -35,6 +35,9 @@ class serviceEvaluator{
     }
     if(this.request.id_request_status === 7){
       this.question.accepted = true
+    }
+    if(this.request.id_request_status === 8){
+      this.question.rejected = true
     }
     this.answer = this.request.user_answer
     this.service = this.request.service
@@ -80,15 +83,37 @@ class serviceEvaluator{
       this.openReject = false
       let rq = {
         id:this.request.id,
-        id_request_status:5 //rejected
+        id_request_status:8 //rejected
       }
       this.$http.put(this.requestEndpoint,rq).then(()=>{
-        this.request.id_request_status = 5
+        this.request.id_request_status = 8
         this.question.rejectable = false
         this.onFinished()
       })
       
     }
+  }
+  evaluatorAccepted(){
+    let rq = {
+      id:this.request.id,
+      id_request_status:4 //rejected
+    }
+    this.$http.put(this.requestEndpoint,rq).then(()=>{
+      this.request.id_request_status = 4
+      this.question.rejectable = false
+      this.onFinished()
+    })
+  }
+  evaluatorRejected(){
+    let rq = {
+      id:this.request.id,
+      id_request_status:5 //rejected
+    }
+    this.$http.put(this.requestEndpoint,rq).then(()=>{
+      this.request.id_request_status = 5
+      this.question.rejectable = false
+      this.onFinished()
+    })
   }
   approve(){
     this.openApprove = true
