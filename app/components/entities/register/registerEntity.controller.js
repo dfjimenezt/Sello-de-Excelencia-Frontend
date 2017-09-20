@@ -61,6 +61,10 @@ class RegisterEntityController {
   }
 
   selectedInstitution(item){
+    if(!item){
+      this.institution = null
+      return
+    }
     this.institution = item
     this.$http.get(this.usersEndpoint+
       '?filter_field=id_institution&filter_value='+item.id).then((results)=>{

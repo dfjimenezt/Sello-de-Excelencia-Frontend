@@ -147,9 +147,16 @@ class activityList{
     }
   }
   selectedInstitution(item){
-    this.section === 'postulate'?
-    this.postulatequery.fields['institution.id'] = item.id :
-    this.activityquery.fields['service.id_institution'] = item.id 
+    if(!item){
+      this.section === 'postulate'?
+      delete this.postulatequery.fields['institution.id'] :
+      delete this.activityquery.fields['service.id_institution']
+    }else{
+      this.section === 'postulate'?
+      this.postulatequery.fields['institution.id'] = item.id :
+      this.activityquery.fields['service.id_institution'] = item.id 
+    }
+    
     this.getData()
   }
   selectedService(item){

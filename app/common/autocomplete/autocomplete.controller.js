@@ -1,5 +1,5 @@
 class autocompleteController {
-  constructor($http) {
+  constructor($http,$document,$scope) {
     'ngInject'
     this.$http = $http
     this.query = {
@@ -7,6 +7,20 @@ class autocompleteController {
       limit: 20,
       filter: ''
     }
+    this.$scope = $scope
+    $document.on('click',this,(e)=>{
+      if(e.data.list && e.data.list.length){
+        e.data.list = []
+        e.data.value = null
+        e.data.query.filter = ''
+        e.data.onSelected({item:null})
+        e.data.$scope.$apply()
+      }
+      
+      
+      
+      
+    })
   }
   clear() {
     this.list = []

@@ -12,11 +12,20 @@ class ServiceDetailController {
 
   }
   selectedInstitution(item) {
-    this.query.fields['institution.id'] = item.id
+    if(item){
+      this.query.fields['institution.id'] = item.id
+    }else{
+      delete this.query.fields['institution.id'] 
+    }
+    
     this.getData()
   }
   selectedService(item) {
-    this.query.fields['id'] = item.id
+    if(item){
+      this.query.fields['id'] = item.id
+    }else{
+      delete this.query.fields['id']
+    }
     this.getData()
   }
   getBasic() {
