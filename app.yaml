@@ -6,12 +6,11 @@ service: prueba
 
 handlers:
 
-- url: *
+- url: /*
   static_files: dist/index.html
   upload: dist/index.html
 
-- url: /
-  static_dir: dist
+
 
 skip_files:
 - ^(.*/)?#.*#$
