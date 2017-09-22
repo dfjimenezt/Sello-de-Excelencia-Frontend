@@ -245,7 +245,8 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Evaluador - Avance'
       },
     })
-  $locationProvider.hashPrefix('!')
+  //$locationProvider.hashPrefix('!')
+  $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/')
 
   $authProvider.loginUrl = `${Api}/auth/login`
