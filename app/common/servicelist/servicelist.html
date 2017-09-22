@@ -38,6 +38,9 @@
             </div>
         </div>
         <div class="card row left-align">
+            <div class="center-align">
+                <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
+            </div>
             <table class="striped centered responsive-table" ng-if="$ctrl.list.length">
                 <!--h5 style="padding:10px">Información de interés</h5-->
                 <thead>
@@ -76,7 +79,7 @@
             </ul>
         </div>
         <div class="row">
-            <div ng-click="$ctrl.download()" class="white color-lightseagreen col m2 s12 download push-m10">
+            <div ng-if="$ctrl.category" ng-click="$ctrl.download()" class="white color-lightseagreen col m2 s12 download push-m10">
                 <span>Descargar</span> Tabla <i class="fa fa-arrow-circle-o-down"></i>
             </div>
         </div>

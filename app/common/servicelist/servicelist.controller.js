@@ -1,15 +1,16 @@
 /*global saveAs*/
 class ServiceDetailController {
-  constructor($state, $http, Api) {
+  constructor($state, $http, Api, $stateParams) {
     'ngInject'
     this.$state = $state
+    this.$stateParams = $stateParams
     this.$http = $http
     this.categoriesEndpoint = Api + '/service/category'
-    this.dataEndpoint = Api + '/service/service?simple=false&filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
+    this.dataEndpoint = Api + '/service/service?simple=false&filter_field=current_status&filter_value=8'
     this.institutionEndpoint = Api + '/place/institution'
     this.downloadEndpoint = Api + '/platform/export'
+    this.category = null
     this.getBasic()
-
   }
   selectedInstitution(item) {
     if(item){
@@ -29,9 +30,17 @@ class ServiceDetailController {
     this.getData()
   }
   getBasic() {
+    this.loading = true
     this.$http.get(this.categoriesEndpoint).then((result) => {
       this.categories = result.data.data
-      this.selectCategory(this.categories[0])
+      if(this.$stateParams.idEntity){
+        this.$http.get(this.institutionEndpoint+'?id='+this.$stateParams.idEntity)
+        .then((result)=>{
+          this.selectedInstitution(result.data.data[0])
+        })
+      }else{
+        this.selectCategory(this.categories[0])
+      }
     })
   }
   $onInit() {
@@ -56,7 +65,13 @@ class ServiceDetailController {
   getData() {
     this.list = []
     this.loading = true
-    var url = this.dataEndpoint + this.category.id
+
+
+    var url = this.dataEndpoint
+    if(this.category != null){
+      url += '&filter_field=id_category&filter_value='+this.category.id
+    }
+
     if (!url) {
       return
     }
@@ -83,7 +98,7 @@ class ServiceDetailController {
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
     this.$http.get(url).then((response) => {
       this.list = response.data.data
-      this.pager.total_count = this.list.length
+      this.pager.total_count = response.data.total_results
       this.loading = false
       this.resetPager()
     })
@@ -102,21 +117,20 @@ class ServiceDetailController {
   }
   selectCategory(category) {
     this.category = category
-
     this.getData()
   }
 
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
-    this.resetPager()
+    this.getData()
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
-    this.resetPager()
+    this.getData()
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
-    this.resetPager()
+    this.getData()
   }
 
   goTo(item) {

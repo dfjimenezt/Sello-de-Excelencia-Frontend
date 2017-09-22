@@ -90,6 +90,13 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Productos y Servicios Certificados'
       },
     })
+    .state('certifiedservices.entity',{
+      url: '/entidad/:idEntity',
+      component: 'servicelist',
+      onEnter: function(){
+        document.title = 'Productos y Servicios Certificados'
+      },
+    })
     .state('detail',{
       url: '/detalle/:id',
       component: 'servicedetail',
