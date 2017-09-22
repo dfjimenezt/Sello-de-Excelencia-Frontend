@@ -28,6 +28,9 @@ class FameListController {
       this.loading = false
     })
   }
+  goTo(){
+    this.$state.go('certifiedservices')
+  }
 }
 
 export default FameListController

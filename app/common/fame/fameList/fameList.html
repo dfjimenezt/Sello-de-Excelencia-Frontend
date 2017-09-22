@@ -22,14 +22,11 @@
                 <span>{{$ctrl.title}}</span>
             </div>
             <div class="best">
-                <fame-item class="big col s12 m12" other="first" position="1" item=$ctrl.list[0]></fame-item>
-            </div>
-            <div class="best">
-                    <fame-item class="big col m12 s12" other="second" position="2" item="$ctrl.list[1]" go-to="$ctrl.goTo(category.url)">
-                        </fame-item>
+                <fame-item class="big col s12 m12" other="first" position="1" item=$ctrl.list[0] go-to="$ctrl.goTo(category.url)"></fame-item>
             </div>
             <div class="row">
-                
+                <fame-item class="col m6 s12" other="second" position="2" item="$ctrl.list[1]" go-to="$ctrl.goTo(category.url)">
+                </fame-item>
                 <fame-item class="col m6 s12" other="third" position="3" item="$ctrl.list[2]" go-to="$ctrl.goTo(category.url)">
                 </fame-item>
                 <fame-item class="col m6 s12" other="others" position="4" item="$ctrl.list[3]" go-to="$ctrl.goTo(category.url)">
