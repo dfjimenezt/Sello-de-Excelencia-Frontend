@@ -17,7 +17,7 @@ class SliderController {
       </li>`,
       'image': 
       `<li class="white">
-        <a href="#!/banner/{{ID}}">
+        <a href="/banner/{{ID}}">
         {{BACKGROUND}}
         </a>
       </li>`
@@ -25,7 +25,7 @@ class SliderController {
     this.video_template = '<video style="background-color:#000;" src="{{VIDEO}}" poster="{{IMAGE}}" controls></video>'
     this.image_template = '<img src="{{IMAGE}}" />'
     this.caption_template = '<div class="_caption"><div class="container"><h5 class="color-white font-bold">{{TITLE}}</h5><p class="color-white summary">{{SUMMARY}}</p>{{MORE}}</div></div>'
-    this.more_template = '<a class="btn lightseagreen" href="#!/banner/{{ID}}">VER MÁS<a>'
+    this.more_template = '<a class="btn lightseagreen" href="/banner/{{ID}}">VER MÁS<a>'
   }
   $onInit() {
     this.getData()
