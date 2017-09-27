@@ -1,6 +1,34 @@
 import { resolveActiveAccount } from '../authentication/helpers.js'
 
 const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authProvider,Api) => {
+  var Evaluator = ['$q', '$state', '$auth', function($q, $state, $auth) {
+    var deferred = $q.defer();
+    if ($auth.isAuthenticated()) {
+      let user = $auth.getPayload()
+      if(user.role === 'Evaluador'){
+        deferred.resolve()
+      }else{
+        $state.go('landingPage') 
+      }
+    } else {
+      $state.go('landingPage') 
+    }
+    return deferred.promise
+  }];
+  var Entity = ['$q', '$state', '$auth', function($q, $state, $auth) {
+    var deferred = $q.defer();
+    if ($auth.isAuthenticated()) {
+      let user = $auth.getPayload()
+      if(user.role === 'Entidad'){
+        deferred.resolve()
+      }else{
+        $state.go('landingPage')
+      }
+    } else {
+      $state.go('landingPage') 
+    }
+    return deferred.promise;
+  }];
   $stateProvider
     .state('landingPage',{
       url : '/',
@@ -108,6 +136,9 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       url:'/entidad',
       abstract: true,
       component: 'profileEntity',
+      resolve: {
+        loginRequired: Entity
+      },
       onEnter: function(){
         document.title = 'Entidad'
       },
@@ -182,6 +213,9 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       url:'/evaluador',
       abstract: true,
       component: 'profileEvaluator',
+      resolve: {
+        loginRequired: Evaluator
+      },
       onEnter: function(){
         document.title = 'Evaluador'
       },
