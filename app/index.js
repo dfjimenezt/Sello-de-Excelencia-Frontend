@@ -13,7 +13,7 @@ import appComponent from './components/app/app.component'
 import appConfig from './components/app/app.config'
 
 
-const API = 'https://backend-dot-domoti-sellodeexcelencia.appspot.com/api'
+const API = 'https://backend-test-dot-domoti-sellodeexcelencia.appspot.com/api'
 //const API = 'http://localhost:3000/api'
 
 const modules = [
