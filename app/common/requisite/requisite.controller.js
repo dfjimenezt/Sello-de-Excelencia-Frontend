@@ -22,6 +22,7 @@ class requisiteController{
     var request = new XMLHttpRequest()
     if(this.item.answer){
       data.append('id',this.item.answer)
+      data.append('id_status',1)
       request.open('PUT', this.answerEndpoint)
     }else{
       request.open('POST', this.answerEndpoint)
@@ -30,6 +31,7 @@ class requisiteController{
     request.onload = function () {
       let response = JSON.parse(request.responseText)
       ctrl.loading = false
+      ctrl.item.error = false
       ctrl.item.answer = response.id
       ctrl.onSave({item:ctrl.item})
       ctrl.$scope.$apply()

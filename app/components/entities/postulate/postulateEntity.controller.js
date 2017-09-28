@@ -51,7 +51,9 @@ class postulateEntityController {
       })
   }
   activity(){
-    this.$state.go('entity.activity')
+    window.setTimeout(function($state){
+      $state.go('entity.activity')
+    },100,this.$state)
   }
   getQuestions() {
     let url = this.questionEndpoint + this.service.id_category
