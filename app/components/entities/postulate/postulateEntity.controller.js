@@ -78,6 +78,9 @@ class postulateEntityController {
           question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
+          if(this.answers[ids[question.id]].id_status == 10){
+            question.error = true
+          }
           if(question.media.url){
             question.media.name = question.media.url.substr(
               question.media.url.lastIndexOf('/')+1)

@@ -22,7 +22,7 @@ class NavbarController {
   }
 
   goProfile(){
-    if(this.$auth.getPayload().institutions.length >0){
+    if(this.$auth.getPayload().role === 'Entidad'){
       this.$state.go('entity.postulate')
     }else if(this.$auth.getPayload().role === 'Evaluador'){
       this.$state.go('evaluator.activity')

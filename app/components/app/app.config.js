@@ -2,7 +2,7 @@ import { resolveActiveAccount } from '../authentication/helpers.js'
 
 const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authProvider,Api) => {
   var Evaluator = ['$q', '$state', '$auth', function($q, $state, $auth) {
-    var deferred = $q.defer();
+    var deferred = $q.defer()
     if ($auth.isAuthenticated()) {
       let user = $auth.getPayload()
       if(user.role === 'Evaluador'){
@@ -14,9 +14,9 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       $state.go('landingPage') 
     }
     return deferred.promise
-  }];
+  }]
   var Entity = ['$q', '$state', '$auth', function($q, $state, $auth) {
-    var deferred = $q.defer();
+    var deferred = $q.defer()
     if ($auth.isAuthenticated()) {
       let user = $auth.getPayload()
       if(user.role === 'Entidad'){
@@ -27,8 +27,8 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
     } else {
       $state.go('landingPage') 
     }
-    return deferred.promise;
-  }];
+    return deferred.promise
+  }]
   $stateProvider
     .state('landingPage',{
       url : '/',
@@ -287,7 +287,7 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
       },
     })
   //$locationProvider.hashPrefix('!')
-  $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true)
   $urlRouterProvider.otherwise('/')
 
   $authProvider.loginUrl = `${Api}/auth/login`

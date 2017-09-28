@@ -68,7 +68,7 @@ class ServiceDetailController {
 
 
     var url = this.dataEndpoint
-    if(this.category != null){
+    if(this.category !== null){
       url += '&filter_field=id_category&filter_value='+this.category.id
     }
 
