@@ -1,6 +1,8 @@
 <div class="evaluation white">
-    <sign-in-citizen on-forget="$ctrl.onForget()" on-signup="$ctrl.onSignUp()" ng-if="$ctrl.signIn"></sign-in-citizen>
-    <sign-up-citizen on-forget="$ctrl.onForget()" on-signin="$ctrl.onSignIn()" ng-if="$ctrl.signUp"></sign-up-citizen>
+    <sign-in-citizen on-forget="$ctrl.onForget()" on-signup="$ctrl.onSignUp()" 
+        ng-if="$ctrl.signIn && !$ctrl.isAuthenticated()"></sign-in-citizen>
+    <sign-up-citizen on-forget="$ctrl.onForget()" on-signin="$ctrl.onSignIn()" 
+        ng-if="$ctrl.signUp && !$ctrl.isAuthenticated()"></sign-up-citizen>
     <div ng-if="!$ctrl.finished && $ctrl.isAuthenticated()">
         <form ng-submit="$ctrl.qualify()">
         <div class="row center-align">
