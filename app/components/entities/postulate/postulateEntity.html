@@ -4,12 +4,13 @@
         <div class="row">
             <div class="col m12 s12">
               <h5>Continuar con una postulación anterior:</h5>
-              <div class="input-field">
-                <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()" material-select watch>
+              <div>
+                  <label>Postulaciones por finalizar:</label>
+                <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()">
                     <option ng-value="null"> - </option>
                     <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
                 </select>
-                <label>Postulaciones por finalizar:</label>
+                
               </div>
             </div>
           </div>    
@@ -24,21 +25,21 @@
             <span>poner nombre de la entidad y en la </span><span class="color-brown">URL del producto o servicio</span> la URL del portal web de la entidad</span>
         </div>
         <div class="col m6 s12">
-          <div class="input-field">
-            <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id" material-select watch>
+          <div>
+              <label>Categoría:</label>
+            <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id">
                 <option ng-value="category.id" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
             </select>
-            <label>Categoría:</label>
           </div>
         </div>
         <div class="col m6 s12">
-          <div class="input-field">
-            <select ng-model="$ctrl.service.level" ng-disabled="$ctrl.service.id" material-select>
-                                  <option ng-value="1">1</option>
-                                  <option ng-value="2">2</option>
-                                  <option ng-value="3">3</option>
-                                </select>
-            <label>Nivel:</label>
+          <div>
+              <label>Nivel:</label>
+            <select ng-model="$ctrl.service.level" ng-disabled="$ctrl.service.id">
+              <option ng-value="1">1</option>
+              <option ng-value="2">2</option>
+              <option ng-value="3">3</option>
+            </select>
           </div>
         </div>
       </div>

@@ -28,11 +28,12 @@
         </div>
 
         <div class="col m6 s12">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_institution_type" material-select watch>
+          <div>
+              <label>Tipo de entidad:</label>
+            <select ng-model="$ctrl.institution.id_institution_type">
                 <option ng-value="{{type.id}}" ng-repeat="type in $ctrl.institutionTypes">{{type.name}}</option>
               </select>
-            <label>Tipo de entidad:</label>
+            
           </div>
         </div>
         <div class="col m6 s12">
@@ -45,27 +46,28 @@
         </div>
 
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_country" ng-change="$ctrl.getRegions('institution')" material-select watch>
-                        <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
-                      </select>
-            <label>País:</label>
+          <div>
+              <label>País:</label>
+            <select ng-model="$ctrl.institution.id_country" ng-change="$ctrl.getRegions('institution')">
+              <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
+            </select>
+            
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_region" ng-change="$ctrl.getCities('institution')" material-select watch>
+          <div>
+            <label>Región:</label>
+            <select ng-model="$ctrl.institution.id_region" ng-change="$ctrl.getCities('institution')">
               <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.institutionregions">{{region.name}}</option>
             </select>
-            <label>Región:</label>
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_city" material-select watch>
+          <div>
+            <label>Ciudad:</label>
+            <select ng-model="$ctrl.institution.id_city">
               <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.institutioncities">{{city.name}}</option>
             </select>
-            <label>Ciudad:</label>
           </div>
         </div>
       </div>
@@ -113,11 +115,12 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_type_document" material-select watch required>
-                  <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
-                </select>
-            <label><strong class="red-text">*</strong> Tipo de documento:</label>
+          <div>
+              <label><strong class="red-text">*</strong> Tipo de documento:</label>
+            <select ng-model="$ctrl.register.id_type_document"required>
+              <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
+            </select>
+            
           </div>
         </div>
         <div class="col s12 m6">
@@ -128,27 +131,27 @@
         </div>
 
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
-                    <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
-                  </select>
+          <div>
             <label>País:</label>
+            <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()">
+                <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
+            </select>
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()" material-select watch>
-                        <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.registerregions">{{region.name}}</option>
-                      </select>
+          <div>
             <label>Región:</label>
+            <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()">
+              <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.registerregions">{{region.name}}</option>
+            </select>
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_city" material-select watch>
-                        <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.registercities">{{city.name}}</option>
-                      </select>
+          <div>
             <label>Ciudad:</label>
+            <select ng-model="$ctrl.register.id_city">
+              <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.registercities">{{city.name}}</option>
+            </select>
           </div>
         </div>
         <div class="col m6 s12">

@@ -71,127 +71,42 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_institution_type" material-select watch>
+          <div >
+              <label>Tipo de entidad:</label>
+            <select ng-model="$ctrl.institution.id_institution_type">
                     <option ng-value="{{type.id}}" ng-repeat="type in $ctrl.institutionTypes">{{type.name}}</option>
                   </select>
-            <label>Tipo de entidad:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_country" ng-change="$ctrl.getRegions('institution')" material-select watch>
+          <div >
+              <label>País:</label>
+            <select ng-model="$ctrl.institution.id_country" ng-change="$ctrl.getRegions('institution')">
                         <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
                       </select>
-            <label>País:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.id_region" ng-change="$ctrl.getCities('institution')" material-select watch>
+          <div >
+              <label>Región:</label>
+            <select ng-model="$ctrl.institution.id_region" ng-change="$ctrl.getCities('institution')" >
                           <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.institutionregions">{{region.name}}</option>
                         </select>
-            <label>Región:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
           <div class="input-field">
-            <select ng-model="$ctrl.institution.id_city" material-select watch>
+              <label>Ciudad:</label>
+            <select ng-model="$ctrl.institution.id_city">
                           <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.institutioncities">{{city.name}}</option>
                         </select>
-            <label>Ciudad:</label>
+            
           </div>
         </div>
-        <!--div class="col s12 center-align">
-          <div class="input-field">
-            <input type="checkbox" id="institution_head_sector" ng-click="$ctrl.institution.head_sector == 1 ? $ctrl.institution.head_sector= 0:$ctrl.institution.head_sector=1"
-              ng-checked="$ctrl.institution.head_sector == 1" />
-            <label for="institution_head_sector"><strong class="red-text">*</strong>Es cabeza de sector</label>
-          </div>
-        </div-->
       </div>
-      <!--div class="row">
-        <div class="col s12">
-          <span style="margin-left:-30px" class="font-bold color-lightseagreen">Información del representante legal.</span>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_name" type="text" class="validate" ng-model="$ctrl.institution.legalrep_name" required>
-            <label for="institution_legalrep_name" data-error="Ingresa el nombre del representante legal de la entidad" data-success="Ok">
-                    <strong class="red-text">*</strong> Nombre:
-                  </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_secondname" type="text" class="validate" ng-model="$ctrl.institution.legalrep_secondname"
-              required>
-            <label for="institution_legalrep_secondname" data-error="Ingresa el segundo nombre del representante legal de la entidad"
-              data-success="Ok">
-                      <strong class="red-text">*</strong> Segundo Nombre:
-                    </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_lastname" type="text" class="validate" ng-model="$ctrl.institution.legalrep_lastname" required>
-            <label for="institution_legalrep_lastname" data-error="Ingresa el apellido del representante legal de la entidad" data-success="Ok">
-                        <strong class="red-text">*</strong> Apellido:
-                      </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_secondlastname" type="text" class="validate" ng-model="$ctrl.institution.legalrep_secondlastname"
-              required>
-            <label for="institution_legalrep_secondlastname" data-error="Ingresa el segundo apellido del representante legal de la entidad"
-              data-success="Ok">
-                          <strong class="red-text">*</strong> Segundo Apellido:
-                        </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.institution.legalrep_typedoc" material-select watch>
-                          <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
-                        </select>
-            <label>Tipo de documento:</label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_document" type="text" class="validate" ng-model="$ctrl.institution.legalrep_document" required>
-            <label for="institution_legalrep_document" data-error="Ingresa el documento del representante legal de la entidad" data-success="Ok">
-                            <strong class="red-text">*</strong> Documento:
-                          </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_email" type="email" class="validate" ng-model="$ctrl.institution.legalrep_email" required>
-            <label for="institution_legalrep_email" data-error="Ingresa el correo electrónico del representante legal de la entidad"
-              data-success="Ok">
-                              <strong class="red-text">*</strong> Correo electrónico:
-                            </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_phone" type="text" class="validate" ng-model="$ctrl.institution.legalrep_phone" required>
-            <label for="institution_legalrep_phone" data-error="Ingresa el teléfono del representante legal de la entidad" data-success="Ok">
-                                <strong class="red-text">*</strong> Teléfono:
-                              </label>
-          </div>
-        </div>
-        <div class="col s12 m6">
-          <div class="input-field">
-            <input id="institution_legalrep_mobile" type="text" class="validate" ng-model="$ctrl.institution.legalrep_mobile" required>
-            <label for="institution_legalrep_mobile" data-error="Ingresa el teléfono móvil del representante legal de la entidad" data-success="Ok">
-                                  <strong class="red-text">*</strong> Teléfono móvil:
-                                </label>
-          </div>
-        </div>
-      </div-->
       <div class="row center-align">
         <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="entityProfileForm.$invalid">
               <i class="material-icons right">send</i>Actualizar
@@ -243,11 +158,12 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_type_document" material-select watch>
+          <div >
+              <label>Tipo de documento:</label>
+            <select ng-model="$ctrl.register.id_type_document">
                   <option ng-value="{{typedoc.id}}" ng-repeat="typedoc in $ctrl.document_types">{{typedoc.name}}</option>
                 </select>
-            <label>Tipo de documento:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
@@ -257,27 +173,30 @@
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()" material-select watch>
+          <div>
+            <label>País:</label>
+            <select ng-model="$ctrl.register.id_country" ng-change="$ctrl.getRegions()">
                     <option ng-value="{{country.id}}" ng-repeat="country in $ctrl.countries">{{country.name}}</option>
                   </select>
-            <label>País:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()" material-select watch>
+          <div>
+              <label>Región:</label>
+              <select ng-model="$ctrl.register.id_region" ng-change="$ctrl.getCities()">
                       <option ng-value="{{region.id}}" ng-repeat="region in $ctrl.registerregions">{{region.name}}</option>
                     </select>
-            <label>Región:</label>
+            
           </div>
         </div>
         <div class="col s12 m6">
-          <div class="input-field">
-            <select ng-model="$ctrl.register.id_city" material-select watch>
+          <div>
+              <label>Ciudad:</label>
+            <select ng-model="$ctrl.register.id_city">
                       <option ng-value="{{city.id}}" ng-repeat="city in $ctrl.registercities">{{city.name}}</option>
                     </select>
-            <label>Ciudad:</label>
+            
           </div>
         </div>
         <div class="col m6 s12">

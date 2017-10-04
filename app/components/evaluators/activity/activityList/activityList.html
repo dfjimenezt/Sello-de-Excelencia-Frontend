@@ -7,14 +7,13 @@
             </div>
             <div class="col m2 s12">
                 <select ng-model="$ctrl.query.fields['category.id']" 
-                    material-select watch 
                     ng-change="$ctrl.getData()">
                                     <option ng-value="null" selected>Todas las categorías</option>
                                     <option ng-value="{{category.id}}" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
                                 </select>
             </div>
             <div class="col m3 s12">
-                <select ng-model="$ctrl.query.fields['topic.id']" material-select watch ng-change="$ctrl.getData()">
+                <select ng-model="$ctrl.query.fields['topic.id']" ng-change="$ctrl.getData()">
                     <option ng-value="null" selected>Todas las temáticas</option>
                     <option ng-value="{{topic.id}}" 
                     ng-if="topic.id_category == $ctrl.query.fields['category.id']"
@@ -23,7 +22,7 @@
             </div>
             <div class="col m2 s12">
                 <select ng-model="$ctrl.query.fields.level" 
-                    material-select ng-change="$ctrl.getData()">
+                    ng-change="$ctrl.getData()">
                     <option ng-value="null" selected>Todos los niveles</option>
                     <option value="1" >1</option>
                     <option value="2" >2</option>
