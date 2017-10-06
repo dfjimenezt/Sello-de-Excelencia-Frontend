@@ -130,7 +130,7 @@ class dataEntityController{
     this.getTopics()
   }
   updateUser(){
-    this.$http.put(this.userEndpoint,this.register).then((result)=>{
+    this.$http.put(this.userEndpoint,this.register).then(()=>{
       return this.$http.post(this.renewTokenEndpoint,null)
     }).then((result)=>{
       this.$auth.setToken(result.data.token)
