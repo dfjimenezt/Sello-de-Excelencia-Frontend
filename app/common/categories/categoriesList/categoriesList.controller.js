@@ -14,13 +14,15 @@ class CategoryListController {
             id:1, 
             title: 'Postula un producto o servicio', 
             img: 'assets/img/postular.png', 
-            stateUrl: 'entity.postulate',
+            //stateUrl: 'entity.postulate',
+            stateUrl: 'tmppostulate'
           },
           {
             id:2, 
             title: 'Ingresa a la sección Aprende y Enseña', 
             img: 'assets/img/comunidad.png', 
-            stateUrl: 'entity.learn'
+            //stateUrl: 'entity.learn'
+            stateUrl: 'https://goo.gl/forms/cUsmLJEVs7c0sdSf2'
           },
           {
             id:3, 
@@ -35,13 +37,15 @@ class CategoryListController {
             id:1, 
             title: 'Evalúa requisitos de los productos postulados', 
             img: 'assets/img/postular.png', 
-            stateUrl: 'evaluator.activity',
+            //stateUrl: 'evaluator.activity',
+            stateUrl: 'tmppostulate'
           },
           {
             id:2, 
             title: 'Ingresa a la sección Aprende y Enseña', 
             img: 'assets/img/comunidad.png', 
-            stateUrl: 'evaluator.learn'
+            //stateUrl: 'evaluator.learn'
+            stateUrl: 'https://goo.gl/forms/cUsmLJEVs7c0sdSf2'
           },
           {
             id:3, 
