@@ -125,6 +125,10 @@
           <div class="col s12">
             <span style="margin-left:-30px" class="font-bold color-lightseagreen">Categorías a Evaluar</span>
           </div>
+          <span>Elige al menos una de las siguientes </span><span class="color-brown">categorías.</span><br>
+          <span>Una vez elijas la categoría deberás seleccionar un </span>
+          <span class="color-brown">perfil</span> 
+          <span>y cualquiera de las </span><span class="color-brown">temáticas de interés</span> que se despliegan</span>
           <div class="row" ng-repeat="category in $ctrl.categories">
             <div class="col s12 m12">
               <div class="divider" ng-if="$index > 0"></div>
@@ -169,7 +173,10 @@
         </label>
       </div>
       <div class="row center-align">
-        <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="registerEvaluatorForm.$invalid || !$ctrl.register.terms">
+        <span class="color-red">{{$ctrl.error}}</span><br>
+        <span class="color-red" ng-if="$ctrl.register.topics.length == 0">* Debes seleccionar al menos una categoría y temática de interés</span><br>
+        <button type="submit" class="waves-effect waves-light btn-large" 
+          ng-disabled="registerEvaluatorForm.$invalid || !$ctrl.register.terms || $ctrl.register.topics.length == 0">
               <i class="material-icons right">send</i>
               Registrar
             </button>
@@ -193,7 +200,7 @@
     <div class="center-align footer">
       <span>Hemos enviado un mensaje al correo electrónico registrado <br> confirmando tus datos</span>
       <br>
-      <a class="btn brown modal-action modal-close">Cerrar</a>
+      <a class="btn brown modal-action modal-close" ng-click="$ctrl.goHome()">Cerrar</a>
     </div>
   </div>
 </section>

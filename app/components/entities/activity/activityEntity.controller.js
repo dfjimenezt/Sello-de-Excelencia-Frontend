@@ -8,7 +8,7 @@ class activityEntityController {
       this.setSection('certified')
     }else{
       let array = this.$state.current.name.split('.')
-      this.section = array[array.length-1]
+      this.section = array[2]
     }
     this.user = $auth.getPayload()
   }

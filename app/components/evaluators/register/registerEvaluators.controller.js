@@ -16,6 +16,7 @@ class RegisterEvaluatorController {
     this.userEndpoint = Api + '/configuration/user'
     this.registerEndpoint = Api + '/auth/register_evaluator'
     this.openConfirmation = false
+    
   }
 
   getAvailabilities(){
@@ -141,8 +142,11 @@ class RegisterEvaluatorController {
   sendRegister(){
     this.$http.post(this.registerEndpoint,this.register).then((/*result*/)=>{
       this.openConfirmation = true
-      
       this.section = 2
+    }).catch((result)=>{
+      if(result.data.error.code == 201){
+        this.error = 'El usuario ya se encuentra registrado.'
+      }
     })
   }
   update(){
@@ -151,6 +155,11 @@ class RegisterEvaluatorController {
       this.toastr.success('Datos enviados exitosamente.','Registrar Evaluador')
       
     })
+  }
+  goHome(){
+    window.setTimeout(function($state){
+      $state.go('landingPage')
+    },100,this.$state)
   }
 }
 
