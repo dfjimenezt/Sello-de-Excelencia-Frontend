@@ -90,6 +90,13 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Términos y Condiciones'
       },
     })
+    .state('tmppostulate',{
+      url: '/postular',
+      component: 'tmppostulate',
+      onEnter: function(){
+        document.title = 'Postular tus servicios'
+      },
+    })
     .state('banner',{
       url: '/banner/:id',
       component: 'bannerDetail',

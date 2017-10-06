@@ -78,13 +78,15 @@ class CategoryListController {
           id:1, 
           title: '¿Quieres postular tu producto o servicio?', 
           img: 'assets/img/postular.png', 
-          stateUrl: 'registerEntity',
+          //stateUrl: 'registerEntity',
+          stateUrl: 'tmppostulate'
         },
         {
           id:2, 
           title: '¿Quieres ser parte de la comunidad evaluadora?', 
           img: 'assets/img/comunidad.png', 
-          stateUrl: 'registerEvaluator',
+          //stateUrl: 'registerEvaluator',
+          stateUrl: 'https://goo.gl/forms/cUsmLJEVs7c0sdSf2'
         },
         {
           id:3, 

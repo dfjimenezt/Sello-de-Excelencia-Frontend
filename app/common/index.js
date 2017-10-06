@@ -18,7 +18,7 @@ import requisiteitemComponent from './requisiteitem/requisiteitem.component'
 import serviceitemComponent from './serviceitem/serviceitem.component'
 import commentitemComponent from './commentitem/commentitem.component'
 import autocompleteComponent from './autocomplete/autocomplete.component'
-
+import tmppostulateComponent from './tmppostulate/tmppostulate.component'
 const common = angular
   .module('qualityStamp.common',[categoriesModule,fameModule])
   .component('landingPage',landingPage)
@@ -38,6 +38,7 @@ const common = angular
   .component('requisiteItem',requisiteitemComponent)
   .component('commentItem',commentitemComponent)
   .component('autocomplete',autocompleteComponent)
+  .component('tmppostulate',tmppostulateComponent)
   .name
 
 export default common
