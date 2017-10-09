@@ -1,5 +1,5 @@
 class activityEvaluatorController {
-  constructor(Api, $http, $state,$auth) {
+  constructor(Api, $http, $state,$auth,$scope) {
     'ngInject'
     this.Api = Api
     this.$state = $state
@@ -11,9 +11,16 @@ class activityEvaluatorController {
       this.section = array[2]
     }
     this.user = $auth.getPayload()
+    let ctrl = this
+    $scope.$watch(function(){
+      return $state.$current.name
+    }, function(newVal, oldVal){
+      if(newVal.indexOf('evaluator.activity') === 0){
+        ctrl.section = newVal.split('.')[2]
+      }
+    })
   }
   setSection(section) {
-    this.section = section
     this.$state.go('evaluator.activity.'+section)
   }
   

@@ -9,7 +9,7 @@ class postulateEvaluatorController{
       total_pages:0
     }
     this.query = {
-      limit: 20,
+      limit: 5,
       page: 1,
       fields:{
         level:null,

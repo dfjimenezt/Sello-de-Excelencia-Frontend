@@ -21,7 +21,7 @@
           <i class="material-icons">zoom_in</i>
         </a>
       </li>
-      <!--li ng-show="!$ctrl.isAuthenticated()">
+      <li ng-show="!$ctrl.isAuthenticated()">
         <a href="/sign-in" class="color-brown">
           <i class="material-icons left">person</i>
           Iniciar sesión
@@ -34,7 +34,7 @@
           <span ng-if="$ctrl.getCurrentUser().name">{{$ctrl.getCurrentUser().name}} {{$ctrl.getCurrentUser().lastname}}</span>
           <span ng-if="!$ctrl.getCurrentUser().name">{{$ctrl.getCurrentUser().email}}</span>      
         </a>
-      </li!-->
+      </li>
     </ul>
     <!--moble -->
     <ul class="side-nav" id="mobile-demo">

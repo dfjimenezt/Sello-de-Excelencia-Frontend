@@ -11,9 +11,16 @@ class activityEntityController {
       this.section = array[2]
     }
     this.user = $auth.getPayload()
+    let ctrl = this
+    $scope.$watch(function(){
+      return $state.$current.name
+    }, function(newVal, oldVal){
+      if(newVal.indexOf('entity.activity') === 0){
+        ctrl.section = newVal.split('.')[2]
+      }
+    })
   }
   setSection(section) {
-    this.section = section
     this.$state.go('entity.activity.'+section)
   }
   
