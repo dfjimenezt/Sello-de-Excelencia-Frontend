@@ -167,7 +167,8 @@
                 </label>
     </div>
     <div class="row center-align">
-      <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="evaluatorProfileForm.$invalid || !$ctrl.register.terms">
+      <span class="color-red" ng-if="$ctrl.register.topics.length == 0">* Debes seleccionar al menos una categoría y temática de interés</span><br>
+      <button type="submit" class="waves-effect waves-light btn-large" ng-disabled="evaluatorProfileForm.$invalid || !$ctrl.register.terms || $ctrl.register.topics.length == 0">
                       <i class="material-icons right">send</i>
                       Actualizar
                     </button>
