@@ -45,15 +45,22 @@ class SignInController {
         this.loadding = false
         let user = this.$auth.getPayload()
         if(user.tmp_pwd === 1){
-          this.$state.go('changePwd')
+          this.$state.go('changePwd').then(()=>{
+            window.location.reload()
+          })
         }else if(user.institutions.length >0){
-          this.$state.go('entity.postulate')
+          this.$state.go('entity.postulate').then(()=>{
+            window.location.reload()
+          })
         }else if(user.role === 'Evaluador'){
-          this.$state.go('evaluator.activity')
+          this.$state.go('evaluator.activity').then(()=>{
+            window.location.reload()
+          })
         }else{
-          this.$state.go('landingPage')
+          this.$state.go('landingPage').then(()=>{
+            window.location.reload()
+          })
         }
-        
       })
       .catch(({ data: { error } }) => {
         const CODE_USER_NOT_ACTIVE = 203

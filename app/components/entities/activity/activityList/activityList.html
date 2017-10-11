@@ -27,18 +27,19 @@
     <a modal data-target="certificate" open="$ctrl.openCertificate"></a>
 </div>
 <div id="certificate" class="modal center-align">
-        <img src="assets/img/diploma.png" alt="diploma">
-        <div class="certificate-content">
-            <div class="title">CERTIFICADO</div>
-            <div class="subtitle">DE RECONOCIMIENTO</div>
-            <div class="intro">EL MINISTERIO DE TECNOLOGÍAS DE LA INFORMACIÓN Y LAS</div>
-            <div class="intro">COMUNICACIONES A TRAVÉS DE LA DIRECCIÓN DE GOBIERNO DIGITAL</div>
-            <div class="pre">CERTIFICA QUE</div>
-            <div class="entity">{{$ctrl.certificate.entity | uppercase}}</div>
-            <div class="pre">SE POSTULÓ Y CUMPLIÓ CON LOS REQUISITOS DE CALIDAD EXIGIDOS POR</div>
-            <div class="pre">EL MINISTERIO TIC, PARA EL NIVEL <span class="entity">{{$ctrl.certificate.level}}</span> Y LE OTORGA EL SELLO DE EXCELENCIA</div>
-            <div class="pre">GOBIERNO DIGITAL AL PRODUCTO <span class="entity">{{$ctrl.certificate.product | uppercase}}</span></div>
-        </div>
-        <div class="signature">DIRECTORA DE GOBIERNO DIGITAL</div>
-        <div class="certification-date">{{$ctrl.certificate.date | date:'dd -   MMMM - yyyy'}}</div>
+    <div class="background" alt="diploma"></div>
+    <img class="background" src="/assets/img/diploma.png"/>
+    <div class="certificate-content">
+        <div class="title">CERTIFICADO</div>
+        <div class="subtitle">DE RECONOCIMIENTO</div>
+        <div class="intro">EL MINISTERIO DE TECNOLOGÍAS DE LA INFORMACIÓN Y LAS</div>
+        <div class="intro">COMUNICACIONES A TRAVÉS DE LA DIRECCIÓN DE GOBIERNO DIGITAL</div>
+        <div class="pre">CERTIFICA QUE</div>
+        <div class="entity">{{$ctrl.certificate.entity | uppercase}}</div>
+        <div class="pre">SE POSTULÓ Y CUMPLIÓ CON LOS REQUISITOS DE CALIDAD EXIGIDOS POR</div>
+        <div class="pre">EL MINISTERIO TIC, PARA EL NIVEL <span class="entity">{{$ctrl.certificate.level}}</span> Y LE OTORGA EL SELLO DE EXCELENCIA</div>
+        <div class="pre">GOBIERNO DIGITAL AL PRODUCTO <span class="entity">{{$ctrl.certificate.product | uppercase}}</span></div>
     </div>
+    <div class="signature">DIRECTORA DE GOBIERNO DIGITAL</div>
+    <div class="certification-date">{{$ctrl.certificate.date | date:'dd -   MMMM - yyyy'}}</div>
+</div>

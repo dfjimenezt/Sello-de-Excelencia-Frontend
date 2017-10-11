@@ -185,6 +185,13 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Entidad - Actividad - En Proceso'
       },
     })
+    .state('entity.activity.validation',{
+      url:'/verificacion',
+      component:'activityEntityList',
+      onEnter: function(){
+        document.title = 'Entidad - Actividad - En Verificación'
+      },
+    })
     .state('entity.activity.rejected',{
       url:'/rechazadas',
       component:'activityEntityList',

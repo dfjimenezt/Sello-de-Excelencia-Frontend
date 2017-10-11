@@ -6,12 +6,19 @@ class NavbarController {
     this.$state = $state
     this.$http = $http
     this.logoEndpoint = Api + '/configuration/config'
+    this.canAdvance = true
   }
 
   $onInit(){
     this.$http.get(this.logoEndpoint).then((result)=>{
       this.logo_header = result.data.data[0].header
     })
+    this.canAdvance = true
+    if(this.$auth.getPayload().role){
+      if(this.$auth.getPayload().role === 'Ciudadano'){
+        this.canAdvance = false
+      }
+    }
   }
   isAuthenticated() {
     return this.$auth.isAuthenticated()
@@ -23,11 +30,24 @@ class NavbarController {
 
   goProfile(){
     if(this.$auth.getPayload().role === 'Entidad'){
-      this.$state.go('entity.postulate')
+      this.$state.go('entity.profile')
     }else if(this.$auth.getPayload().role === 'Evaluador'){
-      this.$state.go('evaluator.activity')
+      this.$state.go('evaluator.profile')
     }else{
-      this.$state.go('landingPage')
+      this.$state.go('landingPage').then(()=>{
+        window.location.reload()
+      })
+    }
+  }
+  goAdvance(){
+    if(this.$auth.getPayload().role === 'Entidad'){
+      this.$state.go('entity.advance')
+    }else if(this.$auth.getPayload().role === 'Evaluador'){
+      this.$state.go('evaluator.advance')
+    }else{
+      this.$state.go('landingPage').then(()=>{
+        window.location.reload()
+      })
     }
   }
   goChangePwd(){

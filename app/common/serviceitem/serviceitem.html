@@ -10,8 +10,14 @@
         <div class="gainsboro row">
             <div class="content">
                 <div>{{$ctrl.item.name}}</div>
-                <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
-                <span>Fecha de cerficación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                <div ng-if="$ctrl.item.status.id_status==8">
+                    <span>Fecha de cerficación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
+                    <span>Fecha de vigencia: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                </div>
+                <div ng-if="$ctrl.item.status.id_status==1">
+                    <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span><br>
+                    <span>Fecha de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                </div>
             </div>
             <div class="action color-green center-align"
                 ng-click="$ctrl.onCertificate($ctrl.item)"

@@ -15,7 +15,7 @@ class profileEntityController {
     let ctrl = this
     $scope.$watch(function(){
       return $state.$current.name
-    }, function(newVal, oldVal){
+    }, function(newVal){
       if(newVal.indexOf('evaluator') === 0){
         ctrl.section = newVal.split('.')[1]
       }

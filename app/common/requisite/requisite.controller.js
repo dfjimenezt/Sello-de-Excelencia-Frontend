@@ -32,7 +32,14 @@ class requisiteController{
       let response = JSON.parse(request.responseText)
       ctrl.loading = false
       ctrl.item.error = false
-      ctrl.item.answer = response.id
+      if(response.id){
+        ctrl.item.answer = response.id
+      }
+      if(response.media){
+        ctrl.item.media = response.media
+        ctrl.item.media.name = ctrl.item.media.url.substr(ctrl.item.media.url.lastIndexOf('/')+1)
+        ctrl.item.canDelete = true
+      }
       ctrl.onSave({item:ctrl.item})
       ctrl.$scope.$apply()
     }

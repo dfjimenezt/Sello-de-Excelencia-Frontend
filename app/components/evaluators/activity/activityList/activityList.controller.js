@@ -56,7 +56,7 @@ class activityList{
     }
     if(this.section === 'finished'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = ['7','5']
+      this.query.fields.id_request_status = ['7','8']
     }
     if(this.section === 'postulate'){
       this.query = this.postulatequery

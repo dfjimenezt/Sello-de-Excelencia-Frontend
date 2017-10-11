@@ -77,8 +77,8 @@
       Perfil
     </a>
   </li>
-  <li>
-      <a ng-click="$ctrl.goProfile()">
+  <li ng-if="$ctrl.canAdvance">
+      <a ng-click="$ctrl.goAdvance()">
         <i class="material-icons right">show_chart</i>
         Mi Avance
       </a>

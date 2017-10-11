@@ -1,5 +1,5 @@
 class activityEntityController {
-  constructor(Api, $http, $state,$auth) {
+  constructor(Api, $http, $state,$auth,$scope) {
     'ngInject'
     this.Api = Api
     this.$state = $state
@@ -14,7 +14,7 @@ class activityEntityController {
     let ctrl = this
     $scope.$watch(function(){
       return $state.$current.name
-    }, function(newVal, oldVal){
+    }, function(newVal){
       if(newVal.indexOf('entity.activity') === 0){
         ctrl.section = newVal.split('.')[2]
       }

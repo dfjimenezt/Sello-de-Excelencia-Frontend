@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col s12 m6">
           <div class="input-field">
-            <input id="institution_name" type="text" class="validate" ng-model="$ctrl.institution.name" required>
+            <input id="institution_name" type="text" class="validate" ng-model="$ctrl.institution.name" nd-disabled="true">
             <label for="institution_name" data-error="Ingresa el nombre de la entidad" data-success="Ok">
                   <strong class="red-text">*</strong> Nombre:
                 </label>
@@ -129,8 +129,8 @@
         </div>
         <div class="col s12 m6">
           <div class="input-field">
-            <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.secondname" required>
-            <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok"><strong class="red-text">*</strong> Segundo Nombre:</label>
+            <input id="second_name" type="text" class="validate" ng-model="$ctrl.register.secondname">
+            <label for="second_name" data-error="Ingresa tu segundo nombre" data-success="Ok">Segundo Nombre:</label>
           </div>
         </div>
         <div class="col s12 m6">

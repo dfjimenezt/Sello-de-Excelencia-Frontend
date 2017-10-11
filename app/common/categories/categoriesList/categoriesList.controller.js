@@ -1,10 +1,12 @@
 class CategoryListController {
-  constructor($state,$window,$auth) {
+  constructor($state,$window,$auth,$rootScope) {
     'ngInject'
     this.$window = $window
     this.$auth = $auth
     this.$state = $state
+    this.$rootScope = $rootScope
   }
+    
   
   $onInit() {
     if(this.$auth.isAuthenticated()){

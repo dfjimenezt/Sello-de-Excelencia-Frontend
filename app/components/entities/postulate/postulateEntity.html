@@ -93,10 +93,11 @@
     on-save="$ctrl.createAnswer(item)" 
     ng-repeat="item in $ctrl.questions">
   </requisite>
-  <div class="row center-align">
+  <div class="row center-align" ng-if="$ctrl.service.id">
+    <span class="color-brown">Debes completar todos los requisitos para poder postular el servicio</span><br>
       <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" 
       class="btn brown" 
-      ng-if="$ctrl.canPostulate" 
+      ng-disabled="!$ctrl.canPostulate" 
       ng-click="$ctrl.finishPostulation()"type="button">
       POSTULAR SERVICIO</button>
   </div>
