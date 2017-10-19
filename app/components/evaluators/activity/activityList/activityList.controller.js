@@ -154,7 +154,7 @@ class activityList{
     }else{
       this.section === 'postulate'?
       this.postulatequery.fields['institution.id'] = item.id :
-      this.activityquery.fields['service.id_institution'] = item.id 
+      this.activityquery.fields['institution.id'] = item.id 
     }
     
     this.getData()

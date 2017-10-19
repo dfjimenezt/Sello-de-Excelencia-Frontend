@@ -6,11 +6,13 @@
         </div>
     </div>
     <div class="service-item-content">
-        <div class="brown color-white">{{$ctrl.item.topic.name}} <span class="pull-right" style="margin-right:5px">{{$ctrl.item.question.id}}</span></div>
+        <div class="brown color-white">{{$ctrl.item.topic.category.name}} <span class="pull-right" style="margin-right:5px">{{$ctrl.item.question.id}}</span></div>
         <div class="gainsboro row">
             <div class="content">
-                <div class="color-black">{{$ctrl.item.service.name}}</div>
-                <div>{{$ctrl.item.question.text }}</div>
+                <div class="color-black">{{$ctrl.item.topic.name}}</div>
+                <div class="color-black">{{$ctrl.item.service.institution.name}}</div>
+                <div class="color-lightseagreen">{{$ctrl.item.service.name}}</div>
+                <!--div>{{$ctrl.item.question.text }}</div-->
             </div>
             <div class="action center-align color-lightgray"
                 ng-click="$ctrl.onRejected()"
@@ -42,7 +44,7 @@
             </div>
             <div class="action color-red center-align"
                 ng-click="$ctrl.onSelected()"
-                ng-if="!$ctrl.mayApply && $ctrl.item.status.id==5">
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id==8">
                 <i class="fa fa-times"></i><br>
                 <span style="display:block;width:59px;margin: auto;">No Cumple</span>
             </div>

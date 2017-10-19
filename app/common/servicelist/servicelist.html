@@ -14,13 +14,13 @@
                 <autocomplete on-selected="$ctrl.selectedInstitution(item)" endpoint="$ctrl.institutionEndpoint" placeholder="Nombre de la entidad"></autocomplete>                
             </div>
             <div class="col m3 s12">
-                <autocomplete on-selected="$ctrl.selectedService(item)" endpoint="$ctrl.dataEndpoint + $ctrl.category.id" placeholder="Nombre del producto o servicio"></autocomplete>
+                <autocomplete on-selected="$ctrl.selectedService(item)" endpoint="$ctrl.dataEndpoint + '&filter_field=id_category&filter_value=' + $ctrl.category.id" placeholder="Nombre del producto o servicio"></autocomplete>
             </div>
             <div class="col m2 s12">
-                <input ng-model="$ctrl.query.fields.timestamp" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de postulación"></input>
+                <input ng-model="$ctrl.query.fields.postulation" format="yyyy-mm-dd" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de postulación"></input>
             </div>
             <div class="col m2 s12">
-                <input ng-model="$ctrl.query.certification" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de certificación"></input>
+                <input ng-model="$ctrl.query.fields.certification" format="yyyy-mm-dd" ng-change="$ctrl.getData()" class="datepicker" placeholder="Fecha de certificación"></input>
             </div>
             <div class="col m1 s12">
                 <a class="btn-floating waves-effect waves-dark  white"

@@ -6,7 +6,7 @@ class ServiceDetailController {
     this.$stateParams = $stateParams
     this.$http = $http
     this.categoriesEndpoint = Api + '/service/category'
-    this.dataEndpoint = Api + '/service/service?simple=false&filter_field=current_status&filter_value=8'
+    this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=current_status&filter_value=8'
     this.institutionEndpoint = Api + '/place/institution'
     this.downloadEndpoint = Api + '/platform/export'
     this.category = null
@@ -58,14 +58,13 @@ class ServiceDetailController {
       selectYears: 15, // Creates a dropdown of 15 years to control year,
       today: 'Hoy',
       clear: 'Limpiar',
-      close: 'Aceptar',
+      close: 'Cerrar',
       closeOnSelect: false // Close upon selecting a date,
     })
   }
   getData() {
     this.list = []
     this.loading = true
-
 
     var url = this.dataEndpoint
     if(this.category !== null){
@@ -87,6 +86,13 @@ class ServiceDetailController {
             params.push('filter_field=' + field + '&filter_value=' + value)
           })
         } else {
+          if(field == 'postulation' || field == 'certification'){
+            var d = new Date(values)
+            if(isNaN( d.getTime())){
+              continue
+            }
+            values = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()
+          }
           params.push('filter_field=' + field + '&filter_value=' + values)
         }
       }

@@ -7,6 +7,7 @@ const requisiteItemComponent = {
   template,
   bindings:{
     item:'<',
+    categories:'<',
     mayApply:'<',
     onSelected:'&',
     onAccepted:'&',
