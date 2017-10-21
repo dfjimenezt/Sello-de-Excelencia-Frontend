@@ -14,9 +14,11 @@ class NavbarController {
       this.logo_header = result.data.data[0].header
     })
     this.canAdvance = true
-    if(this.$auth.getPayload().role){
-      if(this.$auth.getPayload().role === 'Ciudadano'){
-        this.canAdvance = false
+    if(this.$auth.isAuthenticated()){
+      if(this.$auth.getPayload().role){
+        if(this.$auth.getPayload().role === 'Ciudadano'){
+          this.canAdvance = false
+        }
       }
     }
   }
