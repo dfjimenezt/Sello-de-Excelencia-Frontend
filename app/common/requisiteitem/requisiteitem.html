@@ -10,8 +10,15 @@
         <div class="gainsboro row">
             <div class="content">
                 <div class="color-black">{{$ctrl.item.topic.name}}</div>
+                <div ng-if="!$ctrl.mayApply && 
+                ($ctrl.item.status.id==3 || 
+                $ctrl.item.status.id==2 ||
+                $ctrl.item.status.id==4 || 
+                $ctrl.item.status.id==6)"><span class="color-black">Fecha de Asignación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
+                <div ng-if="$ctrl.mayApply"><span class="color-black">Fecha de Postulación: </span>{{$ctrl.item.datetime | date:'dd-MM-yyyy'}}</div>
+                <div ng-if="$ctrl.item.status.id==7 || 
+                            $ctrl.item.status.id==8"><span class="color-black">Fecha de Calificación: </span>{{$ctrl.item.datetime | date:'dd-MM-yyyy'}}</div>
                 <div class="color-lightseagreen">{{$ctrl.item.service.name}}</div>
-                <div><span class="color-black">Fecha de Postulación: </span>{{$ctrl.item.datetime | date:'dd-MM-yyyy'}}</div>
                 <div class="color-black">{{$ctrl.item.service.institution.name}}</div>
                 
                 <!--div>{{$ctrl.item.question.text }}</div-->
