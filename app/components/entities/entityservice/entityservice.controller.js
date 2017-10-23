@@ -43,11 +43,16 @@ class entityService{
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
           question.status = this.answers[ids[question.id]].status
+          
           if(question.media.url){
             question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
           }
-          question.disabled = true
-          
+          if(question.status.id==6){
+            question.disabled = false
+            question.media.canDelete = true
+          }else{
+            question.disabled = true
+          }
         }
       })
       this.selected = this.questions[this.currentIndex]
