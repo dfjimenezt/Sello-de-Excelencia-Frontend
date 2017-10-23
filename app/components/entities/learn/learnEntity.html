@@ -1,4 +1,17 @@
 <section class="learn">
+        <script>window.fbAsyncInit = function() {
+                FB.init({
+                  xfbml      : true,
+                  version    : 'v2.5'
+                });
+                }; (function(d, s, id){
+                  var js, fjs = d.getElementsByTagName(s)[0];
+                  if (d.getElementById(id)) {return;}
+                  js = d.createElement(s); js.id = id;
+                  js.src = "//connect.facebook.net/en_US/sdk.js";
+                  fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+        
     <div class="card row" ng-if="!$ctrl.playing">
         <div class="row featured">
             <div class="col m4 s12 left">
@@ -47,11 +60,16 @@
             </div>
         </div>
     </div>
+    
     <div class="card row" ng-if="$ctrl.playing">
-        <iframe ng-src="{{$ctrl.selected.trusted}}" frameborder="0" allowfullscreen></iframe>
+        <div class="fb-video" data-href="{{$ctrl.selected.url}}" 
+        ng-if="$ctrl.selected.url.indexOf('facebook')>-1" data-allowfullscreen="true"></div>
+        
+        <iframe ng-if="$ctrl.selected.url.indexOf('youtube')>-1" ng-src="{{$ctrl.selected.trusted}}" frameborder="0" allowfullscreen></iframe>
         <div class="row center-align">
             <button class="btn brown" ng-click="$ctrl.stop()">VOLVER AL LISTADO</button>
         </div>
+        
     </div>
-
+    
 </section>

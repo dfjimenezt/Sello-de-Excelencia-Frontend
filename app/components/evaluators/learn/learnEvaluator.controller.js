@@ -1,3 +1,4 @@
+/*global FB*/
 class learnEvaluatorController {
   constructor(Api, $http, $sce) {
     'ngInject'
@@ -22,6 +23,9 @@ class learnEvaluatorController {
     this.selected.trusted = this.$sce.trustAsResourceUrl(this.selected.url)
     this.playing = true
     this.$http.post(this.pointsEndpoint,{id:this.selected.id})
+    window.setTimeout(function(){
+      FB.XFBML.parse()
+    },100)
   }
   stop(){
     this.selected.trusted = null
