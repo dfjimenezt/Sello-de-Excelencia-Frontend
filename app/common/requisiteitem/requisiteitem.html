@@ -10,8 +10,10 @@
         <div class="gainsboro row">
             <div class="content">
                 <div class="color-black">{{$ctrl.item.topic.name}}</div>
-                <div class="color-black">{{$ctrl.item.service.institution.name}}</div>
                 <div class="color-lightseagreen">{{$ctrl.item.service.name}}</div>
+                <div><span class="color-black">Fecha de Postulación: </span>{{$ctrl.item.datetime | date:'dd-MM-yyyy'}}</div>
+                <div class="color-black">{{$ctrl.item.service.institution.name}}</div>
+                
                 <!--div>{{$ctrl.item.question.text }}</div-->
             </div>
             <div class="action center-align color-lightgray"
