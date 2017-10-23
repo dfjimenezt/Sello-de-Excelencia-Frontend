@@ -19,6 +19,9 @@ class ServiceDetailController {
   getData(){
     this.$http.get(this.detailEndpoint).then((results)=>{
       this.item = results.data.data[0]
+      if(item.url.indexOf('http') !== 0){
+        item.url = 'http://'+item.url
+      }
     })
   }
 }
