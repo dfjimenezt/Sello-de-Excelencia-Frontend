@@ -132,6 +132,13 @@ const appConfig = ($stateProvider, $urlRouterProvider,$locationProvider,$authPro
         document.title = 'Productos y Servicios Certificados'
       },
     })
+    .state('embeded',{
+      url: '/embeded/:id',
+      component: 'embeded',
+      onEnter: function(){
+        document.title = 'Detalle de Producto o Servicio'
+      },
+    })
     .state('detail',{
       url: '/detalle/:id',
       component: 'servicedetail',

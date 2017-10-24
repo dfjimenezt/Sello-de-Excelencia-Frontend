@@ -13,6 +13,7 @@ import fameModule from './fame'
 import evaluationComponent from './evaluation/evaluation.component'
 import servicelistComponent from './servicelist/servicelist.component'
 import servicedetailComponent from './servicedetail/servicedetail.component'
+import embedComponent from './embed/embed.component'
 import requisiteComponent from './requisite/requisite.component'
 import requisiteitemComponent from './requisiteitem/requisiteitem.component'
 import serviceitemComponent from './serviceitem/serviceitem.component'
@@ -32,6 +33,7 @@ const common = angular
   .component('loader',loaderComponent)
   .component('evaluation',evaluationComponent)
   .component('servicelist',servicelistComponent)
+  .component('embeded',embedComponent)
   .component('servicedetail',servicedetailComponent)
   .component('requisite',requisiteComponent)
   .component('serviceItem',serviceitemComponent)
