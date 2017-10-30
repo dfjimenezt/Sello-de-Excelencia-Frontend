@@ -24,15 +24,7 @@ class SignInController {
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
     }).catch((error)=>{
-      if (error.message) {
-        // Satellizer promise reject error.
-        this.toastr.error(error.message)
-      } else if (error.data) {
-        // HTTP response error from server
-        this.toastr.error(error.data.message, error.status)
-      } else {
-        this.toastr.error(error)
-      }
+      this.errorMessage = 'Sólo los Ciudadanos pueden calificar'
     })
   }
 
