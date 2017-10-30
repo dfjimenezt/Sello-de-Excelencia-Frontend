@@ -53,6 +53,11 @@
     <div id="comments" class="modal">
         <div class="brown color-white">
             <h3>Comentarios de los ciudadanos</h3>
+            <a class="pull-right modal-action modal-close" >
+                <i class="fa fa-times color-white"></i>
+            </a>
+            <div class="clearfix">
+            </div>
         </div>
         <div class="modal-content">
             <comment-item ng-repeat="comment in $ctrl.service.comments" item="comment"></comment-item>
