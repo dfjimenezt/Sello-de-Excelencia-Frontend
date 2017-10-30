@@ -12,6 +12,8 @@ class NavbarController {
   $onInit(){
     this.$http.get(this.logoEndpoint).then((result)=>{
       this.logo_header = result.data.data[0].header
+    }).catch(()=>{
+      this.logout()
     })
     this.canAdvance = true
     if(this.$auth.isAuthenticated()){

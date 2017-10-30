@@ -6,7 +6,7 @@ class ServiceDetailController {
     this.$stateParams = $stateParams
     this.$http = $http
     this.categoriesEndpoint = Api + '/service/category'
-    this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=current_status&filter_value=8'
+    this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=current_status&filter_value=8&filter_field=current_status&filter_value=12'
     this.institutionEndpoint = Api + '/place/institution'
     this.downloadEndpoint = Api + '/platform/export'
     this.category = null

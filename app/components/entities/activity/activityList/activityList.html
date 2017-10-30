@@ -7,7 +7,9 @@
             ng-repeat="service in $ctrl.list" 
             on-selected="$ctrl.setService(service)" 
             on-rejected="$ctrl.setService(service)"
-            on-certificate="$ctrl.onCertificate(service)">
+            on-certificate="$ctrl.onCertificate(service)"
+            on-upgrade="$ctrl.onUpgrade(service)"
+            on-renew="$ctrl.onRenew(service)">
         </service-item>
     </div>
     <div class="row" ng-if="$ctrl.pager.total_pages > 1">

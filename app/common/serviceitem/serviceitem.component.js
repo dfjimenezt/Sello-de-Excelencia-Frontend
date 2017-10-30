@@ -9,7 +9,9 @@ const serviceItemComponent = {
     item:'<',
     onSelected:'&',
     onCertificate:'&',
-    onRejected:'&'
+    onRejected:'&',
+    onUpgrade:'&',
+    onRenew:'&'
   }
 }
 

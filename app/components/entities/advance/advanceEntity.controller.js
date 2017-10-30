@@ -30,7 +30,7 @@ class advanceEntityController{
     this.$http.get(this.motivesEndpoint).then((results)=>{
       this.motives = results.data.data
     })
-    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=< 0&filter_field=id_user&filter_value='+this.$auth.getPayload().id).then((results)=>{
+    this.$http.get(this.pointsEndpoint+'?filter_field=value&filter_value=< 0&filter_field=id_institution&filter_value='+this.$auth.getPayload().institutions[0].id).then((results)=>{
       this.negatives = results.data.data
     })
   }

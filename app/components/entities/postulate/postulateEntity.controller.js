@@ -45,7 +45,8 @@ class postulateEntityController {
     this.answers = []
     this.$http.get(this.serviceEndpoint +
       '?filter_field=id_institution&filter_value=' + this.entity.id +
-      '&filter_field=current_status&filter_value=10').then((results) => {
+      '&filter_field=current_status&filter_value=10'+
+      '&filter_field=current_status&filter_value=12').then((results) => {
         this.pendingServices = results.data.data
         this.loading = false
       })

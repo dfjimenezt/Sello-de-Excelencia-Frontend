@@ -1,11 +1,12 @@
 class activityEntityListController {
-  constructor(Api, $http, $auth ,$state) {
+  constructor(Api, $http, $auth ,toastr,$state) {
     'ngInject'
     this.Api = Api
     this.$http = $http
     this.$state = $state
     this.pagestoshow = 5
     this.loading = false
+    this.toastr = toastr
     this.pager = {
       total_pages: 0
     }
@@ -17,6 +18,8 @@ class activityEntityListController {
       }
     }
     this.serviceEndpoint = Api + '/service/service?simple=false'
+    this.renewEndpoint = Api + '/service/service?renew=true&id='
+    this.upgradeEndpoint = Api + '/service/service?upgrade=true&id='
     this.pdfEndpoint = Api + '/service/service?certificate=true&id='
   }
   $onInit() {
@@ -34,7 +37,9 @@ class activityEntityListController {
     }
     this.section = section
     if (section === 'certified') {
-      this.query.fields.current_status = ['8']
+      var date = new Date()
+      this.query.fields['history.id_status'] = ['8']
+      this.query.fields['history.valid_to'] = ['> '+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]
     }
     if (section === 'validation') {
       this.query.fields.current_status = ['1']
@@ -74,6 +79,11 @@ class activityEntityListController {
     let ctrl = this
     this.$http.get(url).then(function (response) {
       ctrl.list = response.data.data
+      if(ctrl.section ==='certified'){
+        ctrl.list.forEach((item)=>{
+          item.certified = true
+        })
+      }
       ctrl.pager.total_count = ctrl.list.length
       ctrl.loading = false
       ctrl.resetPager()
@@ -108,93 +118,18 @@ class activityEntityListController {
   }
   onCertificate(service) {
     window.open(this.pdfEndpoint+service.id)
-    /*this.openCertificate = true
-    this.certificate = {
-      entity: service.institution.name,
-      level: service.status.level,
-      product: service.name,
-      date: service.status.timestamp
-    }
-    window.setTimeout(this.printElement,200)*/
   }
-  printElement() {
-    var ifr = document.createElement('iframe')
-    ifr.style='height: 0px; width: 0px; position: absolute'
-    //ifr.style='height: 595px; width: 842px; position: fixed; top:0px; left:0px;'
-    document.body.appendChild(ifr)
-    var style = document.createElement('style')
-    style.type='text/css'
-    style.innerHTML=`
-    @font-face{
-      font-family: Univers;
-      src: url("http://localhost:9000/assets/font/UniversCondensed.woff");
-    }
-    
-    @page {
-      size: 842px 595px;
-      margin: 0px;
-      padding: 0px;
-    }
-    body{
-      text-align:center;
-      width: 842px;
-      height: 595px;
-      font-family: Univers;
-      overflow: hidden;
-    }
-    .background{
-      position: absolute;
-      width: 842px;
-      height: 595px;
-      top: 0px;
-      left: 0px;
-      background: url('http://sellodeexcelencia.gov.co/assets/img/diploma.png');
-  }   
-  .certificate-content{
-      position: absolute;
-      top: 55px;
-      left: 42px;
-      width: 800px;
+  onUpgrade(service) {
+    service.current_status = 10 //Verification
+    this.$http.put(this.serviceEndpoint,service).then(()=>{
+      this.toastr.success('El servicio está ahora disponible para completar los requisitos')
+    })
   }
-  .certificate-content .title{
-      font-size: 60px;
-      padding-bottom: 0px;
-      line-height: 60px;
-      color: #694a8b;
-  }
-  .certificate-content .subtitle{
-      font-size: 32px;
-      line-height: 32px;
-      margin-bottom: 20px;
-      color: #694a8b;
-  }
-  .certificate-content .intro{
-      font-size: 20px;
-  }
-  .certificate-content .pre{
-      font-size: 16px;
-  }
-  .certificate-content .entity{
-      font-size: 23px;
-      text-decoration: underline;
-  }
-  .signature{
-      position: absolute;
-      bottom: 99px;
-      left: 337px;
-      color: #694a8b;
-      font-size: 16px;
-  }
-  .certification-date{
-      position: absolute;
-      bottom: 50px;
-      width: 200px;
-      left: 332px;
-  }`
-    ifr.contentDocument.body.appendChild(style)
-    $('#certificate').clone().appendTo(ifr.contentDocument.body)
-    ifr.contentWindow.print()
-    ifr.parentElement.removeChild(ifr)
+  onRenew(service) {
+    service.current_status = 10 //Verification
+    this.$http.put(this.serviceEndpoint,service).then(()=>{
+      this.toastr.success('El servicio está ahora disponible para completar los requisitos')
+    })
   }
 
 }
