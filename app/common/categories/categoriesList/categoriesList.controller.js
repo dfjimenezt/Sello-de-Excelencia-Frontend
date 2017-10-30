@@ -56,6 +56,15 @@ class CategoryListController {
             stateUrl: 'certifiedservices',
           }
         ]
+      }else if(this.$auth.getPayload().role === 'Ciudadano'){
+        this.categories = [
+          {
+            id:3, 
+            title: 'Conoce y califica los productos certificados', 
+            img: 'assets/img/evaluando.png', 
+            stateUrl: 'certifiedservices',
+          }
+        ]
       }else{
         this.categories = [
           {
