@@ -19,11 +19,9 @@
                     <span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
                 <div ng-if="$ctrl.item.status.id_status==1 || $ctrl.item.status.id_status==10">
-                    <span>Fecha de postulación: </span>
-                    <span>{{$ctrl.item.status.timestamp | date}}</span>
+                    <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
-                    <span>Fecha de validación: </span>
-                    <span>{{$ctrl.item.status.valid_to | date}}</span>
+                    <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
             </div>
             <div class="action color-green center-align" ng-click="$ctrl.onUpgrade($ctrl.item)" ng-if="$ctrl.item.current_status == 8">
