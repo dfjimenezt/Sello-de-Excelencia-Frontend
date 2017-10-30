@@ -5,23 +5,24 @@
                 <div class="col m8 s12 requisite-title">
                     <span class="color-brown">{{$ctrl.item.id}} - {{$ctrl.item.text}}</span>
                 </div>
-                <div class="col m4 s12 right-align tips">
+                <div class="col m4 s12 right-align tips" >
                     <div class="color-red" ng-if="$ctrl.item.error" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores"
                         data-delay="150">
                         <span>Este requisito ha sido rechazado</span>
                         <i class="fa fa-exclamation-triangle"></i>
                     </div>
-                    <div ng-if="$ctrl.item.legal_support !== ''"  ng-init="legal = false">
-                        <span ng-click="legal = !legal">Sustento Legal o Técnico</span>
-                        <i ng-click="legal = !legal" class="fa fa-book"></i>
-                        <div class="black color-white tip" ng-show="legal">
+                    <div ng-if="$ctrl.item.legal_support !== ''"  >
+                        <span 
+                        ng-click="$ctrl.showLegal()">Sustento Legal o Técnico</span>
+                        <i ng-click="$ctrl.showLegal()" class="fa fa-book"></i>
+                        <div class="black color-white tip" ng-show="$ctrl._legal">
                             {{$ctrl.item.legal_support}}
                         </div>
                     </div>
-                    <div ng-if="$ctrl.item.help !== ''" ng-init="help = false">
-                        <span ng-click="help = !help">Ayuda</span>
-                        <i ng-click="help = !help" class="fa fa-question-circle"></i>
-                        <div class="black color-white tip" ng-show="help">
+                    <div ng-if="$ctrl.item.help !== ''">
+                        <span ng-click="h$ctrl.showHelp()">Ayuda</span>
+                        <i ng-click="$ctrl.showHelp()" class="fa fa-question-circle"></i>
+                        <div class="black color-white tip" ng-show="$ctrl._help">
                             {{$ctrl.item.help}}
                         </div>
                     </div>

@@ -7,6 +7,8 @@ class requisiteController{
     this.$scope = $scope
     this.loading = false
     this.answerEndpoint = Api + '/question/user_answer'
+    this._legal = false
+    this._help = false
   }
   $onInit(){
   }
@@ -44,6 +46,14 @@ class requisiteController{
       ctrl.$scope.$apply()
     }
     request.send(data)
+  }
+  showHelp(){
+    this._help = !this._help
+    this._legal = false
+  }
+  showLegal(){
+    this._legal = !this._legal
+    this._help = false
   }
   clearMedia(){
     this.item.media = null
