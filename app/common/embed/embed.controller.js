@@ -20,9 +20,6 @@ class EmbedController {
   getData(){
     this.$http.get(this.detailEndpoint).then((results)=>{
       this.item = results.data.data[0]
-      if(this.item.url.indexOf('http') !== 0){
-        this.item.url = 'http://'+this.item.url
-      }
     })
   }
 }

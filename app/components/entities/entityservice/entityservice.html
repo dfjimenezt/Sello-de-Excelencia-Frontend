@@ -47,7 +47,7 @@
         <button class="btn-floating waves-effect waves-light gainsboro" ng-click="$ctrl.nextQuestion()"><i class="fa fa-chevron-right"></i></button>
     </div>
     
-    <chat-entity item="$ctrl.selected" service="$ctrl.service" ng-if="$ctrl.selected.status.id == 6"></chat-entity>
+    <chat-entity item="$ctrl.selected" service="$ctrl.service" ng-if="$ctrl.selected.status.id == 6 || $ctrl.selected.status.id == 9 || $ctrl.selected.status.id == 8"></chat-entity>
 
     <div id="comments" class="modal">
         <div class="brown color-white">

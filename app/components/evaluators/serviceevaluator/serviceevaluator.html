@@ -30,7 +30,9 @@
     
     <chat-evaluator 
         request="$ctrl.request" 
-        ng-if="$ctrl.request.id_request_status == 6">
+        ng-if="$ctrl.request.id_request_status == 6
+        || $ctrl.selected.status.id == 8
+        || $ctrl.selected.status.id == 9">
     </chat-evaluator>
 
     <a modal data-target="reject" open="$ctrl.openReject"></a>
