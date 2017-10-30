@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div ng-if="$ctrl.item.help !== ''">
-                        <span ng-click="h$ctrl.showHelp()">Ayuda</span>
+                        <span ng-click="$ctrl.showHelp()">Ayuda</span>
                         <i ng-click="$ctrl.showHelp()" class="fa fa-question-circle"></i>
                         <div class="black color-white tip" ng-show="$ctrl._help">
                             {{$ctrl.item.help}}
