@@ -11,16 +11,16 @@
                         <span>Este requisito ha sido rechazado</span>
                         <i class="fa fa-exclamation-triangle"></i>
                     </div>
-                    <div ng-if="$ctrl.item.legal_support !== ''" ng-click="legal = !legal" ng-init="legal = false">
-                        <span>Sustento Legal o Técnico</span>
-                        <i class="fa fa-book"></i>
+                    <div ng-if="$ctrl.item.legal_support !== ''"  ng-init="legal = false">
+                        <span ng-click="legal = !legal">Sustento Legal o Técnico</span>
+                        <i ng-click="legal = !legal" class="fa fa-book"></i>
                         <div class="black color-white tip" ng-show="legal">
                             {{$ctrl.item.legal_support}}
                         </div>
                     </div>
-                    <div ng-if="$ctrl.item.help !== ''" ng-click="help = !help" ng-init="help = false">
-                        <span>Ayuda</span>
-                        <i class="fa fa-question-circle"></i>
+                    <div ng-if="$ctrl.item.help !== ''" ng-init="help = false">
+                        <span ng-click="help = !help">Ayuda</span>
+                        <i ng-click="help = !help" class="fa fa-question-circle"></i>
                         <div class="black color-white tip" ng-show="help">
                             {{$ctrl.item.help}}
                         </div>
