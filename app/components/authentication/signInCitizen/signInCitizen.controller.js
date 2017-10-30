@@ -23,7 +23,7 @@ class SignInController {
       }
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
-    }).catch((error)=>{
+    }).catch(()=>{
       this.errorMessage = 'Sólo los Ciudadanos pueden calificar'
     })
   }
