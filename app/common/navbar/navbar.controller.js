@@ -62,7 +62,7 @@ class NavbarController {
     this.toastr.info('Cerraste sesión, vuelve pronto...','Cerrar sesión')
     this.$auth.logout()
     this.$state.go('landingPage').then(()=>{
-      window.location.reload()
+      //window.location.reload()
     })
   }
   
