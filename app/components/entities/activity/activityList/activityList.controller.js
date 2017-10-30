@@ -120,13 +120,14 @@ class activityEntityListController {
     window.open(this.pdfEndpoint+service.id)
   }
   onUpgrade(service) {
-    service.current_status = 10 //Verification
+    service.current_status = 10 //Incomplete
+    service.level = service.status.level + 1
     this.$http.put(this.serviceEndpoint,service).then(()=>{
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
     })
   }
   onRenew(service) {
-    service.current_status = 10 //Verification
+    service.current_status = 10 //Incomplete
     this.$http.put(this.serviceEndpoint,service).then(()=>{
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
     })
