@@ -7,7 +7,6 @@
               <div>
                   <label>Postulaciones por finalizar:</label>
                 <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()">
-                    <option ng-value="null"> - </option>
                     <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
                 </select>
                 
