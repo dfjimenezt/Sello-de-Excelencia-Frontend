@@ -24,10 +24,14 @@
                     <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
                 <div ng-if="$ctrl.item.status.id_status==5">
-                        <span>Fecha de aceptación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
-                        <br>
-                        <span>Plazo de calificación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
-                    </div>
+                    <span>Fecha de aceptación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                    <br>
+                    <span>Plazo de evaluación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                </div>
+                <div ng-if="$ctrl.item.status.id_status==9">
+                    <span>Fecha de evaluación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                    <br>
+                </div>
             </div>
             <div class="action color-green center-align" ng-click="$ctrl.onUpgrade($ctrl.item)" ng-if="$ctrl.item.current_status == 8">
                 <!--i class="fa fa-download"></i-->
