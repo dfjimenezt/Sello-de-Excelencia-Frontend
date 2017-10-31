@@ -7,6 +7,7 @@
               <div>
                   <label>Postulaciones por finalizar:</label>
                 <select ng-model="$ctrl.service" ng-change="$ctrl.selectService()">
+                    <option ng-value="null"></option>
                     <option ng-value="service" ng-repeat="service in $ctrl.pendingServices">{{service.name}}</option>
                 </select>
                 
@@ -26,7 +27,7 @@
         <div class="col m6 s12">
           <div>
               <label>Categoría:</label>
-            <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id">
+            <select ng-model="$ctrl.service.id_category" ng-disabled="$ctrl.service.id" ng-required="true">
                 <option ng-value="category.id" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
             </select>
           </div>
@@ -34,7 +35,7 @@
         <div class="col m6 s12">
           <div>
               <label>Nivel:</label>
-            <select ng-model="$ctrl.service.level" ng-disabled="$ctrl.service.id">
+            <select ng-model="$ctrl.service.level" ng-disabled="$ctrl.service.id" ng-required="true">
               <option ng-value="1">1</option>
               <option ng-value="2">2</option>
               <option ng-value="3">3</option>
@@ -45,7 +46,7 @@
       <div class="row">
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.name" required>
+            <input id="entityname" type="text" ng-model="$ctrl.service.name" required>
             <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
                         <strong class="red-text">*</strong> Nombre del Producto o Servicio:</label>
           </div>
@@ -79,7 +80,9 @@
         </div>
       </div>
       <div class="row center-align">
-        <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" class="btn brown" ng-disabled="$ctrl.service.id" type="submit">CREAR SERVICIO</button>
+        <button 
+        ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}" 
+        class="btn brown" ng-disabled="$ctrl.service.id || !$ctrl.service.level || !$ctrl.service.id_category" type="submit">CREAR SERVICIO</button>
         <button ng-class="{'display-none':$ctrl.loading,'display-inline-block':!$ctrl.loading}"class="btn brown" ng-disabled="!$ctrl.service.id" type="button"
         ng-click="$ctrl.deleteService()"
         >ELIMINAR POSTULACIÓN</button>

@@ -12,6 +12,8 @@ class postulateEntityController {
     this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
     this.loading = false
+    this.isUpgrade = false
+    this.isRenew = false
   }
   $onInit() {
     this.$http.get(this.categoriesEndpoint).then((results) => {
@@ -30,6 +32,28 @@ class postulateEntityController {
     this.loading = true
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
+      let previouslevel = null
+      let _levels = [] 
+      let hasStamp = false
+      results.data.data.forEach((status)=>{
+        if(_levels.indexOf(status.level)){
+          _levels.push(status.level)
+        }
+        if(status.level !== this.service.level && !previouslevel === null){
+          previouslevel = status.level
+        }
+        if(status.id_status === 8 ){
+          hasStamp = true
+        }
+      })
+      
+      if(this.service.id_status === 10 && hasStamp){
+        if(_levels.length > 1){
+          this.isUpgrade = true
+        }else{
+          this.isRenew = true
+        }
+      }
       this.getQuestions()
     })
   }
@@ -81,7 +105,7 @@ class postulateEntityController {
           question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
-          if(this.answers[ids[question.id]].id_status == 10){
+          if(this.answers[ids[question.id]].id_status === 10){
             question.error = true
           }
           if(question.media.url){
