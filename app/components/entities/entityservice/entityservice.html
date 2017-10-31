@@ -18,7 +18,7 @@
                     <span>Fecha de vigencia: </span>
                     <span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.status.id_status==1) && !$ctrl.item.certified">
+                <div ng-if="($ctrl.item.status.id_status==1 || $ctrl.item.status.id_status==10) && !$ctrl.item.certified">
                     <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                     <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
