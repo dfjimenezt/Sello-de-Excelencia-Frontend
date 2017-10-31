@@ -17,10 +17,12 @@ class activityEntityListController {
         id_institution: [$auth.getPayload().institutions[0].id]
       }
     }
+    this.levels = []
     this.serviceEndpoint = Api + '/service/service?simple=false'
     this.renewEndpoint = Api + '/service/service?renew=true&id='
     this.upgradeEndpoint = Api + '/service/service?upgrade=true&id='
     this.pdfEndpoint = Api + '/service/service?certificate=true&id='
+    this.openSelector = false
   }
   $onInit() {
     if(this.$state.current.name.indexOf('.') === -1){
@@ -119,12 +121,21 @@ class activityEntityListController {
   onCertificate(service) {
     window.open(this.pdfEndpoint+service.id)
   }
-  onUpgrade(service) {
-    service.current_status = 10 //Incomplete
-    service.level = service.status.level + 1
-    this.$http.put(this.serviceEndpoint,service).then(()=>{
+  onFinishUpgrade(){
+    this.selectedService.current_status = 10 //Incomplete
+    this.selectedService.level = this.level
+    this.$http.put(this.serviceEndpoint,this.selectedService).then(()=>{
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
+      this.openSelector = false
     })
+  }
+  onUpgrade(service) {
+    this.selectedService = service
+    this.openSelector = true
+    this.levels = []
+    for(var i = service.status.level +1; i <= 3 ; i++){
+      this.levels.push(i)
+    }
   }
   onRenew(service) {
     service.current_status = 10 //Incomplete
