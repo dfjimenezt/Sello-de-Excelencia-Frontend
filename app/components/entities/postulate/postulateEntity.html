@@ -46,7 +46,7 @@
       <div class="row">
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entityname" type="text" ng-model="$ctrl.service.name" required>
+            <input id="entityname" type="text" ng-model="$ctrl.service.name" required ng-disabled="$ctrl.isUpgrade || $ctrl.isRenew">
             <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
                         <strong class="red-text">*</strong> Nombre del Producto o Servicio:</label>
           </div>
@@ -60,20 +60,20 @@
         </div>
       </div>
       <div class="row">
-        <input type="checkbox" id="terms" ng-disabled="$ctrl.service.id" ng-model="$ctrl.service.test" />
+        <input type="checkbox" id="terms" ng-model="$ctrl.service.test" />
         <label for="terms">¿Requiere Usuario de Prueba?</label>
       </div>
       <div class="row" ng-if="$ctrl.service.test">
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entityname" type="text" ng-disabled="$ctrl.service.id" class="validate" ng-model="$ctrl.service.test_user">
+            <input id="entityname" type="text" class="validate" ng-model="$ctrl.service.test_user">
             <label for="entityname" data-error="Ingresa el nombre del servicio" data-success="Ok">
                             <strong class="red-text">*</strong> Usuario de Prueba:</label>
           </div>
         </div>
         <div class="col m6 s12">
           <div class="input-field">
-            <input id="entitynit" type="text" ng-disabled="$ctrl.service.id" class="validate" ng-model="$ctrl.service.test_password">
+            <input id="entitynit" type="text" class="validate" ng-model="$ctrl.service.test_password">
             <label for="entitynit" data-error="Ingresa URL" data-success="Ok">
                         <strong class="red-text">*</strong> Contraseña de Prueba:</label>
           </div>
