@@ -24,11 +24,11 @@
                     <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
                 <div ng-if="$ctrl.item.status.id_status==5">
-                    <span>Fecha de aceptación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                    <span>Fecha de validación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                     <span>Plazo de evaluación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="$ctrl.item.status.id_status==9">
+                <div ng-if="$ctrl.item.current_status == 9">
                     <span>Fecha de evaluación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                 </div>

@@ -48,6 +48,9 @@ class serviceEvaluator{
   getService(){
     this.$http.get(this.serviceEndpoint+'?id='+this.service.id).then((result)=>{
       this.service = result.data.data[0]
+      if(this.service.url.indexOf('http') !== 0){
+        this.service.url = 'http://'+this.service.url
+      }
     })
   }
   getAnswer(){

@@ -17,6 +17,9 @@ class entityService{
     if(!this.service){
       return
     }
+    if(this.service.url.indexOf('http') !== 0){
+      this.service.url = 'http://'+this.service.url
+    }
     this.getQuestions()
   }
   getQuestions() {

@@ -8,6 +8,9 @@ class serviceItemController{
   $onInit(){
     this.$http.get(this.serviceEndpoint+this.item.id).then((results)=>{
       this.item.status = results.data.data[0]
+      if(this.item.url.indexOf('http') !== 0){
+        this.item.url = 'http://'+this.item.url
+      }
     })
   }
 }
