@@ -14,6 +14,7 @@ class postulateEntityController {
     this.loading = false
     this.isUpgrade = false
     this.isRenew = false
+    this.previouslevel = null
   }
   $onInit() {
     this.$http.get(this.categoriesEndpoint).then((results) => {
@@ -32,15 +33,17 @@ class postulateEntityController {
     this.loading = true
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
-      let previouslevel = null
+      this.previouslevel = null
       let _levels = [] 
+      this.isUpgrade = false
+      this.isRenew = false
       let hasStamp = false
       results.data.data.forEach((status)=>{
         if(_levels.indexOf(status.level)){
           _levels.push(status.level)
         }
-        if(status.level !== this.service.level && !previouslevel === null){
-          previouslevel = status.level
+        if(status.level !== this.service.level && this.previouslevel === null){
+          this.previouslevel = status.level
         }
         if(status.id_status === 8 ){
           hasStamp = true
@@ -82,7 +85,11 @@ class postulateEntityController {
   }
   getQuestions() {
     let url = this.questionEndpoint + this.service.id_category
-    for(let i = 1 ; i<=this.service.level;i++){
+    let i = 1
+    if(this.isUpgrade){
+      i = this.previouslevel +1
+    }
+    for(i ; i<=this.service.level;i++){
       url +='&filter_field=level&filter_value=' + i
     }
 
