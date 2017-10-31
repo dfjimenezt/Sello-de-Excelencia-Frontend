@@ -47,7 +47,7 @@ class postulateEntityController {
         }
       })
       
-      if(this.service.id_status === 10 && hasStamp){
+      if(this.service.current_status === 10 && hasStamp){
         if(_levels.length > 1){
           this.isUpgrade = true
         }else{
