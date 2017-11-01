@@ -1,5 +1,5 @@
 class activityEntityListController {
-  constructor(Api, $http, $auth ,toastr,$state) {
+  constructor(Api, $http, $auth, toastr, $state) {
     'ngInject'
     this.Api = Api
     this.$http = $http
@@ -28,24 +28,24 @@ class activityEntityListController {
     this.emptyMessage = ''
   }
   $onInit() {
-    if(this.$state.current.name.indexOf('.') === -1){
+    if (this.$state.current.name.indexOf('.') === -1) {
       this.setSection('certified')
-    }else{
+    } else {
       let array = this.$state.current.name.split('.')
-      this.setSection(array[array.length-1])
-      
+      this.setSection(array[array.length - 1])
+
     }
   }
   setSection(section) {
     if (section === this.section) {
       return
     }
-    this.emptyList = false    
+    this.emptyList = false
     this.section = section
     if (section === 'certified') {
       var date = new Date()
       this.query.fields['history.id_status'] = ['8']
-      this.query.fields['history.valid_to'] = ['> '+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]
+      this.query.fields['history.valid_to'] = ['> ' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()]
       this.emptyMessage = 'En este momento no tienes sellos otorgados.'
     }
     if (section === 'validation') {
@@ -89,19 +89,19 @@ class activityEntityListController {
     let ctrl = this
     this.$http.get(url).then(function (response) {
       ctrl.list = response.data.data
-      
-        ctrl.list.forEach((item)=>{
-          if(ctrl.section ==='certified'){
-            item.certified = true
-          }else{
-            item.certified = false
-          }
-        })
-      
+
+      ctrl.list.forEach((item) => {
+        if (ctrl.section === 'certified') {
+          item.certified = true
+        } else {
+          item.certified = false
+        }
+      })
+
       ctrl.pager.total_count = response.data.total_results
-      if(ctrl.pager.total_count === 0){
+      if (ctrl.pager.total_count === 0) {
         ctrl.emptyList = true
-      }else{
+      } else {
         ctrl.emptyList = false
       }
       ctrl.loading = false
@@ -139,12 +139,12 @@ class activityEntityListController {
     this.$state.go('entity.activity.detail', { 'service': service })
   }
   onCertificate(service) {
-    window.open(this.pdfEndpoint+service.id)
+    window.open(this.pdfEndpoint + service.id)
   }
-  onFinishUpgrade(){
+  onFinishUpgrade() {
     this.selectedService.current_status = 10 //Incomplete
     this.selectedService.level = this.level
-    this.$http.put(this.serviceEndpoint,this.selectedService).then(()=>{
+    this.$http.put(this.serviceEndpoint, this.selectedService).then(() => {
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
       this.openSelector = false
     })
@@ -153,13 +153,13 @@ class activityEntityListController {
     this.selectedService = service
     this.openSelector = true
     this.levels = []
-    for(var i = service.status.level +1; i <= 3 ; i++){
+    for (var i = service.status.level + 1; i <= 3; i++) {
       this.levels.push(i)
     }
   }
-  onFinishRenew(){
+  onFinishRenew() {
     this.selectedService.current_status = 10 //Incomplete
-    this.$http.put(this.serviceEndpoint,this.selectedService).then(()=>{
+    this.$http.put(this.serviceEndpoint, this.selectedService).then(() => {
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
       this.openRenew = false
     })
