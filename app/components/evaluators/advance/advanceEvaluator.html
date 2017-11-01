@@ -89,8 +89,13 @@
                     <tbody>
                         <tr ng-repeat="negative in $ctrl.negatives">
                             <td>
-                                <i class="fa fa-plus-circle color-green" ng-if="negative.value > 0"></i> {{negative.justification}}
-                                <i class="fa fa-minus-circle color-red" ng-if="negative.value < 0"></i> {{negative.justification}}
+                                <span ng-if="negative.value > 0">
+                                        <i class="fa fa-plus-circle color-green" ></i> {{negative.justification}}
+                                </span>
+                                <span ng-if="negative.value < 0">
+                                        <i class="fa fa-minus-circle color-red" ></i> {{negative.justification}}
+                                </span>
+                                
                             </td>
                             <td ng-class="{'color-red':negative.value < 0}"> {{negative.value}}</td>
                             <td > {{negative.timestamp | date}}</td>
