@@ -107,14 +107,17 @@ class activityEntityListController {
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
     this.resetPager()
+    this.getData()
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
     this.resetPager()
+    this.getData()
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
     this.resetPager()
+    this.getData()
   }
   setService(service) {
     this.$state.go('entity.activity.detail', { 'service': service })
