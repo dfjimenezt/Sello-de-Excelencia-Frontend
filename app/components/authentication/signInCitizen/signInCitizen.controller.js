@@ -37,6 +37,7 @@ class SignInController {
     this.serverError = false
     this.$auth.login(this.credentials)
       .then(() => {
+        let user = this.$auth.getPayload()
         if(user.role !== 'Ciudadano'){
           this.$auth.logout()
           this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
