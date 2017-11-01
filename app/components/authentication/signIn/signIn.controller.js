@@ -29,7 +29,9 @@ class SignInController {
         }else if(user.role === 'Evaluador'){
           this.$state.go('evaluator.activity')
         }else if(user.role === 'Ciudadano'){
-          this.$state.go('certifiedservices')
+          this.$state.go('certifiedservices').then(()=>{
+            window.location.reload()
+          })
         }else{
           this.$state.go('landingPage')
         }
