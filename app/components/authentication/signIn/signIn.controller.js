@@ -13,6 +13,9 @@ class SignInController {
   authenticate(provider) {
     this.$auth.authenticate(provider)
   }
+  goCitizen(){
+    this.$state.go('certifiedservices')
+  }
 
   onSignIn() {
     this.loadding = true
