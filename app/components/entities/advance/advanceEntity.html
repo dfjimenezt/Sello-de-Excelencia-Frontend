@@ -81,13 +81,15 @@
                 <table class="striped">
                     <thead>
                         <tr>
+                            <th data-field="timestamp">Fecha</th>
                             <th data-field="text">Concepto</th>
                             <th data-field="points">Puntos</th>
-                            <th data-field="timestamp">Fecha</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="negative in $ctrl.negatives">
+                            <td> {{negative.timestamp | date}}</td>
                             <td>
                                 <span ng-if="negative.value > 0">
                                     <i class="fa fa-plus-circle color-green"></i> {{negative.justification}}
@@ -98,7 +100,7 @@
 
                             </td>
                             <td ng-class="{'color-red':negative.value < 0}"> {{negative.value}}</td>
-                            <td> {{negative.timestamp | date}}</td>
+
                         </tr>
                     </tbody>
                 </table>
