@@ -96,9 +96,9 @@ class activityEntityListController {
       }
       ctrl.pager.total_count = response.data.total_results
       if(ctrl.pager.total_count === 0){
-        this.emptyList = true
+        ctrl.emptyList = true
       }else{
-        this.emptyList = false
+        ctrl.emptyList = false
       }
       ctrl.loading = false
       ctrl.resetPager()
