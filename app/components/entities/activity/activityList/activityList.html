@@ -3,6 +3,7 @@
         <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
     </div>
     <div class="col m10 s10 offset-s1 offset-m1">
+        <h3 class="center-align" ng-if="$ctrl.emptyList">{{$ctrl.emptyMessage}}</h3>
         <service-item item="service" ng-repeat="service in $ctrl.list" on-selected="$ctrl.setService(service)" on-rejected="$ctrl.setService(service)"
             on-certificate="$ctrl.onCertificate(service)" on-upgrade="$ctrl.onUpgrade(service)" on-renew="$ctrl.onRenew(service)">
         </service-item>

@@ -24,6 +24,8 @@ class activityEntityListController {
     this.pdfEndpoint = Api + '/service/service?certificate=true&id='
     this.openSelector = false
     this.openRenew = false
+    this.emptyList = false
+    this.emptyMessage = ''
   }
   $onInit() {
     if(this.$state.current.name.indexOf('.') === -1){
@@ -38,20 +40,25 @@ class activityEntityListController {
     if (section === this.section) {
       return
     }
+    this.emptyList = false    
     this.section = section
     if (section === 'certified') {
       var date = new Date()
       this.query.fields['history.id_status'] = ['8']
       this.query.fields['history.valid_to'] = ['> '+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()]
+      this.emptyMessage = 'En este momento no tienes sellos otorgados.'
     }
     if (section === 'validation') {
       this.query.fields.current_status = ['1']
+      this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'proccess') {
       this.query.fields.current_status = ['5']
+      this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'rejected') {
       this.query.fields.current_status = ['9']
+      this.emptyMessage = 'En este momento no tienes sellos no otorgados.'
     }
     this.getData()
   }
@@ -88,6 +95,11 @@ class activityEntityListController {
         })
       }
       ctrl.pager.total_count = response.data.total_results
+      if(ctrl.pager.total_count === 0){
+        this.emptyList = true
+      }else{
+        this.emptyList = false
+      }
       ctrl.loading = false
       ctrl.resetPager()
     })
