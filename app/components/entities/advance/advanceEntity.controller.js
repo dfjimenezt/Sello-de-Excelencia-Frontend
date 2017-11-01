@@ -45,7 +45,7 @@ class advanceEntityController{
             if(motive.name.name === 'Participar en Aprende y Enseña'){
               this.live += points.value
             }else
-            if(points.name.name === 'Eventos Especiales'){
+            if(motive.name.name === 'Eventos Especiales'){
               this.events += points.value
             }else if(points.value > 0){
               this.requisites += points.value
