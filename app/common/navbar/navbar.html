@@ -71,7 +71,7 @@
 </nav>
 
 <ul id="dropdownUser" class="dropdown-content">
-  <li>
+  <li ng-if="$ctrl.canProfile">
     <a ng-click="$ctrl.goProfile()">
       <i class="material-icons right">mode_edit</i>
       Perfil

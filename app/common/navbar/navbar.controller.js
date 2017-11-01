@@ -7,6 +7,7 @@ class NavbarController {
     this.$http = $http
     this.logoEndpoint = Api + '/configuration/config'
     this.canAdvance = true
+    this.canProfile = true
   }
 
   $onInit(){
@@ -16,10 +17,12 @@ class NavbarController {
       this.logout()
     })
     this.canAdvance = true
+    this.canProfile = true
     if(this.$auth.isAuthenticated()){
       if(this.$auth.getPayload().role){
         if(this.$auth.getPayload().role === 'Ciudadano'){
           this.canAdvance = false
+          this.canProfile = false
         }
       }
     }
