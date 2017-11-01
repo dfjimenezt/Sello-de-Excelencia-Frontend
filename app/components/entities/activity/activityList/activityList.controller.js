@@ -145,7 +145,7 @@ class activityEntityListController {
     this.selectedService.current_status = 10 //Incomplete
     this.$http.put(this.serviceEndpoint,this.selectedService).then(()=>{
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
-      this.openSelector = false
+      this.openRenew = false
     })
   }
   onRenew(service) {
