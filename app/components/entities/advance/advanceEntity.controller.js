@@ -31,14 +31,13 @@ class advanceEntityController{
         _total += points.value
         this.motives.forEach((motive)=>{
           if(motive.id === points.id_motives){
-            
             if(motive.name.name === 'Participar en Aprende y Enseña'){
-              this.live = points.value
+              this.live += points.value
             }else
             if(points.id_motives === 'Eventos Especiales'){
-              this.events = points.value
+              this.events += points.value
             }else if(points.value > 0){
-              this.requisites = points.value
+              this.requisites += points.value
             }
           }
         })
