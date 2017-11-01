@@ -83,6 +83,7 @@
                         <tr>
                             <th data-field="text">Concepto</th>
                             <th data-field="points">Puntos</th>
+                            <th data-field="timestamp">Fecha</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -91,7 +92,8 @@
                                 <i class="fa fa-plus-circle color-green" ng-if="negative.value > 0"></i> {{negative.justification}}
                                 <i class="fa fa-minus-circle color-red" ng-if="negative.value < 0"></i> {{negative.justification}}
                             </td>
-                            <td ng-class="{'color-red':negative.value < 0}"> {{negative.value}} punto</td>
+                            <td ng-class="{'color-red':negative.value < 0}"> {{negative.value}}</td>
+                            <td > {{negative.timestamp | date}}</td>
                         </tr>
                     </tbody>
                 </table>

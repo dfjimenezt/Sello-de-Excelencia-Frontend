@@ -89,11 +89,15 @@ class activityEntityListController {
     let ctrl = this
     this.$http.get(url).then(function (response) {
       ctrl.list = response.data.data
-      if(ctrl.section ==='certified'){
+      
         ctrl.list.forEach((item)=>{
-          item.certified = true
+          if(ctrl.section ==='certified'){
+            item.certified = true
+          }else{
+            item.certified = false
+          }
         })
-      }
+      
       ctrl.pager.total_count = response.data.total_results
       if(ctrl.pager.total_count === 0){
         ctrl.emptyList = true

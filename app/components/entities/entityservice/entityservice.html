@@ -11,25 +11,25 @@
             <div>
                 <div>{{$ctrl.service.id}} - {{$ctrl.service.name}}</div>
                 <div class="color-lightseagreen">Nivel: {{$ctrl.service.status.level}}</div>
-                <div ng-if="$ctrl.item.certified">
+                <div ng-if="$ctrl.service.certified">
                     <span>Fecha de cerficación: </span>
-                    <span>{{$ctrl.item.status.timestamp | date}}</span>
+                    <span>{{$ctrl.service.status.timestamp | date}}</span>
                     <br>
                     <span>Fecha de vigencia: </span>
-                    <span>{{$ctrl.item.status.valid_to | date}}</span>
+                    <span>{{$ctrl.service.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.status.id_status==1 || $ctrl.item.status.id_status==10) && !$ctrl.item.certified">
-                    <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                <div ng-if="($ctrl.service.status.id_status==1 || $ctrl.service.status.id_status==10) && !$ctrl.service.certified">
+                    <span>Fecha de postulación: </span><span>{{$ctrl.service.status.timestamp | date}}</span>
                     <br>
-                    <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                    <span>Plazo de validación: </span><span>{{$ctrl.service.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.status.id_status==5) && !$ctrl.item.certified">
-                    <span>Fecha de validación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                <div ng-if="($ctrl.service.status.id_status==5) && !$ctrl.service.certified">
+                    <span>Fecha de validación: </span><span>{{$ctrl.service.status.timestamp | date}}</span>
                     <br>
-                    <span>Plazo de evaluación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
+                    <span>Plazo de evaluación: </span><span>{{$ctrl.service.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.current_status == 9) && !$ctrl.item.certified">
-                    <span>Fecha de evaluación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
+                <div ng-if="($ctrl.service.current_status == 9) && !$ctrl.service.certified">
+                    <span>Fecha de evaluación: </span><span>{{$ctrl.service.status.timestamp | date}}</span>
                     <br>
                 </div>
 
