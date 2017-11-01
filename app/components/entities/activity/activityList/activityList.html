@@ -23,6 +23,22 @@
     </div>
     <a modal data-target="certificate" open="$ctrl.openCertificate"></a>
 </div>
+<a data-target='renew-selector' open="$ctrl.openRenew" id="modal-laucher" modal></a>
+<div id="renew-selector" class="modal center-align">
+    <div class="brown title">
+        <h5 class="color-white">Renueva el Sello de Excelencia</h5>
+        <a style="position:absolute;top:5px;right:5px;"class="modal-action modal-close">
+            <i class="fa fa-times color-white"></i>
+        </a>
+    </div>
+    <p class="row center-align">
+        Recuerda que debes dirigirte a la pestaña Postular y seleccionar el Servicio en Continuar con un Postulación Anterior
+    </p>
+    <div class="row center-align">
+        <button class="btn brown" type="submit" ng-click="$ctrl.onFinishRenew()" >ACEPTAR</button>
+        <button class="btn modal-action modal-close" type="button" >CANCELAR</button>
+    </div>
+</div>
 <a data-target='level-selector' open="$ctrl.openSelector" id="modal-laucher" modal></a>
 <div id="level-selector" class="modal center-align">
     <form ng-submit="$ctrl.onFinishUpgrade()">

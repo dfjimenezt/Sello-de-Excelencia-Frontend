@@ -23,6 +23,7 @@ class activityEntityListController {
     this.upgradeEndpoint = Api + '/service/service?upgrade=true&id='
     this.pdfEndpoint = Api + '/service/service?certificate=true&id='
     this.openSelector = false
+    this.openRenew = false
   }
   $onInit() {
     if(this.$state.current.name.indexOf('.') === -1){
@@ -137,11 +138,16 @@ class activityEntityListController {
       this.levels.push(i)
     }
   }
-  onRenew(service) {
-    service.current_status = 10 //Incomplete
-    this.$http.put(this.serviceEndpoint,service).then(()=>{
+  onFinishRenew(){
+    this.selectedService.current_status = 10 //Incomplete
+    this.$http.put(this.serviceEndpoint,this.selectedService).then(()=>{
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
+      this.openSelector = false
     })
+  }
+  onRenew(service) {
+    this.selectedService = service
+    this.openRenew = true
   }
 
 }

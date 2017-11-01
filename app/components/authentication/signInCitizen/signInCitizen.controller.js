@@ -7,6 +7,7 @@ class SignInController {
     this.$http = $http
     this.googleEndpoint = Api+'/auth/login_google'
     this.facebookEndpoint = Api+'/auth/login_fb'
+    this.serverError = false
   }
 
   $onInit() {
@@ -23,8 +24,11 @@ class SignInController {
       }
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
+      this.serverError = false
     }).catch(()=>{
-      this.errorMessage = 'Sólo los Ciudadanos pueden calificar'
+      this.$auth.logout()
+      this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+      this.serverError = true
     })
   }
 
@@ -33,25 +37,9 @@ class SignInController {
     this.serverError = false
     this.$auth.login(this.credentials)
       .then(() => {
-        this.toastr.success('Inicio de sesión exitoso','Iniciar sesión')
-        this.loadding = false
-        let user = this.$auth.getPayload()
-        if(user.tmp_pwd === 1){
-          this.$state.go('changePwd').then(()=>{
-            window.location.reload()
-          })
-        }else if(user.institutions.length >0){
-          this.$state.go('entity.postulate').then(()=>{
-            window.location.reload()
-          })
-        }else if(user.role === 'Evaluador'){
-          this.$state.go('evaluator.activity').then(()=>{
-            window.location.reload()
-          })
-        }else{
-          this.$state.go('landingPage').then(()=>{
-            window.location.reload()
-          })
+        if(user.role !== 'Ciudadano'){
+          this.$auth.logout()
+          this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
         }
       })
       .catch(({ data: { error } }) => {

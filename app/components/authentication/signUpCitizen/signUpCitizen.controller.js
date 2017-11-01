@@ -8,6 +8,7 @@ class SignUpCitizenController {
     this.modalElement = $('.modal')
     this.googleEndpoint = Api+'/auth/login_google'
     this.facebookEndpoint = Api+'/auth/login_fb'
+    this.serverError = false
   }
 
   $onInit() {
@@ -24,16 +25,11 @@ class SignUpCitizenController {
       }
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
-    }).catch((error)=>{
-      if (error.message) {
-        // Satellizer promise reject error.
-        this.toastr.error(error.message)
-      } else if (error.data) {
-        // HTTP response error from server
-        this.toastr.error(error.data.message, error.status)
-      } else {
-        this.toastr.error(error)
-      }
+      this.serverError = false
+    }).catch(()=>{
+      this.$auth.logout()
+      this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+      this.serverError = true
     })
   }
   onSignUp() {

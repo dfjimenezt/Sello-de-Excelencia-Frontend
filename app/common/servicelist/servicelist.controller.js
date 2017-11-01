@@ -6,9 +6,9 @@ class ServiceDetailController {
     this.$stateParams = $stateParams
     this.$http = $http
     this.categoriesEndpoint = Api + '/service/category'
-    //var date = new Date()
-    //this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=history.id_status&filter_value=8&filter_field=history.valid_to&filter_value=>%20'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-    this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=current_status&filter_value=8'
+    var date = new Date()
+    this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=history.id_status&filter_value=8&filter_field=history.valid_to&filter_value=>%20'+date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+    //this.dataEndpoint = Api + '/service/service?certified=true&simple=false&filter_field=current_status&filter_value=8'
     this.institutionEndpoint = Api + '/place/institution'
     this.downloadEndpoint = Api + '/platform/export'
     this.category = null
