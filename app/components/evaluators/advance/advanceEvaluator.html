@@ -8,7 +8,8 @@
                 </div>
                 <div class="fa fa-certificate star color-yellow">
                     <span class="color-white">{{$ctrl.total |number : 0}}</span>
-                </div><br>
+                </div>
+                <br>
                 <span>Total Puntos</span>
             </div>
         </div>
@@ -20,7 +21,8 @@
                 </div>
                 <div class="fa fa-check-circle star color-points">
                     <span class="color-darkgray">{{$ctrl.requisites |number : 0}}</span>
-                </div><br>
+                </div>
+                <br>
                 <span>Requisitos Evaluados</span>
             </div>
         </div>
@@ -32,7 +34,8 @@
                 </div>
                 <div class="fa fa-play-circle star color-points">
                     <span class="color-darkgray">{{$ctrl.live |number : 0}}</span>
-                </div><br>
+                </div>
+                <br>
                 <span>Aprende y Enseña</span>
             </div>
         </div>
@@ -44,12 +47,15 @@
                 </div>
                 <div class="fa fa-users users star color-points">
                     <span class="color-darkgray">{{$ctrl.events |number : 0}}</span>
-                </div><br>
+                </div>
+                <br>
                 <span>Participaciones</span>
             </div>
         </div>
         <div class="row">
-            <a class="pull-right color-lightseagreen" data-target="lost" modal>Ver puntos perdidos <i class="fa fa-caret-right"></i></a>
+            <a class="pull-right color-lightseagreen" data-target="lost" modal>Ver detalle de puntos
+                <i class="fa fa-caret-right"></i>
+            </a>
         </div>
     </div>
 
@@ -67,7 +73,7 @@
     <div id="lost" class="modal">
         <div class="row">
             <div class="col s12 brown color-white">
-                <span>Puntos Perdidos</span>
+                <span>Resumen de Puntos</span>
             </div>
         </div>
         <div class="row">
@@ -81,11 +87,27 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="negative in $ctrl.negatives">
-                            <td><i class="fa fa-minus-circle color-red"></i> {{negative.justification}} </td>
-                            <td class="color-red"> {{negative.value}} punto</td>
+                            <td>
+                                <i class="fa fa-plus-circle color-green" ng-if="negative.value > 0"></i> {{negative.justification}} </td>
+                                <i class="fa fa-minus-circle color-red" ng-if="negative.value < 0"></i> {{negative.justification}} </td>
+                            <td ng-class="{'color-red':negative.value < 0}"> {{negative.value}} punto</td>
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="row" ng-if="$ctrl.pager.total_pages > 1">
+            <div class="col m10 s10 offset-m1 offset-s1 brown color-white pager center-align">
+                <ul>
+                    <li ng-if="$ctrl.pager.before" ng-click="$ctrl.prev()">
+                        <i class="fa fa-step-backward"></i>
+                    </li>
+                    <li ng-repeat="page in $ctrl.pager.pages" ng-click="$ctrl.navigate(page)" ng-class="{'active':$ctrl.query.page == page}"
+                        class="page">{{page}}</li>
+                    <li ng-if="$ctrl.pager.after" ng-click="$ctrl.next()">
+                        <i class="fa fa-step-forward"></i>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="row center-align">
