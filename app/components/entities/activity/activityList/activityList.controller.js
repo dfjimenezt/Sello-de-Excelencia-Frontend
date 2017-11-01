@@ -87,7 +87,7 @@ class activityEntityListController {
           item.certified = true
         })
       }
-      ctrl.pager.total_count = ctrl.list.length
+      ctrl.pager.total_count = response.data.length
       ctrl.loading = false
       ctrl.resetPager()
     })
