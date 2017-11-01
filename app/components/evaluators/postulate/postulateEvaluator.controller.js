@@ -73,7 +73,7 @@ class postulateEvaluatorController{
     let ctrl = this
     this.$http.get(url).then(function (response) {
       ctrl.list = response.data.data
-      ctrl.pager.total_count = response.data.total_results[0].total
+      this.pager.total_count = response.data.total_results
       if(ctrl.list.length === 0){
         ctrl.emptyTopics = true
       }else{
@@ -97,18 +97,20 @@ class postulateEvaluatorController{
   }
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
-    this.getData()
     this.resetPager()
+    this.getData()
+    
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
-    this.getData()
     this.resetPager()
+    this.getData()
+    
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
-    this.getData()
     this.resetPager()
+    this.getData()
   }
   setService(service) {
     this.service = service

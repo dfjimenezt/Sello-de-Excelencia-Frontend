@@ -75,7 +75,7 @@ class learnEntityController {
     this.$http.get(url).then((response)=> {
       this.list = response.data.data
       this.setSelected(this.list[0])
-      this.pager.total_count = this.list.length
+      this.pager.total_count = response.data.total_results
       this.loading = false
       this.resetPager()
     })
@@ -96,14 +96,17 @@ class learnEntityController {
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
     this.resetPager()
+    this.getData()
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
     this.resetPager()
+    this.getData()
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
     this.resetPager()
+    this.getData()
   }
 
   goTo(item){
