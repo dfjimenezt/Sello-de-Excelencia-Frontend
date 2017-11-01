@@ -1,5 +1,5 @@
 class SignInController {
-  constructor($auth,toastr,$state,$http,Api) {
+  constructor($auth,toastr,$state,$http,Api,$rootScope) {
     'ngInject'
     this.$auth = $auth
     this.toastr = toastr
@@ -8,6 +8,7 @@ class SignInController {
     this.googleEndpoint = Api+'/auth/login_google'
     this.facebookEndpoint = Api+'/auth/login_fb'
     this.serverError = false
+    this.$rootScope = $rootScope
   }
 
   $onInit() {
@@ -25,10 +26,11 @@ class SignInController {
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
       this.serverError = false
+      this.$rootScope.$emit('user')
     }).catch(()=>{
       this.$auth.logout()
       this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
-      this.serverError = true
+      this.serverError = false
     })
   }
 
@@ -41,7 +43,10 @@ class SignInController {
         if(user.role !== 'Ciudadano'){
           this.$auth.logout()
           this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+        }else{
+          this.$rootScope.$emit('user')
         }
+        
       })
       .catch(({ data: { error } }) => {
         const CODE_USER_NOT_ACTIVE = 203

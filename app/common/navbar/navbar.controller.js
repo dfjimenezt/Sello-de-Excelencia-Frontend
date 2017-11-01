@@ -1,5 +1,5 @@
 class NavbarController {
-  constructor($auth,toastr,$state,Api,$http) {
+  constructor($auth,toastr,$state,Api,$http,$rootScope) {
     'ngInject'
     this.$auth = $auth
     this.toastr = toastr
@@ -8,6 +8,17 @@ class NavbarController {
     this.logoEndpoint = Api + '/configuration/config'
     this.canAdvance = true
     this.canProfile = true
+    this.$rootScope = $rootScope
+    this.$rootScope.$on('user',()=>{
+      if(this.$auth.isAuthenticated()){
+        if(this.$auth.getPayload().role){
+          if(this.$auth.getPayload().role === 'Ciudadano'){
+            this.canAdvance = false
+            this.canProfile = false
+          }
+        }
+      }
+    })
   }
 
   $onInit(){
