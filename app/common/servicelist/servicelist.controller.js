@@ -86,6 +86,9 @@ class ServiceDetailController {
           })
         } else {
           if(field === 'postulation' || field === 'certification'){
+            if(values.indexOf('T')>-1){
+              values = values.split('T')[0]
+            }
             var d = new Date(values)
             if(isNaN( d.getTime())){
               continue
