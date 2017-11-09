@@ -60,7 +60,7 @@ class SliderController {
         let i = template.replace('{{ID}}',item.id)
         i = i.replace('{{BACKGROUND}}', encodeURI(item.video) ? 
           this.video_template
-          .replace('{{VIDEO}}',encodeURI(item.video))
+          .replace('{{VIDEO}}',item.video ? encodeURI(item.video):'')
           .replace('{{IMAGE}}',item.background ? encodeURI(item.background) : '' )  : 
           item.background ? this.image_template
           .replace('{{IMAGE}}',encodeURI(item.background)):''
