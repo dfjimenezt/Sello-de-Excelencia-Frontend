@@ -10,8 +10,6 @@
   max-height 400px
   object-fit contain
 
-
-
 .slider .indicators .indicator-item.active
     background-color: #000
 
@@ -55,6 +53,9 @@
 .font-bold
   font-weight bold
 
+.slider .slides li ._caption .container
+  text-align left
+
 .slider .slides li ._caption p 
   margin: 5px 0px
 
@@ -90,12 +91,17 @@
   max-width 960px
   margin auto
 
+.slider .slides li
+  text-align center
+
 .slider .slides li ._caption .summary
   max-height 52px
   overflow hidden
   text-overflow ellipsis
+  text-align left
 
 .slider .slides li img
+  max-width 903px
   background-size contain !important
   background-repeat no-repeat !important
 
