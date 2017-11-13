@@ -25,13 +25,13 @@
             </div>
             <div class="action center-align color-lightgray"
                 ng-click="$ctrl.onRejected()"
-                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.PENDIENTE">
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.ASIGNADO">
                 <i class="fa fa-times-circle"></i><br>
                 <span>Rechazar</span>
             </div>
             <div class="action color-green center-align"
                 ng-click="$ctrl.onApproved()"
-                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.PENDIENTE">
+                ng-if="!$ctrl.mayApply && $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.ASIGNADO">
                 <i class="fa fa-check-circle"></i><br>
                 <span>Aceptar</span>
             </div>
