@@ -10,11 +10,11 @@
         <div class="gainsboro row">
             <div class="content">
                 <div class="color-black">{{$ctrl.item.topic.name}}</div>
-                <div ng-if="!$ctrl.mayApply && ($ctrl.item.status.id==3)"><span class="color-black">Fecha de Asignación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
+                <div ng-if="!$ctrl.mayApply && ($ctrl.item.status.id==ctrl.STATES.EVALUATION_REQUEST.ASIGNADO)"><span class="color-black">Fecha de Asignación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
                 <div ng-if="!$ctrl.mayApply && 
-                ($ctrl.item.status.id==2 ||
-                $ctrl.item.status.id==4 || 
-                $ctrl.item.status.id==6)"><span class="color-black">Fecha de Aceptación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
+                ($ctrl.item.status.id==ctrl.STATES.EVALUATION_REQUEST.SOLICITADO ||
+                $ctrl.item.status.id==ctrl.STATES.EVALUATION_REQUEST.ACEPTADO || 
+                $ctrl.item.status.id==ctrl.STATES.EVALUATION_REQUEST.RETROALIMENTACION)"><span class="color-black">Fecha de Aceptación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
                 <div ng-if="$ctrl.mayApply"><span class="color-black">Fecha de Postulación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
                 <div ng-if="$ctrl.item.status.id==$ctrl.STATES.EVLUATION_REQUEST.CUMPLE || $ctrl.item.status.id==$ctrl.STATES.EVLUATION_REQUEST.NO_CUMPLE">
                             <span class="color-black">Fecha de Calificación: </span>{{$ctrl.item.timestamp | date:'dd-MM-yyyy'}}</div>
