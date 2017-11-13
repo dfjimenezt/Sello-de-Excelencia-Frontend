@@ -18,28 +18,28 @@
                     <span>Fecha de vigencia: </span>
                     <span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.status.id_status==1 || $ctrl.item.status.id_status==10) && !$ctrl.item.certified">
+                <div ng-if="($ctrl.item.status.id_status==$ctrl.STATES.SERVICE.INCOMPLETO || $ctrl.item.status.id_status==$ctrl.STATES.SERVICE.VERIFICACION) && !$ctrl.item.certified">
                     <span>Fecha de postulación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                     <span>Plazo de validación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.status.id_status==5) && !$ctrl.item.certified">
+                <div ng-if="($ctrl.item.status.id_status==$ctrl.STATES.SERVICE.EVALUACION) && !$ctrl.item.certified">
                     <span>Fecha de validación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                     <span>Plazo de evaluación: </span><span>{{$ctrl.item.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.item.current_status == 9) && !$ctrl.item.certified">
+                <div ng-if="($ctrl.item.current_status == $ctrl.STATES.SERVICE.NO_CUMPLE) && !$ctrl.item.certified">
                     <span>Fecha de evaluación: </span><span>{{$ctrl.item.status.timestamp | date}}</span>
                     <br>
                 </div>
             </div>
-            <div class="action color-green center-align" ng-click="$ctrl.onRenew()" ng-if="$ctrl.item.current_status == 8">
+            <div class="action color-green center-align" ng-click="$ctrl.onRenew()" ng-if="$ctrl.item.current_status == $ctrl.STATES.SERVICE.CUMPLE">
                 <!--i class="fa fa-download"></i-->
                 <i class="material-icons" style="font-size: 31px;">autorenew</i>
                 <br>
                 <span>Renovar</span>
             </div>
-            <div class="action color-green center-align" ng-click="$ctrl.onUpgrade($ctrl.item)" ng-if="$ctrl.item.current_status == 8">
+            <div class="action color-green center-align" ng-click="$ctrl.onUpgrade($ctrl.item)" ng-if="$ctrl.item.current_status == $ctrl.STATES.SERVICE.CUMPLE">
                 <!--i class="fa fa-download"></i-->
                 <i class="material-icons" style="font-size: 31px;">trending_up</i>
                 <br>
@@ -51,18 +51,19 @@
                 <br>
                 <span>Descargar Diploma</span>
             </div>
-            <div class="action color-red center-align" ng-click="$ctrl.onRejected($ctrl.item)" ng-if="$ctrl.item.current_status == 9">
+            <div class="action color-red center-align" ng-click="$ctrl.onRejected($ctrl.item)" ng-if="$ctrl.item.current_status == $ctrl.STATES.SERVICE.NO_CUMPLE">
                 <i class="fa fa-times"></i>
                 <br>
                 <span>No Cumple</span>
             </div>
-            <div class="action color-lightseagreen center-align" ng-click="$ctrl.onSelected($ctrl.item)" ng-if="$ctrl.item.current_status == 11 
-                || $ctrl.item.current_status == 1
-                || $ctrl.item.current_status == 5
+            <div class="action color-lightseagreen center-align" ng-click="$ctrl.onSelected($ctrl.item)" 
+            ng-if="$ctrl.item.current_status == $ctrl.STATES.SERVICE.VERIFICACION
+                || $ctrl.item.current_status == $ctrl.STATES.SERVICE.EVALUACION
                 || $ctrl.item.certified">
                 <i class="fa fa-chevron-circle-right"></i>
                 <br>
-                <span>{{ $ctrl.item.status.id == 1 ? 'Ver Detalle': $ctrl.item.status.id == 2 ? 'Volver a Postular': 'Ver progreso'
+                <span>{{ $ctrl.item.status.id == $ctrl.STATES.SERVICE.VERIFICACION ? 'Ver Detalle': 
+                    $ctrl.item.status.id == $ctrl.STATES.SERVICE.EVALUACION ? 'Ver Progreso': 'Ver Detalle'
                     }}
                 </span>
             </div>

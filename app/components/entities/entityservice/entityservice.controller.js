@@ -1,7 +1,8 @@
 class entityService{
-  constructor(Api,$http,$stateParams,$state){
+  constructor(Api,$http,$stateParams,$state,STATES){
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$state = $state
     this.serviceCommentsEndpoint = Api + '/service/service_comment?filter_field=id_service&filter_value='
@@ -50,7 +51,7 @@ class entityService{
           if(question.media.url){
             question.media.name = question.media.url.substr(question.media.url.lastIndexOf('/')+1)
           }
-          if(question.status.id==6){
+          if(question.status.id==this.STATES.EVALUATION_REQUEST.RETROALIMENTACION){
             question.disabled = false
             question.media.canDelete = true
           }else{
@@ -60,10 +61,7 @@ class entityService{
       })
       this.selected = this.questions[this.currentIndex]
     }).then(()=>{
-      if(this.service.current_status === 6){
-        //this.$http.get(//user_comments).then((results){})
-      }
-      if(this.service.current_status === 8){
+      if(this.service.current_status === this.STATES.SERVICE.CUMPLE){
         this.$http.get(this.serviceCommentsEndpoint+ this.service.id).then((results)=>{
           this.service.comments = results.data.data
           this.service.totalcomments = results.data.total_results

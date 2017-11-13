@@ -1,7 +1,8 @@
 class serviceItemController{
-  constructor(Api,$http){
+  constructor(Api,$http,STATES){
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.serviceEndpoint = Api+'/service/service_status?limit=1&order=timestamp%20desc&filter_field=id_service&filter_value='
   }

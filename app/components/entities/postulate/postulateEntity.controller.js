@@ -1,7 +1,8 @@
 class postulateEntityController {
-  constructor(Api, $http, $auth, $state) {
+  constructor(Api, $http, $auth, $state,STATES) {
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$auth = $auth
     this.$state = $state
@@ -45,12 +46,12 @@ class postulateEntityController {
         if(status.level !== this.service.level && this.previouslevel === null){
           this.previouslevel = status.level
         }
-        if(status.id_status === 8 ){
+        if(status.id_status === this.STATES.SERVICE.CUMPLE ){
           hasStamp = true
         }
       })
       
-      if(this.service.current_status === 10 && hasStamp){
+      if(this.service.current_status === this.STATES.SERVICE.INCOMPLETO && hasStamp){
         if(_levels.length > 1){
           this.isUpgrade = true
         }else{
@@ -72,8 +73,7 @@ class postulateEntityController {
     this.answers = []
     this.$http.get(this.serviceEndpoint +
       '?filter_field=id_institution&filter_value=' + this.entity.id +
-      '&filter_field=current_status&filter_value=10'+
-      '&filter_field=current_status&filter_value=12').then((results) => {
+      '&filter_field=current_status&filter_value='+this.STATES.SERVICE.INCOMPLETO).then((results) => {
         this.pendingServices = results.data.data
         this.loading = false
       })
@@ -112,7 +112,7 @@ class postulateEntityController {
           question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
-          if(this.answers[ids[question.id]].id_status === 10){
+          if(this.answers[ids[question.id]].id_status === this.STATES.EVLUATION_REQUEST.ERROR){
             question.error = true
           }
           if(question.media.url){
@@ -147,7 +147,7 @@ class postulateEntityController {
     })
   }
   finishPostulation(){
-    this.service.current_status = 1 //Verification
+    this.service.current_status = this.STATES.SERVICE.VERIFICACION //Verification
     this.$http.put(this.serviceEndpoint,this.service).then(()=>{
       $('#modal-laucher').click()
       this.canPostulate = false

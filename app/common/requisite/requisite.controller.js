@@ -1,7 +1,8 @@
 class requisiteController{
-  constructor(Api,$http,$auth,$scope){
+  constructor(Api,$http,$auth,$scope,STATES){
     'ngInject'
-    this.Api = Api,
+    this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$auth = $auth
     this.$scope = $scope
@@ -24,7 +25,7 @@ class requisiteController{
     var request = new XMLHttpRequest()
     if(this.item.answer){
       data.append('id',this.item.answer)
-      data.append('id_status',1)
+      data.append('id_status',this.STATES.EVALUATION_REQUEST.PENDIENTE)
       request.open('PUT', this.answerEndpoint)
     }else{
       request.open('POST', this.answerEndpoint)

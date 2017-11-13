@@ -1,5 +1,5 @@
 class activityEntityListController {
-  constructor(Api, $http, $auth, toastr, $state) {
+  constructor(Api, $http, $auth, toastr, $state, STATES) {
     'ngInject'
     this.Api = Api
     this.$http = $http
@@ -26,6 +26,7 @@ class activityEntityListController {
     this.openRenew = false
     this.emptyList = false
     this.emptyMessage = ''
+    this.STATES = STATES
   }
   $onInit() {
     if (this.$state.current.name.indexOf('.') === -1) {
@@ -44,20 +45,20 @@ class activityEntityListController {
     this.section = section
     if (section === 'certified') {
       var date = new Date()
-      this.query.fields['history.id_status'] = ['8']
+      this.query.fields['history.id_status'] = [this.STATES.SERVICE.CUMPLE]
       this.query.fields['history.valid_to'] = ['> ' + date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()]
       this.emptyMessage = 'En este momento no tienes sellos otorgados.'
     }
     if (section === 'validation') {
-      this.query.fields.current_status = ['1']
+      this.query.fields.current_status = [this.STATES.SERVICE.VERIFICACION]
       this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'proccess') {
-      this.query.fields.current_status = ['5']
+      this.query.fields.current_status = [this.STATES.SERVICE.EVALUATION]
       this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'rejected') {
-      this.query.fields.current_status = ['9']
+      this.query.fields.current_status = [this.STATES.SERVICE.NO_CUMPLE]
       this.emptyMessage = 'En este momento no tienes sellos no otorgados.'
     }
     this.getData()
@@ -142,7 +143,7 @@ class activityEntityListController {
     window.open(this.pdfEndpoint + service.id)
   }
   onFinishUpgrade() {
-    this.selectedService.current_status = 10 //Incomplete
+    this.selectedService.current_status = this.STATES.SERVICE.INCOMPLETO //Incomplete
     this.selectedService.level = this.level
     this.$http.put(this.serviceEndpoint, this.selectedService).then(() => {
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
@@ -158,7 +159,7 @@ class activityEntityListController {
     }
   }
   onFinishRenew() {
-    this.selectedService.current_status = 10 //Incomplete
+    this.selectedService.current_status = this.STATES.SERVICE.INCOMPLETO //Incomplete
     this.$http.put(this.serviceEndpoint, this.selectedService).then(() => {
       this.toastr.success('El servicio está ahora disponible para completar los requisitos')
       this.openRenew = false
