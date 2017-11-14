@@ -112,7 +112,7 @@ class postulateEntityController {
           question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
-          if(this.answers[ids[question.id]].id_status === this.STATES.EVLUATION_REQUEST.ERROR){
+          if(this.answers[ids[question.id]].id_status === this.STATES.EVALUATION_REQUEST.ERROR){
             question.error = true
           }
           if(question.media.url){
