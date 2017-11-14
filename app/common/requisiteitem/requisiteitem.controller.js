@@ -1,7 +1,8 @@
 class requisiteItemController{
-  constructor(Api,$http){
+  constructor(Api,$http,STATES){
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.institutionEndpoint = Api + '/place/institution'
   }
