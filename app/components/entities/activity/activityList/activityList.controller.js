@@ -54,7 +54,7 @@ class activityEntityListController {
       this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'proccess') {
-      this.query.fields.current_status = [this.STATES.SERVICE.EVALUATION]
+      this.query.fields.current_status = [this.STATES.SERVICE.EVALUACION]
       this.emptyMessage = 'En este momento no tienes postulaciones pendientes.'
     }
     if (section === 'rejected') {

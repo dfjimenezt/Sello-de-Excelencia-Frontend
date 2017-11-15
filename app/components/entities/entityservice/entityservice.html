@@ -23,7 +23,7 @@
                     <br>
                     <span>Plazo de validación: </span><span>{{$ctrl.service.status.valid_to | date}}</span>
                 </div>
-                <div ng-if="($ctrl.service.status.id_status=== $ctrl.STATES.SERVICE.EVALUATION) && !$ctrl.service.certified">
+                <div ng-if="($ctrl.service.status.id_status=== $ctrl.STATES.SERVICE.EVALUACION) && !$ctrl.service.certified">
                     <span>Fecha de validación: </span><span>{{$ctrl.service.status.timestamp | date}}</span>
                     <br>
                     <span>Plazo de evaluación: </span><span>{{$ctrl.service.status.valid_to | date}}</span>
