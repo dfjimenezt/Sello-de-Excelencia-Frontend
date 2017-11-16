@@ -10,7 +10,7 @@ class postulateEntityController {
     this.categoriesEndpoint = Api + '/service/category'
     this.serviceEndpoint = Api + '/service/service'
     this.serviceStatusEndpoint = Api + '/service/service_status?order=timestamp%20desc&filter_field=id_service&filter_value='
-    this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
+    this.questionEndpoint = Api + '/question/question?simple=false&limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
     this.loading = false
     this.isUpgrade = false
