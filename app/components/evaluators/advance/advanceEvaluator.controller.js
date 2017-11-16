@@ -27,7 +27,7 @@ class advanceEvaluatorController{
       this.motives = results.data.data
       this.motives.forEach((motive)=>{
         this.names.forEach((name)=>{
-          if(motive.name == name.id){
+          if(motive.name === name.id){
             motive.name = name
           }
         })

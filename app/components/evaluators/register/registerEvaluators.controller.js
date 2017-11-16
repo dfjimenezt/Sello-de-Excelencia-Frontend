@@ -144,7 +144,7 @@ class RegisterEvaluatorController {
       this.openConfirmation = true
       this.section = 2
     }).catch((result)=>{
-      if(result.data.error.code == 201){
+      if(result.data.error.code === 201){
         this.error = 'El usuario ya se encuentra registrado.'
       }
     })

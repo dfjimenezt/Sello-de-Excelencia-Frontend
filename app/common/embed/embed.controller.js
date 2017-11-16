@@ -1,7 +1,6 @@
 class EmbedController {
   constructor($state,Api,$http,$auth) {
     'ngInject'
-    console.log('embed')
     this.$state = $state
     this.Api = Api
     this.$http = $http
