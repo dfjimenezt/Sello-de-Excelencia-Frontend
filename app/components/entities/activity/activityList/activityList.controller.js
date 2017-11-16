@@ -85,7 +85,7 @@ class activityEntityListController {
     if (this.query.order) {
       params.push('order=' + this.query.order)
     }
-
+    params.push('simple=false')
     url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
     let ctrl = this
     this.$http.get(url).then(function (response) {

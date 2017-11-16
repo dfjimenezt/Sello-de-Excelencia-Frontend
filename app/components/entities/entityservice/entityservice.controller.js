@@ -7,7 +7,7 @@ class entityService{
     this.$state = $state
     this.serviceCommentsEndpoint = Api + '/service/service_comment?filter_field=id_service&filter_value='
     this.serviceEndpoint = Api + '/service/service?simple=false'
-    this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
+    this.questionEndpoint = Api + '/question/question?simple=false&limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
     this.selected = null
     this.currentIndex = 0
