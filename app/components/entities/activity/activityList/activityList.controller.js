@@ -18,7 +18,7 @@ class activityEntityListController {
       }
     }
     this.levels = []
-    this.serviceEndpoint = Api + '/service/service?simple=false'
+    this.serviceEndpoint = Api + '/service/service?'
     this.renewEndpoint = Api + '/service/service?renew=true&id='
     this.upgradeEndpoint = Api + '/service/service?upgrade=true&id='
     this.pdfEndpoint = Api + '/service/service?certificate=true&id='
