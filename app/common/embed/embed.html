@@ -1,9 +1,12 @@
-<div class="embeded">
+<a class="embeded" href="http://sellodeexcelencia.gov.co/detalle/{{$ctrl.item.id}}" target="_blank">
     <div class="container center-align">
         <div class="row logo">
-            <div class="badge">
-                <div alt="badge" class="fame-icon category-{{$ctrl.item.service.id_category}} level-{{$ctrl.item.question.level}}"></div>
+            <div class="badge" ng-if="$ctrl.item.is_active">
+                <div alt="badge" class="fame-icon category-{{$ctrl.item.id_category}} level-{{$ctrl.item.level}}"></div>
+            </div>
+            <div class="badge" ng-if="!$ctrl.item.is_active">
+                <h3>El Sello de Excelencia no está vigente</h3>>
             </div>
         </div>
     </div>
-</div>
+</a>
