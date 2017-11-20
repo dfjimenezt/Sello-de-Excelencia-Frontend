@@ -31,6 +31,7 @@ class SignInController {
       this.$auth.logout()
       this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
       this.serverError = false
+      this.loadding = false
     })
   }
 
