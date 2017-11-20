@@ -13,8 +13,8 @@ import appComponent from './components/app/app.component'
 import appConfig from './components/app/app.config'
 
 
-//const API = 'https://backend-test-dot-domoti-sellodeexcelencia.appspot.com/api'
-const API = 'http://localhost:3000/api'
+const API = 'https://backend-test-dot-domoti-sellodeexcelencia.appspot.com/api'
+//const API = 'http://localhost:3000/api'
 const STATES = {
   SERVICE: {
     'INCOMPLETO': 1, //EN DILIGENCIAMIENTO POR LA ENTIDAD
