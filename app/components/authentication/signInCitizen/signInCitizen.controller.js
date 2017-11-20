@@ -27,6 +27,7 @@ class SignInController {
       this.$auth.setToken(response.data.token)
       this.serverError = false
       this.$rootScope.$emit('user')
+      this.loadding = false
     }).catch(()=>{
       this.$auth.logout()
       this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
@@ -44,6 +45,8 @@ class SignInController {
         if(user.role !== 'Ciudadano'){
           this.$auth.logout()
           this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+          this.loadding = false
+          this.serverError = false
         }else{
           this.$rootScope.$emit('user')
         }
