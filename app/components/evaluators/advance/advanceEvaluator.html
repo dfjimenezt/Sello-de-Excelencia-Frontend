@@ -88,7 +88,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="negative in $ctrl.negatives">
-                            <td> {{negative.timestamp | date:'dd/MM/yyyy hh:mm'}}</td>
+                            <td> {{negative.timestamp | date:'dd/MM/yyyy hh:mm a'}}</td>
                             <td>
                                 <span ng-if="negative.value > 0">
                                     <i class="fa fa-plus-circle color-green"></i> {{negative.justification}}
