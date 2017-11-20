@@ -39,6 +39,7 @@ class advanceEvaluatorController{
       this.live = 0
       this.events = 0
       results.data.forEach(function(points) {
+
         _total += points.value
         this.motives.forEach((motive)=>{
           if(motive.id === points.id_motives){
