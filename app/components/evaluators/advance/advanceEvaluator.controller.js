@@ -5,7 +5,7 @@ class advanceEvaluatorController{
     this.$http = $http
     this.$auth = $auth
     this.pointsEndpoint = Api +'/configuration/points'
-    this.motivesEndpoint = Api +'/configuration/motives'
+    this.motivesEndpoint = Api +'/configuration/motives?limit=5000'
     this.motivenamesEndpoint = Api +'/configuration/motivename'
     this.pagestoshow = 5
     this.pager = {
@@ -22,7 +22,7 @@ class advanceEvaluatorController{
   $onInit(){
     this.$http.get(this.motivenamesEndpoint).then((results)=>{
       this.names = results.data.data
-      return this.$http.get(this.motivesEndpoint)
+      return this.$http.get(this.motivesEndpoint+'')
     }).then((results)=>{
       this.motives = results.data.data
       this.motives.forEach((motive)=>{
