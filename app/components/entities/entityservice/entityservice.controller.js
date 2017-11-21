@@ -70,7 +70,7 @@ class entityService{
     })
   }
   nextQuestion(){
-    if(this.currentIndex < this.questions.length -2)
+    if(this.currentIndex < this.questions.length -1)
       this.selected = this.questions[++this.currentIndex]
   }
   prevQuestion(){
