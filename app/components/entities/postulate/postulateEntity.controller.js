@@ -43,16 +43,16 @@ class postulateEntityController {
         if(_levels.indexOf(status.level)){
           _levels.push(status.level)
         }
-        if(status.level !== this.service.level && this.previouslevel === null){
-          this.previouslevel = status.level
-        }
         if(status.id_status === this.STATES.SERVICE.CUMPLE ){
           hasStamp = true
+          if(status.level > this.previouslevel){
+            this.previouslevel = status.level
+          }
         }
       })
       
       if(this.service.current_status === this.STATES.SERVICE.INCOMPLETO && hasStamp){
-        if(_levels.length > 1){
+        if(this.previouslevel < this.service.level){
           this.isUpgrade = true
         }else{
           this.isRenew = true

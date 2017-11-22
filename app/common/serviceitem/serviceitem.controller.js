@@ -9,11 +9,13 @@ class serviceItemController{
   $onInit(){
     this.$http.get(this.serviceEndpoint+this.item.id).then((results)=>{
       if(this.item.certified){
+        let found = false
         results.data.data.forEach((status)=>{
           if(status.id_status === this.STATES.SERVICE.CUMPLE){
-            if(!this.item.status){
+            if(!found){
               this.item.status = status
             }
+            found = true
           }
         })
       }else{
