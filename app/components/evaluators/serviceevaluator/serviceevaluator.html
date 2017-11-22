@@ -14,7 +14,7 @@
                 <span>Plazo de evaluación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
                 <span ng-if="$ctrl.service.test_user != ''">Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
                 <span ng-if="$ctrl.service.test_password != ''">Contraseña Prueba: </span><span>{{$ctrl.service.test_password }}</span><br>
-                <span ng-if="$ctrl.service.url != ''">URL del producto postulado: </span><a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
+                <span ng-if="$ctrl.service.url != ''">URL del producto postulado: </span><a ng-href="{{$ctrl.service.url}}" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
         

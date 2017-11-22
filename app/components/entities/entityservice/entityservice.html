@@ -33,7 +33,7 @@
                     <br>
                 </div>
 
-                <a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
+                <a ng-href="{{$ctrl.service.url}}" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
         <div class="service-item-result gainsboro valign-wrapper" ng-if="$ctrl.service.current_status == $ctrl.STATES.SERVICE.CUMPLE || $ctrl.service.current_status == $ctrl.STATES.SERVICE.NO_CUMPLE">
