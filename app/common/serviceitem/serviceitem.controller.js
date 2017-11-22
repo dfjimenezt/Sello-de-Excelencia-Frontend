@@ -11,7 +11,9 @@ class serviceItemController{
       if(this.item.certified){
         results.data.data.forEach((status)=>{
           if(status.id_status === this.STATES.SERVICE.CUMPLE){
-            this.item.status = status
+            if(!this.item.status){
+              this.item.status = status
+            }
           }
         })
       }else{
