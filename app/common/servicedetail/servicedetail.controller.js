@@ -4,6 +4,9 @@ class ServiceDetailController {
     this.$state = $state
     this.Api = Api
     this.$http = $http
+    if(!$state.params.id){
+      $state.go('landingPage')
+    }
     this.detailEndpoint = Api+'/service/service?simple=false&id='+$state.params.id
     if($auth.isAuthenticated()){
       this.disabled = $auth.getPayload().role === 'Evaluador' ||
@@ -11,7 +14,6 @@ class ServiceDetailController {
     }else{
       this.disabled = false
     }
-    
   }
   $onInit() {
     this.getData()
@@ -19,7 +21,6 @@ class ServiceDetailController {
   getData(){
     this.$http.get(this.detailEndpoint).then((results)=>{
       this.item = results.data.data[0]
-      
       if(this.item.url.indexOf('http') !== 0){
         this.item.url = 'http://'+this.item.url
       }

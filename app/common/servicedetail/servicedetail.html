@@ -1,5 +1,5 @@
 <div class="detail">
-    <div class="container center-align">
+    <div class="container center-align" ng-if="$ctrl.item.is_active">
         <div class="card white color-brown row title">
             <h3>Detalle de producto o servicio</h3>
         </div>
@@ -64,6 +64,9 @@
 
             </div>
         </div>
+    </div>
+    <div class="container center-align" ng-if="!$ctrl.item.is_active">
+        <h3>El Producto o Servicio no se encuentra activo.</h3>
     </div>
 </div>
 
