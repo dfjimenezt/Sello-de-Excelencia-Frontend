@@ -22,9 +22,6 @@ class ServiceDetailController {
   getData(){
     this.$http.get(this.detailEndpoint).then((results)=>{
       this.item = results.data.data[0]
-      if(!this.item.is_active){
-        this.$state.go('landingPage')
-      }
       var level = -1
       this.item.history.forEach((status)=>{
         if(status.id_status === this.STATES.SERVICE.CUMPLE){
