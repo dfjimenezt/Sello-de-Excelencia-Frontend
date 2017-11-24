@@ -24,7 +24,8 @@ class ServiceDetailController {
       this.item = results.data.data[0]
       if(!this.item){
         this.item = {
-          is_active : 0
+          is_active : 0,
+          history:[]
         }
       }
       var level = -1
@@ -36,6 +37,9 @@ class ServiceDetailController {
           }
         }
       })
+      if(level  == -1){
+        this.item.id_active = 0
+      }
       if(this.item.url.indexOf('http') !== 0){
         this.item.url = 'http://'+this.item.url
       }
