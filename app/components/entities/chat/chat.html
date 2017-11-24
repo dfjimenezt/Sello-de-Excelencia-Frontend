@@ -1,6 +1,6 @@
 <div class="card row chat">
     <div class="title">
-        Contactar a la entidad
+        Contactar al Evaluador
     </div>
     <div class="col s12">
         <ul class="evaluator-tabs">
@@ -24,11 +24,13 @@
         <div class="row valign-wrapper userinput" >
             <div class="input-field col m11 s11">
                 <label for="user-input">Escribe un Mensaje:</label>
-                <textarea id="user-input" ng-model="$ctrl.message" class="input-message materialize-textarea"></textarea>
+                <textarea id="user-input" ng-model="$ctrl.message"
+                ng-disabled="$ctrl.currentEvaluator == null || $ctrl.item.status.id === $ctrl.STATES.EVALUATION_REQUEST.CUMPLE || $ctrl.item.status.id === $ctrl.STATES.EVALUATION_REQUEST.NO_CUMPLE"
+                class="input-message materialize-textarea"></textarea>
             </div>
             <button class="col m1 s1 btn" 
                 ng-click="$ctrl.sendMessage()"
-                ng-disabled="$ctrl.currentEvaluator == null">
+                ng-disabled="$ctrl.currentEvaluator == null || $ctrl.item.status.id === $ctrl.STATES.EVALUATION_REQUEST.CUMPLE || $ctrl.item.status.id === $ctrl.STATES.EVALUATION_REQUEST.NO_CUMPLE">
                 <i class="fa fa-paper-plane"></i>
             </button>
         </div>

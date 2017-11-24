@@ -91,7 +91,7 @@
         <button type="button" class="btn green" ng-click="$ctrl.onEvaluatorAccepted()">ACEPTAR</button>
         <button type="button" class="btn red" ng-click="$ctrl.onEvaluatorRejected()">RECHAZAR</button>
     </div>
-    <div class="row  bottom" ng-if="$ctrl.item.disabled && $ctrl.item.rejected">
+    <div class="row  bottom" ng-if="$ctrl.item.disabled && ($ctrl.item.rejected || $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.NO_CUMPLE)">
         <div class="col s12 center-align">
             <div class="action color-red center-align">
                 <i class="fa fa-times"></i><br>
@@ -99,7 +99,8 @@
             </div>
         </div>
     </div>
-    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && $ctrl.item.accepted">
+
+    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && ($ctrl.item.accepted || $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.CUMPLE)">
         <div class="col s12 center-align">
             <div class="action color-green center-align">
                 <i class="fa fa-check"></i><br>
