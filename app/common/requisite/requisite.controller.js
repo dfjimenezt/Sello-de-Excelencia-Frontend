@@ -58,6 +58,7 @@ class requisiteController{
   }
   clearMedia(){
     this.item.media = null
+    this.item.id_media = null
     this.item.file = null
     if(this.item.disabled === true){
       this.item.disabled = false
