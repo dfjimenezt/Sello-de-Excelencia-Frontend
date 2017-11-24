@@ -24,10 +24,10 @@ class ServiceDetailController {
       this.item = results.data.data[0]
       var level = -1
       this.item.history.forEach((status)=>{
-        if(status.id_status === STATES.SERVICE.CUMPLE){
+        if(status.id_status === this.STATES.SERVICE.CUMPLE){
           if(status.level > level){
             level = status.level
-            item.status = status
+            this.item.status = status
           }
         }
       })
