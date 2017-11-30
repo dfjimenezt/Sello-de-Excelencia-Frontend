@@ -10,8 +10,8 @@ Aplicación que permite postular, publicar, verificar y validar los requisitos d
 
 ## Instalación
 ```shell
-  $ git clone https://jorcalle11@bitbucket.org/domoti/quality-stamp.git
-  $ cd quality-stamp
+  $ git clone https://github.com/dfjimenezt/Sello-de-Excelencia-Frontend.git
+  $ cd Sello-de-Excelencia-Frontend
   $ npm install
 ```
 ## Ejecución
