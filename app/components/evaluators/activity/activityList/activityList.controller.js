@@ -1,7 +1,8 @@
 class activityList{
-  constructor(Api,$http,$auth,$state){
+  constructor(Api,$http,$auth,$state,STATES){
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$auth = $auth
     this.$state = $state
@@ -48,15 +49,16 @@ class activityList{
     this.section = section
     if(this.section === 'asignated'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = ['3']
+      this.query.fields.id_request_status = [this.STATES.EVALUATION_REQUEST.ASIGNADO]
     }
     if(this.section === 'proccess'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = ['2','4','6']
+      this.query.fields.id_request_status = [this.STATES.EVALUATION_REQUEST.SOLICITADO,
+        this.STATES.EVALUATION_REQUEST.ACEPTADO,this.STATES.EVALUATION_REQUEST.RETROALIMENTACION]
     }
     if(this.section === 'finished'){
       this.query = this.activityquery
-      this.query.fields.id_request_status = ['7','5']
+      this.query.fields.id_request_status = [this.STATES.EVALUATION_REQUEST.CUMPLE,this.STATES.EVALUATION_REQUEST.NO_CUMPLE]
     }
     if(this.section === 'postulate'){
       this.query = this.postulatequery
@@ -154,7 +156,7 @@ class activityList{
     }else{
       this.section === 'postulate'?
       this.postulatequery.fields['institution.id'] = item.id :
-      this.activityquery.fields['service.id_institution'] = item.id 
+      this.activityquery.fields['institution.id'] = item.id 
     }
     
     this.getData()

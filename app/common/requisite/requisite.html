@@ -5,19 +5,26 @@
                 <div class="col m8 s12 requisite-title">
                     <span class="color-brown">{{$ctrl.item.id}} - {{$ctrl.item.text}}</span>
                 </div>
-                <div class="col m4 s12 right-align tips">
+                <div class="col m4 s12 right-align tips" >
                     <div class="color-red" ng-if="$ctrl.item.error" tooltipped data-position="top" data-tooltip="Este Requisito tiene errores"
                         data-delay="150">
                         <span>Este requisito ha sido rechazado</span>
                         <i class="fa fa-exclamation-triangle"></i>
                     </div>
-                    <div ng-if="$ctrl.item.legal_support !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.legal_support}}" data-delay="150">
-                        <span>Sustento Legal o Técnico</span>
-                        <i class="fa fa-book"></i>
+                    <div ng-if="$ctrl.item.legal_support !== ''"  >
+                        <span 
+                        ng-click="$ctrl.showLegal()">Sustento Legal o Técnico</span>
+                        <i ng-click="$ctrl.showLegal()" class="fa fa-book"></i>
+                        <div class="black color-white tip" ng-show="$ctrl._legal">
+                            {{$ctrl.item.legal_support}}
+                        </div>
                     </div>
-                    <div ng-if="$ctrl.item.help !== ''" tooltipped data-position="top" data-tooltip="{{$ctrl.item.help}}" data-delay="150">
-                        <span>Ayuda</span>
-                        <i class="fa fa-question-circle"></i>
+                    <div ng-if="$ctrl.item.help !== ''">
+                        <span ng-click="$ctrl.showHelp()">Ayuda</span>
+                        <i ng-click="$ctrl.showHelp()" class="fa fa-question-circle"></i>
+                        <div class="black color-white tip" ng-show="$ctrl._help">
+                            {{$ctrl.item.help}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,9 +52,9 @@
             </div>
         </div>
         <div class="col m10 s10 offset-m1 offset-s1" ng-if="!$ctrl.item.media.name && !$ctrl.item.disabled">
-            <small class="blue-text"><strong>Nota:</strong> Comprimir los archivos en formato (.ZIP).</small>
+            <small class="blue-text"><strong>Nota:</strong> Comprimir para más de un archivo. Tamaño máximo de archivo 20 Mb.</small>
             <div class="file-field input-field">
-                <div class="btn" ngf-select ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
+                <div class="btn" ngf-select ngf-max-size="20MB" ng-model="$ctrl.item.file" ng-disabled="$crtl.disabled">
                     <span>Soporte</span>
                     <input type="file" ng-disabled="$crtl.disabled">
                 </div>
@@ -84,7 +91,7 @@
         <button type="button" class="btn green" ng-click="$ctrl.onEvaluatorAccepted()">ACEPTAR</button>
         <button type="button" class="btn red" ng-click="$ctrl.onEvaluatorRejected()">RECHAZAR</button>
     </div>
-    <div class="row  bottom" ng-if="$ctrl.item.disabled && $ctrl.item.rejected">
+    <div class="row  bottom" ng-if="$ctrl.item.disabled && ($ctrl.item.rejected || $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.NO_CUMPLE)">
         <div class="col s12 center-align">
             <div class="action color-red center-align">
                 <i class="fa fa-times"></i><br>
@@ -92,7 +99,8 @@
             </div>
         </div>
     </div>
-    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && $ctrl.item.accepted">
+
+    <div class="row center-align bottom" ng-if="$ctrl.item.disabled && ($ctrl.item.accepted || $ctrl.item.status.id == $ctrl.STATES.EVALUATION_REQUEST.CUMPLE)">
         <div class="col s12 center-align">
             <div class="action color-green center-align">
                 <i class="fa fa-check"></i><br>

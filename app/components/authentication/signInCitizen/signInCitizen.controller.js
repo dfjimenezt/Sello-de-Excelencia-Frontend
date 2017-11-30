@@ -1,5 +1,5 @@
 class SignInController {
-  constructor($auth,toastr,$state,$http,Api) {
+  constructor($auth,toastr,$state,$http,Api,$rootScope) {
     'ngInject'
     this.$auth = $auth
     this.toastr = toastr
@@ -7,6 +7,8 @@ class SignInController {
     this.$http = $http
     this.googleEndpoint = Api+'/auth/login_google'
     this.facebookEndpoint = Api+'/auth/login_fb'
+    this.serverError = false
+    this.$rootScope = $rootScope
   }
 
   $onInit() {
@@ -23,16 +25,14 @@ class SignInController {
       }
     }).then((response)=>{
       this.$auth.setToken(response.data.token)
-    }).catch((error)=>{
-      if (error.message) {
-        // Satellizer promise reject error.
-        this.toastr.error(error.message)
-      } else if (error.data) {
-        // HTTP response error from server
-        this.toastr.error(error.data.message, error.status)
-      } else {
-        this.toastr.error(error)
-      }
+      this.serverError = false
+      this.$rootScope.$emit('user')
+      this.loadding = false
+    }).catch(()=>{
+      this.$auth.logout()
+      this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+      this.serverError = false
+      this.loadding = false
     })
   }
 
@@ -41,17 +41,14 @@ class SignInController {
     this.serverError = false
     this.$auth.login(this.credentials)
       .then(() => {
-        this.toastr.success('Inicio de sesión exitoso','Iniciar sesión')
-        this.loadding = false
         let user = this.$auth.getPayload()
-        if(user.tmp_pwd === 1){
-          this.$state.go('changePwd')
-        }else if(user.institutions.length >0){
-          this.$state.go('entity.postulate')
-        }else if(user.role === 'Evaluador'){
-          this.$state.go('evaluator.activity')
+        if(user.role !== 'Ciudadano'){
+          this.$auth.logout()
+          this.toastr.error('Sólo los Ciudadanos pueden calificar Servicios')
+          this.loadding = false
+          this.serverError = false
         }else{
-          this.$state.go('landingPage')
+          this.$rootScope.$emit('user')
         }
         
       })

@@ -1,8 +1,9 @@
 /*global grecaptcha*/
 class serviceEvaluator{
-  constructor(Api,$http,$stateParams,$state){
+  constructor(Api,$http,$stateParams,$state,STATES){
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$state = $state
     this.serviceEndpoint = Api + '/service/service'
@@ -23,20 +24,20 @@ class serviceEvaluator{
     this.question = this.request.question
     this.question.disabled = true
     this.question.evaluable = false
-    if(this.request.id_request_status === 3){
+    if(this.request.id_request_status === this.STATES.EVALUATION_REQUEST.ASIGNADO){
       this.question.acceptable = true
     }
-    if(this.request.id_request_status === 2 || this.request.id_request_status == 4){
+    if(this.request.id_request_status === this.STATES.EVALUATION_REQUEST.SOLICITADO || this.request.id_request_status === this.STATES.EVALUATION_REQUEST.ACEPTADO){
       this.question.evaluable = true
     }
-    if(this.request.id_request_status === 6){
+    if(this.request.id_request_status === this.STATES.EVALUATION_REQUEST.RETROALIMENTACION){
       this.question.evaluable = true
       this.question.rejectable = true
     }
-    if(this.request.id_request_status === 7){
+    if(this.request.id_request_status === this.STATES.EVALUATION_REQUEST.CUMPLE){
       this.question.accepted = true
     }
-    if(this.request.id_request_status === 8){
+    if(this.request.id_request_status === this.STATES.EVALUATION_REQUEST.NO_CUMPLE){
       this.question.rejected = true
     }
     this.answer = this.request.user_answer
@@ -48,6 +49,9 @@ class serviceEvaluator{
   getService(){
     this.$http.get(this.serviceEndpoint+'?id='+this.service.id).then((result)=>{
       this.service = result.data.data[0]
+      if(this.service.url.indexOf('http') !== 0){
+        this.service.url = 'http://'+this.service.url
+      }
     })
   }
   getAnswer(){
@@ -61,10 +65,10 @@ class serviceEvaluator{
   requestInformation(){
     let rq = {
       id:this.request.id,
-      id_request_status:6 //feedback
+      id_request_status:this.STATES.EVALUATION_REQUEST.RETROALIMENTACION //feedback
     }
     this.$http.put(this.requestEndpoint,rq).then(()=>{
-      this.request.id_request_status = 6
+      this.request.id_request_status = this.STATES.EVALUATION_REQUEST.RETROALIMENTACION
       this.question.rejectable = true
     })
   }
@@ -83,10 +87,10 @@ class serviceEvaluator{
       this.openReject = false
       let rq = {
         id:this.request.id,
-        id_request_status:8 //rejected
+        id_request_status:this.STATES.EVALUATION_REQUEST.NO_CUMPLE //rejected
       }
       this.$http.put(this.requestEndpoint,rq).then(()=>{
-        this.request.id_request_status = 8
+        this.request.id_request_status = this.STATES.EVALUATION_REQUEST.NO_CUMPLE
         this.question.rejectable = false
         this.onFinished()
       })
@@ -96,10 +100,10 @@ class serviceEvaluator{
   evaluatorAccepted(){
     let rq = {
       id:this.request.id,
-      id_request_status:4 //rejected
+      id_request_status:this.STATES.EVALUATION_REQUEST.ACEPTADO //rejected
     }
     this.$http.put(this.requestEndpoint,rq).then(()=>{
-      this.request.id_request_status = 4
+      this.request.id_request_status = this.STATES.EVALUATION_REQUEST.ACEPTADO
       this.question.rejectable = false
       this.onFinished()
     })
@@ -107,10 +111,10 @@ class serviceEvaluator{
   evaluatorRejected(){
     let rq = {
       id:this.request.id,
-      id_request_status:5 //rejected
+      id_request_status:this.STATES.EVALUATION_REQUEST.RECHAZADO //rejected
     }
     this.$http.put(this.requestEndpoint,rq).then(()=>{
-      this.request.id_request_status = 5
+      this.request.id_request_status = this.STATES.EVALUATION_REQUEST.RECHAZADO
       this.question.rejectable = false
       this.onFinished()
     })
@@ -121,11 +125,11 @@ class serviceEvaluator{
   approved(){
     let rq = {
       id:this.request.id,
-      id_request_status:7 //approved
+      id_request_status:this.STATES.EVALUATION_REQUEST.CUMPLE //approved
     }
     this.openApprove = false
     this.$http.put(this.requestEndpoint,rq).then(()=>{
-      this.request.id_request_status = 7
+      this.request.id_request_status = this.STATES.EVALUATION_REQUEST.CUMPLE
       this.question.rejectable = false
       this.onFinished()
     })

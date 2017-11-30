@@ -7,14 +7,13 @@
             </div>
             <div class="col m2 s12">
                 <select ng-model="$ctrl.query.fields['category.id']" 
-                    material-select watch 
                     ng-change="$ctrl.getData()">
                                     <option ng-value="null" selected>Todas las categorías</option>
                                     <option ng-value="{{category.id}}" ng-repeat="category in $ctrl.categories">{{category.name}}</option>
                                 </select>
             </div>
             <div class="col m3 s12">
-                <select ng-model="$ctrl.query.fields['topic.id']" material-select watch ng-change="$ctrl.getData()">
+                <select ng-model="$ctrl.query.fields['topic.id']" ng-change="$ctrl.getData()">
                     <option ng-value="null" selected>Todas las temáticas</option>
                     <option ng-value="{{topic.id}}" 
                     ng-if="topic.id_category == $ctrl.query.fields['category.id']"
@@ -23,7 +22,7 @@
             </div>
             <div class="col m2 s12">
                 <select ng-model="$ctrl.query.fields.level" 
-                    material-select ng-change="$ctrl.getData()">
+                    ng-change="$ctrl.getData()">
                     <option ng-value="null" selected>Todos los niveles</option>
                     <option value="1" >1</option>
                     <option value="2" >2</option>
@@ -44,7 +43,7 @@
             <h4>{{$ctrl.entity.name}}</h4>
             <div class="row">
                     <h3 class="center-align" ng-if="$ctrl.noRequisites">En el momento no tienes requisitos en este estado</h3>
-                <requisite-item class="col m6 s12" item="requisite" ng-repeat="requisite in $ctrl.list" on-selected="$ctrl.setRequisite(requisite)"></requisite-item>
+                <requisite-item class="col m6 s12" categories="$ctrl.categories" item="requisite" ng-repeat="requisite in $ctrl.list" on-selected="$ctrl.setRequisite(requisite)"></requisite-item>
             </div>
         </div>
         <div class="col s10 offset-s1" ng-if="$ctrl.section == 'postulate'">
@@ -52,7 +51,7 @@
             <div class="row">
                 <h3 class="center-align" ng-if="$ctrl.noTopics">Debes seleccionar al menos una categoría y temática para acceder al listado de postulaciones</h3>
                 <h3 class="center-align" ng-if="$ctrl.emptyTopics">En el momento no existen postulaciones relacionadas con la categoría y temática seleccionadas</h3>
-                <requisite-item class="col m6 s12" item="requisite" ng-repeat="requisite in $ctrl.list" may-apply="true" on-selected="$ctrl.confirm(requisite)">
+                <requisite-item class="col m6 s12" categories="$ctrl.categories" item="requisite" ng-repeat="requisite in $ctrl.list" may-apply="true" on-selected="$ctrl.confirm(requisite)">
                 </requisite-item>
             </div>
         </div>

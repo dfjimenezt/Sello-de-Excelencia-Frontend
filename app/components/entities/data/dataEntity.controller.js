@@ -14,7 +14,8 @@ class dataEntityController{
     this.institutionEndpoint = Api + '/place/institution'
     this.insTypeEndpoint = Api + '/place/institutionType?limit=300'
     this.availabilitiesEndpoint = Api + '/configuration/availability?limit=300'
-    this.userEndpoint = Api + '/configuration/user'
+    this.userEndpoint = Api + '/configuration/user',
+    this.renewTokenEndpoint = Api + '/auth/renew'
     this.openConfirmation = false
     this.getCategories()
     this.getCountries()
@@ -129,7 +130,9 @@ class dataEntityController{
     this.getTopics()
   }
   updateUser(){
-    this.$http.put(this.userEndpoint,this.register).then((result)=>{
+    this.$http.put(this.userEndpoint,this.register).then(()=>{
+      return this.$http.post(this.renewTokenEndpoint,null)
+    }).then((result)=>{
       this.$auth.setToken(result.data.token)
       this.openConfirmation = true
     })

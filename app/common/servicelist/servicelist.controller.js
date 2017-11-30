@@ -1,15 +1,17 @@
 /*global saveAs*/
 class ServiceDetailController {
-  constructor($state, $http, Api) {
+  constructor($state, $http, Api, $stateParams, STATES) {
     'ngInject'
     this.$state = $state
+    this.$stateParams = $stateParams
     this.$http = $http
     this.categoriesEndpoint = Api + '/service/category'
-    this.dataEndpoint = Api + '/service/service?simple=false&filter_field=current_status&filter_value=8&filter_field=id_category&filter_value='
+    var date = new Date()
+    this.dataEndpoint = Api + `/service/service?certified=true&simple=false&filter_field=history.id_status&filter_value=${STATES.SERVICE.CUMPLE}&filter_field=history.valid_to&filter_value=>%20${date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()}`
     this.institutionEndpoint = Api + '/place/institution'
     this.downloadEndpoint = Api + '/platform/export'
+    this.category = null
     this.getBasic()
-
   }
   selectedInstitution(item) {
     if(item){
@@ -29,9 +31,17 @@ class ServiceDetailController {
     this.getData()
   }
   getBasic() {
+    this.loading = true
     this.$http.get(this.categoriesEndpoint).then((result) => {
       this.categories = result.data.data
-      this.selectCategory(this.categories[0])
+      if(this.$stateParams.idEntity){
+        this.$http.get(this.institutionEndpoint+'?id='+this.$stateParams.idEntity)
+        .then((result)=>{
+          this.selectedInstitution(result.data.data[0])
+        })
+      }else{
+        this.selectCategory(this.categories[0])
+      }
     })
   }
   $onInit() {
@@ -49,14 +59,16 @@ class ServiceDetailController {
       selectYears: 15, // Creates a dropdown of 15 years to control year,
       today: 'Hoy',
       clear: 'Limpiar',
-      close: 'Aceptar',
+      close: 'Cerrar',
       closeOnSelect: false // Close upon selecting a date,
     })
   }
-  getData() {
-    this.list = []
-    this.loading = true
-    var url = this.dataEndpoint + this.category.id
+  createUrl(){
+    var url = this.dataEndpoint
+    if(this.category !== null){
+      url += '&filter_field=id_category&filter_value='+this.category.id
+    }
+
     if (!url) {
       return
     }
@@ -72,6 +84,16 @@ class ServiceDetailController {
             params.push('filter_field=' + field + '&filter_value=' + value)
           })
         } else {
+          if(field === 'postulation' || field === 'certification'){
+            if(values.indexOf('T')>-1){
+              values = values.split('T')[0]
+            }
+            var d = new Date(values)
+            if(isNaN( d.getTime())){
+              continue
+            }
+            values = d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()
+          }
           params.push('filter_field=' + field + '&filter_value=' + values)
         }
       }
@@ -80,10 +102,16 @@ class ServiceDetailController {
       params.push('order=' + this.query.order)
     }
 
-    url = url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
+    return url.indexOf('?') > -1 ? url + '&' + params.join('&') : url + '?' + params.join('&')
+  }
+  getData() {
+    this.list = []
+    this.loading = true
+
+    var url = this.createUrl()
     this.$http.get(url).then((response) => {
       this.list = response.data.data
-      this.pager.total_count = this.list.length
+      this.pager.total_count = response.data.total_results
       this.loading = false
       this.resetPager()
     })
@@ -102,41 +130,42 @@ class ServiceDetailController {
   }
   selectCategory(category) {
     this.category = category
-
     this.getData()
   }
 
   prev() {
     this.query.page = Math.max(this.query.page - 1, 1)
     this.resetPager()
+    this.getData()
   }
   next() {
     this.query.page = Math.min(this.query.page + 1, this.pager.total_pages)
     this.resetPager()
+    this.getData()
   }
   navigate(page) {
     this.query.page = Math.max(Math.min(page, this.pager.total_pages), 1)
     this.resetPager()
+    this.getData()
   }
 
   goTo(item) {
     this.$state.go('detail', { id: item.id })
   }
   download() {
-    function s2ab(s) {
-      var buf = new ArrayBuffer(s.length)
-      var view = new Uint8Array(buf)
-      for (var i = 0; i !== s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF
-      return buf
+    var url = this.createUrl()
+    var request = new XMLHttpRequest()
+    request.open('GET', url + '&download=true')
+    request.setRequestHeader('Authorization', localStorage.getItem('token'))
+    request.responseType = 'blob'
+    request.onload = function () {
+      if (request.status === 200) {
+        var d = new Date()
+        d = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds()
+        saveAs(request.response, 'Servicios' + d + '.xlsx')
+      } 
     }
-    let params = ['table=service']
-    this.$http.get(this.downloadEndpoint+'?' + params.join('&')).then(function (response) {
-      var data = response.data
-      var blob = new Blob([s2ab(data)], { type: 'application/octet-stream' })
-      var d = new Date()
-      d = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate() + '-' + d.getHours() + '-' + d.getMinutes() + '-' + d.getSeconds()
-      saveAs(blob, 'estadisticas_bupre_' + d + '.xlsx')
-    })
+    request.send()
   }
 
 }

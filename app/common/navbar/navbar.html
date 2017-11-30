@@ -1,6 +1,6 @@
 <nav>
   <div class="nav-wrapper">
-    <a href="#!/" class="brand-logo color-brown">
+    <a href="/" class="brand-logo color-brown">
       <img class="left" src="assets/img/sell_gel.png" alt="sello de experiencia" width="35">
       <small>Sello de Excelencia</small>
     </a>
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li ng-show="!$ctrl.isAuthenticated()">
-        <a href="#!/sign-in" class="color-brown">
+        <a href="/sign-in" class="color-brown">
           <i class="material-icons left">person</i>
           Iniciar sesión
         </a>
@@ -50,12 +50,12 @@
       </li>
       <li class="divider"></li>
       <li ng-show="!$ctrl.isAuthenticated()">
-        <a href="#!/sign-in">
+        <a href="/sign-in">
           <i class="material-icons right">person</i>Iniciar sesión
         </a>
       </li>
       <li ng-show="$ctrl.isAuthenticated()">
-        <a href="#!/">
+        <a href="/">
           <i class="material-icons right">face</i>
           {{$ctrl.getCurrentUser().name}} {{$ctrl.getCurrentUser().lastname}}
         </a>
@@ -71,14 +71,14 @@
 </nav>
 
 <ul id="dropdownUser" class="dropdown-content">
-  <li>
+  <li ng-if="$ctrl.canProfile">
     <a ng-click="$ctrl.goProfile()">
       <i class="material-icons right">mode_edit</i>
       Perfil
     </a>
   </li>
-  <li>
-      <a ng-click="$ctrl.goProfile()">
+  <li ng-if="$ctrl.canAdvance">
+      <a ng-click="$ctrl.goAdvance()">
         <i class="material-icons right">show_chart</i>
         Mi Avance
       </a>

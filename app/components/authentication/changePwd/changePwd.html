@@ -26,6 +26,7 @@
         </button>
         <loader size="medium" ng-class="{'display-none':!$ctrl.loading,'display-inline-block':$ctrl.loading}"></loader>
         <span class="color-green" ng-if="$ctrl.finished">Se ha cambiado la contraseña correctamente</span>
+        <span class="color-red" ng-if="$ctrl.error">La contraseña actual no es correcta</span>
         <button type="submit" 
           ng-click="$ctrl.goHome()" 
           class="waves-effect waves-light btn-large brown" 

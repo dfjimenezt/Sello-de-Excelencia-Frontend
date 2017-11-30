@@ -1,7 +1,8 @@
 class postulateEntityController {
-  constructor(Api, $http, $auth, $state) {
+  constructor(Api, $http, $auth, $state,STATES) {
     'ngInject'
     this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$auth = $auth
     this.$state = $state
@@ -9,9 +10,12 @@ class postulateEntityController {
     this.categoriesEndpoint = Api + '/service/category'
     this.serviceEndpoint = Api + '/service/service'
     this.serviceStatusEndpoint = Api + '/service/service_status?order=timestamp%20desc&filter_field=id_service&filter_value='
-    this.questionEndpoint = Api + '/question/question?limit=50&filter_field=topic.id_category&filter_value='
+    this.questionEndpoint = Api + '/question/question?simple=false&limit=50&filter_field=topic.id_category&filter_value='
     this.answerEndpoint = Api + '/question/user_answer'
     this.loading = false
+    this.isUpgrade = false
+    this.isRenew = false
+    this.previouslevel = null
   }
   $onInit() {
     this.$http.get(this.categoriesEndpoint).then((results) => {
@@ -30,6 +34,30 @@ class postulateEntityController {
     this.loading = true
     this.$http.get(this.serviceStatusEndpoint + this.service.id).then((results) => {
       this.service.level = results.data.data[0].level
+      this.previouslevel = null
+      let _levels = [] 
+      this.isUpgrade = false
+      this.isRenew = false
+      let hasStamp = false
+      results.data.data.forEach((status)=>{
+        if(_levels.indexOf(status.level)){
+          _levels.push(status.level)
+        }
+        if(status.id_status === this.STATES.SERVICE.CUMPLE ){
+          hasStamp = true
+          if(status.level > this.previouslevel){
+            this.previouslevel = status.level
+          }
+        }
+      })
+      
+      if(this.service.current_status === this.STATES.SERVICE.INCOMPLETO && hasStamp){
+        if(this.previouslevel < this.service.level){
+          this.isUpgrade = true
+        }else{
+          this.isRenew = true
+        }
+      }
       this.getQuestions()
     })
   }
@@ -45,17 +73,23 @@ class postulateEntityController {
     this.answers = []
     this.$http.get(this.serviceEndpoint +
       '?filter_field=id_institution&filter_value=' + this.entity.id +
-      '&filter_field=current_status&filter_value=10').then((results) => {
+      '&filter_field=current_status&filter_value='+this.STATES.SERVICE.INCOMPLETO).then((results) => {
         this.pendingServices = results.data.data
         this.loading = false
       })
   }
   activity(){
-    this.$state.go('entity.activity')
+    window.setTimeout(function($state){
+      $state.go('entity.activity')
+    },100,this.$state)
   }
   getQuestions() {
     let url = this.questionEndpoint + this.service.id_category
-    for(let i = 1 ; i<=this.service.level;i++){
+    let i = 1
+    if(this.isUpgrade){
+      i = this.previouslevel +1
+    }
+    for(i ; i<=this.service.level;i++){
       url +='&filter_field=level&filter_value=' + i
     }
 
@@ -78,6 +112,9 @@ class postulateEntityController {
           question.answer = this.answers[ids[question.id]].id
           question.comment = this.answers[ids[question.id]].comment
           question.media = this.answers[ids[question.id]].media
+          if(this.answers[ids[question.id]].id_status === this.STATES.EVALUATION_REQUEST.ERROR){
+            question.error = true
+          }
           if(question.media.url){
             question.media.name = question.media.url.substr(
               question.media.url.lastIndexOf('/')+1)
@@ -110,7 +147,7 @@ class postulateEntityController {
     })
   }
   finishPostulation(){
-    this.service.current_status = 1 //Verification
+    this.service.current_status = this.STATES.SERVICE.VERIFICACION //Verification
     this.$http.put(this.serviceEndpoint,this.service).then(()=>{
       $('#modal-laucher').click()
       this.canPostulate = false

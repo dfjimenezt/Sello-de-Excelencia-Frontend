@@ -4,6 +4,7 @@ import signInCitizenComponent from './signInCitizen/signInCitizen.component'
 import signUpComponent from './signUp/signUp.component'
 import signUpCitizenComponent from './signUpCitizen/signUpCitizen.component'
 import forgotPasswordComponent from './forgotPassword/forgotPassword.component'
+import forgotPasswordCitizenComponent from './forgotPasswordCitizen/forgotPasswordCitizen.component'
 import changePwdComponent from './changePwd/changePwd.component'
 import AuthService from './auth.service'
 import activeAccountComponent from './activeAccount/activeAccount.component'
@@ -17,6 +18,7 @@ const authentication = angular
   .component('signUp',signUpComponent)
   .component('changePassword',changePwdComponent)
   .component('forgotPassword',forgotPasswordComponent)
+  .component('forgotPasswordCitizen',forgotPasswordCitizenComponent)
   .component('activeAccount',activeAccountComponent)
   .service('AuthService',AuthService)
   .name

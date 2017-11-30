@@ -28,6 +28,12 @@ class FameListController {
       this.loading = false
     })
   }
+  goTo(item){
+    if(this.section === 'community'){
+      return
+    }
+    this.$state.go('certifiedservices.entity',{idEntity:item.id_institution})
+  }
 }
 
 export default FameListController

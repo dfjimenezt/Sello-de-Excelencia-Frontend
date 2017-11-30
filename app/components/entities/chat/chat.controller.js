@@ -1,9 +1,10 @@
 class chatEntity {
-  constructor(Api, $http, $auth) {
+  constructor(Api, $http, $auth,STATES) {
     'ngInject'
     this.Api = Api,
       this.$http = $http
     this.$auth = $auth
+    this.STATES = STATES
     this.user = this.$auth.getPayload()
     this.evaluationRequestEndpoint = Api + '/question/evaluation_request'
     this.messagesEndpoint = Api + '/question/chats'

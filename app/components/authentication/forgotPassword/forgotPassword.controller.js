@@ -1,10 +1,11 @@
 class ForgotPassword{
-  constructor($http,Api){
+  constructor($http,Api,$state){
     'ngInject'
     this.$http = $http
     this.loading = false
     this.finished = false
     this.error = false
+    this.$state = $state
     this.forgotEndpoint = Api + '/auth/recover'
   }
   forgotPassword(){
@@ -18,6 +19,9 @@ class ForgotPassword{
       this.finished = false
       this.error = true
     })
+  }
+  goHome(){
+    this.$state.go('landingPage')
   }
 }
 

@@ -1,5 +1,5 @@
 <div class="detail">
-    <div class="container center-align">
+    <div class="container center-align" ng-if="$ctrl.item.is_active">
         <div class="card white color-brown row title">
             <h3>Detalle de producto o servicio</h3>
         </div>
@@ -20,19 +20,19 @@
                             <span>{{$ctrl.item.id}} - {{$ctrl.item.name}}</span>
                         </div>
                         <div>
-                            <span class="color-brown">Nivel:</span><span>{{$ctrl.item.history[0].level}}</span>
+                            <span class="color-brown">Nivel:</span><span>{{$ctrl.item.status.level}}</span>
                         </div>
                         <div>
-                            <span class="color-brown">Estado:</span><span>{{$ctrl.item.status.name}}</span>
+                            <span class="color-brown">Estado:</span><span>OTORGADO</span>
                         </div>
                         <div>
-                            <span class="color-brown">Fecha de certificación:</span><span>{{$ctrl.item.history[0].timestamp | date}}</span>
+                            <span class="color-brown">Fecha de certificación:</span><span>{{$ctrl.item.status.timestamp | date}}</span>
                         </div>
                         <div>
-                            <span class="color-brown">Fecha de vigencia:</span><span>{{$ctrl.item.history[0].valid_to | date}}</span>
+                            <span class="color-brown">Fecha de vigencia:</span><span>{{$ctrl.item.status.valid_to | date}}</span>
                         </div>
                         <div>
-                            <span class="color-brown">URL:</span><span>{{$ctrl.item.url}}</span>
+                            <span class="color-brown">Sitio Web del Producto o Servicio:</span><span><a target="_blank" href="{{$ctrl.item.url}}">{{$ctrl.item.name}}</a></span>
                         </div>
                     </div>
                 </div>
@@ -65,12 +65,22 @@
             </div>
         </div>
     </div>
+    <div class="container center-align" ng-if="$ctrl.item && !$ctrl.item.is_active">
+        <h3>El Producto o Servicio no se encuentra activo.</h3>
+    </div>
 </div>
 
 <footer-app></footer-app>
 
 <!-- Modal Structure -->
 <div id="qualify" class="modal">
+    <div class="brown title">
+        <a class="pull-right modal-action modal-close" >
+            <i class="fa fa-times color-white"></i>
+        </a>
+        <div class="clearfix">
+        </div>
+    </div>
     <div class="modal-content">
         <evaluation service="$ctrl.item"></evaluation>
     </div>

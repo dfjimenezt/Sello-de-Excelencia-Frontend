@@ -14,7 +14,7 @@
                 <span>Plazo de evaluación: </span><span>{{$ctrl.request.end_time | date}}</span><br>
                 <span ng-if="$ctrl.service.test_user != ''">Usuario Prueba: </span><span>{{$ctrl.service.test_user }}</span><br>
                 <span ng-if="$ctrl.service.test_password != ''">Contraseña Prueba: </span><span>{{$ctrl.service.test_password }}</span><br>
-                <span ng-if="$ctrl.service.url != ''">URL del producto postulado: </span><a ng-href="$ctrl.service.url" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
+                <span ng-if="$ctrl.service.url != ''">URL del producto postulado: </span><a ng-href="{{$ctrl.service.url}}" target="_blank" class="color-lightseagreen">{{$ctrl.service.url}}</a>
             </div>
         </div>
         
@@ -30,7 +30,9 @@
     
     <chat-evaluator 
         request="$ctrl.request" 
-        ng-if="$ctrl.request.id_request_status == 6">
+        ng-if="$ctrl.request.id_request_status == $ctrl.STATES.EVALUATION_REQUEST.RETROALIMENTACION
+        || $ctrl.selected.status.id == $ctrl.STATES.EVALUATION_REQUEST.CUMPLE
+        || $ctrl.selected.status.id == $ctrl.STATES.EVALUATION_REQUEST.NO_CUMPLE">
     </chat-evaluator>
 
     <a modal data-target="reject" open="$ctrl.openReject"></a>
@@ -39,7 +41,7 @@
         <script src='https://www.google.com/recaptcha/api.js?hl=es-419'></script>
         <div class="modal-content center-align">
             <div class="border">
-                <i class="fa fa-check color-green"></i><br>
+                <i class="fa fa-times color-red"></i><br>
                 <span class="color-brown congratulations">¿Está seguro que desea rechazar este requisito?</span><br>
                 <span>{{$ctrl.service.name}}</span><br>
                 <span class="color-lightseagreen">{{$ctrl.question.text}}</span>

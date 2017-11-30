@@ -1,12 +1,15 @@
 class requisiteController{
-  constructor(Api,$http,$auth,$scope){
+  constructor(Api,$http,$auth,$scope,STATES){
     'ngInject'
-    this.Api = Api,
+    this.Api = Api
+    this.STATES = STATES
     this.$http = $http
     this.$auth = $auth
     this.$scope = $scope
     this.loading = false
     this.answerEndpoint = Api + '/question/user_answer'
+    this._legal = false
+    this._help = false
   }
   $onInit(){
   }
@@ -22,6 +25,7 @@ class requisiteController{
     var request = new XMLHttpRequest()
     if(this.item.answer){
       data.append('id',this.item.answer)
+      data.append('id_status',this.STATES.EVALUATION_REQUEST.PENDIENTE)
       request.open('PUT', this.answerEndpoint)
     }else{
       request.open('POST', this.answerEndpoint)
@@ -30,14 +34,32 @@ class requisiteController{
     request.onload = function () {
       let response = JSON.parse(request.responseText)
       ctrl.loading = false
-      ctrl.item.answer = response.id
+      ctrl.item.error = false
+      if(response.id){
+        ctrl.item.answer = response.id
+      }
+      if(response.media){
+        ctrl.item.media = response.media
+        ctrl.item.media.name = ctrl.item.media.url.substr(ctrl.item.media.url.lastIndexOf('/')+1)
+        ctrl.item.canDelete = true
+      }
       ctrl.onSave({item:ctrl.item})
       ctrl.$scope.$apply()
     }
     request.send(data)
   }
+  showHelp(){
+    this._help = !this._help
+    this._legal = false
+  }
+  showLegal(){
+    this._legal = !this._legal
+    this._help = false
+  }
   clearMedia(){
     this.item.media = null
+    this.item.id_media = null
+    this.item.file = null
     if(this.item.disabled === true){
       this.item.disabled = false
     }
