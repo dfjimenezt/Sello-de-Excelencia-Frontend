@@ -1,5 +1,5 @@
 ## Sello de Excelencia Gobierno Digital Colombia
-Aplicación que permite postular, validar y certificar la alta calidad de los trámites, servicios, productos y capacidades de gestión de TI de las entidades públicas del Estado Colombiano.
+Aplicación que permite postular, validar y certificar la alta calidad de los trámites, servicios, productos y capacidades de gestión de TI de las entidades públicas del Estado Colombiano. El propietario de esta aplicación es el Ministerio de Tecnologías de la Información y las Comunicaciones del Estado Colombiano
 
 * [http://sellodeexcelencia.gov.co](http://sellodeexcelencia.gov.co/)
 
